@@ -1,2 +1,2 @@
-# greenshare-app
+# GreenShare App
 GreenShare Mobile Application repository
