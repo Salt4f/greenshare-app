@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.RequestsPage">
+    <ScrollView HeightRequest="3000">
+        <StackLayout>
+            <BoxView WidthRequest="600" HeightRequest="200" Color="Red"></BoxView>
+            <BoxView WidthRequest="600" HeightRequest="200" Color="Yellow"></BoxView>
+            <BoxView WidthRequest="600" HeightRequest="200" Color="Red"></BoxView>
+            <BoxView WidthRequest="600" HeightRequest="200" Color="Yellow"></BoxView>
+            <BoxView WidthRequest="600" HeightRequest="200" Color="Red"></BoxView>
+            <BoxView WidthRequest="600" HeightRequest="200" Color="Yellow"></BoxView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

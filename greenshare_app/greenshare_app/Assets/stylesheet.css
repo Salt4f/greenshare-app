@@ -1,0 +1,18 @@
+﻿^ContentPage {
+    background-color: rgb(61,61,61);
+    background: linear-gradient(90deg, rgba(61,61,61,1) 0%, rgba(1,105,24,1) 0%, rgba(255,255,255,1) 80%);
+}
+^TabbedPage {
+    -xf-bar-background-color: gray;
+    -xf-bar-text-color: white;
+}
+^Frame {
+    background-color: blue;
+}
+
+^Entry {
+    border-radius: 30;
+    -xf-placeholder-color: lightgray;
+    background: transparent;
+    opacity: 0.6;
+}
