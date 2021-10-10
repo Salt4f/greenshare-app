@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout Padding="40" Spacing="30">
+            <Label Text="User Details" TextColor="#533F95" FontSize="25" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
+            <StackLayout Spacing="25">
+                <StackLayout>
+                    <Label Text="User Name:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                    <Label Text="aqui va el username" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Mobile Number:" Font="18" HorizontalOptions="FillAndExpand" TextColor="Black" />
+                    <Label Text="aqui va el telefon" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Email Address:" Font="18" HorizontalOptions="FillAndExpand" TextColor="Black" />
+                    <Label Text="aqui va el email" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

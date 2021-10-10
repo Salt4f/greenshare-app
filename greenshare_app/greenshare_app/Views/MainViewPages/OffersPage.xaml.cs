@@ -14,7 +14,7 @@ namespace greenshare_app.Views.MainViewPages
         }
         private void OnPerfilClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ProfileView());
+            Navigation.PushModalAsync(new ProfilePage());
         }
     }
 }

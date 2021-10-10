@@ -1,4 +1,4 @@
-﻿^ContentPage {
+﻿^LoginView {
     background-color: rgb(61,61,61);
     background: linear-gradient(90deg, rgba(61,61,61,1) 0%, rgba(1,105,24,1) 0%, rgba(255,255,255,1) 80%);
 }
@@ -15,4 +15,9 @@
     -xf-placeholder-color: lightgray;
     background: transparent;
     opacity: 0.6;
+}
+
+^ProfilePage {
+    background-color: gray;
+    
 }
