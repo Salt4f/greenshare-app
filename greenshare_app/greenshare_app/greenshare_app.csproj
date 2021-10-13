@@ -38,6 +38,15 @@
     <Compile Update="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Text\Text.Designer.cs">
+      <DependentUpon>Text.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Text\Text.es.Designer.cs">
+      <DependentUpon>Text.es.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Text\Text.ca.Designer.cs">
+      <DependentUpon>Text.ca.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -53,11 +62,29 @@
     <EmbeddedResource Update="MainPageTabs\RequestsList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Text\Text.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Text.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Text\Text.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Text.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Text\Text.ca.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Text.ca.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Update="NETStandard.Library">
       <GeneratePathProperty></GeneratePathProperty>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Text\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Text\" />
   </ItemGroup>
 </Project>
