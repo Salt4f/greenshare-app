@@ -1,18 +1,34 @@
-﻿^ContentPage {
-    background-color: rgb(61,61,61);
-    background: linear-gradient(90deg, rgba(61,61,61,1) 0%, rgba(1,105,24,1) 0%, rgba(255,255,255,1) 80%);
-}
-^TabbedPage {
-    -xf-bar-background-color: gray;
-    -xf-bar-text-color: white;
-}
-^Frame {
-    background-color: blue;
+﻿* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-^Entry {
-    border-radius: 30;
-    -xf-placeholder-color: lightgray;
-    background: transparent;
-    opacity: 0.6;
+^ContentPage{
+    background-color: #FAEEE0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+^stacklayout{
+    margin: 75 25;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.texts>Entry {
+    color: black;
+}
+
+ .butons>Button{
+    border-radius: 25;
+    background-color: #B5CDA3;
+    color: black;
+}
+
+^LoginView{
+    text-align: center;
+}
+

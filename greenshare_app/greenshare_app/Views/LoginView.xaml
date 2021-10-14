@@ -5,31 +5,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resource="clr-namespace:greenshare_app.Text">
     <ContentPage.Content>
-        <StackLayout Margin="50,150,50,50">
-            <!--  Margin = "Left,Top,Right,Down"  -->
-
-            <Entry
+        <StackLayout>
+            <StackLayout StyleClass="texts">
+                <Entry
                 x:Name="email"
                 Keyboard="Email"
                 Placeholder="Email"
                 VerticalOptions="Center" />
-            <Entry
+                <Entry
                 x:Name="password"
                 IsPassword="True"
                 Placeholder="Password"
                 VerticalOptions="Center" />
-            <Button
+            </StackLayout>
+
+            <StackLayout StyleClass="butons">
+                <Button
                 x:Name="loginButton"
                 Clicked="loginButton_Clicked"
                 Text="{x:Static resource:Text.loginButtonText}" />
-            <Button
+                <Button
                 x:Name="registerButton"
                 Clicked="registerButton_Clicked"
                 Text="Sign Up" />
-            <Button
+                <Button
                 x:Name="googleButton"
                 Clicked="googleButton_Clicked"
                 Text="Sign In with Google" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
