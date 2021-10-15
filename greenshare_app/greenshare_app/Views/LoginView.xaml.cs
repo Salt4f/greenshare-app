@@ -12,7 +12,7 @@ namespace greenshare_app.Views
         {
             InitializeComponent();
         }
-        private void loginButton_Clicked(object sender, EventArgs e)
+        private void loginButtonClicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(email.Text) || string.IsNullOrEmpty(password.Text))
                 DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
@@ -30,7 +30,7 @@ namespace greenshare_app.Views
             }
         }
 
-        private void registerButton_Clicked(object sender, EventArgs e)
+        private void registerButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new RegisterView());
             Navigation.RemovePage(this);
