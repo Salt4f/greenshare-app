@@ -5,10 +5,7 @@
 }
 
 ^ContentPage{
-    background-color: #FAEEE0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    background-color: #EDEAE8;
 }
 
 ^stacklayout{
@@ -18,17 +15,24 @@
     align-items: center;
 }
 
-.texts>Entry {
-    color: black;
+Entry {
+	color: black;
 }
 
- .butons>Button{
-    border-radius: 25;
-    background-color: #B5CDA3;
-    color: black;
+ Button{
+    background-color:#44c767;
+	border-radius:28;
+	border:1 solid #18ab29;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17;
+	padding:16 31;
+	text-decoration:none;
+	text-shadow:0 1 0 #2f6627;
 }
 
 ^LoginView{
-    text-align: center;
+    text-align: right;
 }
 
