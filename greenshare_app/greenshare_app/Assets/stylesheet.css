@@ -51,10 +51,22 @@ entry{
     border-radius: 20;
 }
 
+#boxTitle {
+    color: #ddffbc;
+    text-transform: uppercase;
+    font-style: bold;
+}
+
 entry>text{
     color: black;
 }
 
+frame {
+    border-radius: 15;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-style: ridge;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.7);
+}
 /*add styles for all the button's type'*/
 button{
     background-color: #52734d;

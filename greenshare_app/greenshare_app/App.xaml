@@ -4,8 +4,9 @@
              x:Class="greenshare_app.App">
     <Application.Resources>
         <StyleSheet Source="..\Assets\stylesheet.css"/>
+
         <ResourceDictionary>
-            
+            <ImageSource x:Key="Placeholder">https://dictionary.cambridge.org/es/images/full/tree_noun_001_18152.jpg?version=5.0.191</ImageSource>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
