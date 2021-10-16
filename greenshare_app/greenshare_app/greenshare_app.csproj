@@ -63,4 +63,8 @@
       <GeneratePathProperty></GeneratePathProperty>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
 </Project>

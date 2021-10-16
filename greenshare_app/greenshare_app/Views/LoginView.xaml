@@ -3,9 +3,9 @@
     x:Class="greenshare_app.Views.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentPage.Content>
+    <ContentPage.Content >
         <ScrollView>
-            <StackLayout>
+            <StackLayout BackgroundColor="{StaticResource colorBackground}">
                 <Grid Margin="50,25,50,25" VerticalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -17,25 +17,33 @@
                         <Entry
                             x:Name="email"
                             Keyboard="Email"
-                            Placeholder="Email" />
+                            Placeholder="Email"
+                            Style="{StaticResource styleEntry}"
+                            />
                     </StackLayout>
                     <StackLayout Grid.Row="1">
                         <Entry
                             x:Name="password"
                             IsPassword="True"
-                            Placeholder="Password" />
+                            Placeholder="Password" 
+                            Style="{StaticResource styleEntry}"
+                            />
                     </StackLayout>
                     <StackLayout Grid.Row="6">
                         <Button
                             x:Name="loginButton"
                             Clicked="loginButtonClicked"
-                            Text="Log in" />
+                            Text="Log in"
+                            Style="{StaticResource styleButton}"
+                            />
                     </StackLayout>
                     <StackLayout Grid.Row="7">
                         <Button
                             x:Name="registerButton"
                             Clicked="registerButtonClicked"
-                            Text="Sign Up" />
+                            Text="Sign Up"
+                            Style="{StaticResource styleButton}"
+                            />
                     </StackLayout>
                 </Grid>
             </StackLayout>
