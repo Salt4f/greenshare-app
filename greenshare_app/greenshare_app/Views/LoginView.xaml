@@ -3,8 +3,7 @@
     x:Class="greenshare_app.Views.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentPage.Content >
-        <ScrollView>
+    <ContentPage.Content>
             <StackLayout BackgroundColor="{StaticResource colorBackground}">
                 <Grid Margin="50,25,50,25" VerticalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
@@ -47,6 +46,5 @@
                     </StackLayout>
                 </Grid>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

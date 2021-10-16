@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.App">
     <Application.Resources>
+        <StyleSheet Source="..\Assets\stylesheet.css"></StyleSheet>
         <ResourceDictionary>
+            
             <ImageSource x:Key="Placeholder">https://dictionary.cambridge.org/es/images/full/tree_noun_001_18152.jpg?version=5.0.191</ImageSource>
             
             <!--Colors green colors ordered by intensity ascending-->
@@ -19,7 +21,7 @@
             <Color x:Key="colorGreen3">#ddffbc</Color>
             <Color x:Key="colorGreen4">#feffde</Color>-->
             
-            <Color x:Key="colorWhite">
+            <Color x:Key="colorBlack">
                 <x:Arguments>
                     <x:Double>0</x:Double>
                     <x:Double>0</x:Double>
@@ -27,7 +29,7 @@
                     <x:Double>.7</x:Double>
                 </x:Arguments>
             </Color>
-            <Color x:Key="colorBlack">
+            <Color x:Key="colorWhite">
                 <x:Arguments>
                     <x:Double>255</x:Double>
                     <x:Double>255</x:Double>
@@ -39,23 +41,52 @@
 
 
             <!--Falta canviar estils de els butons i les entries, es nomes com a plantilla-->
-            
+            <!--
+            entry{
+            font-size: 20;
+            -xf-placeholder-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20;
+            }
+            button{
+            background-color: #52734d;
+            box-shadow: 4px 4px rgba(0, 0, 0, 0.7);
+            padding: 8;
+            border-radius: 25;
+            color: #ddffbc;
+            font-weight: bold;
+            font-size: 16;
+            }
+            -->
             <Style TargetType="Entry" x:Key="styleEntry">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="FontFamily" Value="Montserrat"/>
+                
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="BackgroundColor" Value="{StaticResource colorGreen1}" />
-                <Setter Property="TextColor" Value="Red" />
+                
+                <Setter Property="TextColor" Value="{StaticResource colorBlack}" />
             </Style>
-
             <Style TargetType="Button" x:Key="styleButton">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="CharacterSpacing" Value="1"/>
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="BackgroundColor" Value="{StaticResource colorGreen3}" />
-                <Setter Property="FontAttributes" Value="Italic" />
-                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource colorWhite}" />
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="FontSize" Value="16"/>
             </Style>
-            
+            <Style TargetType="Frame" x:Key="styleOffersFrame">
+                <Setter Property="BackgroundColor" Value="{StaticResource colorWhite}"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="BorderColor" Value="{StaticResource colorBlack}"/>
+                <Setter Property="HasShadow" Value="True"/>
+            </Style>
+            <Style TargetType="Label" x:Key="styleOfferTitle">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource colorGreen2}"/>
+                <Setter Property="TextTransform" Value="Uppercase"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

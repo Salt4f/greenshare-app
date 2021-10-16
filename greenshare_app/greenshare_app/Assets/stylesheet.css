@@ -1,49 +1,4 @@
-﻿/* All the styles of the application will be defined in this file */
-/* All variables all no case-sensitive */
-/*
-Paleta de colors:
-$verd1: #52734d;
-$verd2: #91c788;
-$verd3: #ddffbc;
-$verd4: #feffde;
-$negre: rgba(0, 0, 0, 0.7);
-$blanc: rgba(255, 255, 255, 0.9);   
-*/
-
-/*
-IMPORTANT:
-- Pels selectors .class i #id son case sensitive, en canvi la resta de selectors son case insensitive
-*/
-
-/* delete all by default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Montserrat;
-}
-
-/*add background-color by default for all pages in the app*/
-^contentPage{
-    background-color: #feffde;
-}
-
-/*add styles for all the flexlayout's type*/
-^flexlayout{
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#loginButton{
-    
-}
-
-#email{
-    color: black;
-    font-size: 100;
-}
-
+﻿
 /*add styles for all the entry's type'*/
 entry{
     font-size: 20;
@@ -51,29 +6,5 @@ entry{
     border-radius: 20;
 }
 
-#boxTitle {
-    color: #ddffbc;
-    text-transform: uppercase;
-    font-style: bold;
-}
 
-entry>text{
-    color: black;
-}
-
-frame {
-    border-radius: 15;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-style: ridge;
-    box-shadow: 4px 4px rgba(0, 0, 0, 0.7);
-}
 /*add styles for all the button's type'*/
-button{
-    background-color: #52734d;
-    box-shadow: 4px 4px rgba(0, 0, 0, 0.7);
-    padding: 8;
-    border-radius: 25;
-    color: #ddffbc;
-    font-weight: bold;
-    font-size: 16;
-}

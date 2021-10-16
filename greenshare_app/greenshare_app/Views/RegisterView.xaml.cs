@@ -14,11 +14,11 @@ namespace greenshare_app.Views
         }
         private async void registerButton_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(email.Text) || string.IsNullOrEmpty(password.Text) || string.IsNullOrEmpty(password2.Text))
+            if (string.IsNullOrEmpty(email.Text) || string.IsNullOrEmpty(password.Text) || string.IsNullOrEmpty(passwordRepeat.Text))
                 await DisplayAlert("Empty Values", "Please enter all values", "OK");
             else
             {
-                if (password.Text == password2.Text)
+                if (password.Text == passwordRepeat.Text)
                 {
                     await DisplayAlert("Sign in Success", "Sign in Success", "OK");
                 }

@@ -32,8 +32,8 @@ namespace greenshare_app.Views
 
         private void registerButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RegisterView());
-            Navigation.RemovePage(this);
+            Navigation.PushModalAsync(new RegisterView());
+            //Navigation.RemovePage(this);
         }
 
         private void googleButton_Clicked(object sender, EventArgs e)

@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.RequestsPage">
+             x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
+             BackgroundColor="{StaticResource colorGreen3}">
     <ScrollView HeightRequest="3000">
         <StackLayout Margin="2" Spacing="15" HorizontalOptions="CenterAndExpand">
-            <Frame WidthRequest="400" HeightRequest="200">
-                <Grid Margin="20,30,20,20" VerticalOptions="StartAndExpand">
+            <Frame WidthRequest="300" HeightRequest="200" Style="{StaticResource styleOffersFrame}" Padding="0">
+                <Grid  Margin="20,20,20,20" VerticalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -14,10 +15,9 @@
                     </Grid.RowDefinitions>
                     
                     <StackLayout Grid.Row="0" Grid.ColumnSpan="3">
-                        <Label x:Name="boxTitle" Text="Aquí va el título de la petición"
+                        <Label x:Name="boxTitle" Text="Aquí va el título de la petición" Style="{StaticResource styleOfferTitle}"
                                HorizontalOptions="Start"
-                               VerticalOptions="Center"
-                               TextColor="Black"
+                               VerticalOptions="Center"                               
                                >
                         </Label>
                     </StackLayout>
@@ -26,17 +26,19 @@
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
                                TextColor="Black"
-                               HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="End"
                                >
                         </Label>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
-                        <Image Source="{StaticResource Key=Placeholder}"
-                               Aspect="AspectFill"
+                        <Frame Padding="0" CornerRadius="5">
+                        <Image Source="{StaticResource Key=Placeholder}"                               
+                               Aspect="AspectFill"                              
                                >
-                            
+                          
                         </Image>
+                        </Frame>
                     </StackLayout>
                     <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
                         <Label Text="username"
@@ -48,17 +50,17 @@
                     </StackLayout>
                 </Grid>
             </Frame>
-            <Frame WidthRequest="400" HeightRequest="200">
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0">
                 
             </Frame>
-            <Frame WidthRequest="400" HeightRequest="200">
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0">
                 
             </Frame>
-            <Frame WidthRequest="400" HeightRequest="200">
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0">
                 
             </Frame>
-            <Frame WidthRequest="400" HeightRequest="200"></Frame>
-            <Frame WidthRequest="400" HeightRequest="200"></Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0"></Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0"></Frame>
         </StackLayout>
     </ScrollView>
 </ContentPage>
