@@ -28,7 +28,15 @@
                             Style="{StaticResource styleEntry}"
                             />
                     </StackLayout>
-                    <StackLayout Grid.Row="6">
+                    <StackLayout Grid.Row="3">
+                    <FlexLayout>
+                        <CheckBox
+                            x:Name="remember"
+                        />
+                        <Label Text="Remember Me" VerticalTextAlignment="Center"/>
+                    </FlexLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="6">
                         <Button
                             x:Name="loginButton"
                             Clicked="loginButtonClicked"
