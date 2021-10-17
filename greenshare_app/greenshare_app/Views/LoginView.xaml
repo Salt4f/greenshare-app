@@ -2,27 +2,32 @@
 <ContentPage
     x:Class="greenshare_app.Views.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:greenshare_app.Controls">
     <ContentPage.Content>
-            <StackLayout BackgroundColor="{StaticResource colorBackground}">
-                <Grid Margin="50,25,50,25" VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <StackLayout Grid.Row="0">
-                        <Entry
-                            x:Name="email"
+        <StackLayout BackgroundColor="{StaticResource colorBackground}">
+            <Grid Margin="50,25,50,25" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                        <control:BorderlessEntry
+                            x:Name="emailEntry"
                             Keyboard="Email"
+                            Margin="15,0"
+                            HeightRequest="40"
                             Placeholder="Email"
                             Style="{StaticResource styleEntry}"
                             />
                     </StackLayout>
                     <StackLayout Grid.Row="1">
-                        <Entry
-                            x:Name="password"
+                        <control:BorderlessEntry
+                            x:Name="passwordEntry"
+                            Margin="15,0"
+                            HeightRequest="40"
                             IsPassword="True"
                             Placeholder="Password" 
                             Style="{StaticResource styleEntry}"
@@ -36,6 +41,7 @@
                             Style="{StaticResource styleButton}"
                             />
                     </StackLayout>
+                
                     <StackLayout Grid.Row="7">
                         <Button
                             x:Name="registerButton"

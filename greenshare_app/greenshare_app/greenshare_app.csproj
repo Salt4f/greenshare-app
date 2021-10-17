@@ -65,6 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Styles\" />
   </ItemGroup>
 </Project>
