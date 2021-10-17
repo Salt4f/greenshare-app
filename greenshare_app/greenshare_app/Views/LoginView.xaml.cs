@@ -14,12 +14,12 @@ namespace greenshare_app.Views
         }
         private void loginButtonClicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(email.Text) || string.IsNullOrEmpty(password.Text))
+            if (string.IsNullOrEmpty(emailEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text))
                 DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
             else
             {
 
-                if (email.Text == "abc@gmail.com" && password.Text == "1234")   //Verificar aqui les credencials
+                if (emailEntry.Text == "abc@gmail.com" && passwordEntry.Text == "1234")   //Verificar aqui les credencials
                 {
                     DisplayAlert("Login Success", "", "Ok");
 

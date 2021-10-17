@@ -23,6 +23,9 @@
     <Compile Update="MainPageTabs\OffersList.xaml.cs">
       <DependentUpon>OffersList.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Styles\Colors.xaml.cs">
+      <DependentUpon>Colors.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -56,6 +59,9 @@
     <EmbeddedResource Update="MainPageTabs\RequestsList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Colors.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +72,5 @@
 
   <ItemGroup>
     <Folder Include="Resources\Fonts\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
 </Project>
