@@ -11,6 +11,7 @@ namespace greenshare_app.Views
         public LoginView()
         {
             InitializeComponent();
+            BindingContext = new ViewModels.LoginViewModel();
         }
         private void loginButtonClicked(object sender, EventArgs e)
         {
