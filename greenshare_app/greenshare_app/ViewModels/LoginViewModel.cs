@@ -1,15 +1,16 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
-using Xamarin.Common.Mvvm.Base;
+
 using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
 {
-    public class LoginViewModel : BindableBase 
+    public class LoginViewModel : ObservableObject 
     {
         public LoginViewModel()
         {
