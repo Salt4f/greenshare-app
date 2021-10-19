@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using greenshare_app.ViewModels;
 
 namespace greenshare_app
 {
@@ -12,7 +13,7 @@ namespace greenshare_app
 
         protected override void OnStart()
         {
-            MainPage = new Views.LoginView();
+            MainPage = new Views.LoginView();            
         }
 
         protected override void OnSleep()

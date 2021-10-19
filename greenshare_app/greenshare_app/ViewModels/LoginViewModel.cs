@@ -1,4 +1,5 @@
-﻿using MvvmHelpers;
+﻿using greenshare_app.Views;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,47 +11,39 @@ using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
 {
-    public class LoginViewModel : ObservableObject 
+    public class LoginViewModel : BaseViewModel
     {
-        public LoginViewModel()
+        public LoginViewModel(INavigation navigation)
         {
-            this.InitializeProperties();
+            this.Navigation = navigation;
+            this.Email = string.Empty;
+            this.Password = string.Empty;
+            //loginButtonClicked = new Command(this.OnLoginClicked);
         }
 
        
 
         //Binding Objects
         public Command ForgotPasswordCommand => new Command(OnForgotPassword);
-        public ICommand loginButtonClicked { private get; set; }    
+        public Command loginButtonClicked => new Command(OnLoginClicked);
+        public INavigation Navigation { get; set; }
         public Command registerButtonClicked => new Command(OnRegisterClicked);
         private string email;
         private string password;
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
-        private void InitializeProperties()
-        {
-            this.Email = string.Empty;
-            this.Password = string.Empty;
-            loginButtonClicked = new Command(
-                execute: () =>
-                {
-                    OnLoginClicked();
-                    RefreshCanExecutes();
-                });
-        }
+       
+            
+        
         void RefreshCanExecutes()
         {
             ((Command)loginButtonClicked).ChangeCanExecute();            
         }
         public string Password
         {
-            get { return password; }
-            set {
-                SetProperty(ref password, value);
-            }
-
-            
+            get => password;
+            set => SetProperty(ref password, value);           
         }
         public string Email
         {
@@ -65,7 +58,7 @@ namespace greenshare_app.ViewModels
         {
             throw new NotImplementedException();
         }
-        private void OnLoginClicked()
+        private void OnLoginClicked(object obj)
         {
             if (string.IsNullOrEmpty(this.email) || string.IsNullOrEmpty(this.password)) ;
             //DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
@@ -74,18 +67,19 @@ namespace greenshare_app.ViewModels
 
                 if (this.email == "abc@gmail.com" && this.password == "1234")   //Verificar aqui les credencials
                 {
-                    //DisplayAlert("Login Success", "", "Ok");
+                    //await DisplayAlert("Login Success", "", "Ok");
 
-                    App.Current.MainPage = new Views.MainView();
+                    App.Current.MainPage = new MainView();
                 }
                 else;
                     //DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
             }
             //throw new NotImplementedException();
         }
-        private static void OnRegisterClicked()
+        private async void OnRegisterClicked()
         {
-            throw new NotImplementedException();
+            await Navigation.PushModalAsync(new RegisterView());
+            //throw new NotImplementedException();
         }
     }
 }
