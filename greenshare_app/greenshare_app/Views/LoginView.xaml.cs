@@ -11,7 +11,7 @@ namespace greenshare_app.Views
         public LoginView()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.LoginViewModel(Navigation);
+            BindingContext = new ViewModels.LoginViewModel(Navigation, this);
         }
         
     }

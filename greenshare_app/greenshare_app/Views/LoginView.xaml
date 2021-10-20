@@ -34,7 +34,7 @@
                     <StackLayout Grid.Row="3" Grid.Column="0">
                         <FlexLayout>
                             <CheckBox
-                            x:Name="remember"
+                            IsChecked="{Binding RememberMe}"
                             />
                         <Label Text="Remember Me" TextColor="{StaticResource colorBlack}" VerticalTextAlignment="Center"/>
                         </FlexLayout>
@@ -50,13 +50,13 @@
                 </StackLayout>
                 <StackLayout Grid.Row="6" Grid.ColumnSpan="2">
                     <Button x:Name="loginButton" Text="Log in" Style="{StaticResource styleButton}"
-                            Command="{Binding loginButtonClicked}">
+                            Command="{Binding LoginButtonCommand}">
                         
                     </Button>
                 </StackLayout>
                 <StackLayout Grid.Row="7" Grid.ColumnSpan="2">
                     <Button x:Name="registerButton" Text="Sign In" Style="{StaticResource styleButton}"
-                            Command="{Binding registerButtonClicked}">
+                            Command="{Binding RegisterButtonCommand}">
                     </Button>
                 </StackLayout>
                 </Grid>

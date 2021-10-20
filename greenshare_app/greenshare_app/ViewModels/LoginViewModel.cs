@@ -1,56 +1,55 @@
 ﻿using greenshare_app.Views;
 using MvvmHelpers;
+using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Xamarin.Forms;
+using Command = MvvmHelpers.Commands.Command;
 
 namespace greenshare_app.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public LoginViewModel(INavigation navigation)
+        public LoginViewModel(INavigation navigation, Page view)
         {
-            this.Navigation = navigation;
-            this.Email = string.Empty;
-            this.Password = string.Empty;
-            //loginButtonClicked = new Command(this.OnLoginClicked);
+            Navigation = navigation;
+            Email = string.Empty;
+            Password = string.Empty;
+            this.view = view;
         }
 
-       
+        private Page view;
 
         //Binding Objects
         public Command ForgotPasswordCommand => new Command(OnForgotPassword);
-        public Command loginButtonClicked => new Command(OnLoginClicked);
+        public AsyncCommand LoginButtonCommand => new AsyncCommand(OnLoginClicked);
+        public Command RegisterButtonCommand => new Command(OnRegisterClicked);
         public INavigation Navigation { get; set; }
-        public Command registerButtonClicked => new Command(OnRegisterClicked);
+        
         private string email;
         private string password;
+        private bool rememberMe;
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-       
-            
-        
-        void RefreshCanExecutes()
+        public string Email
         {
-            ((Command)loginButtonClicked).ChangeCanExecute();            
+            get => email;
+            set => SetProperty(ref email, value);
         }
         public string Password
         {
             get => password;
-            set => SetProperty(ref password, value);           
+            set => SetProperty(ref password, value);
         }
-        public string Email
+        public bool RememberMe
         {
-            get { return email; }
-            set {
-                SetProperty(ref email, value);
-            }
+            get => rememberMe;
+            set => SetProperty(ref rememberMe, value);
         }
 
         //Binding Actions
@@ -58,10 +57,13 @@ namespace greenshare_app.ViewModels
         {
             throw new NotImplementedException();
         }
-        private void OnLoginClicked(object obj)
+
+        private async Task OnLoginClicked()
         {
-            if (string.IsNullOrEmpty(this.email) || string.IsNullOrEmpty(this.password)) ;
-            //DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+            {
+                await view.DisplayAlert("Wrong Info", "Email or password empty", "OK");
+            }
             else
             {
 
@@ -71,7 +73,7 @@ namespace greenshare_app.ViewModels
 
                     App.Current.MainPage = new MainView();
                 }
-                else;
+                else { }
                     //DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
             }
             //throw new NotImplementedException();
