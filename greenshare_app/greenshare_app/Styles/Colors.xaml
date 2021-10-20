@@ -1,12 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Styles.Page1">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+<ResourceDictionary
+    x:Class="greenshare_app.Styles.Colors"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="colorGreen1">#597C2B</Color>
+    <Color x:Key="colorGreen2">#668D2E</Color>
+    <Color x:Key="colorGreen3">#80A142</Color>
+    <Color x:Key="colorGreen4">#91B247</Color>
+    <Color x:Key="colorGreen5">#D2E459</Color>
+
+    <!--<Color x:Key="colorGreen1">#52734d</Color>
+    <Color x:Key="colorGreen2">#91c788</Color>
+    <Color x:Key="colorGreen3">#ddffbc</Color>
+    <Color x:Key="colorGreen4">#feffde</Color>-->
+
+    <Color x:Key="colorBlack">
+        <x:Arguments>
+            <x:Double>0</x:Double>
+            <x:Double>0</x:Double>
+            <x:Double>0</x:Double>
+            <x:Double>.7</x:Double>
+        </x:Arguments>
+    </Color>
+
+    <Color x:Key="colorWhite">
+        <x:Arguments>
+            <x:Double>255</x:Double>
+            <x:Double>255</x:Double>
+            <x:Double>255</x:Double>
+            <x:Double>.85</x:Double>
+        </x:Arguments>
+    </Color>
+    <Color x:Key="colorBackground">#feffde</Color>
+
+</ResourceDictionary>
