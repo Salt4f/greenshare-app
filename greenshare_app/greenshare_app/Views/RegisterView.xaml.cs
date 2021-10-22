@@ -12,7 +12,7 @@ namespace greenshare_app.Views
         public RegisterView()
         {
             InitializeComponent();
-            BindingContext = new RegisterViewModel();
+            BindingContext = new RegisterViewModel(Navigation, this);
         }
                
     }
