@@ -17,12 +17,22 @@ namespace greenshare_app.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        private event EventHandler Starting = delegate { };
         public LoginViewModel(INavigation navigation, Page view)
         {
             Navigation = navigation;
             Email = string.Empty;
             Password = string.Empty;
             this.view = view;
+
+            IsBusy = true;
+            Starting += OnStarting;
+            Starting(this, EventArgs.Empty);
+        }
+
+        private async void OnStarting(object sender, EventArgs args)
+        {
+            if (await Auth.Instance().CheckLoggedIn()) Application.Current.MainPage = new MainView();
         }
 
         private Page view;
@@ -67,13 +77,20 @@ namespace greenshare_app.ViewModels
             }
             else
             {
-
-                if (await Auth.Instance().Login(Email, Crypto.GetHashString(Password)))   //Verificar aqui les credencials
+                IsBusy = true;
+                if (await Auth.Instance().Login(Email, Crypto.GetHashString(Password), RememberMe))   //Verificar aqui les credencials
                 {
-                    //await DisplayAlert("Login Success", "", "Ok");
-                    App.Current.MainPage = new MainView();
+                    IsBusy = false;
+                    Application.Current.MainPage = new MainView();
                 }
-                else { }
+                else
+                {
+                    IsBusy = false;
+                    await view.DisplayAlert("Wrong Info", "Email and/or password incorrect", "OK");
+                    Email = string.Empty;
+                    Password = string.Empty;
+                }
+                
                     //DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
             }
             //throw new NotImplementedException();

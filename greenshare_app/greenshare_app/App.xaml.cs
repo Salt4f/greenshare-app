@@ -1,5 +1,5 @@
 ﻿using Xamarin.Forms;
-using greenshare_app.ViewModels;
+using System;
 
 namespace greenshare_app
 {
@@ -8,12 +8,11 @@ namespace greenshare_app
         public App()
         {
             InitializeComponent();
-
+            MainPage = new Views.MainView();
         }
 
         protected override void OnStart()
-        {
-            MainPage = new Views.LoginView();            
+        { 
         }
 
         protected override void OnSleep()
