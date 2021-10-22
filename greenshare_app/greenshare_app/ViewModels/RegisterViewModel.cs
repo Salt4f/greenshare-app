@@ -1,27 +1,40 @@
-﻿using MvvmHelpers;
+﻿using greenshare_app.Utils;
+using greenshare_app.Views;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
-        public RegisterViewModel()
+        public RegisterViewModel(INavigation navigation, Page view)
         {
             Title = "Sign In";
-            this.email = string.Empty;
-            this.password = string.Empty;
-            this.repeatPassword = string.Empty;
+            Email = string.Empty;
+            Password = string.Empty;
+            RepeatPassword = string.Empty;
+
+            this.navigation = navigation;
+            this.view = view;
         }
-        public Command registerButtonClicked => new Command(OnRegisterClicked);
-        public Command googleButtonClicked => new Command(OnGoogleClicked);
 
-        
+        private INavigation navigation;
+        private Page view;
 
+        private string nickname;
         private string email;
         private string password;
         private string repeatPassword;
+        public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterButton);
 
+        public string Nickname
+        {
+            get => nickname;
+            set => SetProperty(ref nickname, value);
+        }    
         public string Password
         {
             get => password;
@@ -38,21 +51,34 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref repeatPassword, value);
         }
 
-        private void OnRegisterClicked(object obj)
+        private async Task OnRegisterButton()
         {
-            throw new NotImplementedException();
 
-
-            if (string.IsNullOrEmpty(this.email) || string.IsNullOrEmpty(this.password) || string.IsNullOrEmpty(this.repeatPassword)) ;
-            //await DisplayAlert("Empty Values", "Please enter all values", "OK");
-            else
+            if (!Validation.PasswordsAreEqual(Password, RepeatPassword))
             {
-                if (this.password == this.repeatPassword)
-                {
-                    //await DisplayAlert("Sign in Success", "Sign in Success", "OK");
-                }
-                //else await DisplayAlert("Sign in Failed", "Passwords are not the same!", "OK");
+                await view.DisplayAlert("Passwords are not the same!", "Please make sure both passwords are equal", "OK");
+                RepeatPassword = string.Empty;
+                return;
             }
+            if (!Validation.ValidateEmail(Email))
+            {   
+                await view.DisplayAlert("Email not valid!", "Please check if the email is correct", "OK");
+                return;
+            }
+
+            try
+            {
+                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname))
+                {
+                    Application.Current.MainPage = new MainView();
+                }
+
+            }
+            catch (Exception)
+            {
+                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+            }
+        
         }
 
         private void OnGoogleClicked(object obj)
