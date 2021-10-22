@@ -10,6 +10,7 @@
                    TextColor="Red"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="PlaceholderProfile" Text="Perfil" Clicked="OnPerfilClicked"/>
         </StackLayout>        
             
     </ScrollView>

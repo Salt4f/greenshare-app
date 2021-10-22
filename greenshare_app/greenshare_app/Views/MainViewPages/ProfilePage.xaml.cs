@@ -1,4 +1,4 @@
-﻿
+
 using greenshare_app.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -6,12 +6,13 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RequestsPage : ContentPage
+    public partial class ProfilePage : ContentPage
     {
-        public RequestsPage()
+        public ProfilePage()
         {
             InitializeComponent();
-            BindingContext = new RequestsPageViewModel();
+            BindingContext = new ProfilePageViewModel();
         }
+
     }
 }

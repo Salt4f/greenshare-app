@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using greenshare_app.ViewModels;
+using Xamarin.Forms;
 
 namespace greenshare_app.Views
 {
@@ -7,7 +8,7 @@ namespace greenshare_app.Views
         public MainView()
         {
             InitializeComponent();
-
+            BindingContext = new MainViewModel();
         }
 
     }

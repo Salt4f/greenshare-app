@@ -1,38 +1,7 @@
-﻿* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+﻿
+/*add styles for all the entry's type'*/
+entry{
+    font-size: 20;
+    -xf-placeholder-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20;
 }
-
-^ContentPage{
-    background-color: #EDEAE8;
-}
-
-^stacklayout{
-    margin: 75 25;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-Entry {
-	color: black;
-}
-
- Button{
-    background-color:#44c767;
-	border-radius:28;
-	border:1 solid #18ab29;
-	display:inline-block;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:17;
-	padding:16 31;
-	text-decoration:none;
-	text-shadow:0 1 0 #2f6627;
-}
-
-^LoginView{
-    text-align: right;
-}
-
