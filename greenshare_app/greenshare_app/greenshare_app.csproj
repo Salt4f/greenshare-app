@@ -15,6 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\TestImages\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\TestImages\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -22,9 +30,6 @@
   <ItemGroup>
     <Compile Update="MainPageTabs\OffersList.xaml.cs">
       <DependentUpon>OffersList.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Styles\Colors.xaml.cs">
-      <DependentUpon>Colors.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -59,9 +64,6 @@
     <EmbeddedResource Update="MainPageTabs\RequestsList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Styles\Colors.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +73,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 </Project>

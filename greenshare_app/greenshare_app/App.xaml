@@ -6,9 +6,9 @@
     <Application.Resources>
         <StyleSheet Source="..\Assets\stylesheet.css"></StyleSheet>
         <ResourceDictionary>
-            
+
             <ImageSource x:Key="Placeholder">https://dictionary.cambridge.org/es/images/full/tree_noun_001_18152.jpg?version=5.0.191</ImageSource>
-            
+
             <!--Colors green colors ordered by intensity ascending-->
             
             <Color x:Key="colorGreen1">#597C2B</Color>
@@ -38,7 +38,7 @@
                     <x:Double>.85</x:Double>
                 </x:Arguments>
             </Color>
-            <Color x:Key="colorBackground">#feffde</Color>
+            <Color x:Key="colorBackground">#E1F2E5</Color>
 
 
             <!--Falta canviar estils de els butons i les entries, es nomes com a plantilla-->
@@ -96,6 +96,12 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource colorGreen2}"/>
                 <Setter Property="TextTransform" Value="Uppercase"/>
+            </Style>
+            
+            <Style TargetType="StackLayout" x:Key="styleLayoutEntries">
+                <Setter Property="Padding" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             </Style>
             
         </ResourceDictionary>
