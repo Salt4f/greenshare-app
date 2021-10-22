@@ -18,5 +18,12 @@ namespace greenshare_app.Utils
             return match.Success;
         }
 
+        public static bool PasswordsAreEqual(string password, string repeatPassword)
+        {
+            if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(repeatPassword)) return false;
+            else if (password == repeatPassword) return true;
+            return false;
+        }
+
     }
 }

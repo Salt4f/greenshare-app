@@ -47,6 +47,8 @@ namespace greenshare_app.Utils
             return false;
         }
 
+        
+
         public async Task<bool> CheckLoggedIn()
         {
             if (rememberMe)
@@ -58,6 +60,26 @@ namespace greenshare_app.Utils
 
                 var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/validate", httpContent);
                 if (response.StatusCode == HttpStatusCode.OK) return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> Register(string email, string password, string nickname)
+        {
+            RegisterInfo register = new RegisterInfo { Email = email, Password = password, Nickname = nickname };
+            string json = JsonConvert.SerializeObject(register);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/register", httpContent);
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                id = tokenJson.Value<int>("id");
+                token = tokenJson.Value<string>("token");
+                rememberMe = true;
+                await SaveAuth();
+                return true;
             }
             return false;
         }
@@ -117,6 +139,10 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "password")]
             public string Password { get; set; }
+            [JsonProperty(PropertyName = "nickname")]
+            public string Nickname { get; set; }
+
+            
         }
 
         private class ValidationInfo
