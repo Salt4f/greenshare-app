@@ -3,13 +3,7 @@ using greenshare_app.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-
 using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;
 
@@ -20,29 +14,37 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public LoginViewModel(INavigation navigation, Page view)
         {
-            Navigation = navigation;
             Email = string.Empty;
             Password = string.Empty;
+            this.navigation = navigation;
             this.view = view;
 
             IsBusy = true;
-            Starting += OnStarting;
+            Starting += OnStart;
             Starting(this, EventArgs.Empty);
         }
 
-        private async void OnStarting(object sender, EventArgs args)
+        private async void OnStart(object sender, EventArgs args)
         {
-            if (await Auth.Instance().CheckLoggedIn()) Application.Current.MainPage = new MainView();
+            try 
+            {
+                if (await Auth.Instance().CheckLoggedIn()) Application.Current.MainPage = new MainView();
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+            }
             IsBusy = false;
         }
 
         private Page view;
+        private INavigation navigation;
 
         //Binding Objects
         public Command ForgotPasswordCommand => new Command(OnForgotPassword);
         public AsyncCommand LoginButtonCommand => new AsyncCommand(OnLoginClicked);
         public Command RegisterButtonCommand => new Command(OnRegisterClicked);
-        public INavigation Navigation { get; set; }
         
         private string email;
         private string password;
@@ -78,27 +80,33 @@ namespace greenshare_app.ViewModels
             }
             else
             {
-                IsBusy = true;
-                if (await Auth.Instance().Login(Email, Crypto.GetHashString(Password), RememberMe))   //Verificar aqui les credencials
+                try
+                {
+                    IsBusy = true;
+                    if (await Auth.Instance().Login(Email, Crypto.GetHashString(Password), RememberMe))   //Verificar aqui les credencials
+                    {
+                        IsBusy = false;
+                        Application.Current.MainPage = new MainView();
+                    }
+                    else
+                    {
+                        IsBusy = false;
+                        await view.DisplayAlert("Wrong Info", "Email and/or password incorrect", "OK");
+                        Email = string.Empty;
+                        Password = string.Empty;
+                    }
+                }
+                catch (Exception)
                 {
                     IsBusy = false;
-                    Application.Current.MainPage = new MainView();
+                    await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
                 }
-                else
-                {
-                    IsBusy = false;
-                    await view.DisplayAlert("Wrong Info", "Email and/or password incorrect", "OK");
-                    Email = string.Empty;
-                    Password = string.Empty;
-                }
-                
-                    //DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
             }
-            //throw new NotImplementedException();
+            
         }
         private async void OnRegisterClicked()
         {
-            await Navigation.PushModalAsync(new RegisterView());
+            await navigation.PushModalAsync(new RegisterView());
             //throw new NotImplementedException();
         }
     }

@@ -10,7 +10,8 @@
                    TextColor="Red"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"/>
-            <Button x:Name="PlaceholderProfile" Text="Perfil" Clicked="OnPerfilClicked"/>
+            <Button Text="Profile" Command="{Binding ProfileButtonCommand}"/>
+            <Button Text="Log out" Command="{Binding LogoutButtonCommand}"/>
         </StackLayout>        
             
     </ScrollView>
