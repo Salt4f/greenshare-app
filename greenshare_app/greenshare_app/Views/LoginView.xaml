@@ -11,15 +11,15 @@
         <Grid>
             <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
                 <Frame HeightRequest="180" BackgroundColor="{StaticResource colorGreen2}" Padding="0" Margin="0">
-                    <ffimageloadingsvg:SvgCachedImage WidthRequest="100" HeightRequest="100" Source="resource://greenshare_app.Resources.Images.user.svg"/>
                 </Frame>
             </StackLayout>
             <StackLayout Padding="0" Margin="10,130,10,0" HorizontalOptions="FillAndExpand">
+                
                 <Frame BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0">
 
                     <StackLayout>
                         <StackLayout Margin="10">
-                            <Label Text="SIGN IN" TextColor="{StaticResource colorBlack}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20"/>
+                            <Label Text="SIGN IN" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorBlack}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20"/>
                         </StackLayout>
 
                         <StackLayout Padding="0" Margin="15">
@@ -29,7 +29,7 @@
                                     <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                         <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
-                                    <control:BorderlessEntry Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
@@ -38,15 +38,15 @@
                                     <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                         <Image Source="https://images.all-free-download.com/images/graphicthumb/lock_icon_6813906.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
-                                    <control:BorderlessEntry Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
                             <StackLayout  Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorGreen3}" />
-                                <Label Text="Remember me" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                <Label Text="Remember me" FontFamily="Montserrat-Medium" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
 
-                                <Label Text="Forgot Password" TextColor="{StaticResource colorGreen3}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                                <Label Text="Forgot Password" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorGreen3}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                                     </Label.GestureRecognizers>
@@ -55,17 +55,17 @@
 
                             </StackLayout>
 
-                            <Button Text="SIGN IN" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding LoginButtonCommand}"/>
+                            <Button Text="SIGN IN" FontFamily="Montserrat-Medium" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding LoginButtonCommand}"/>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Still Not Registered?" TextColor="DarkGray" FontSize="Small"/>
+                                <Label Text="Still Not Registered?" FontFamily="Montserrat-Medium" TextColor="DarkGray" FontSize="Small"/>
                             </StackLayout>
-                            <Button Text="SIGN UP" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding RegisterButtonCommand}"/>
+                            <Button Text="SIGN UP" FontFamily="Montserrat-Medium" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding RegisterButtonCommand}"/>
 
                             <StackLayout Margin="0,25,0,0" Padding="0">
                                 <Grid>
                                     <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="150"  HorizontalOptions="Center" VerticalOptions="Center"/>
                                     <Frame BackgroundColor="White" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
-                                        <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label Text="OR" FontFamily="Montserrat-Medium" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                     </Frame>
                                 </Grid>
                             </StackLayout>

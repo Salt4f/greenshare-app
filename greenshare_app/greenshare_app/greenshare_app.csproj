@@ -16,12 +16,22 @@
 
   <ItemGroup>
     <None Remove="Assets\TestImages\logo.png" />
+    <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\UIFontIcons.ttf" />
     <None Remove="Resources\Images\logo.svg" />
     <None Remove="Resources\Images\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\TestImages\logo.png" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\UIFontIcons.ttf" />
     <EmbeddedResource Include="Resources\Images\user.svg" />
   </ItemGroup>
 
@@ -102,7 +112,6 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 
   <ItemGroup>
