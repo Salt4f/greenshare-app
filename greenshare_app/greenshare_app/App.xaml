@@ -2,14 +2,15 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.App"
+             xmlns:control="clr-namespace:greenshare_app.Controls">
              xmlns:views="clr-namespace:greenshare_app.Views"
              xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels">
     <Application.Resources>
         <StyleSheet Source="..\Assets\stylesheet.css"></StyleSheet>
         <ResourceDictionary>
-            
+
             <ImageSource x:Key="Placeholder">https://dictionary.cambridge.org/es/images/full/tree_noun_001_18152.jpg?version=5.0.191</ImageSource>
-            
+
             <!--Colors green colors ordered by intensity ascending-->
             
             <Color x:Key="colorGreen1">#597C2B</Color>
@@ -39,7 +40,7 @@
                     <x:Double>.85</x:Double>
                 </x:Arguments>
             </Color>
-            <Color x:Key="colorBackground">#feffde</Color>
+            <Color x:Key="colorBackground">#E1F2E5</Color>
 
 
             <!--Falta canviar estils de els butons i les entries, es nomes com a plantilla-->
@@ -59,14 +60,19 @@
             font-size: 16;
             }
             -->
-            <Style TargetType="Entry" x:Key="styleEntry">
+            
+            <!--Estil per les entries-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntry">
                 <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="FontFamily" Value="Montserrat"/>
-                
+                <Setter Property="FontFamily" Value="Montserrat-Regular" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                
+                <Setter Property="PlaceholderColor" Value="{StaticResource colorBlack}"/>
                 <Setter Property="TextColor" Value="{StaticResource colorBlack}" />
+                <Setter Property="IsEnabled" Value="True"/>
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing"/>
             </Style>
+
+            <!--Estil per les butons-->
             <Style TargetType="Button" x:Key="styleButton">
                 <Setter Property="Padding" Value="5"/>
                 <Setter Property="CharacterSpacing" Value="1"/>
@@ -78,17 +84,28 @@
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="FontSize" Value="16"/>
             </Style>
+
+            <!--Estil pel frame de les ofertes-->
             <Style TargetType="Frame" x:Key="styleOffersFrame">
                 <Setter Property="BackgroundColor" Value="{StaticResource colorWhite}"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="BorderColor" Value="{StaticResource colorBlack}"/>
                 <Setter Property="HasShadow" Value="True"/>
             </Style>
+
+            <!--Estil pel titol de les ofertes-->
             <Style TargetType="Label" x:Key="styleOfferTitle">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource colorGreen2}"/>
                 <Setter Property="TextTransform" Value="Uppercase"/>
             </Style>
+            
+            <Style TargetType="StackLayout" x:Key="styleLayoutEntries">
+                <Setter Property="Padding" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
