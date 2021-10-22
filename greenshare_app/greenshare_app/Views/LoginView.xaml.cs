@@ -11,34 +11,8 @@ namespace greenshare_app.Views
         public LoginView()
         {
             InitializeComponent();
+            BindingContext = new ViewModels.LoginViewModel(Navigation, this);
         }
-        //private void loginButtonClicked(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(emailEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text))
-        //        DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
-        //    else
-        //    {
-
-        //        if (emailEntry.Text == "abc@gmail.com" && passwordEntry.Text == "1234")   //Verificar aqui les credencials
-        //        {
-        //            DisplayAlert("Login Success", "", "Ok");
-
-        //            App.Current.MainPage = new Views.MainView();
-        //        }
-        //        else
-        //            DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
-        //    }
-        //}
-
-        private void registerButtonClicked(object sender, EventArgs e)
-        {
-            Navigation.PushModalAsync(new RegisterView());
-            //Navigation.RemovePage(this);
-        }
-
-        private void googleButton_Clicked(object sender, EventArgs e)
-        {
-            //google sign in
-        }
+        
     }
 }

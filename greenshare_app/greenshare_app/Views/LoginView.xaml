@@ -3,7 +3,9 @@
     x:Class="greenshare_app.Views.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:control="clr-namespace:greenshare_app.Controls">
+    xmlns:control="clr-namespace:greenshare_app.Controls"
+    xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+    >
     <StackLayout BackgroundColor="{StaticResource colorGreen3}">
         <Grid>
             <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
@@ -25,7 +27,7 @@
                                     <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                         <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
-                                    <control:BorderlessEntry Placeholder="Email" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
@@ -34,24 +36,28 @@
                                     <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                         <Image Source="https://images.all-free-download.com/images/graphicthumb/lock_icon_6813906.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
-                                    <control:BorderlessEntry Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
                             <StackLayout  Orientation="Horizontal">
-                                <CheckBox IsChecked="False" Color="{StaticResource colorGreen3}" />
+                                <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorGreen3}" />
                                 <Label Text="Remember me" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
 
-                                <Label Text="Forgot Password" TextColor="{StaticResource colorGreen3}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                <Label Text="Forgot Password" TextColor="{StaticResource colorGreen3}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
 
 
                             </StackLayout>
 
-                            <Button Text="SIGN IN" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" />
+                            <Button Text="SIGN IN" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding LoginButtonCommand}"/>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Still Not Connected ?" TextColor="DarkGray" FontSize="Small"/>
-                                <Label Text="Sign Up" TextColor="{StaticResource colorGreen3}" FontAttributes="Bold" FontSize="Small"/>
+                                <Label Text="Still Not Registered?" TextColor="DarkGray" FontSize="Small"/>
                             </StackLayout>
+                            <Button Text="SIGN UP" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding RegisterButtonCommand}"/>
 
                             <StackLayout Margin="0,25,0,0" Padding="0">
                                 <Grid>
@@ -69,60 +75,10 @@
                             </StackLayout>
 
                         </StackLayout>
-
-
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
                     </StackLayout>
-
                 </Frame>
             </StackLayout>
         </Grid>
     </StackLayout>
-    <!--<StackLayout BackgroundColor="red" Style="{StaticResource styleLayoutEntries}">
-        <Image Source="{}" WidthRequest="180" HeightRequest="180"/>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0">
-                <control:BorderlessEntry
-                            x:Name="emailEntry"
-                            Keyboard="Email"
-                            Margin="15,0"
-                            HeightRequest="40"
-                            Placeholder="Email"
-                            Style="{StaticResource styleEntry}"
-                            />
-            </StackLayout>
-            <StackLayout Grid.Row="1">
-                <control:BorderlessEntry
-                            x:Name="passwordEntry"
-                            Margin="15,0"
-                            HeightRequest="40"
-                            IsPassword="True"
-                            Placeholder="Password" 
-                            Style="{StaticResource styleEntry}"
-                            />
-            </StackLayout>
-            <StackLayout Grid.Row="6">
-                <Button
-                            x:Name="loginButton"
-                            Clicked="loginButtonClicked"
-                            Text="Log in"
-                            Style="{StaticResource styleButton}"
-                            />
-            </StackLayout>
-
-            <StackLayout Grid.Row="7">
-                <Button
-                            x:Name="registerButton"
-                            Clicked="registerButtonClicked"
-                            Text="Sign Up"
-                            Style="{StaticResource styleButton}"
-                            />
-            </StackLayout>
-        </Grid>
-    </StackLayout>-->
 </ContentPage>

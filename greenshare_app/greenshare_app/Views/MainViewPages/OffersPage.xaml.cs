@@ -1,4 +1,5 @@
-﻿using System;
+﻿using greenshare_app.ViewModels;
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,6 +12,7 @@ namespace greenshare_app.Views.MainViewPages
         public OffersPage()
         {
             InitializeComponent();
+            BindingContext = new OffersPageViewModel();
         }
         private void OnPerfilClicked(object sender, EventArgs e)
         {

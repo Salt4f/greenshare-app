@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.App"
              xmlns:control="clr-namespace:greenshare_app.Controls">
+             xmlns:views="clr-namespace:greenshare_app.Views"
+             xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels">
     <Application.Resources>
         <StyleSheet Source="..\Assets\stylesheet.css"></StyleSheet>
         <ResourceDictionary>

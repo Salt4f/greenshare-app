@@ -15,18 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Assets\TestImages\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\TestImages\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -44,23 +32,11 @@
     <Compile Update="Views\MainViewPages\OffersPage.xaml.cs">
       <DependentUpon>OffersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\MainViewPages\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\MainViewPages\RequestsPage.xaml.cs">
       <DependentUpon>RequestsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Text\Text.Designer.cs">
-      <DependentUpon>Text.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Text\Text.es.Designer.cs">
-      <DependentUpon>Text.es.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Text\Text.ca.Designer.cs">
-      <DependentUpon>Text.ca.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -77,28 +53,11 @@
     <EmbeddedResource Update="MainPageTabs\RequestsList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Text\Text.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Text.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Text\Text.es.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Text.es.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Text\Text.ca.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Text.ca.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Update="NETStandard.Library">
       <GeneratePathProperty></GeneratePathProperty>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
-    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 </Project>

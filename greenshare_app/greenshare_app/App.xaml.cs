@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using System;
 
 [assembly: ExportFont("Montserrat-Bold.ttf", Alias = "Montserrat-Bold")]
 [assembly: ExportFont("Montserrat-Medium.ttf", Alias = "Montserrat-Medium")]
@@ -13,12 +14,11 @@ namespace greenshare_app
         public App()
         {
             InitializeComponent();
-
+            MainPage = new Views.MainView();
         }
 
         protected override void OnStart()
-        {
-            MainPage = new Views.LoginView();
+        { 
         }
 
         protected override void OnSleep()

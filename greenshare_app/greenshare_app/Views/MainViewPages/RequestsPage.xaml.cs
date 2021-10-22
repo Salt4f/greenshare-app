@@ -1,4 +1,5 @@
 ﻿
+using greenshare_app.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,7 @@ namespace greenshare_app.Views.MainViewPages
         public RequestsPage()
         {
             InitializeComponent();
+            BindingContext = new RequestsPageViewModel();
         }
     }
 }
