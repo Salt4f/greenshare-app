@@ -33,6 +33,7 @@ namespace greenshare_app.ViewModels
         private async void OnStarting(object sender, EventArgs args)
         {
             if (await Auth.Instance().CheckLoggedIn()) Application.Current.MainPage = new MainView();
+            IsBusy = false;
         }
 
         private Page view;
