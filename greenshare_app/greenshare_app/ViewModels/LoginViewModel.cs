@@ -1,4 +1,5 @@
-﻿using greenshare_app.Views;
+﻿using greenshare_app.Utils;
+using greenshare_app.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
@@ -67,10 +68,9 @@ namespace greenshare_app.ViewModels
             else
             {
 
-                if (this.email == "abc@gmail.com" && this.password == "1234")   //Verificar aqui les credencials
+                if (await Auth.Instance().Login(Email, Crypto.GetHashString(Password)))   //Verificar aqui les credencials
                 {
                     //await DisplayAlert("Login Success", "", "Ok");
-
                     App.Current.MainPage = new MainView();
                 }
                 else { }
