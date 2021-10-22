@@ -16,10 +16,13 @@
 
   <ItemGroup>
     <None Remove="Assets\TestImages\logo.png" />
+    <None Remove="Resources\Images\logo.svg" />
+    <None Remove="Resources\Images\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\TestImages\logo.png" />
+    <EmbeddedResource Include="Resources\Images\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -100,5 +103,9 @@
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Resources\Fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo.svg" />
   </ItemGroup>
 </Project>
