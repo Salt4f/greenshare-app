@@ -14,7 +14,7 @@ namespace greenshare_app
         public App()
         {
             InitializeComponent();
-            MainPage = new Views.MainView();
+            MainPage = new Views.LoginView();
         }
 
         protected override void OnStart()

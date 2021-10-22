@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -59,6 +60,12 @@ namespace greenshare_app.Utils
                 if (response.StatusCode == HttpStatusCode.OK) return true;
             }
             return false;
+        }
+
+        public async Task Logout()
+        {
+            rememberMe = false;
+            await SaveAuth();
         }
 
         private async Task SaveAuth()
