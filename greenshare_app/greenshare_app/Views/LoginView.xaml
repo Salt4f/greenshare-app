@@ -10,45 +10,47 @@
     >
     <StackLayout BackgroundColor="{StaticResource colorWhite}">
         <Grid>
-            <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
-                <Frame HeightRequest="180" BackgroundColor="{StaticResource colorWhite}" Padding="0" Margin="0">
-                </Frame>
+            <StackLayout Style="{StaticResource styleStackLayoutDefault}">
+                <Frame BackgroundColor="Red" CornerRadius="100" HeightRequest="200" WidthRequest="100" AbsoluteLayout.LayoutBounds="-100, -100, 50, 0"></Frame>
+                <Frame></Frame>
+                <Frame></Frame>
             </StackLayout>
-            <StackLayout Padding="0" Margin="10,130,10,0" HorizontalOptions="FillAndExpand">
-                
-                <Frame BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0">
 
-                    <StackLayout BackgroundColor="{StaticResource colorGreen3}">
-                        <StackLayout Margin="10">
-                            <Label Text="SIGN IN" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorBlack}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20"/>
+            <StackLayout Style="{StaticResource styleStackLayoutDefault}" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,100,10,0">
+
+                <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True" CornerRadius="30">
+                    
+                    <StackLayout BackgroundColor="{StaticResource colorGreen4}">
+                        <StackLayout Margin="15">
+                            <Label Style="{StaticResource styleLabelWhite}" Text="SIGN IN" FontSize="20"/>
                         </StackLayout>
 
                         <StackLayout Padding="0" Margin="15">
 
-                            <Frame BackgroundColor="Transparent" BorderColor="{StaticResource colorBlack}" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorWhite}" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="{StaticResource colorGreen4}" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="Black" ></Label>
+                                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  TextColor="{StaticResource colorWhite}" ></Label>
                                     </Frame>
-                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorWhite}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
-                            
-                            <Frame BackgroundColor="Transparent" BorderColor="{StaticResource colorBlack}" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent"  HorizontalOptions="FillAndExpand" BorderColor="{StaticResource colorWhite}" Margin="0,15,0,0" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="{StaticResource colorGreen4}" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="Black"></Label>
+                                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="{StaticResource colorWhite}"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorWhite}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
                             <StackLayout  Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorGreen3}" />
-                                <Label Text="Remember me" FontFamily="Montserrat-Medium" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorWhite}" />
+                                <Label Text="Remember me" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorWhite}" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
 
-                                <Label Text="Forgot Password" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorGreen3}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                                <Label Text="Forgot Password" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorWhite}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                                     </Label.GestureRecognizers>
@@ -57,11 +59,11 @@
 
                             </StackLayout>
 
-                            <Button Text="SIGN IN" FontFamily="Montserrat-Medium" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding LoginButtonCommand}"/>
+                            <Button Text="SIGN IN" FontFamily="Montserrat-Medium" BackgroundColor="{StaticResource colorGreen2}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding LoginButtonCommand}"/>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Still Not Registered?" FontFamily="Montserrat-Medium" TextColor="DarkGray" FontSize="Small"/>
+                                <Label Text="Still Not Registered?" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorWhite}" FontSize="Small"/>
                             </StackLayout>
-                            <Button Text="SIGN UP" FontFamily="Montserrat-Medium" BackgroundColor="{StaticResource colorGreen3}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding RegisterButtonCommand}"/>
+                            <Button Text="SIGN UP" FontFamily="Montserrat-Medium" BackgroundColor="{StaticResource colorGreen2}" TextColor="{StaticResource colorWhite}" CornerRadius="30" Command="{Binding RegisterButtonCommand}"/>
 
                             <StackLayout Margin="0,25,0,0" Padding="0">
                                 <Grid>

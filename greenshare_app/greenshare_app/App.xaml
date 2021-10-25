@@ -37,7 +37,7 @@
                     <x:Double>255</x:Double>
                     <x:Double>255</x:Double>
                     <x:Double>255</x:Double>
-                    <x:Double>.85</x:Double>
+                    <x:Double>.9</x:Double>
                 </x:Arguments>
             </Color>
             <Color x:Key="colorBackground">#E1F2E5</Color>
@@ -60,17 +60,79 @@
             
             
             
+            <!--ENTRIES-->
             
             <!--Estil per les entries-->
             <Style TargetType="control:BorderlessEntry" x:Key="styleEntry">
-                <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="FontFamily" Value="Montserrat-Regular" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource colorBlack}"/>
-                <Setter Property="TextColor" Value="{StaticResource colorBlack}" />
-                <Setter Property="IsEnabled" Value="True"/>
-                <Setter Property="ClearButtonVisibility" Value="WhileEditing"/>
+                <Setter Property="FontFamily" Value="Montserrat-Medium"/>
+                <Setter Property="Keyboard" Value="Email"/>
+                <Setter Property="Placeholder" Value="Email"/>
+                <Setter Property="TextColor" Value="{StaticResource colorGreen3}"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Margin" Value="0,0,20,0"/>
             </Style>
+
+            
+            
+            
+            <!--LABELS-->
+            
+            <!--Default Label White-->
+            <Style TargetType="Label" x:Key="styleLabelWhite">
+                <Setter Property="FontFamily" Value="Montserrat-SemiBold"/>
+                <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+
+            <!--Default Label Black-->
+            <Style TargetType="Label" x:Key="styleLabelBlack" BasedOn="{StaticResource styleLabelWhite}">
+                <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
+            </Style>
+
+            
+            
+            
+            <!--STACKLAYOUT-->
+            
+            <!--Default StackLayout-->
+            <Style TargetType="StackLayout" x:Key="styleStackLayoutDefault">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            
+            
+            
+            <!--FRAME-->
+
+            <!--Default Frame-->
+            <Style TargetType="Frame" x:Key="styleFrameDefault">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <!--Entry Frame-->
+            <Style TargetType="Frame" x:Key="styleFrameEntry">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource colorGreen3}"/>
+            </Style>
+
+
+
+
+
+
+
+
+
 
             <!--Estil per les butons-->
             <Style TargetType="Button" x:Key="styleButton">
