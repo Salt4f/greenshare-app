@@ -53,7 +53,7 @@
                 </StackLayout>
                 <StackLayout Grid.Row="5" Grid.ColumnSpan="2">
                     <Entry
-                            Text="{Binding DNI}"                           
+                            Text="{Binding Dni}"                           
                             Placeholder="DNI" 
                             Style="{StaticResource styleEntry}"
                             />
@@ -63,7 +63,7 @@
                 </StackLayout>
                 <StackLayout Grid.Row="6" Grid.Column="1">
                     <DatePicker
-                            Date="{Binding BirthDate}"
+                            Date="{Binding BirthDate}"                            
                             />
                 </StackLayout>
                 <StackLayout Grid.Row="7" Grid.ColumnSpan="2">

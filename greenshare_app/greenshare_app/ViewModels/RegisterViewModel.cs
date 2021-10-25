@@ -81,6 +81,16 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Nickname too long!", "Please enter a shorter nickname", "OK");
                 return;
             }
+            if (string.IsNullOrEmpty(dni) || dni.Length < 9)
+            {
+                await view.DisplayAlert("DNI not valid!", "Please enter a valid DNI", "OK");
+                return;
+            }
+            if (string.IsNullOrEmpty(fullName))
+            {
+                await view.DisplayAlert("Full name not valid!", "Please enter a valid full name", "OK");
+                return;
+            }
 
             if (!Validation.PasswordsAreEqual(Password, RepeatPassword))
             {
@@ -96,7 +106,7 @@ namespace greenshare_app.ViewModels
 
             try
             {
-                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname))
+                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname, BirthDate, FullName, Dni))
                 {
                     Application.Current.MainPage = new MainView();
                 }
