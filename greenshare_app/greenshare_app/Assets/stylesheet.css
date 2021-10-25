@@ -1,0 +1,7 @@
+﻿
+/*add styles for all the entry's type'*/
+entry{
+    font-size: 20;
+    -xf-placeholder-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20;
+}

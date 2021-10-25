@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
+             BackgroundColor="{StaticResource colorGreen3}">
+    <ScrollView HeightRequest="3000">
+        <StackLayout Margin="2" Spacing="15" HorizontalOptions="CenterAndExpand">
+            <Frame WidthRequest="300" HeightRequest="200" Style="{StaticResource styleOffersFrame}" Padding="0">
+                <Grid  Margin="20,20,20,20" VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="3">
+                        <Label x:Name="boxTitle" Text="Aquí va el título de la petición" Style="{StaticResource styleOfferTitle}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"                               
+                               >
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Label Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="End"
+                               >
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+                        <Frame Padding="0" CornerRadius="5">
+                        <Image Source="{StaticResource Key=Placeholder}"                               
+                               Aspect="AspectFill"                              
+                               >
+                          
+                        </Image>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                        <Label Text="username"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               TextColor="LightGray"
+                               >
+                        </Label>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0">
+                
+            </Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0">
+                
+            </Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0">
+                
+            </Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0"></Frame>
+            <Frame WidthRequest="400" HeightRequest="200"  Style="{StaticResource styleOffersFrame}" Padding="0"></Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
