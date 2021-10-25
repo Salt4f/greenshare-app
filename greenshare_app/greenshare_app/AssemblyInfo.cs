@@ -10,3 +10,4 @@ using Xamarin.Forms.Xaml;
 [assembly: ExportFont("fa-brands-400.ttf", Alias = "FAB")]
 [assembly: ExportFont("fa-regular-400.ttf", Alias = "FAR")]
 [assembly: ExportFont("fa-solid-900.ttf", Alias = "FAS")]
+[assembly: ExportFont("MaterialIcons-Regular.ttf", Alias = "google-fonts")]
