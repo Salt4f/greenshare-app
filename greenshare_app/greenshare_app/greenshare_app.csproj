@@ -11,27 +11,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Remove="Assets\styles.css" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Assets\TestImages\logo.png" />
+    <None Remove="Resources\Fonts\fa-brands-400.ttf" />
+    <None Remove="Resources\Fonts\fa-regular-400.ttf" />
+    <None Remove="Resources\Fonts\fa-solid-900.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
     <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
-    <None Remove="Resources\Fonts\UIFontIcons.ttf" />
     <None Remove="Resources\Images\logo.svg" />
     <None Remove="Resources\Images\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\TestImages\logo.png" />
+    <EmbeddedResource Include="Resources\Fonts\fa-brands-400.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\fa-regular-400.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\fa-solid-900.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\UIFontIcons.ttf" />
     <EmbeddedResource Include="Resources\Images\user.svg" />
   </ItemGroup>
 
@@ -108,10 +118,6 @@
     <PackageReference Update="NETStandard.Library">
       <GeneratePathProperty></GeneratePathProperty>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
 
   <ItemGroup>

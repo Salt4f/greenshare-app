@@ -6,18 +6,19 @@
     xmlns:control="clr-namespace:greenshare_app.Controls"
     xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:fontAwesome="clr-namespace:FontAwesome"
     >
-    <StackLayout BackgroundColor="{StaticResource colorGreen3}">
+    <StackLayout BackgroundColor="{StaticResource colorWhite}">
         <Grid>
             <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
-                <Frame HeightRequest="180" BackgroundColor="{StaticResource colorGreen2}" Padding="0" Margin="0">
+                <Frame HeightRequest="180" BackgroundColor="{StaticResource colorWhite}" Padding="0" Margin="0">
                 </Frame>
             </StackLayout>
             <StackLayout Padding="0" Margin="10,130,10,0" HorizontalOptions="FillAndExpand">
                 
                 <Frame BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0">
 
-                    <StackLayout>
+                    <StackLayout BackgroundColor="{StaticResource colorGreen3}">
                         <StackLayout Margin="10">
                             <Label Text="SIGN IN" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorBlack}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20"/>
                         </StackLayout>
@@ -26,17 +27,18 @@
 
                             <Frame BackgroundColor="Transparent" BorderColor="{StaticResource colorBlack}" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                        <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" Margin="0"/>
+                                    <Frame BackgroundColor="{StaticResource colorGreen4}" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="Black" ></Label>
                                     </Frame>
                                     <control:BorderlessEntry FontFamily="Montserrat-Medium" Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
+                            
                             <Frame BackgroundColor="Transparent" BorderColor="{StaticResource colorBlack}" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                        <Image Source="https://images.all-free-download.com/images/graphicthumb/lock_icon_6813906.jpg" Aspect="AspectFill" Margin="0"/>
+                                    <Frame BackgroundColor="{StaticResource colorGreen4}" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="Black"></Label>
                                     </Frame>
                                     <control:BorderlessEntry FontFamily="Montserrat-Medium" Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorGreen3}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
