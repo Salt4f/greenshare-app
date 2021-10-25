@@ -53,7 +53,8 @@
                 </StackLayout>
                 <StackLayout Grid.Row="5" Grid.ColumnSpan="2">
                     <Entry
-                            Text="{Binding Dni}"                           
+                            Text="{Binding Dni}"
+                            MaxLength="9"
                             Placeholder="DNI" 
                             Style="{StaticResource styleEntry}"
                             />

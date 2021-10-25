@@ -81,12 +81,12 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Nickname too long!", "Please enter a shorter nickname", "OK");
                 return;
             }
-            if (string.IsNullOrEmpty(dni) || dni.Length < 9)
+            if (!Validation.ValidateDni(Dni))
             {
                 await view.DisplayAlert("DNI not valid!", "Please enter a valid DNI", "OK");
                 return;
             }
-            if (string.IsNullOrEmpty(fullName))
+            if (string.IsNullOrEmpty(FullName))
             {
                 await view.DisplayAlert("Full name not valid!", "Please enter a valid full name", "OK");
                 return;
