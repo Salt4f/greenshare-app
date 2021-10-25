@@ -11,7 +11,7 @@
     <StackLayout BackgroundColor="{StaticResource colorWhite}">
         <Grid>
             <StackLayout Style="{StaticResource styleStackLayoutDefault}">
-                <Frame BackgroundColor="Red" CornerRadius="100" HeightRequest="200" WidthRequest="100" AbsoluteLayout.LayoutBounds="-100, -100, 50, 0"></Frame>
+                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="100" HeightRequest="200" WidthRequest="100" AbsoluteLayout.LayoutBounds="-100, -100, 50, 0"></Frame>
                 <Frame></Frame>
                 <Frame></Frame>
             </StackLayout>
@@ -32,7 +32,7 @@
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  TextColor="{StaticResource colorWhite}" ></Label>
                                     </Frame>
-                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Keyboard="Email" Text="{Binding Email}" Placeholder="Email" TextColor="{StaticResource colorWhite}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryEmail}" Text="{Binding Email}"/>
                                 </StackLayout>
                             </Frame>
 
@@ -42,7 +42,7 @@
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="{StaticResource colorWhite}"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry FontFamily="Montserrat-Medium" Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource colorWhite}" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Password}"/>
                                 </StackLayout>
                             </Frame>
 
@@ -77,7 +77,6 @@
                             <StackLayout Margin="0,25" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                                 <Frame BackgroundColor="White" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
                                     <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Google}" FontFamily="FAB" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" TextColor="{StaticResource colorGreen2}"></Label>
-                                    <!--<Image Source="https://blog.hubspot.com/hubfs/image8-2.jpg" Aspect="AspectFill" Margin="0"/>-->
                                 </Frame>
                             </StackLayout>
 

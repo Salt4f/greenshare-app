@@ -62,18 +62,23 @@
             
             <!--ENTRIES-->
             
-            <!--Estil per les entries-->
-            <Style TargetType="control:BorderlessEntry" x:Key="styleEntry">
+            <!--Email Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryEmail">
                 <Setter Property="FontFamily" Value="Montserrat-Medium"/>
                 <Setter Property="Keyboard" Value="Email"/>
                 <Setter Property="Placeholder" Value="Email"/>
-                <Setter Property="TextColor" Value="{StaticResource colorGreen3}"/>
+                <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
                 <Setter Property="FontAttributes" Value="None"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="Margin" Value="0,0,20,0"/>
             </Style>
 
-            
+            <!--Password Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryPassword" BasedOn="{StaticResource styleEntryEmail}">
+                <Setter Property="Keyboard" Value="Default"/>
+                <Setter Property="Placeholder" Value="Password"/>
+                <Setter Property="IsPassword" Value="True"/>
+            </Style>
             
             
             <!--LABELS-->
@@ -91,9 +96,8 @@
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
             </Style>
 
-            
-            
-            
+
+
             <!--STACKLAYOUT-->
             
             <!--Default StackLayout-->
@@ -103,9 +107,8 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
-            
-            
-            
+
+
             <!--FRAME-->
 
             <!--Default Frame-->
