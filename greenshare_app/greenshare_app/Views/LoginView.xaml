@@ -22,7 +22,8 @@
                     
                     <StackLayout BackgroundColor="{StaticResource colorGreen4}">
                         <StackLayout Margin="15">
-                            <Label Style="{StaticResource styleLabelWhite}" Text="SIGN IN" FontSize="20"/>
+                            <Label Style="{StaticResource styleLabelWhite}" Text="WELCOME!" FontSize="20"/>
+                            <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Smile}" FontFamily="FAR" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  TextColor="{StaticResource colorWhite}" ></Label>
                         </StackLayout>
 
                         <StackLayout Padding="0" Margin="15">
