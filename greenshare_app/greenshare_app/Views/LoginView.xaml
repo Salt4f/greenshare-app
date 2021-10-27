@@ -5,15 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:control="clr-namespace:greenshare_app.Controls"
     xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     >
     <StackLayout BackgroundColor="{StaticResource colorWhite}">
         <Grid>
             <StackLayout Style="{StaticResource styleStackLayoutDefault}">
                 <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="100" HeightRequest="200" WidthRequest="100" AbsoluteLayout.LayoutBounds="-100, -100, 50, 0"></Frame>
-                <Frame></Frame>
-                <Frame></Frame>
             </StackLayout>
 
             <StackLayout Style="{StaticResource styleStackLayoutDefault}" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,100,10,0">
@@ -49,7 +46,7 @@
 
                             <StackLayout  Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorWhite}" />
-                                <Label Text="Remember me" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorWhite}" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                <Label Text="Remember me" Style="{StaticResource styleLabelWhite}" FontSize="Small" />
 
                                 <Label Text="Forgot Password" FontFamily="Montserrat-Medium" TextColor="{StaticResource colorWhite}" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                     <Label.GestureRecognizers>
@@ -85,6 +82,10 @@
                         <ActivityIndicator IsRunning="{Binding IsBusy}"/>
                     </StackLayout>
                 </Frame>
+            </StackLayout>
+            <!--El grid va per capes, si afegim un frame després del layout es posa a sobre-->
+            <StackLayout Style="{StaticResource styleStackLayoutDefault}">
+                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="100" HeightRequest="200" WidthRequest="100" position AbsoluteLayout.LayoutBounds="-100, -100, 50, 0"></Frame>
             </StackLayout>
         </Grid>
     </StackLayout>

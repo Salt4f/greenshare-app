@@ -42,23 +42,7 @@
             </Color>
             <Color x:Key="colorBackground">#E1F2E5</Color>
             
-            <!--STYLES-->
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            <!--||||STYLES||||-->
             
             <!--ENTRIES-->
             
@@ -89,13 +73,14 @@
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
 
             <!--Default Label Black-->
             <Style TargetType="Label" x:Key="styleLabelBlack" BasedOn="{StaticResource styleLabelWhite}">
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
             </Style>
-
 
 
             <!--STACKLAYOUT-->
