@@ -12,10 +12,10 @@
         <Grid>
 
             <AbsoluteLayout>
-                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="-60,-15,200,200" CornerRadius="100" HasShadow="False"/>
+                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="-80,-15,200,200" CornerRadius="100" HasShadow="False"/>
             </AbsoluteLayout>
             <AbsoluteLayout>
-                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="20,-70,200,200" CornerRadius="100" HasShadow="False"/>
+                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="20,-80,200,200" CornerRadius="100" HasShadow="False"/>
             </AbsoluteLayout>
             <AbsoluteLayout>
                 <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="180,700,200,200" CornerRadius="100" HasShadow="False"/>
@@ -28,13 +28,13 @@
                 <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True">
                     <StackLayout BackgroundColor="Transparent">
                         <StackLayout Margin="20,60,20,0">
-                            <Label Style="{StaticResource styleLabelGreen}" Text="WELCOME!" FontSize="20"/>
+                            <Label Style="{StaticResource styleLabelGreen}" Text="WELCOME" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
                             <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Smile}" Style="{StaticResource styleLabelIcon}" FontFamily="FAR"></Label>
                         </StackLayout>
 
                         <StackLayout Padding="0" Margin="15,0,15,15">
 
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorWhite}" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" ></Label>
@@ -43,7 +43,7 @@
                                 </StackLayout>
                             </Frame>
 
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent"  HorizontalOptions="FillAndExpand" BorderColor="{StaticResource colorWhite}" Margin="0,15,0,0" CornerRadius="30">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent"  HorizontalOptions="FillAndExpand" BorderColor="{StaticResource colorGreen3}" Margin="0,15,0,0" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
@@ -55,7 +55,7 @@
                             <StackLayout  Orientation="Horizontal" Padding="10">
                                 <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorGreen3}" />
                                 <Label Text="Remember me" Style="{StaticResource styleLabelGreen}" />
-                                <Label Text="Forgot Password?" Style="{StaticResource styleLabelGreen}">
+                                <Label Text="Forgot Password?" Style="{StaticResource styleLabelGreen}" FontSize="11" VerticalTextAlignment="Center">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                                     </Label.GestureRecognizers>
@@ -68,7 +68,10 @@
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10">
                                 <Label Text="Still Not Registered?" Style="{StaticResource styleLabelGreen}"/>
                             </StackLayout>
-                            <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}"/>
+                            <StackLayout Style="{StaticResource styleStackLayoutDefault}">
+                                <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}"/>
+                            </StackLayout>
+                            
 
                             <StackLayout Margin="0,20,0,0" Padding="0">
                                 <Grid>
