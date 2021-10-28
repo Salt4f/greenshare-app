@@ -23,6 +23,7 @@
             <Color x:Key="colorGreen7">#D2E459</Color>
             <Color x:Key="colorGreen8">#ddffbc</Color>
             <Color x:Key="colorGreen9">#feffde</Color>
+            <Color x:Key="colorRed1">#e60000</Color>
 
             <Color x:Key="colorBlack">
                 <x:Arguments>
@@ -51,7 +52,7 @@
                 <Setter Property="FontFamily" Value="Montserrat-Medium"/>
                 <Setter Property="Keyboard" Value="Email"/>
                 <Setter Property="Placeholder" Value="Email"/>
-                <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
+                <Setter Property="TextColor" Value="{StaticResource colorGreen3}"/>
                 <Setter Property="FontAttributes" Value="None"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="Margin" Value="0,0,20,0"/>
@@ -72,13 +73,27 @@
                 <Setter Property="FontFamily" Value="Montserrat-SemiBold"/>
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
 
+            <!--Default Label Green-->
+            <Style TargetType="Label" x:Key="styleLabelGreen" BasedOn="{StaticResource styleLabelWhite}">
+                <Setter Property="TextColor" Value="{StaticResource colorGreen3}"/>
+            </Style>
+
             <!--Default Label Black-->
             <Style TargetType="Label" x:Key="styleLabelBlack" BasedOn="{StaticResource styleLabelWhite}">
+                <Setter Property="TextColor" Value="{StaticResource colorBlack}"/>
+            </Style>
+
+            <!--Default FontAwesome Icon-->
+            <Style TargetType="Label" x:Key="styleLabelIcon">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
             </Style>
 
@@ -102,6 +117,7 @@
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
 
             <!--Entry Frame-->
@@ -114,15 +130,19 @@
             </Style>
 
 
+            <!--BUTTON-->
+
+            <!--Default Button-->
+
+            <Style TargetType="Button" x:Key="styleButtonDefault">
+                <Setter Property="FontFamily" Value="Montserrat-SemiBold"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource colorGreen2}"/>
+                <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
+                <Setter Property="CornerRadius" Value="30"/>
+            </Style>
 
 
-
-
-
-
-
-
-            <!--Estil per les butons-->
+            <!--Estil per les butons--><!--
             <Style TargetType="Button" x:Key="styleButton">
                 <Setter Property="Padding" Value="5"/>
                 <Setter Property="CharacterSpacing" Value="1"/>
@@ -135,7 +155,7 @@
                 <Setter Property="FontSize" Value="16"/>
             </Style>
 
-            <!--Estil pel frame de les ofertes-->
+            --><!--Estil pel frame de les ofertes--><!--
             <Style TargetType="Frame" x:Key="styleOffersFrame">
                 <Setter Property="BackgroundColor" Value="{StaticResource colorWhite}"/>
                 <Setter Property="CornerRadius" Value="15"/>
@@ -143,7 +163,7 @@
                 <Setter Property="HasShadow" Value="True"/>
             </Style>
 
-            <!--Estil pel titol de les ofertes-->
+            --><!--Estil pel titol de les ofertes--><!--
             <Style TargetType="Label" x:Key="styleOfferTitle">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource colorGreen2}"/>
@@ -154,7 +174,7 @@
                 <Setter Property="Padding" Value="40"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            </Style>
+            </Style>-->
 
         </ResourceDictionary>
     </Application.Resources>
