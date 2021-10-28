@@ -97,7 +97,6 @@
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
             </Style>
 
-
             <!--STACKLAYOUT-->
             
             <!--Default StackLayout-->
@@ -107,7 +106,6 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
-
 
             <!--FRAME-->
 
@@ -129,7 +127,6 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource colorGreen3}"/>
             </Style>
 
-
             <!--BUTTON-->
 
             <!--Default Button-->
@@ -140,41 +137,6 @@
                 <Setter Property="TextColor" Value="{StaticResource colorWhite}"/>
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
-
-
-            <!--Estil per les butons--><!--
-            <Style TargetType="Button" x:Key="styleButton">
-                <Setter Property="Padding" Value="5"/>
-                <Setter Property="CharacterSpacing" Value="1"/>
-                <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="BackgroundColor" Value="{StaticResource colorGreen3}" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="{StaticResource colorWhite}" />
-                <Setter Property="CornerRadius" Value="20"/>
-                <Setter Property="FontSize" Value="16"/>
-            </Style>
-
-            --><!--Estil pel frame de les ofertes--><!--
-            <Style TargetType="Frame" x:Key="styleOffersFrame">
-                <Setter Property="BackgroundColor" Value="{StaticResource colorWhite}"/>
-                <Setter Property="CornerRadius" Value="15"/>
-                <Setter Property="BorderColor" Value="{StaticResource colorBlack}"/>
-                <Setter Property="HasShadow" Value="True"/>
-            </Style>
-
-            --><!--Estil pel titol de les ofertes--><!--
-            <Style TargetType="Label" x:Key="styleOfferTitle">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="TextColor" Value="{StaticResource colorGreen2}"/>
-                <Setter Property="TextTransform" Value="Uppercase"/>
-            </Style>
-
-            <Style TargetType="StackLayout" x:Key="styleLayoutEntries">
-                <Setter Property="Padding" Value="40"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            </Style>-->
 
         </ResourceDictionary>
     </Application.Resources>
