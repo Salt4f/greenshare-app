@@ -4,6 +4,7 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
@@ -33,7 +34,7 @@ namespace greenshare_app.ViewModels
         private DateTime birthDate;
 
         public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterButton);
-
+        public AsyncCommand DniButtonCommand => new AsyncCommand(OnDniButton);
         public string Nickname
         {
             get => nickname;
@@ -118,7 +119,14 @@ namespace greenshare_app.ViewModels
             }
         
         }
+        private async Task OnDniButton()
+        {
+            var photo = await MediaPicker.CapturePhotoAsync();
 
+            if (photo is null) return;
+
+            System.Console.WriteLine(photo.FullPath);
+        }
         private void OnGoogleClicked(object obj)
         {
             throw new NotImplementedException();
