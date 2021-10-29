@@ -28,6 +28,10 @@ namespace greenshare_app.ViewModels
         private string email;
         private string password;
         private string repeatPassword;
+        private string fullName;
+        private string dni;
+        private DateTime birthDate;
+
         public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterButton);
 
         public string Nickname
@@ -50,9 +54,43 @@ namespace greenshare_app.ViewModels
             get => repeatPassword;
             set => SetProperty(ref repeatPassword, value);
         }
-
+        public string FullName
+        {
+            get => fullName;
+            set => SetProperty(ref fullName, value);
+        }
+        public DateTime BirthDate
+        {
+            get => birthDate;
+            set => SetProperty(ref birthDate, value);
+        }
+        public string Dni
+        {
+            get => dni;
+            set => SetProperty(ref dni, value);
+        }
         private async Task OnRegisterButton()
         {
+            if (Nickname.Length <= 5)
+            {
+                await view.DisplayAlert("Nickname too short!", "Please enter a longer nickname", "OK");                
+                return;
+            }
+            if (Nickname.Length > 30)
+            {
+                await view.DisplayAlert("Nickname too long!", "Please enter a shorter nickname", "OK");
+                return;
+            }
+            if (!Validation.ValidateDni(Dni))
+            {
+                await view.DisplayAlert("DNI not valid!", "Please enter a valid DNI", "OK");
+                return;
+            }
+            if (string.IsNullOrEmpty(FullName))
+            {
+                await view.DisplayAlert("Full name not valid!", "Please enter a valid full name", "OK");
+                return;
+            }
 
             if (!Validation.PasswordsAreEqual(Password, RepeatPassword))
             {
@@ -68,7 +106,7 @@ namespace greenshare_app.ViewModels
 
             try
             {
-                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname))
+                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname, BirthDate, FullName, Dni))
                 {
                     Application.Current.MainPage = new MainView();
                 }
