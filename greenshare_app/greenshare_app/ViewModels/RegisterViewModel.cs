@@ -17,6 +17,7 @@ namespace greenshare_app.ViewModels
             Email = string.Empty;
             Password = string.Empty;
             RepeatPassword = string.Empty;
+            birthDate = DateTime.Today;
 
             this.navigation = navigation;
             this.view = view;
@@ -32,6 +33,8 @@ namespace greenshare_app.ViewModels
         private string fullName;
         private string dni;
         private DateTime birthDate;
+
+        private bool dniPhotoValid;
 
         public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterButton);
         public AsyncCommand DniButtonCommand => new AsyncCommand(OnDniButton);
@@ -68,40 +71,50 @@ namespace greenshare_app.ViewModels
         public string Dni
         {
             get => dni;
-            set => SetProperty(ref dni, value);
+            set
+            {
+                dniPhotoValid = false;
+                SetProperty(ref dni, value);
+            }
         }
         private async Task OnRegisterButton()
         {
             if (Nickname.Length <= 5)
             {
-                await view.DisplayAlert("Nickname too short!", "Please enter a longer nickname", "OK");                
+                await view.DisplayAlert("Nickname too short", "Please enter a longer nickname", "OK");                
                 return;
             }
             if (Nickname.Length > 30)
             {
-                await view.DisplayAlert("Nickname too long!", "Please enter a shorter nickname", "OK");
+                await view.DisplayAlert("Nickname too long", "Please enter a shorter nickname", "OK");
                 return;
             }
             if (!Validation.ValidateDni(Dni))
             {
-                await view.DisplayAlert("DNI not valid!", "Please enter a valid DNI", "OK");
+                await view.DisplayAlert("DNI not valid", "Please enter a valid DNI", "OK");
                 return;
             }
             if (string.IsNullOrEmpty(FullName))
             {
-                await view.DisplayAlert("Full name not valid!", "Please enter a valid full name", "OK");
+                await view.DisplayAlert("Full name not valid", "Please enter a valid full name", "OK");
                 return;
             }
 
             if (!Validation.PasswordsAreEqual(Password, RepeatPassword))
             {
-                await view.DisplayAlert("Passwords are not the same!", "Please make sure both passwords are equal", "OK");
+                await view.DisplayAlert("Passwords are not the same", "Please make sure both passwords are equal", "OK");
                 RepeatPassword = string.Empty;
                 return;
             }
             if (!Validation.ValidateEmail(Email))
             {   
-                await view.DisplayAlert("Email not valid!", "Please check if the email is correct", "OK");
+                await view.DisplayAlert("Email not valid", "Please check if the email is correct", "OK");
+                return;
+            }
+
+            if (!dniPhotoValid)
+            {
+                await view.DisplayAlert("DNI not verified", "Please take a photo of your DNI", "OK");
                 return;
             }
 
@@ -125,7 +138,9 @@ namespace greenshare_app.ViewModels
 
             if (photo is null) return;
 
-            System.Console.WriteLine(photo.FullPath);
+            dniPhotoValid = true;
+            await view.DisplayAlert("DNI verified", "Your DNI has been verified", "OK");
+
         }
         private void OnGoogleClicked(object obj)
         {

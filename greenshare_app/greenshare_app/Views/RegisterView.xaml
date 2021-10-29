@@ -66,8 +66,8 @@
                             Style="{StaticResource styleButton}"
                             />
                 </StackLayout>
-                <StackLayout Grid.Row="6" Grid.Column="0">
-                    <Label Text="Birth date: "/>
+                <StackLayout Grid.Row="6" Grid.Column="0" VerticalOptions="Center">
+                    <Label Text="Birth date:"/>
                 </StackLayout>
                 <StackLayout Grid.Row="6" Grid.Column="1">
                     <DatePicker
