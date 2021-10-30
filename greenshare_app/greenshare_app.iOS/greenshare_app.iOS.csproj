@@ -140,4 +140,9 @@
       <Name>greenshare_app</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trophy.svg">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </BundleResource>
+  </ItemGroup>
 </Project>

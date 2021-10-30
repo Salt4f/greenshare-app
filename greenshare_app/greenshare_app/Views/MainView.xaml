@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
             xmlns:local="clr-namespace:greenshare_app.Views.MainViewPages"
-             x:Class="greenshare_app.Views.MainView">
-    <!--Pages can be added as references or inline-->
-    
-        <local:OffersPage Title="Ofertes" />
-        <local:RequestsPage Title="Peticions" />
-        <ContentPage Title="Tab 3" />
+            x:Class="greenshare_app.Views.MainView"
+            xmlns:fontAwesome="clr-namespace:FontAwesome"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="{StaticResource colorGreen2}"
+            BarTextColor="{StaticResource colorWhite}"
+            SelectedTabColor="{StaticResource colorBlack}">
+
+    <local:OffersPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    </local:OffersPage>
+    <local:RequestsPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    </local:RequestsPage>
+    <local:addPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    </local:addPage>
+    <local:RewardsPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    </local:RewardsPage>
+    <local:ProfilePage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    </local:ProfilePage>
 
 </TabbedPage>
