@@ -64,9 +64,9 @@ namespace greenshare_app.Utils
             return false;
         }
 
-        public async Task<bool> Register(string email, string password, string nickname)
+        public async Task<bool> Register(string email, string password, string nickname, DateTime birthDate, string fullName, string dni)
         {
-            RegisterInfo register = new RegisterInfo { Email = email, Password = password, Nickname = nickname };
+            RegisterInfo register = new RegisterInfo { Email = email, Password = password, Nickname = nickname, Dni = dni, BirthDate = birthDate, FullName = fullName };
             string json = JsonConvert.SerializeObject(register);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
@@ -139,10 +139,19 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "password")]
             public string Password { get; set; }
+
             [JsonProperty(PropertyName = "nickname")]
             public string Nickname { get; set; }
 
-            
+            [JsonProperty(PropertyName = "dni")]
+            public string Dni { get; set; }
+
+            [JsonProperty(PropertyName = "birthDate")]
+            public DateTime BirthDate { get; set; }
+
+            [JsonProperty(PropertyName = "fullName")]
+            public string FullName { get; set; }
+
         }
 
         private class ValidationInfo
