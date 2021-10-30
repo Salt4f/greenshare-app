@@ -3,8 +3,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using FFImageLoading.Forms.Platform;
-using FFImageLoading.Svg.Forms;
+/*using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;*/
 
 namespace greenshare_app.Droid
 {
@@ -21,8 +21,8 @@ namespace greenshare_app.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            CachedImageRenderer.Init(true);
-            var ignore = typeof(SvgCachedImage);
+            /*CachedImageRenderer.Init(true);
+            var ignore = typeof(SvgCachedImage);*/
 
             LoadApplication(new App());
         }
