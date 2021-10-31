@@ -141,8 +141,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\trophy.svg">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </BundleResource>
+    <BundleResource Include="Resources\plus.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trophy.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hand_holding.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\handshake.svg" />
   </ItemGroup>
 </Project>

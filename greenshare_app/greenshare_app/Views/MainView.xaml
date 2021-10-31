@@ -10,15 +10,15 @@
             BarTextColor="{StaticResource colorWhite}"
             SelectedTabColor="{StaticResource colorBlack}">
 
-    <local:OffersPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    <local:OffersPage IconImageSource="{OnPlatform iOS=hand_holding.svg, Android=hand_holding}">
     </local:OffersPage>
-    <local:RequestsPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    <local:RequestsPage IconImageSource="{OnPlatform iOS=handshake.svg, Android=handshake}">
     </local:RequestsPage>
-    <local:addPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    <local:addPage IconImageSource="{OnPlatform iOS=plus.svg, Android=plus}">
     </local:addPage>
-    <local:RewardsPage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    <local:RewardsPage IconImageSource="{OnPlatform iOS=trophy.svg, Android=trophy}">
     </local:RewardsPage>
-    <local:ProfilePage Title="Something" IconImageSource="{OnPlatform iOS=android.svg, Android=ic_apple}">
+    <local:ProfilePage IconImageSource="{OnPlatform iOS=profile.svg, Android=profile}">
     </local:ProfilePage>
 
 </TabbedPage>
