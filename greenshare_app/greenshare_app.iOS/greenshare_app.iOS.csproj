@@ -155,4 +155,19 @@
   <ItemGroup>
     <BundleResource Include="Resources\handshake.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hand_holding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\handshake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plus.png" />
+  </ItemGroup>
 </Project>

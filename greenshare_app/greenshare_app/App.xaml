@@ -143,6 +143,17 @@
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
 
+            <!--TABBAR-->
+
+            <!--Default Button-->
+
+            <Style TargetType="TabBar">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource colorGreen1}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource colorWhite}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource colorGreen4}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource colorBlack}" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

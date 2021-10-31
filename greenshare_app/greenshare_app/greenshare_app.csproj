@@ -31,7 +31,6 @@
     <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
     <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
     <None Remove="Resources\Images\logo.svg" />
-    <None Remove="Resources\Images\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +43,6 @@
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
-    <EmbeddedResource Include="Resources\Images\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -130,5 +128,9 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\NewFolder\" />
   </ItemGroup>
 </Project>

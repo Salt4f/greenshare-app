@@ -1,24 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
-            xmlns:local="clr-namespace:greenshare_app.Views.MainViewPages"
-            x:Class="greenshare_app.Views.MainView"
-            xmlns:fontAwesome="clr-namespace:FontAwesome"
-            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            android:TabbedPage.ToolbarPlacement="Bottom"
-            BarBackgroundColor="{StaticResource colorGreen2}"
-            BarTextColor="{StaticResource colorWhite}"
-            SelectedTabColor="{StaticResource colorBlack}">
-
-    <local:OffersPage IconImageSource="{OnPlatform iOS=hand_holding.svg, Android=hand_holding}">
-    </local:OffersPage>
-    <local:RequestsPage IconImageSource="{OnPlatform iOS=handshake.svg, Android=handshake}">
-    </local:RequestsPage>
-    <local:addPage IconImageSource="{OnPlatform iOS=plus.svg, Android=plus}">
-    </local:addPage>
-    <local:RewardsPage IconImageSource="{OnPlatform iOS=trophy.svg, Android=trophy}">
-    </local:RewardsPage>
-    <local:ProfilePage IconImageSource="{OnPlatform iOS=profile.svg, Android=profile}">
-    </local:ProfilePage>
-
-</TabbedPage>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
+       xmlns:local="clr-namespace:greenshare_app.Views.MainViewPages"
+       x:Class="greenshare_app.Views.MainView">
+    <TabBar>
+        <Tab Icon="hand_holding.png">
+            <ShellContent ContentTemplate="{DataTemplate local:OffersPage}" />
+        </Tab>
+        <Tab Icon="handshake.png">
+            <ShellContent ContentTemplate="{DataTemplate local:RequestsPage}" />
+        </Tab>
+        <Tab Icon="plus.png">
+            <ShellContent ContentTemplate="{DataTemplate local:addPage}" />
+        </Tab>
+        <Tab Icon="trophy.png">
+            <ShellContent ContentTemplate="{DataTemplate local:RewardsPage}" />
+        </Tab>
+        <Tab Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
+        </Tab>
+    </TabBar>
+</Shell>
