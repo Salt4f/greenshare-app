@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:local="clr-namespace:greenshare_app"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage">
+
     <ContentPage.Content>
-        <StackLayout Padding="40" Spacing="30">
-            <Label Text="Informació d'Usuari" TextColor="Black" FontSize="25" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
-            <StackLayout>
+        <StackLayout>
+            <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="0">
+                <StackLayout Padding="20" Spacing="30">
+                    <Label Text="Perfil" TextColor="Black" FontSize="25" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="0,30,0,5"/>
+                    <Frame BackgroundColor="white" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0" CornerRadius="20">
+                        <StackLayout>
+                            <Grid>
+                                <Frame BackgroundColor="Transparent" Margin="0,40,0,0" Padding="0" HorizontalOptions="Center" CornerRadius="50">
+                                    <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
+                                </Frame>
+                            </Grid>
+                            <Grid>
+                                <Label Text="User Name" Margin="0,5,0,40" Font="25" TextColor="Black" HorizontalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+            
+            <StackLayout Padding="20" Spacing="30">
                 <Grid>
-                    <Label Grid.Row="0" Grid.Column="0"
-                        Text="User Name:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
-                    <Label Grid.Row="0" Grid.Column="1"
-                        Text="aqui va el username" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                    <Image Source="user_bo.png" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Telefon:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="aqui va el telefon" HorizontalOptions="FillAndExpand" TextColor="Gray" />
                 </Grid>
                 <Grid>
-                    <Label Grid.Row="0" Grid.Column="0"
-                        Text="Telefon:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
-                    <Label Grid.Row="0" Grid.Column="1"
-                        Text="aqui va el telefon" HorizontalOptions="FillAndExpand" TextColor="Gray" />
-                </Grid>
-                <Grid>
-                    <Label Grid.Row="0" Grid.Column="0"
-                        Text="email:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
-                    <Label Grid.Row="0" Grid.Column="1"
-                        Text="aqui va el email" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                    <Label Grid.Row="0" Grid.Column="0" Text="email:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="aqui va el email" HorizontalOptions="FillAndExpand" TextColor="Gray" />
                 </Grid>
             </StackLayout>
         </StackLayout>
