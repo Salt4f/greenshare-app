@@ -1,4 +1,5 @@
-﻿using greenshare_app.Utils;
+﻿using greenshare_app.Models;
+using greenshare_app.Utils;
 using greenshare_app.Views;
 using greenshare_app.Views.MainViewPages;
 using MvvmHelpers;
@@ -20,6 +21,8 @@ namespace greenshare_app.ViewModels
 
         private Page view;
         private INavigation navigation;
+        private ObservableRangeCollection<PostCardModel> offersList;
+        
 
         public AsyncCommand ProfileButtonCommand => new AsyncCommand(OnProfileButton);
         public AsyncCommand LogoutButtonCommand => new AsyncCommand(OnLogoutButton);
