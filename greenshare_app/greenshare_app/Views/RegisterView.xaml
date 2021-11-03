@@ -69,25 +69,37 @@
                                 </StackLayout>
                             </Frame>
 
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
+                                    </Frame>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Fullname}" Placeholder="Full Name"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
+                                    </Frame>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Dni}" Placeholder="Repeat Password"/>
+                                    <Button Text="Verify DNI" Command="{Binding DniButtonCommand}" Style="{StaticResource styleButton}"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                                <StackLayout Orientation="Horizontal">
+                                    <DatePicker Date="{Binding BirthDate}"/>
+                                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+
                             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
 
                             <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
-
-                            <StackLayout Margin="0,20,0,0" Padding="0">
-                                <Grid>
-                                    <BoxView BackgroundColor="{StaticResource colorBlack}" HeightRequest="1" WidthRequest="150"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                                    <Frame Style="{StaticResource styleFrameDefault}" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BackgroundColor="White" BorderColor="{StaticResource colorBlack}">
-                                        <Label Text="OR" Style="{StaticResource styleLabelGreen}" />
-                                    </Frame>
-                                </Grid>
-                            </StackLayout>
-
-                            <StackLayout Margin="0,15" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <Frame BackgroundColor="White" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BorderColor="{StaticResource colorBlack}" Margin="0" HorizontalOptions="Center" Padding="0">
-                                    <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Google}" FontFamily="FAB" TextColor="{StaticResource colorGreen2}"></Label>
-                                </Frame>
-                            </StackLayout>
-
                         </StackLayout>
                     </StackLayout>
                 </Frame>
