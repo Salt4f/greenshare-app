@@ -5,11 +5,12 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             
             BackgroundColor="{StaticResource colorWhite}">
 
-
+   
     <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
-        
+
 
         <StackLayout Padding="0" Margin="15,20,15,15" >
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
@@ -19,6 +20,44 @@
                     Title="Select an option"/>
             </Frame>
         </StackLayout>
+        
+        <StackLayout Padding="0" Margin="15,20,15,15" >
+
+            <ImageButton
+                HeightRequest="40"
+                WidthRequest="40"
+                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                x:Name="selectedImage"
+                Clicked="Handle_Clicked"
+                Background="red"
+                BackgroundColor="White"
+                >
+            </ImageButton>
+        <!-- 
+            <ImageButton
+                HeightRequest="40"
+                WidthRequest="40"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                x:Name="selectedImage2"
+                Clicked="Handle_Clicked"
+                Background="Blue"
+                BackgroundColor="White"
+                >
+            </ImageButton>
+        -->
+        </StackLayout>
+    <!--
+        <ImageButton 
+            Padding="100" Margin=" 10,10,10,10"
+            x:Name="selectedImage2"
+            Clicked="Handle_Clicked"
+            BackgroundColor="Red">
+        </ImageButton>
+    -->
+        
 
         <StackLayout  Padding="0" Margin="15,0,15,15" >
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
@@ -64,12 +103,9 @@
                     Title="Select a category"
                 />
 
-                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
 
+        <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
 
-                <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
             
     </StackLayout>
 </ContentPage>
