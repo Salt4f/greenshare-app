@@ -8,34 +8,38 @@
              
             BackgroundColor="{StaticResource colorWhite}">
 
-   
-    <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
+    <ScrollView>
+        <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
 
 
-        <StackLayout Padding="0" Margin="15,20,15,15" >
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
-                <Picker 
-                    Style="{StaticResource styleEntryDefault}"
-                    x:Name = "PickerOption"
-                    Title="Select an option"/>
+            <StackLayout Margin="15,20,15,15" >
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                    <Picker 
+                        Style="{StaticResource styleEntryDefault}"
+                        x:Name = "PickerOption"
+                        Title="Select an option"/>
+                </Frame>
+            </StackLayout>
+
+            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton
+                        Margin="15,20,15,15"
+                        HeightRequest="80"
+                        WidthRequest="80"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        x:Name="selectedImage"
+                        Clicked="Handle_Clicked">
+                    </ImageButton>
+                    <Label TextColor="RED" Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" ></Label>
+                
+                </StackLayout>
             </Frame>
-        </StackLayout>
-        
-        <StackLayout Padding="0" Margin="15,20,15,15" >
 
-            <ImageButton
-                HeightRequest="40"
-                WidthRequest="40"
-                AbsoluteLayout.LayoutFlags="PositionProportional" 
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                x:Name="selectedImage"
-                Clicked="Handle_Clicked"
-                Background="red"
-                BackgroundColor="White"
-                >
-            </ImageButton>
-        <!-- 
+
+            <!-- 
             <ImageButton
                 HeightRequest="40"
                 WidthRequest="40"
@@ -48,64 +52,55 @@
                 >
             </ImageButton>
         -->
-        </StackLayout>
-    <!--
-        <ImageButton 
-            Padding="100" Margin=" 10,10,10,10"
-            x:Name="selectedImage2"
-            Clicked="Handle_Clicked"
-            BackgroundColor="Red">
-        </ImageButton>
-    -->
-        
-
-        <StackLayout  Padding="0" Margin="15,0,15,15" >
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
-                <StackLayout Orientation="Horizontal" >
-                    <control:BorderlessEntry 
-                        Style="{StaticResource styleEntryDefault}" 
-                        Text="{Binding ProductName}" 
-                        Placeholder="Product name" 
-                        FontAttributes="None"/>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
-<!--            PRODUCT NAME PREVI
-            <StackLayout Padding="0" Margin="15,20,15,15" >
-                <Entry Style="{StaticResource styleEntryDefault}" Placeholder="Product name" Text="{Binding ProductName}" />
-            </StackLayout>
--->
-
-        <StackLayout Padding="0" Margin="15,20,15,15" >
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
-                <Editor 
-                    Style="{StaticResource styleEntryDefault}"
-                    Placeholder="Description" 
-                    AutoSize="TextChanges"
-                    Text="{Binding Description}"/>
-            </Frame>
-        </StackLayout>
-<!--        Description previ
             <StackLayout  Padding="0" Margin="15,0,15,15" >
-                <Editor 
-                    Style="{StaticResource styleEntryDefault}"
-                    Placeholder="Description" 
-                    AutoSize="TextChanges"
-                    Text="{Binding Description}"/>
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal" >
+                        <control:BorderlessEntry 
+                            
+                            Style="{StaticResource styleEntryDefault}" 
+                            Text="{Binding ProductName}" 
+                            Placeholder="Product name" 
+                            FontAttributes="None"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
--->
+            <!--            PRODUCT NAME PREVI
+                <StackLayout Padding="0" Margin="15,20,15,15" >
+                    <Entry Style="{StaticResource styleEntryDefault}" Placeholder="Product name" Text="{Binding ProductName}" />
+                </StackLayout>
+    -->
+
+            <StackLayout Padding="0" Margin="15,20,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
+                    <Editor 
+                        Style="{StaticResource styleEntryDefault}"
+                        Placeholder="Description" 
+                        AutoSize="TextChanges"
+                        Text="{Binding Description}"/>
+                </Frame>
+            </StackLayout>
+            <!--        Description previ
+                <StackLayout  Padding="0" Margin="15,0,15,15" >
+                    <Editor 
+                        Style="{StaticResource styleEntryDefault}"
+                        Placeholder="Description" 
+                        AutoSize="TextChanges"
+                        Text="{Binding Description}"/>
+                </StackLayout>
+    -->
 
 
-                <Picker
-                    Style="{StaticResource styleEntryDefault}"
-                    Margin="15,20,15,15"
-                    x:Name = "PickerCategory"
-                    Title="Select a category"
-                />
+            <Picker
+                        Style="{StaticResource styleEntryDefault}"
+                        Margin="15,20,15,15"
+                        x:Name = "PickerCategory"
+                        Title="Select a category"
+                    />
 
 
-        <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
+            <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
 
-            
-    </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
