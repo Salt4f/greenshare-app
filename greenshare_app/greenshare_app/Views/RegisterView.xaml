@@ -24,15 +24,14 @@
                 <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="260,625,200,200" CornerRadius="100" HasShadow="False"/>
             </AbsoluteLayout>
 
-            <StackLayout BackgroundColor="Transparent" Style="{StaticResource styleStackLayoutDefault}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,0" Padding="0,0,0,0" >
-                <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True">
-                    <StackLayout BackgroundColor="Transparent">
+            <StackLayout BackgroundColor="Transparent" Style="{StaticResource styleStackLayoutDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="0,0,0,0" Padding="0,0,0,0">
+                <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True" HorizontalOptions="FillAndExpand">
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <StackLayout Margin="20,60,20,0">
                             <Label Style="{StaticResource styleLabelGreen}" Text="REGISTER" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
-                            <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Smile}" Style="{StaticResource styleLabelIcon}" FontFamily="FAR"></Label>
                         </StackLayout>
 
-                        <StackLayout Padding="0" Margin="15,0,15,15">
+                        <StackLayout Padding="0" Margin="15,0,15,15" HorizontalOptions="FillAndExpand">
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
@@ -72,28 +71,29 @@
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
-                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
+                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Font}" FontFamily="FAS"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Fullname}" Placeholder="Full Name"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding Fullname}" Placeholder="Full Name"/>
                                 </StackLayout>
                             </Frame>
 
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
-                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
+                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.IdCard}" FontFamily="FAS"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Dni}" Placeholder="Repeat Password"/>
-                                    <Button Text="Verify DNI" Command="{Binding DniButtonCommand}" Style="{StaticResource styleButton}"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding Dni}" Placeholder="DNI"/>
+                                    <Button Text="Verify DNI" Command="{Binding DniButtonCommand}" Style="{StaticResource styleButtonDefault}"/>
                                 </StackLayout>
+                                
                             </Frame>
 
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
                                 <StackLayout Orientation="Horizontal">
-                                    <DatePicker Date="{Binding BirthDate}"/>
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
-                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
+                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
                                     </Frame>
+                                    <DatePicker Date="{Binding BirthDate}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
                                 </StackLayout>
                             </Frame>
 
