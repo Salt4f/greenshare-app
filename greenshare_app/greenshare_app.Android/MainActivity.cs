@@ -13,6 +13,9 @@ namespace greenshare_app.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -25,6 +28,9 @@ namespace greenshare_app.Droid
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             Android.Graphics.Color myRed = Android.Graphics.Color.ParseColor("#ff52734d");
             Window.SetStatusBarColor(myRed);
+
+            /*CachedImageRenderer.Init(true);
+            var ignore = typeof(SvgCachedImage);*/
 
             LoadApplication(new App());
         }
