@@ -3,8 +3,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-/*using FFImageLoading.Forms.Platform;
-using FFImageLoading.Svg.Forms;*/
+using Android.Views;
+using System.Drawing;
 
 namespace greenshare_app.Droid
 {
@@ -21,8 +21,10 @@ namespace greenshare_app.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            /*CachedImageRenderer.Init(true);
-            var ignore = typeof(SvgCachedImage);*/
+            Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Android.Graphics.Color myRed = Android.Graphics.Color.ParseColor("#ff52734d");
+            Window.SetStatusBarColor(myRed);
 
             LoadApplication(new App());
         }
