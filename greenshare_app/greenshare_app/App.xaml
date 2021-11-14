@@ -54,6 +54,7 @@
                 <Setter Property="FontAttributes" Value="None"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="Margin" Value="0,0,20,0"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
 
             <!--Email Entry-->
@@ -143,6 +144,16 @@
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
 
+            <!--DATE PICKER-->
+
+            <!--Default DatePicker-->
+
+            <Style TargetType="DatePicker" x:Key="styleDatePickerDefault">
+                <Setter Property="FontFamily" Value="Montserrat-SemiBold"/>
+                <Setter Property="TextColor" Value="{StaticResource colorGreen1}"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+          
             <!--TABBAR-->
 
             <!--Default Button-->
