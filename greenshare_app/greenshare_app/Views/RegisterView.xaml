@@ -82,7 +82,7 @@
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.IdCard}" FontFamily="FAS"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding Dni}" Placeholder="DNI"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding Dni}" Placeholder="DNI" MaxLength="9"/>
                                     <Button Text="Verify DNI" Command="{Binding DniButtonCommand}" Style="{StaticResource styleButtonDefault}"/>
                                 </StackLayout>
                                 
