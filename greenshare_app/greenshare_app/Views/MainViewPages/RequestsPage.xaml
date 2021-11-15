@@ -1,24 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
-             BackgroundColor="{StaticResource colorGreen3}">
+             x:Class="greenshare_app.Views.MainViewPages.RequestsPage">
+
     <ListView BackgroundColor="{StaticResource colorWhite}"
-              HasUnevenRows="True">
-        
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              SelectionMode="Single"
+              CachingStrategy="RecycleElement"
+              >
+        <!--Items per afegir més tard-->
+        <!--    IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding isBusy, Mode=OneWay}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RefreshControlColor="{StaticResource colorGreen2}"  -->
+        <!--ItemSelected="ListView_ItemSelected"
+              ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
+
+        <ListView.Header>
+            <StackLayout Padding="15">
+                <Label HorizontalOptions="Center" Text="REQUESTS" Style="{StaticResource styleLabelBlack}" FontSize="25">
+                </Label>
+            </StackLayout>
+        </ListView.Header>
+
         <!--Apunt per fer binding amb les dades que ens passin-->
         <!--ItemsSource="{Binding .}"-->
-        
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>My first post</x:String>
+                <x:String>My second post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+            </x:Array>
+        </ListView.ItemsSource>
+
         <ListView.ItemTemplate>
             <DataTemplate >
                 <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
                 <!--x:DataType="model:Request"-->
+                <!--<TextCell Text="{Binding .}"/>-->
                 <ViewCell>
                     <Grid Padding="15">
-                        <Frame>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="My first post!"
-                                   VerticalOptions="Center"/>
+                        <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
+                            <StackLayout Orientation="Vertical">
+                                <!--To add on the offers page-->
+                                <!--<Image Source="plus.png" HeightRequest="60"></Image>-->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Post Name"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    <Label Text="Nickname"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="Tag 1"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="Tag 2"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="Tag 3"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
                             </StackLayout>
                         </Frame>
                     </Grid>
@@ -27,65 +84,4 @@
         </ListView.ItemTemplate>
 
     </ListView>
-
-    <!--<ScrollView HeightRequest="3000">
-        <StackLayout Margin="2" Spacing="15" HorizontalOptions="CenterAndExpand">
-            <Frame WidthRequest="300" HeightRequest="200" Padding="0">
-                <Grid  Margin="20,20,20,20" VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <StackLayout Grid.Row="0" Grid.ColumnSpan="3">
-                        <Label x:Name="boxTitle" Text="Aquí va el título de la petición"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"                               
-                               >
-                        </Label>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"
-                               TextColor="Black"
-                               HorizontalTextAlignment="Start"
-                               VerticalTextAlignment="End"
-                               >
-                        </Label>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
-                        <Frame Padding="0" CornerRadius="5">
-                        <Image Source="{StaticResource Key=Placeholder}"                               
-                               Aspect="AspectFill"                              
-                               >
-                          
-                        </Image>
-                        </Frame>
-                    </StackLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-                        <Label Text="username"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"
-                               TextColor="LightGray"
-                               >
-                        </Label>
-                    </StackLayout>
-                </Grid>
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0">
-                
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0">
-                
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0">
-                
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0"></Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0"></Frame>
-        </StackLayout>
-    </ScrollView>-->
 </ContentPage>

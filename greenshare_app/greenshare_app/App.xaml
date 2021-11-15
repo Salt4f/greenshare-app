@@ -162,7 +162,6 @@
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource colorGreen1}" />
                 <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource colorWhite}" />
                 <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource colorGreen4}" />
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource colorBlack}" />
             </Style>
 
         </ResourceDictionary>
