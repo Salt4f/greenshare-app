@@ -14,6 +14,7 @@
     <Compile Remove="Images\**" />
     <EmbeddedResource Remove="Images\**" />
     <None Remove="Images\**" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -132,5 +133,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\NewFolder\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>
