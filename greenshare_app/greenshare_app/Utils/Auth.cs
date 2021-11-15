@@ -26,7 +26,7 @@ namespace greenshare_app.Utils
         int id;
         string token;
         bool rememberMe;
-        HttpClient httpClient;
+        readonly HttpClient httpClient;
 
         public async Task<bool> Login(string email, string password, bool rememberMe)
         {
