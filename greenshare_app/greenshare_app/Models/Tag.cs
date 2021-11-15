@@ -4,13 +4,13 @@ namespace greenshare_app.Models
 {
     class Tag
     {
-        private Color color;
-        private string name;
+        public Color Color { get; set; }
+        public string Name { get; set; }
 
         public Tag(Color color, string name)
         {
-            this.color = color;
-            this.name = name;
+            Color = color;
+            Name = name;
         }
     }
 }
