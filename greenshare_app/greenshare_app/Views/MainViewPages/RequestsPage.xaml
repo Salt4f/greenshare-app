@@ -3,7 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
              BackgroundColor="{StaticResource colorGreen3}">
-    <ScrollView HeightRequest="3000">
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True">
+        
+        <!--Apunt per fer binding amb les dades que ens passin-->
+        <!--ItemsSource="{Binding .}"-->
+        
+        <ListView.ItemTemplate>
+            <DataTemplate >
+                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
+                <!--x:DataType="model:Request"-->
+                <ViewCell>
+                    <Grid Padding="15">
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="My first post!"
+                                   VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+    <!--<ScrollView HeightRequest="3000">
         <StackLayout Margin="2" Spacing="15" HorizontalOptions="CenterAndExpand">
             <Frame WidthRequest="300" HeightRequest="200" Padding="0">
                 <Grid  Margin="20,20,20,20" VerticalOptions="CenterAndExpand">
@@ -62,5 +87,5 @@
             <Frame WidthRequest="400" HeightRequest="200" Padding="0"></Frame>
             <Frame WidthRequest="400" HeightRequest="200" Padding="0"></Frame>
         </StackLayout>
-    </ScrollView>
+    </ScrollView>-->
 </ContentPage>
