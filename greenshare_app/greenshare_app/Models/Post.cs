@@ -16,16 +16,6 @@ namespace greenshare_app.Models
         public int OwnerId { get; set; }
         public int EcoImpact { get; set; }
 
-       public Post(string name, string description, DateTime createdAt, DateTime terminateAt, Location location, bool active, int ownerId, int ecoImpact)
-       {
-            Name = name;
-            Description = description;
-            CreatedAt = createdAt;
-            TerminateAt = terminateAt;
-            Location = location;
-            Active = active;
-            OwnerId = ownerId;
-            EcoImpact = ecoImpact;
-       }
+      
     }
 }
