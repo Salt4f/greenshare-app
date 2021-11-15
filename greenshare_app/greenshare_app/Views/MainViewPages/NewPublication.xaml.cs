@@ -27,6 +27,13 @@ namespace greenshare_app.Views.MainViewPages
             PickerCategory.Items.Add("Sport");
 
         }
+        
+        async void Handle_Picker(object sender, System.EventArgs e)
+        {
+
+        }
+
+
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
             //! added using Plugin.Media;

@@ -17,11 +17,13 @@
                     <Picker 
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
-                        Title="Select an option"/>
+                        Title="Select an option"
+                        SelectedIndexChanged="Handle_Picker"
+                        />
                 </Frame>
             </StackLayout>
 
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" >
+            <Frame IsVisible ="False" Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" >
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                     <ImageButton
                         Margin="15,20,15,15"
