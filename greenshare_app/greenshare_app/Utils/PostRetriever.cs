@@ -102,11 +102,12 @@ namespace greenshare_app.Utils
                 var icon = Encoding.UTF8.GetBytes((string)tokenJson.Value<string>("icon"));                
                 post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(icon); });
                 post.Photos = new List<Image>();
-                //falta coger el array de photos
+                //falta coger el array de photos y de tags
                 return post;
             }
             return null;
         }
+
         public async Task<Request> GetRequest(int? owner)
         {
             if (owner is null) throw new NullOfferException();
@@ -124,8 +125,10 @@ namespace greenshare_app.Utils
                 post.CreatedAt = tokenJson.Value<DateTime>("CreatedAt");
                 post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
                 post.Active = tokenJson.Value<bool>("active");
+                List<Tag> etiquetas = new List<Tag>();
                 
-                //falta coger el array de photos
+                //post.Tags = tokenJson.Value<IEnumerable<string>>("tags");
+                //falta coger el array de tags
                 return post;
             }
             return null;
