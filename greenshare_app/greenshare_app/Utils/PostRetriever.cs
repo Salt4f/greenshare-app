@@ -30,8 +30,96 @@ namespace greenshare_app.Utils
 
         private readonly HttpClient httpClient;
 
+        public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
+        {
+            string query = getQuery(location, distance, tags, owner, quantity);
 
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var obj = (JObject)item;
+                    var card = new PostCard();
+
+                    card.Id = (int)obj.GetValue("id");
+                    card.Name = (string)obj.GetValue("name");                  
+                    card.Author = (string)obj.GetValue("nickname");
+                    List<Tag> definitiveTags = new List<Tag>();
+                    ColorTypeConverter converter = new ColorTypeConverter();
+                    IEnumerable<Tuple<string, string>> jsonTags = (IEnumerable<Tuple<string, string>>)obj.GetValue("tags");
+                    foreach (Tuple<string, string> tag in jsonTags)
+                    {
+
+                        Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
+                        definitiveTags.Add(definitiveTag);
+                    }
+                    card.Tags = definitiveTags;
+                    cards.Add(card);
+                }
+                return cards;
+
+                /*id = tokenJson.Value<int>("id");
+                token = tokenJson.Value<string>("token");
+                this.rememberMe = rememberMe;
+                await SaveAuth();
+                return true;*/
+            }
+
+            return null;
+        }
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
+        {
+            string query = getQuery(location, distance, tags, owner, quantity);
+
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var obj = (JObject)item;
+                    var card = new PostCard();
+
+                    card.Id = (int)obj.GetValue("id");
+                    card.Name = (string)obj.GetValue("name");
+                    card.Icon = new Image();
+
+                    var image = Encoding.UTF8.GetBytes((string)obj.GetValue("icon"));
+                    card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
+                    card.Author = (string)obj.GetValue("nickname");
+                    List<Tag> definitiveTags = new List<Tag>();
+                    ColorTypeConverter converter = new ColorTypeConverter();
+                    IEnumerable<Tuple<string, string>> jsonTags = (IEnumerable<Tuple<string, string>>)obj.GetValue("tags");
+                    foreach (Tuple<string, string> tag in jsonTags)
+                    {
+
+                        Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
+                        definitiveTags.Add(definitiveTag);
+                    }
+                    card.Tags = definitiveTags;
+                    cards.Add(card);
+                }
+                return cards;
+
+                /*id = tokenJson.Value<int>("id");
+                token = tokenJson.Value<string>("token");
+                this.rememberMe = rememberMe;
+                await SaveAuth();
+                return true;*/
+            }
+
+            return null;
+        }
+
+        private static string getQuery(Location location, int distance, IEnumerable<Tag> tags, int? owner, int quantity)
         {
             if (location is null) throw new NullLocationException();
             string query = "?location=" + location.ToString();
@@ -47,40 +135,9 @@ namespace greenshare_app.Utils
             if (owner != null) query += "&owner=" + owner;
 
             query += "&quantity=" + quantity;
-
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
-
-                var cards = new List<PostCard>();
-
-                foreach (var item in array)
-                {
-                    var obj = (JObject) item;
-                    var card = new PostCard();
-
-                    card.Id = (int) obj.GetValue("id");
-                    card.Name = (string) obj.GetValue("name");
-                    card.Icon = new Image();
-
-                    var image = Encoding.UTF8.GetBytes((string) obj.GetValue("icon"));
-                    card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
-
-                    //card.Tags = 
-                    //card.Author = (int) obj.GetValue("id");
-                }
-
-                /*id = tokenJson.Value<int>("id");
-                token = tokenJson.Value<string>("token");
-                this.rememberMe = rememberMe;
-                await SaveAuth();
-                return true;*/
-            }
-
-            return null;
+            return query;
         }
-
+     
         public async Task<Offer> GetOffer(int owner)
         {            
             var id = owner.ToString();
