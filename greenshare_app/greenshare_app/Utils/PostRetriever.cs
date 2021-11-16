@@ -10,6 +10,7 @@ using greenshare_app.Models;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Xamarin.Essentials.Permissions;
 
 namespace greenshare_app.Utils
 {
@@ -32,7 +33,7 @@ namespace greenshare_app.Utils
 
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
-            string query = getQuery(location, distance, tags, owner, quantity);
+            string query = GetQuery(location, distance, tags, owner, quantity);
 
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -74,7 +75,7 @@ namespace greenshare_app.Utils
         }
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
-            string query = getQuery(location, distance, tags, owner, quantity);
+            string query = GetQuery(location, distance, tags, owner, quantity);
 
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -91,7 +92,6 @@ namespace greenshare_app.Utils
                     card.Id = (int)obj.GetValue("id");
                     card.Name = (string)obj.GetValue("name");
                     card.Icon = new Image();
-
                     var image = Encoding.UTF8.GetBytes((string)obj.GetValue("icon"));
                     card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
                     card.Author = (string)obj.GetValue("nickname");
@@ -119,7 +119,7 @@ namespace greenshare_app.Utils
             return null;
         }
 
-        private static string getQuery(Location location, int distance, IEnumerable<Tag> tags, int? owner, int quantity)
+        private static string GetQuery(Location location, int distance, IEnumerable<Tag> tags, int? owner, int quantity)
         {
             if (location is null) throw new NullLocationException();
             string query = "?location=" + location.ToString();
@@ -141,11 +141,12 @@ namespace greenshare_app.Utils
         public async Task<Offer> GetOffer(int owner)
         {            
             var id = owner.ToString();
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/:" + id);
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/" + id);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());                                            
                 var post = new Offer();
+
                 post.OwnerId = tokenJson.Value<int>("ownerId");
                 post.Description = tokenJson.Value<string>("description");
                 post.Location = tokenJson.Value<Location>("location");
@@ -154,20 +155,27 @@ namespace greenshare_app.Utils
                 post.CreatedAt = tokenJson.Value<DateTime>("CreatedAt");
                 post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
                 post.Active = tokenJson.Value<bool>("active");
+
                 post.Icon = new Image();
                 var icon = Encoding.UTF8.GetBytes((string)tokenJson.Value<string>("icon"));
                 post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(icon); });
+
+
                 //Photos
                 List<Image> photos = new List<Image>();
                 IEnumerable<string> jsonPhotos = tokenJson.Value<IEnumerable<string>>("photos");
                 foreach (string photo in jsonPhotos)
                 {
                     var encodedPhoto = Encoding.UTF8.GetBytes(photo);
-                    Image definitivePhoto = new Image();
-                    definitivePhoto.Source = ImageSource.FromStream(() => { return new MemoryStream(encodedPhoto); });
+                    Image definitivePhoto = new Image
+                    {
+                        Source = ImageSource.FromStream(() => { return new MemoryStream(encodedPhoto); })
+                    };
                     photos.Add(definitivePhoto);
                 }
                 post.Photos = photos;
+
+
                 //Tags
                 List<Tag> tags = new List<Tag>();
                 ColorTypeConverter converter = new ColorTypeConverter();
@@ -189,7 +197,7 @@ namespace greenshare_app.Utils
         public async Task<Request> GetRequest(int owner)
         {           
             var id = owner.ToString();
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/:" + id);
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/" + id);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
