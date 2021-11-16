@@ -80,5 +80,55 @@ namespace greenshare_app.Utils
 
             return null;
         }
+
+        public async Task<Offer> GetOffer(int? owner)
+        {
+            if (owner is null) throw new NullOfferException();
+            var id = owner.ToString();
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/:" + id);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());                                            
+                var post = new Offer();
+                post.OwnerId = tokenJson.Value<int>("ownerId");
+                post.Description = tokenJson.Value<string>("description");
+                post.Location = tokenJson.Value<Location>("location");
+                post.Name = tokenJson.Value<string>("name");
+                post.EcoImpact = tokenJson.Value<int>("ecoImpact");
+                post.CreatedAt = tokenJson.Value<DateTime>("CreatedAt");
+                post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
+                post.Active = tokenJson.Value<bool>("active");
+                post.Icon = new Image();
+                var icon = Encoding.UTF8.GetBytes((string)tokenJson.Value<string>("icon"));                
+                post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(icon); });
+                post.Photos = new List<Image>();
+                //falta coger el array de photos
+                return post;
+            }
+            return null;
+        }
+        public async Task<Request> GetRequest(int? owner)
+        {
+            if (owner is null) throw new NullOfferException();
+            var id = owner.ToString();
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/:" + id);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                var post = new Request();
+                post.OwnerId = tokenJson.Value<int>("ownerId");
+                post.Description = tokenJson.Value<string>("description");
+                post.Location = tokenJson.Value<Location>("location");
+                post.Name = tokenJson.Value<string>("name");
+                post.EcoImpact = tokenJson.Value<int>("ecoImpact");
+                post.CreatedAt = tokenJson.Value<DateTime>("CreatedAt");
+                post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
+                post.Active = tokenJson.Value<bool>("active");
+                
+                //falta coger el array de photos
+                return post;
+            }
+            return null;
+        }
     }
 }
