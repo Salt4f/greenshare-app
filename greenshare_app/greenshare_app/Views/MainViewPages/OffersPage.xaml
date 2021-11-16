@@ -2,17 +2,87 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.OffersPage">
-    
-    
-    <ScrollView>
-        <StackLayout Margin="50,100,50,50">
-            <Label Text="Aqui falta llenar la scrollview"
-                   TextColor="Red"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"/>
-            <Button Text="Profile" Command="{Binding ProfileButtonCommand}"/>
-            <Button Text="Log out" Command="{Binding LogoutButtonCommand}"/>
-        </StackLayout>        
-            
-    </ScrollView>
+
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              SelectionMode="Single"
+              CachingStrategy="RecycleElement"
+              >
+        <!--Items per afegir més tard-->
+        <!--    IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding isBusy, Mode=OneWay}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RefreshControlColor="{StaticResource colorGreen2}"  -->
+        <!--ItemSelected="ListView_ItemSelected"
+              ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
+
+        <ListView.Header>
+            <StackLayout Padding="15">
+                <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25">
+                </Label>
+            </StackLayout>
+        </ListView.Header>
+
+        <!--Apunt per fer binding amb les dades que ens passin-->
+        <!--ItemsSource="{Binding .}"-->
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>My first post</x:String>
+                <x:String>My second post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+            </x:Array>
+        </ListView.ItemsSource>
+
+        <ListView.ItemTemplate>
+            <DataTemplate >
+                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
+                <!--x:DataType="model:Request"-->
+                <!--<TextCell Text="{Binding .}"/>-->
+                <ViewCell>
+                    <Grid Padding="15">
+                        <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Image Source="plus.png" HeightRequest="60"></Image>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="Post Name"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    <Label Text="Nickname"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="Tag 1"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="Tag 2"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="Tag 3"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
 </ContentPage>
