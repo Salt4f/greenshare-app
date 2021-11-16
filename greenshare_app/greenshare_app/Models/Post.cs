@@ -15,6 +15,7 @@ namespace greenshare_app.Models
         public bool Active { get; set; }
         public int OwnerId { get; set; }
         public int EcoImpact { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
 
       
     }

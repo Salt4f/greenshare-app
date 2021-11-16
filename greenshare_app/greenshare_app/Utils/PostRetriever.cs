@@ -81,9 +81,8 @@ namespace greenshare_app.Utils
             return null;
         }
 
-        public async Task<Offer> GetOffer(int? owner)
-        {
-            if (owner is null) throw new NullOfferException();
+        public async Task<Offer> GetOffer(int owner)
+        {            
             var id = owner.ToString();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/:" + id);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -99,6 +98,15 @@ namespace greenshare_app.Utils
                 post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
                 post.Active = tokenJson.Value<bool>("active");
                 post.Icon = new Image();
+                List<Tag> tags = new List<Tag>();
+                IEnumerable<Tuple<string, string>> jsonTags = tokenJson.Value<IEnumerable<Tuple<string, string>>>("tags");
+                foreach (Tuple<string, string> tag in jsonTags)
+                {
+                    ColorTypeConverter converter = new ColorTypeConverter();
+                    Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
+                    tags.Add(definitiveTag);
+                }
+                post.Tags = tags;
                 var icon = Encoding.UTF8.GetBytes((string)tokenJson.Value<string>("icon"));                
                 post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(icon); });
                 post.Photos = new List<Image>();
@@ -108,9 +116,8 @@ namespace greenshare_app.Utils
             return null;
         }
 
-        public async Task<Request> GetRequest(int? owner)
-        {
-            if (owner is null) throw new NullOfferException();
+        public async Task<Request> GetRequest(int owner)
+        {           
             var id = owner.ToString();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/:" + id);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -125,10 +132,15 @@ namespace greenshare_app.Utils
                 post.CreatedAt = tokenJson.Value<DateTime>("CreatedAt");
                 post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
                 post.Active = tokenJson.Value<bool>("active");
-                List<Tag> etiquetas = new List<Tag>();
-                
-                //post.Tags = tokenJson.Value<IEnumerable<string>>("tags");
-                //falta coger el array de tags
+                List<Tag> tags = new List<Tag>();
+                IEnumerable<Tuple<string, string>> jsonTags = tokenJson.Value <IEnumerable<Tuple<string, string>>>("tags");
+                foreach (Tuple<string,string> tag in jsonTags)
+                {
+                    ColorTypeConverter converter = new ColorTypeConverter();
+                    Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
+                    tags.Add(definitiveTag);
+                }
+                post.Tags = tags;               
                 return post;
             }
             return null;
