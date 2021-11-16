@@ -133,6 +133,5 @@
 
   <ItemGroup>
     <Folder Include="Resources\NewFolder\" />
-    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>

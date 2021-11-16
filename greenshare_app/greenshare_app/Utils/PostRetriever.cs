@@ -98,18 +98,31 @@ namespace greenshare_app.Utils
                 post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
                 post.Active = tokenJson.Value<bool>("active");
                 post.Icon = new Image();
+                var icon = Encoding.UTF8.GetBytes((string)tokenJson.Value<string>("icon"));
+                post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(icon); });
+                //Photos
+                List<Image> photos = new List<Image>();
+                IEnumerable<string> jsonPhotos = tokenJson.Value<IEnumerable<string>>("photos");
+                foreach (string photo in jsonPhotos)
+                {
+                    var encodedPhoto = Encoding.UTF8.GetBytes(photo);
+                    Image definitivePhoto = new Image();
+                    definitivePhoto.Source = ImageSource.FromStream(() => { return new MemoryStream(encodedPhoto); });
+                    photos.Add(definitivePhoto);
+                }
+                post.Photos = photos;
+                //Tags
                 List<Tag> tags = new List<Tag>();
+                ColorTypeConverter converter = new ColorTypeConverter();
                 IEnumerable<Tuple<string, string>> jsonTags = tokenJson.Value<IEnumerable<Tuple<string, string>>>("tags");
                 foreach (Tuple<string, string> tag in jsonTags)
                 {
-                    ColorTypeConverter converter = new ColorTypeConverter();
+                    
                     Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
                     tags.Add(definitiveTag);
                 }
                 post.Tags = tags;
-                var icon = Encoding.UTF8.GetBytes((string)tokenJson.Value<string>("icon"));                
-                post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(icon); });
-                post.Photos = new List<Image>();
+                
                 //falta coger el array de photos y de tags
                 return post;
             }
@@ -132,15 +145,18 @@ namespace greenshare_app.Utils
                 post.CreatedAt = tokenJson.Value<DateTime>("CreatedAt");
                 post.TerminateAt = tokenJson.Value<DateTime>("terminateAt");
                 post.Active = tokenJson.Value<bool>("active");
+
                 List<Tag> tags = new List<Tag>();
+                ColorTypeConverter converter = new ColorTypeConverter();
                 IEnumerable<Tuple<string, string>> jsonTags = tokenJson.Value <IEnumerable<Tuple<string, string>>>("tags");
                 foreach (Tuple<string,string> tag in jsonTags)
                 {
-                    ColorTypeConverter converter = new ColorTypeConverter();
+                    
                     Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
                     tags.Add(definitiveTag);
                 }
-                post.Tags = tags;               
+                post.Tags = tags;  
+                
                 return post;
             }
             return null;
