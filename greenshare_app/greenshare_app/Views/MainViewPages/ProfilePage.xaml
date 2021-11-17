@@ -13,7 +13,7 @@
                         <StackLayout>
                             <Grid>
                                 <Frame BackgroundColor="Transparent" Margin="0,40,0,0" Padding="0" HorizontalOptions="Center" CornerRadius="50">
-                                    <ImageButton Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" WidthRequest="80" Margin="0" x:Name="selectedImage" Clicked="Handle_Clicked"/>
+                                    <ImageButton Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
                                 </Frame>
                             </Grid>
                             <Grid>
