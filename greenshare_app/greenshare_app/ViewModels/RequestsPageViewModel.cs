@@ -27,6 +27,7 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             SelectedCommand = new AsyncCommand<object>(Selected);
             RefreshCommand = new AsyncCommand(Refresh);
+
             this.navigation = navigation;
             this.view = view;
             selectedPostCard = new PostCard();

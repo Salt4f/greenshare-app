@@ -13,6 +13,7 @@
               ItemsSource="{Binding PostCardList}"
               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
               SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+              RefreshCommand="{Binding RefreshCommand}"
               >
 
 
