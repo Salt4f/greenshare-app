@@ -73,7 +73,7 @@
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Font}" FontFamily="FAS"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding Fullname}" Placeholder="Full Name"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding FullName}" Placeholder="Full Name"/>
                                 </StackLayout>
                             </Frame>
 
