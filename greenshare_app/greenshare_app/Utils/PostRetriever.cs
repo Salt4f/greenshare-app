@@ -50,6 +50,7 @@ namespace greenshare_app.Utils
                     card.Id = (int)obj.GetValue("id");
                     card.Name = (string)obj.GetValue("name");                  
                     card.Author = (string)obj.GetValue("nickname");
+
                     List<Tag> definitiveTags = new List<Tag>();
                     ColorTypeConverter converter = new ColorTypeConverter();
                     IEnumerable<Tuple<string, string>> jsonTags = (IEnumerable<Tuple<string, string>>)obj.GetValue("tags");
@@ -78,6 +79,8 @@ namespace greenshare_app.Utils
             string query = GetQuery(location, distance, tags, owner, quantity);
 
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
+
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
@@ -95,6 +98,7 @@ namespace greenshare_app.Utils
                     var image = Encoding.UTF8.GetBytes((string)obj.GetValue("icon"));
                     card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
                     card.Author = (string)obj.GetValue("nickname");
+
                     List<Tag> definitiveTags = new List<Tag>();
                     ColorTypeConverter converter = new ColorTypeConverter();
                     IEnumerable<Tuple<string, string>> jsonTags = (IEnumerable<Tuple<string, string>>)obj.GetValue("tags");
@@ -141,6 +145,8 @@ namespace greenshare_app.Utils
         public async Task<Offer> GetOffer(int owner)
         {            
             var id = owner.ToString();
+
+
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/" + id);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -198,10 +204,13 @@ namespace greenshare_app.Utils
         {           
             var id = owner.ToString();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/" + id);
+
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
                 var post = new Request();
+                
                 post.OwnerId = tokenJson.Value<int>("ownerId");
                 post.Description = tokenJson.Value<string>("description");
                 post.Location = tokenJson.Value<Location>("location");

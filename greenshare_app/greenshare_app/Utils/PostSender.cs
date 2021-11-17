@@ -83,6 +83,78 @@ namespace greenshare_app.Utils
             return false;
 
         }
+
+        public async Task<bool> EditOffer(int offerId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<Image> photos, Image icon)
+        {
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            OfferInfo post = new OfferInfo { 
+                OwnerId = session.Item1, 
+                Name = name, 
+                Token = session.Item2, 
+                Description = description, 
+                TerminateAt = terminateAt, 
+                Location = location, 
+                Tags = tags, 
+                Photos = photos, 
+                Icon = icon };
+
+            string json = JsonConvert.SerializeObject(post);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/offers/"+ offerId.ToString(), httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                
+                return true;
+            }
+            return false;
+
+        }
+
+        public async Task<bool> EditRequest(int requestId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
+        {
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            RequestInfo post = new RequestInfo
+            {
+                OwnerId = session.Item1,
+                Name = name,
+                Token = session.Item2,
+                Description = description,
+                TerminateAt = terminateAt,
+                Location = location,
+                Tags = tags,
+                
+            };
+
+            string json = JsonConvert.SerializeObject(post);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/requests/" + requestId.ToString(), httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+
+        }
         private class PostInfo
         {
             [JsonProperty(PropertyName = "id")]
