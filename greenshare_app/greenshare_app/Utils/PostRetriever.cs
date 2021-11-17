@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using greenshare_app.Exceptions;
 using greenshare_app.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -184,16 +185,14 @@ namespace greenshare_app.Utils
 
                 //Tags
                 List<Tag> tags = new List<Tag>();
-                ColorTypeConverter converter = new ColorTypeConverter();
-                IEnumerable<Tuple<string, string>> jsonTags = tokenJson.Value<IEnumerable<Tuple<string, string>>>("tags");
-                foreach (Tuple<string, string> tag in jsonTags)
+                var jsonTags = tokenJson.Value<JArray>("tags");
+                foreach (var tag in jsonTags)
                 {
-                    
-                    Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
+                    Tag definitiveTag = JsonConvert.DeserializeObject<Tag>(tag.ToString());
                     tags.Add(definitiveTag);
                 }
                 post.Tags = tags;
-                
+
                 //falta coger el array de photos y de tags
                 return post;
             }
@@ -221,12 +220,10 @@ namespace greenshare_app.Utils
                 post.Active = tokenJson.Value<bool>("active");
 
                 List<Tag> tags = new List<Tag>();
-                ColorTypeConverter converter = new ColorTypeConverter();
-                IEnumerable<Tuple<string, string>> jsonTags = tokenJson.Value <IEnumerable<Tuple<string, string>>>("tags");
-                foreach (Tuple<string,string> tag in jsonTags)
+                var jsonTags = tokenJson.Value <JArray>("tags");
+                foreach (var tag in jsonTags)
                 {
-                    
-                    Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
+                    Tag definitiveTag = JsonConvert.DeserializeObject<Tag>(tag.ToString());        
                     tags.Add(definitiveTag);
                 }
                 post.Tags = tags;  
