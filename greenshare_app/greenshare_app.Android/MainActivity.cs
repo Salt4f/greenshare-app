@@ -3,8 +3,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-/*using FFImageLoading.Forms.Platform;
-using FFImageLoading.Svg.Forms;*/
+using Android.Views;
+using System.Drawing;
 
 namespace greenshare_app.Droid
 {
@@ -13,6 +13,9 @@ namespace greenshare_app.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -20,6 +23,11 @@ namespace greenshare_app.Droid
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Android.Graphics.Color myRed = Android.Graphics.Color.ParseColor("#ff52734d");
+            Window.SetStatusBarColor(myRed);
 
             /*CachedImageRenderer.Init(true);
             var ignore = typeof(SvgCachedImage);*/
