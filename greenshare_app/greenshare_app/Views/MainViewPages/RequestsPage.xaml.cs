@@ -11,7 +11,7 @@ namespace greenshare_app.Views.MainViewPages
         public RequestsPage()
         {
             InitializeComponent();
-            BindingContext = new RequestsPageViewModel();
+            BindingContext = new RequestsPageViewModel(Navigation, this);
         }
     }
 }

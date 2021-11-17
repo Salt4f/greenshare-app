@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:model="clr-namespace:greenshare_app.Models">
 
     <ListView BackgroundColor="{StaticResource colorWhite}"
@@ -9,7 +10,12 @@
               SeparatorVisibility="None"
               SelectionMode="Single"
               CachingStrategy="RecycleElement"
-              ItemsSource="{Binding PostCardList}">
+              ItemsSource="{Binding PostCardList}"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+              >
+
+
         <!--Items per afegir més tard-->
         <!--    IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding isBusy, Mode=OneWay}"
@@ -17,10 +23,15 @@
                 RefreshControlColor="{StaticResource colorGreen2}"  -->
         <!--ItemSelected="ListView_ItemSelected"
               ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
-
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
         <ListView.Header>
             <StackLayout Padding="15">
-                <Label HorizontalOptions="Center" Text="REQUESTS" Style="{StaticResource styleLabelBlack}" FontSize="25">
+                <Label HorizontalOptions="Center" Text="{Binding Title}" Style="{StaticResource styleLabelBlack}" FontSize="25">
                 </Label>
             </StackLayout>
         </ListView.Header>
@@ -47,11 +58,18 @@
                                            VerticalOptions="Center"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
-                                        <Label Text="{Binding Tags}"
-                                           Style="{StaticResource styleLabelWhite}"
-                                           VerticalOptions="Center"/>
-                                    </Frame>
+                                    <ListView ItemsSource="{Binding Tags}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="model:Tag">
+                                                <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                                    <Label Text="{Binding Name}"
+                                                        Style="{StaticResource styleLabelWhite}"
+                                                        BackgroundColor="{Binding Color}"
+                                                        VerticalOptions="Center"/>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
