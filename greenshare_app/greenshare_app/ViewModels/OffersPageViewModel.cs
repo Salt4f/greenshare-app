@@ -2,7 +2,9 @@
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using greenshare_app.Utils;
 using Xamarin.Essentials;
@@ -35,12 +37,38 @@ namespace greenshare_app.ViewModels
 
             Starting += OnStart;
             Starting(this, EventArgs.Empty);
+        }
 
+        private async void OnStart(object sender, EventArgs args)
+        {
+            try
+            {
+                var loc = new Location(2, 2, 2);
+
+                var photo = await MediaPicker.CapturePhotoAsync();
+                if (photo is null) return;
+
+                var photoStream = await photo.OpenReadAsync();
+
+                byte[] icon = new byte[photoStream.Length];
+                await photoStream.WriteAsync(icon, 0, (int)photoStream.Length);
+
+
+                await PostSender.Instance().PostOffer("name", "desc", DateTime.Now, loc, new List<Tag>(), new List<byte[]>(), icon);
+            }
+            catch (Exception e)
+            {
+                var type = e.GetType();
+                var error = e.Message;
+                IsBusy = false;
+                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+            }
+            IsBusy = false;
         }
 
 
 
-        private async void OnStart(object sender, EventArgs args)
+        /*private async void OnStart(object sender, EventArgs args)
         {
             try
             {
@@ -52,7 +80,7 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
             IsBusy = false;
-        }
+        }*/
 
         private async Task Refresh()
         {
