@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.RequestsPage">
+             x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
+             xmlns:model="clr-namespace:greenshare_app.Models">
 
     <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
               SeparatorVisibility="None"
               SelectionMode="Single"
               CachingStrategy="RecycleElement"
-              >
+              ItemsSource="{Binding PostCardList}">
         <!--Items per afegir més tard-->
         <!--    IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding isBusy, Mode=OneWay}"
@@ -26,54 +27,30 @@
 
         <!--Apunt per fer binding amb les dades que ens passin-->
         <!--ItemsSource="{Binding .}"-->
-        <ListView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>My first post</x:String>
-                <x:String>My second post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-            </x:Array>
-        </ListView.ItemsSource>
+        
 
         <ListView.ItemTemplate>
-            <DataTemplate >
+            <DataTemplate x:DataType="model:PostCard">
                 <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
-                <!--x:DataType="model:Request"-->
+                <!---->
                 <!--<TextCell Text="{Binding .}"/>-->
                 <ViewCell>
                     <Grid Padding="15">
                         <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
                             <StackLayout Orientation="Vertical">
-                                <!--To add on the offers page-->
-                                <!--<Image Source="plus.png" HeightRequest="60"></Image>-->
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Post Name"
+                                    <Label Text="{Binding Name}"
                                            Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
-                                    <Label Text="Nickname"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding Author}"
                                            Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
+                                           VerticalOptions="Center"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
-                                        <Label Text="Tag 1"
+                                        <Label Text="{Binding Tags}"
                                            Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
-                                    </Frame>
-                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
-                                        <Label Text="Tag 2"
-                                           Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
-                                    </Frame>
-                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
-                                        <Label Text="Tag 3"
-                                           Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
+                                           VerticalOptions="Center"/>
                                     </Frame>
                                 </StackLayout>
                             </StackLayout>
