@@ -57,18 +57,11 @@ namespace greenshare_app.Utils
 
         }
 
-        public async Task<bool> PostOffer(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<Image> photos, Image icon)
+        public async Task<bool> PostOffer(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
         {
             Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
+            session = await Auth.Instance().GetAuth();
 
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
             OfferInfo post = new OfferInfo { OwnerId = session.Item1, Name = name, Token = session.Item2, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags, Photos = photos, Icon = icon };
             string json = JsonConvert.SerializeObject(post);           
             var httpContent = new StringContent(json);          
@@ -84,7 +77,7 @@ namespace greenshare_app.Utils
 
         }
 
-        public async Task<bool> EditOffer(int offerId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<Image> photos, Image icon)
+        public async Task<bool> EditOffer(int offerId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
         {
             Tuple<int, string> session;
             try
@@ -182,10 +175,10 @@ namespace greenshare_app.Utils
         private class OfferInfo : PostInfo
         {
             [JsonProperty(PropertyName = "icon")]
-            public Image Icon { get; set; }
+            public byte[] Icon { get; set; }
 
             [JsonProperty(PropertyName = "photos")]
-            public IEnumerable<Image> Photos { get; set; }
+            public IEnumerable<byte[]> Photos { get; set; }
         }
         private class RequestInfo : PostInfo
         {
