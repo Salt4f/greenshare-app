@@ -2,65 +2,63 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
-             BackgroundColor="{StaticResource colorGreen3}">
-    <ScrollView HeightRequest="3000">
-        <StackLayout Margin="2" Spacing="15" HorizontalOptions="CenterAndExpand">
-            <Frame WidthRequest="300" HeightRequest="200" Padding="0">
-                <Grid  Margin="20,20,20,20" VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <StackLayout Grid.Row="0" Grid.ColumnSpan="3">
-                        <Label x:Name="boxTitle" Text="Aquí va el título de la petición"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"                               
-                               >
-                        </Label>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"
-                               TextColor="Black"
-                               HorizontalTextAlignment="Start"
-                               VerticalTextAlignment="End"
-                               >
-                        </Label>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
-                        <Frame Padding="0" CornerRadius="5">
-                        <Image Source="{StaticResource Key=Placeholder}"                               
-                               Aspect="AspectFill"                              
-                               >
-                          
-                        </Image>
+             xmlns:model="clr-namespace:greenshare_app.Models">
+
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              SelectionMode="Single"
+              CachingStrategy="RecycleElement"
+              ItemsSource="{Binding PostCardList}">
+        <!--Items per afegir més tard-->
+        <!--    IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding isBusy, Mode=OneWay}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RefreshControlColor="{StaticResource colorGreen2}"  -->
+        <!--ItemSelected="ListView_ItemSelected"
+              ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
+
+        <ListView.Header>
+            <StackLayout Padding="15">
+                <Label HorizontalOptions="Center" Text="REQUESTS" Style="{StaticResource styleLabelBlack}" FontSize="25">
+                </Label>
+            </StackLayout>
+        </ListView.Header>
+
+        <!--Apunt per fer binding amb les dades que ens passin-->
+        <!--ItemsSource="{Binding .}"-->
+        
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:PostCard">
+                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
+                <!---->
+                <!--<TextCell Text="{Binding .}"/>-->
+                <ViewCell>
+                    <Grid Padding="15">
+                        <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource styleLabelWhite}"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding Author}"
+                                           Style="{StaticResource styleLabelWhite}"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                        <Label Text="{Binding Tags}"
+                                           Style="{StaticResource styleLabelWhite}"
+                                           VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
                         </Frame>
-                    </StackLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-                        <Label Text="username"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"
-                               TextColor="LightGray"
-                               >
-                        </Label>
-                    </StackLayout>
-                </Grid>
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0">
-                
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0">
-                
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0">
-                
-            </Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0"></Frame>
-            <Frame WidthRequest="400" HeightRequest="200" Padding="0"></Frame>
-        </StackLayout>
-    </ScrollView>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
 </ContentPage>

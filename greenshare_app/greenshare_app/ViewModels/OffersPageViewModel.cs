@@ -21,7 +21,7 @@ namespace greenshare_app.ViewModels
 
         private Page view;
         private INavigation navigation;
-        private ObservableRangeCollection<PostCardModel> offersList;
+        private ObservableRangeCollection<PostCard> offersList;
         
 
         public AsyncCommand ProfileButtonCommand => new AsyncCommand(OnProfileButton);

@@ -1,18 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.OffersPage">
-    
-    
-    <ScrollView>
-        <StackLayout Margin="50,100,50,50">
-            <Label Text="Aqui falta llenar la scrollview"
-                   TextColor="Red"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"/>
-            <Button Text="Profile" Command="{Binding ProfileButtonCommand}"/>
-            <Button Text="Log out" Command="{Binding LogoutButtonCommand}"/>
-        </StackLayout>        
-            
-    </ScrollView>
+             x:Class="greenshare_app.Views.MainViewPages.OffersPage"
+             xmlns:model="clr-namespace:greenshare_app.Models">
+
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              SelectionMode="Single"
+              CachingStrategy="RecycleElement"
+              ItemsSource="{Binding PostCardList}">
+
+              
+        <!--Items per afegir més tard-->
+        <!--    IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding isBusy, Mode=OneWay}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RefreshControlColor="{StaticResource colorGreen2}"  -->
+        <!--ItemSelected="ListView_ItemSelected"
+              ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
+
+        <ListView.Header>
+            <StackLayout Padding="15">
+                <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25">
+                </Label>
+            </StackLayout>
+        </ListView.Header>
+
+        <!--<ListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>My first post</x:String>
+                <x:String>My second post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+                <x:String>My third post</x:String>
+            </x:Array>
+        </ListView.ItemsSource>-->
+
+        <!--Apunt per fer binding amb les dades que ens passin-->
+        <!--ItemsSource="{Binding .}"-->
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:PostCard">
+                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
+                <!--x:DataType="model:Request"-->
+                <!--<TextCell Text="{Binding .}"/>-->
+                <ViewCell>
+                    <Grid Padding="15">
+                        <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Image Source="{Binding Icon.Source}"></Image>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    <Label Text="{Binding Author}"
+                                           Style="{StaticResource styleLabelWhite}"
+                                       VerticalOptions="Center"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <ListView ItemsSource="{Binding Tags}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate x:DataType="model:Tag">
+                                                    <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="25">
+                                                        <Label Text="{Binding Name}"
+                                                        Style="{StaticResource styleLabelWhite}"
+                                                        BackgroundColor="{Binding Color}"
+                                                        VerticalOptions="Center"/>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
 </ContentPage>
