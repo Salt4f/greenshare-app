@@ -15,32 +15,35 @@ namespace greenshare_app.ViewModels
         private PostCard selectedPostCard;
         private INavigation navigation;
         private Page view;
+
+        public AsyncCommand<object> SelectedCommand { get; }
+        public AsyncCommand RefreshCommand { get; }
+
         private event EventHandler Starting = delegate { };
         public RequestsPageViewModel(INavigation navigation, Page view)
         {
             Title = "Peticions";
+
             IsBusy = true;
             SelectedCommand = new AsyncCommand<object>(Selected);
+            RefreshCommand = new AsyncCommand(Refresh);
             this.navigation = navigation;
             this.view = view;
             selectedPostCard = new PostCard();
-            postCardList = new ObservableRangeCollection<PostCard>();           
+            postCardList = new ObservableRangeCollection<PostCard>();
+            
             Starting += OnStart;
             Starting(this, EventArgs.Empty);
             
         }
 
-        private async Task<Location> UpdateLocation()
-        {
-            return await Geolocation.GetLastKnownLocationAsync();
-        }
+        
 
         private async void OnStart(object sender, EventArgs args)
         {
             try
-            {
-                CurrentLocation = await UpdateLocation();
-                //postCardList = await PostRetriever.Instance().GetRequests();
+            {               
+                postCardList.AddRange(await PostRetriever.Instance().GetRequests(await Geolocation.GetLastKnownLocationAsync()));
             }
             catch (Exception)
             {
@@ -50,15 +53,21 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        public Location CurrentLocation { get; set; }
-       
+        private async Task Refresh()
+        {
+            IsBusy = true;           
+            PostCardList.Clear();
+            postCardList.AddRange(await PostRetriever.Instance().GetRequests(await Geolocation.GetLastKnownLocationAsync()));
+            IsBusy = false;
+        }
+
         public ObservableRangeCollection<PostCard> PostCardList
         {
             get => postCardList;
             set => SetProperty(ref postCardList, value);
         }
 
-        public AsyncCommand<object> SelectedCommand { get; }
+        
         public PostCard SelectedPostCard
         {
             get => selectedPostCard;
