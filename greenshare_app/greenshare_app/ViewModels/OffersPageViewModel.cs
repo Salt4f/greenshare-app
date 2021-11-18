@@ -39,7 +39,7 @@ namespace greenshare_app.ViewModels
             Starting(this, EventArgs.Empty);
         }
 
-        private async void OnStart(object sender, EventArgs args)
+        /*private async void OnStart(object sender, EventArgs args)
         {
             try
             {
@@ -51,10 +51,9 @@ namespace greenshare_app.ViewModels
                 var photoStream = await photo.OpenReadAsync();
 
                 byte[] icon = new byte[photoStream.Length];
-                await photoStream.WriteAsync(icon, 0, (int)photoStream.Length);
+                await photoStream.ReadAsync(icon, 0, (int)photoStream.Length);
 
-
-                await PostSender.Instance().PostOffer("name", "desc", DateTime.Now, loc, new List<Tag>(), new List<byte[]>(), icon);
+                await PostSender.Instance().PostOffer("name", "desc", new DateTime(2030, 1, 1, 1, 1, 1, 1), loc, new List<Tag>() { new Tag { Color = Color.Red, Name = "Tag" } }, new List<byte[]>(), icon);
             }
             catch (Exception e)
             {
@@ -64,23 +63,26 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
             IsBusy = false;
-        }
+        }*/
 
 
 
-        /*private async void OnStart(object sender, EventArgs args)
+        private async void OnStart(object sender, EventArgs args)
         {
             try
             {
                 postCardList.AddRange(await PostRetriever.Instance().GetOffers(await Geolocation.GetLastKnownLocationAsync()));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                var type = e.GetType();
+                var error = e.Message;
+                var stack = e.StackTrace;
                 IsBusy = false;
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
             IsBusy = false;
-        }*/
+        }
 
         private async Task Refresh()
         {

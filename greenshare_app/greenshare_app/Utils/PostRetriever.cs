@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Xamarin.Essentials.Permissions;
 
 namespace greenshare_app.Utils
 {
@@ -100,16 +99,14 @@ namespace greenshare_app.Utils
                     card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
                     card.Author = (string)obj.GetValue("nickname");
 
-                    List<Tag> definitiveTags = new List<Tag>();
-                    ColorTypeConverter converter = new ColorTypeConverter();
-                    IEnumerable<Tuple<string, string>> jsonTags = (IEnumerable<Tuple<string, string>>)obj.GetValue("tags");
-                    foreach (Tuple<string, string> tag in jsonTags)
+                    List<Tag> tagsList = new List<Tag>();
+                    var jsonTags = obj.GetValue("tags");
+                    foreach (var jsonTag in jsonTags)
                     {
-
-                        Tag definitiveTag = new Tag { Color = (Color)converter.ConvertFromInvariantString(tag.Item1), Name = tag.Item2 };
-                        definitiveTags.Add(definitiveTag);
+                        Tag tag = jsonTag.ToObject<Tag>();
+                        tagsList.Add(tag);
                     }
-                    card.Tags = definitiveTags;
+                    card.Tags = tagsList;
                     cards.Add(card);
                 }
                 return cards;
@@ -127,15 +124,18 @@ namespace greenshare_app.Utils
         private static string GetQuery(Location location, int distance, IEnumerable<Tag> tags, int? owner, int quantity)
         {
             if (location is null) throw new NullLocationException();
-            string query = "?location=" + location.ToString();
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&distance=" + distance;
-            query += "&tags=";
-
-            foreach (Tag tag in tags)
+            if (tags != null)
             {
-                query += tag.Name + ",";
+                query += "&tags=";
+
+                foreach (Tag tag in tags)
+                {
+                    query += tag.Name + ",";
+                }
+                query.TrimEnd(',');
             }
-            query.TrimEnd(',');
 
             if (owner != null) query += "&owner=" + owner;
 

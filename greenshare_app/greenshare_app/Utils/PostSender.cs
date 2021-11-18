@@ -63,7 +63,8 @@ namespace greenshare_app.Utils
             session = await Auth.Instance().GetAuth();
 
             OfferInfo post = new OfferInfo { OwnerId = session.Item1, Name = name, Token = session.Item2, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags, Photos = photos, Icon = icon };
-            string json = JsonConvert.SerializeObject(post);           
+            string json = JsonConvert.SerializeObject(post);
+           
             var httpContent = new StringContent(json);          
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers", httpContent);
@@ -166,6 +167,7 @@ namespace greenshare_app.Utils
             public DateTime TerminateAt { get; set; }
 
             [JsonProperty(PropertyName = "location")]
+            [JsonConverter(typeof(Converters.LocationConverter))]
             public Location Location { get; set; }
 
             [JsonProperty(PropertyName = "tags")]
