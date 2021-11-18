@@ -95,8 +95,8 @@ namespace greenshare_app.Utils
                     card.Id = (int)obj.GetValue("id");
                     card.Name = (string)obj.GetValue("name");
                     card.Icon = new Image();
-                    var image = Encoding.UTF8.GetBytes((string)obj.GetValue("icon"));
-                    card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
+                    var image = obj.GetValue("icon").ToString();
+                    //card.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(image); });
                     card.Author = (string)obj.GetValue("nickname");
 
                     List<Tag> tagsList = new List<Tag>();

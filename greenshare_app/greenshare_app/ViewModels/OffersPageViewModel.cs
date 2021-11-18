@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using greenshare_app.Utils;
 using Xamarin.Essentials;
+using System.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -39,19 +40,20 @@ namespace greenshare_app.ViewModels
             Starting(this, EventArgs.Empty);
         }
 
-        /*private async void OnStart(object sender, EventArgs args)
+        private async void OnStart(object sender, EventArgs args)
         {
             try
             {
                 var loc = new Location(2, 2, 2);
 
-                var photo = await MediaPicker.CapturePhotoAsync();
+                /*var photo = await MediaPicker.CapturePhotoAsync();
                 if (photo is null) return;
 
-                var photoStream = await photo.OpenReadAsync();
+                var photoStream = await photo.OpenReadAsync();*/
 
-                byte[] icon = new byte[photoStream.Length];
-                await photoStream.ReadAsync(icon, 0, (int)photoStream.Length);
+                byte[] icon = new byte[/*photoStream.Length*/] { 255, 0 };
+                var str = Convert.ToBase64String(icon);
+                //await photoStream.ReadAsync(icon, 0, (int)photoStream.Length);
 
                 await PostSender.Instance().PostOffer("name", "desc", new DateTime(2030, 1, 1, 1, 1, 1, 1), loc, new List<Tag>() { new Tag { Color = Color.Red, Name = "Tag" } }, new List<byte[]>(), icon);
             }
@@ -63,15 +65,15 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
             IsBusy = false;
-        }*/
+        }
 
-
-
-        private async void OnStart(object sender, EventArgs args)
+        /*private async void OnStart(object sender, EventArgs args)
         {
             try
             {
-                postCardList.AddRange(await PostRetriever.Instance().GetOffers(await Geolocation.GetLastKnownLocationAsync()));
+                IsBusy = true;
+                postCardList.AddRange(await PostRetriever.Instance().GetOffers(await Geolocation.GetLastKnownLocationAsync(), int.MaxValue));
+                IsBusy = false;
             }
             catch (Exception e)
             {
@@ -82,7 +84,7 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
             IsBusy = false;
-        }
+        }*/
 
         private async Task Refresh()
         {

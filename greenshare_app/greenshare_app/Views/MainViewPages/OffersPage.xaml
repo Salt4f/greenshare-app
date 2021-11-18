@@ -24,6 +24,7 @@
             <StackLayout Padding="15">
                 <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25">
                 </Label>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
             </StackLayout>
         </ListView.Header>
 
