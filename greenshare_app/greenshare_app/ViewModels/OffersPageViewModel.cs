@@ -44,53 +44,29 @@ namespace greenshare_app.ViewModels
         {
             try
             {
-                var loc = new Location(2, 2, 2);
-
-                /*var photo = await MediaPicker.CapturePhotoAsync();
-                if (photo is null) return;
-
-                var photoStream = await photo.OpenReadAsync();*/
-
-                byte[] icon = new byte[/*photoStream.Length*/] { 255, 0 };
-                var str = Convert.ToBase64String(icon);
-                //await photoStream.ReadAsync(icon, 0, (int)photoStream.Length);
-
-                await PostSender.Instance().PostOffer("name", "desc", new DateTime(2030, 1, 1, 1, 1, 1, 1), loc, new List<Tag>() { new Tag { Color = Color.Red, Name = "Tag" } }, new List<byte[]>(), icon);
+                IsBusy = true;
+                var loc = await Geolocation.GetLastKnownLocationAsync();
+                var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
+                postCardList.AddRange(cards);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                var type = e.GetType();
-                var error = e.Message;
+                //var type = e.GetType();
+                //var error = e.Message;
+                //var stack = e.StackTrace;
                 IsBusy = false;
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
             IsBusy = false;
         }
 
-        /*private async void OnStart(object sender, EventArgs args)
-        {
-            try
-            {
-                IsBusy = true;
-                postCardList.AddRange(await PostRetriever.Instance().GetOffers(await Geolocation.GetLastKnownLocationAsync(), int.MaxValue));
-                IsBusy = false;
-            }
-            catch (Exception e)
-            {
-                var type = e.GetType();
-                var error = e.Message;
-                var stack = e.StackTrace;
-                IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
-            }
-            IsBusy = false;
-        }*/
-
         private async Task Refresh()
         {
             IsBusy = true;
+            var loc = await Geolocation.GetLastKnownLocationAsync();
+            var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
             PostCardList.Clear();
-            postCardList.AddRange(await PostRetriever.Instance().GetOffers(await Geolocation.GetLastKnownLocationAsync()));
+            postCardList.AddRange(cards);
             IsBusy = false;
         }
 
@@ -99,7 +75,6 @@ namespace greenshare_app.ViewModels
             get => postCardList;
             set => SetProperty(ref postCardList, value);
         }
-
 
         public PostCard SelectedPostCard
         {
