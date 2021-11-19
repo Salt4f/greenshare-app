@@ -28,28 +28,9 @@
             </StackLayout>
         </ListView.Header>
 
-        <!--<ListView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>My first post</x:String>
-                <x:String>My second post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-            </x:Array>
-        </ListView.ItemsSource>-->
-
-        <!--Apunt per fer binding amb les dades que ens passin-->
-        <!--ItemsSource="{Binding .}"-->
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostCard">
-                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
-                <!--x:DataType="model:Request"-->
-                <!--<TextCell Text="{Binding .}"/>-->
                 <ViewCell>
                     <Grid Padding="15">
                         <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
