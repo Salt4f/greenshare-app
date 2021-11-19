@@ -32,6 +32,7 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref nickName, value);
         }
 
+        public Image ProfilePicture { get; set; }
 
         private async void OnStart(object sender, EventArgs args)
         {

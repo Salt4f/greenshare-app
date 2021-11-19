@@ -14,7 +14,7 @@
                         <StackLayout>
                             <Grid>
                                 <Frame BackgroundColor="Transparent" Margin="0,40,0,0" Padding="0" HorizontalOptions="Center" CornerRadius="50">
-                                    <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0" Pressed="{Binding UserImageCommand}"/>
+                                    <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
                                 </Frame>
                             </Grid>
                             <Grid>
