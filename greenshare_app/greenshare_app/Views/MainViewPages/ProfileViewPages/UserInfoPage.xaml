@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoPage">
 
     <ContentPage.Content>
@@ -29,7 +30,7 @@
                                     <ColumnDefinition Width="260" />
                                 </Grid.ColumnDefinitions>
                                 <Frame Margin="40,10,0,0" Padding="0" CornerRadius="50" VerticalOptions="Start" HorizontalOptions="Start">
-                                    <ImageButton Grid.Row="0" Grid.Column="0" Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" WidthRequest="80" Margin="0" Pressed="{Binding UserImageCommand}"/>
+                                    <ImageButton Grid.Row="0" Grid.Column="0" Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0" Pressed="{Binding UserImageCommand}"/>
                                 </Frame>
                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding UserName}" Margin="5,20,0,0" Font="12" FontFamily="Montserrat-Medium" TextColor="#212121" VerticalOptions="Center" HorizontalOptions="Start" />

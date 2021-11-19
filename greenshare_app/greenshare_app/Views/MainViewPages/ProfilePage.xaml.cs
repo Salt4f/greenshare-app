@@ -11,7 +11,7 @@ namespace greenshare_app.Views.MainViewPages
         public ProfilePage()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.ProfilePageViewModel(Navigation, this);
+            BindingContext = new ProfilePageViewModel(Navigation, this);
         }
 
     }

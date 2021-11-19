@@ -5,16 +5,16 @@ using Xamarin.Forms;
 
 namespace greenshare_app.Models
 {
-    public class UserInfo
-    {
-        public string Dni { get; set; }
+    public class User
+    {     
         public string FullName { get; set; }
-        public string description { get; set; }
+        public string NickName { get; set; }
+        public string Description { get; set; }
         public Image ProfilePicture { get; set; }
-        public bool isBanned { get; set; }
+        public bool Banned { get; set; }
         public int TotalEcoPoints { get; set; }
         public int TotalGreenCoins { get; set; }
-        public int AverageValoration { get; set; }
+        public double AverageValoration { get; set; }
 
 
     }

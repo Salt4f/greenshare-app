@@ -1,20 +1,20 @@
-﻿using MvvmHelpers;
+﻿using greenshare_app.Models;
 using greenshare_app.Utils;
-using greenshare_app.Views;
+using greenshare_app.Views.MainViewPages.ProfileViewPages;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Command = MvvmHelpers.Commands.Command;
-using greenshare_app.Views.MainViewPages.ProfileViewPages;
-using greenshare_app.Models;
 
 namespace greenshare_app.ViewModels
 {
-    public class ProfilePageViewModel : BaseViewModel
+    public class UserInfoPageViewModel : BaseViewModel
     {
         private event EventHandler Starting = delegate { };
-        public ProfilePageViewModel(INavigation navigation, Page view)
+        public UserInfoPageViewModel(INavigation navigation, Page view)
         {
             Title = "Perfil";
             this.navigation = navigation;
@@ -26,7 +26,8 @@ namespace greenshare_app.ViewModels
         }
 
         private string nickName;
-        public string NickName {
+        public string NickName
+        {
             get => nickName;
             set => SetProperty(ref nickName, value);
         }
