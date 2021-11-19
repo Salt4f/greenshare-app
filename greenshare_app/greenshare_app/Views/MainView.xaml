@@ -11,7 +11,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:RequestsPage}" />
         </Tab>
         <Tab Icon="plus.png">
-            <ShellContent ContentTemplate="{DataTemplate local:addPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:NewPublication}" />
         </Tab>
         <Tab Icon="trophy.png">
             <ShellContent ContentTemplate="{DataTemplate local:RewardsPage}" />

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.NewPublication"
+            xmlns:control="clr-namespace:greenshare_app.Controls"
+            xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+            xmlns:fontAwesome="clr-namespace:FontAwesome"
+             BackgroundColor="{StaticResource colorWhite}">
+
+    <ScrollView>
+        <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
+
+
+            <StackLayout Margin="15,20,15,15" >
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
+                        
+                    <control:BorderlessPicker
+                        Margin="15,20,15,15"
+                        Style="{StaticResource styleEntryDefault}"
+                        x:Name = "PickerOption"
+                        Title="Select an option"
+                        SelectedIndex="{Binding Index}"
+                        />
+                    <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
+
+                </Frame>
+            </StackLayout>
+            
+
+            <StackLayout IsVisible="{Binding pickerValue}"  HorizontalOptions="Center" VerticalOptions="Center">
+                <ImageButton
+                        Margin="15,20,15,15"
+                        HeightRequest="80"
+                        WidthRequest="80"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        x:Name="selectedImage"
+                        Clicked="Handle_Clicked">
+                </ImageButton>
+            </StackLayout>
+            
+
+
+            
+            <StackLayout  Padding="0" Margin="15,0,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal" >
+                        <control:BorderlessEntry      
+                            Style="{StaticResource styleEntryDefault}" 
+                            Text="{Binding ProductName}" 
+                            Placeholder="Product name" 
+                            FontAttributes="None"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <!--            PRODUCT NAME PREVI
+                <StackLayout Padding="0" Margin="15,20,15,15" >
+                    <Entry Style="{StaticResource styleEntryDefault}" Placeholder="Product name" Text="{Binding ProductName}" />
+                </StackLayout>
+    -->
+
+            <StackLayout Padding="0" Margin="15,20,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
+                    <Editor 
+                        Style="{StaticResource styleEntryDefault}"
+                        Placeholder="Description" 
+                        AutoSize="TextChanges"
+                        Text="{Binding Description}"/>
+                </Frame>
+            </StackLayout>
+            <!--        Description previ
+                <StackLayout  Padding="0" Margin="15,0,15,15" >
+                    <Editor 
+                        Style="{StaticResource styleEntryDefault}"
+                        Placeholder="Description" 
+                        AutoSize="TextChanges"
+                        Text="{Binding Description}"/>
+                </StackLayout>
+    -->
+
+
+            <Picker
+                        Style="{StaticResource styleEntryDefault}"
+                        Margin="15,20,15,15"
+                        x:Name = "PickerCategory"
+                        Title="Select a category"
+                    />
+
+
+            <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
