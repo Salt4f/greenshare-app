@@ -1,17 +1,19 @@
-﻿using greenshare_app.Utils;
+﻿using greenshare_app.Models;
+using greenshare_app.Utils;
 using greenshare_app.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;
 
 namespace greenshare_app.ViewModels
 {
-    class NewPublicationViewModel : BaseViewModel
+    class NewPostViewModel : BaseViewModel
     {
-        public NewPublicationViewModel(INavigation navigation, Page view)
+        public NewPostViewModel(INavigation navigation, Page view)
         {
             Title = "New Publication";
             //Options = Array.Empty;
@@ -25,30 +27,49 @@ namespace greenshare_app.ViewModels
         private INavigation navigation;
         private Page view;
 
-        private string productName;
+        private string name;
         private string description;
         private string category;
         private bool pickerValue;
         private int index;
         
+        private IEnumerable<Image> photos;
+        private Image postIcon;
+        private IEnumerable<Tag> tags;
+        private DateTime terminateAt;
+
         //private Array Options;
 
-        public string ProductName
+        public string Name
         {
-            get => productName;
-            set => SetProperty(ref productName, value);
+            get => name;
+            set => SetProperty(ref name, value);
         }
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
         }
-        public string Category
+        public IEnumerable<Tag> Tags
         {
-            get => category;
-            set => SetProperty(ref category, value);
+            get => tags;
+            set => SetProperty(ref tags, value);
+        }        
+        public Image PostIcon
+        {
+            get => postIcon;
+            set => SetProperty(ref postIcon, value);
         }
-
+        public IEnumerable<Image> Photos
+        {
+            get => photos;
+            set => SetProperty(ref photos, value);
+        }
+        public DateTime TerminateAt
+        {
+            get => terminateAt;
+            set => SetProperty(ref terminateAt, value);
+        }
         public int Index
         {
             get => index;

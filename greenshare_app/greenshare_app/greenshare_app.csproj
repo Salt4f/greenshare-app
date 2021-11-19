@@ -66,6 +66,9 @@
     <Compile Update="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\MainViewPages\NewPost.xaml.cs">
+      <DependentUpon>NewPost.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MainViewPages\OffersPage.xaml.cs">
       <DependentUpon>OffersPage.xaml</DependentUpon>
     </Compile>
@@ -114,7 +117,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.ca.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainViewPages\NewPublication.xaml">
+    <EmbeddedResource Update="Views\MainViewPages\NewPost.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainViewPages\RewardsPage.xaml">
