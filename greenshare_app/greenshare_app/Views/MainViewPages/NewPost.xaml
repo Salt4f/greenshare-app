@@ -80,11 +80,16 @@
 
 
             <Picker
-                        Style="{StaticResource styleEntryDefault}"
-                        Margin="15,20,15,15"
-                        x:Name = "PickerCategory"
-                        Title="Select a category"
-                    />
+                Style="{StaticResource styleEntryDefault}"
+                Margin="15,20,15,15"
+                x:Name = "PickerCategory"
+                Title="Select a category"
+            />
+            
+            <DatePicker MinimumDate="{Binding MinDate}"
+                MaximumDate="{Binding MaxDate}"
+                Date="{Binding SelectedDate}" 
+             />
 
 
             <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
