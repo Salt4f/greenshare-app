@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace greenshare_app.Models
 {
-    class PostCard
+    public class PostCard
     {
         public int Id { get; set; }
         public string Name { get; set; }
