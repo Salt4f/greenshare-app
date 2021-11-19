@@ -6,7 +6,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="0" WidthRequest="600" HeightRequest="180">
+            <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="-10" WidthRequest="600" HeightRequest="220">
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="1,0"
                                                  EndPoint="0,1">
@@ -17,51 +17,80 @@
                     </LinearGradientBrush>
                 </Frame.Background>
                 <StackLayout  Padding="0" Spacing="0">
-                    <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0,25,0,0" WidthRequest="600">
+                    <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0,45,0,0" WidthRequest="600">
                         <StackLayout>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="90" />
+                                    <RowDefinition Height="90" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="130" />
-                                    <ColumnDefinition Width="220" />
+                                    <ColumnDefinition Width="260" />
                                 </Grid.ColumnDefinitions>
                                 <Frame Margin="40,10,0,0" Padding="0" CornerRadius="50" VerticalOptions="Start" HorizontalOptions="Start">
                                     <ImageButton Grid.Row="0" Grid.Column="0" Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
                                 </Frame>
-                                <Label Grid.Row="0" Grid.Column="1" Text="User Name" Margin="0,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
-                                <Label Grid.Row="0" Grid.Column="1" Text="SPAIN" Margin="0,20,0,0" Font="12" FontFamily="Montserrat-Medium" TextColor="#212121" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="User Name" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="SPAIN" Margin="5,20,0,0" Font="12" FontFamily="Montserrat-Medium" TextColor="#212121" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Frame HasShadow="True" Grid.Row="1" Grid.Column="1" BorderColor="Transparent" Margin="5,-15,0,0" Padding="0" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="250" HeightRequest="70">
+                                    <Frame.Background>
+                                        <LinearGradientBrush StartPoint="1,0"
+                                                 EndPoint="0,1">
+                                            <GradientStop Color="#7da453"
+                                              Offset="0.1"/> 
+                                            <GradientStop Color="#689f38"
+                                              Offset="1.0"/>
+                                        </LinearGradientBrush>
+                                    </Frame.Background>
+                                    <Label Text="Soy UserName, no tengo muchos amigos la verdad... Me gustaría comprar patatas y dos Sergios. " Margin="5,0,0,0" HorizontalOptions="Start" VerticalOptions="Start" Font="14" FontFamily="Montserrat-Medium" TextColor="#fafafa" />
+                                </Frame>
                             </Grid>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
             </Frame>
-            <Frame BackgroundColor="#eceff1" VerticalOptions="Start" HorizontalOptions="Start" Margin="0,0,0,0" WidthRequest="150" HeightRequest="50">
-                <StackLayout  Padding="0" Spacing="0">
-                    <Label Text="SEND MESSAGE" Margin="0,0,0,30" HorizontalOptions="Center" VerticalOptions="Center" Font="15" FontFamily="Montserrat-Medium" TextColor="#212121" />
+            <Frame BackgroundColor="Transparent" VerticalOptions="Start" HasShadow="False" HorizontalOptions="Start" Margin="0,4,0,0" WidthRequest="600" HeightRequest="70" Padding="0">
+                <StackLayout Padding="-1" Margin="0">
+                    <Frame BackgroundColor="#eceff1" HorizontalOptions="Start" HasShadow="False" Margin="0,0,0,0" WidthRequest="157" HeightRequest="50">
+                        <Label Text="SEND MESSAGE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="#212121" />
+                    </Frame>
+                    <Frame BackgroundColor="#ffcc80" HorizontalOptions="End" HasShadow="False" Margin="0,-76,0,0" WidthRequest="157" HeightRequest="50">
+                        <Label Text="UPDATE PROFILE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
+                    </Frame>
                 </StackLayout>
             </Frame>
-
-            <StackLayout Padding="20" Spacing="30">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="70" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="250" />
-                        <ColumnDefinition Width="150" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Source="user_bo.png" VerticalOptions="Center" HorizontalOptions="Start" Aspect="AspectFit" WidthRequest="50" Margin="0"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Información del usuario" Font="18" FontFamily="Montserrat-Medium" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="posts.png" VerticalOptions="Center" HorizontalOptions="Start" Aspect="AspectFit" WidthRequest="50" Margin="0"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Publicaciones" Font="18" FontFamily="Montserrat-Medium" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
-                    <Image Grid.Row="2" Grid.Column="0" Source="logout.png" VerticalOptions="Center" HorizontalOptions="Start" Aspect="AspectFit" WidthRequest="50" Margin="0"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="Cerrar Sesión" Font="18" FontFamily="Montserrat-Medium" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
-                </Grid>
+            <StackLayout Padding="0" Spacing="0">
+                <Frame BorderColor="Red">
+                    <StackLayout Padding="0" Margin="-20,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="70" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="600" />
+                            </Grid.ColumnDefinitions>
+                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="Red" HorizontalOptions="StartAndExpand" WidthRequest="352">
+                                <Label Text="Full Name: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            </Frame>
+                            <Frame Grid.Row="1" Grid.Column="0" BorderColor="Blue" HorizontalOptions="StartAndExpand" WidthRequest="352">
+                                <Label Text="Birth Date: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            </Frame>
+                            <Frame Grid.Row="2" Grid.Column="0" BorderColor="Green" HorizontalOptions="StartAndExpand" WidthRequest="352">
+                                <Label Text="Eco Points: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            </Frame>
+                            <Frame Grid.Row="3" Grid.Column="0" BorderColor="Blue" HorizontalOptions="StartAndExpand" WidthRequest="352">
+                                <Label Text="Green Points: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            </Frame>
+                            <Frame Grid.Row="4" Grid.Column="0" BorderColor="Blue" HorizontalOptions="StartAndExpand" WidthRequest="352">
+                                <Label Text="Average Valoration: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
