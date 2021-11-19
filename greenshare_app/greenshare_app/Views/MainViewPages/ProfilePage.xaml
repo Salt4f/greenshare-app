@@ -15,11 +15,11 @@
                         <StackLayout>
                             <Grid>
                                 <Frame BackgroundColor="Transparent" Margin="0,40,0,0" Padding="0" HorizontalOptions="Center" CornerRadius="50">
-                                    <ImageButton Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
+                                    <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
                                 </Frame>
                             </Grid>
                             <Grid>
-                                <Label Text="User Name" Margin="0,5,0,40" Font="25" FontFamily="Montserrat-Medium" TextColor="Black" HorizontalOptions="Center" />
+                                <Label Text="{Binding NickName}" Margin="0,5,0,40" Font="25" FontFamily="Montserrat-Medium" TextColor="Black" HorizontalOptions="Center" />
                             </Grid>
                         </StackLayout>
                     </Frame>
@@ -29,7 +29,7 @@
 
             <StackLayout Orientation="Vertical" Padding="15" Margin="15">
 
-                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
+                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
@@ -46,7 +46,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
+                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
@@ -56,14 +56,14 @@
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                             <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Publications">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
 
-                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
+                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
