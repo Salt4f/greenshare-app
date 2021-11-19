@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using greenshare_app.ViewModels;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,5 +20,9 @@ namespace greenshare_app.Views.MainViewPages
             BindingContext = new NewPublicationViewModel(Navigation, this);
         }
 
+        private void selectedImage_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

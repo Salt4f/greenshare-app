@@ -35,8 +35,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        x:Name="selectedImage"
-                        Clicked="Handle_Clicked">
+                        x:Name="selectedImage">
                 </ImageButton>
             </StackLayout>
             
