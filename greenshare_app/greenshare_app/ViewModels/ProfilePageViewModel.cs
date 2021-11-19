@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;
 using greenshare_app.Views.MainViewPages.ProfileViewPages;
 using greenshare_app.Models;
+using greenshare_app.Views.MainViewPages;
 
 namespace greenshare_app.ViewModels
 {
@@ -49,12 +50,24 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoClicked);
+        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
+        public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
+        public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
+
         private INavigation navigation;
         private Page view;
-        private async Task OnUserInfoClicked()
+        private async Task OnUserInfoButton()
         {
             await navigation.PushModalAsync(new UserInfoPage());
+        }
+        private async Task OnUserPostsButton()
+        {
+            await navigation.PushModalAsync(new OffersPage());
+        }
+        private async Task OnLogOutButton()
+        {
+            await Auth.Instance().Logout();
+            Application.Current.MainPage = new LoginView();
         }
     }
 }
