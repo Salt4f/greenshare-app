@@ -1,4 +1,5 @@
-﻿using System;
+﻿using greenshare_app.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace greenshare_app.Views.MainViewPages.ProfileViewPages
         public UserInfoPage()
         {
             InitializeComponent();
+            BindingContext = new UserInfoPageViewModel(Navigation, this);
         }
     }
 }

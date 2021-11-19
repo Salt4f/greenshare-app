@@ -5,6 +5,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
 
+
     <ContentPage.Content>
         <StackLayout>
             

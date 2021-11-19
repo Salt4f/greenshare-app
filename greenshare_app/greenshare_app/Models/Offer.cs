@@ -11,6 +11,5 @@ namespace greenshare_app.Models
         public Image Icon { get; set; }
         public IEnumerable<Image> Photos { get; set; }
 
-        
     }
 }
