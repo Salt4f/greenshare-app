@@ -1,4 +1,5 @@
-﻿using System;
+﻿using greenshare_app.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -49,5 +50,24 @@ namespace greenshare_app.Utils
             var mod = dniNumbers % 23;
             return control[mod];
         }
+        
+        public static bool TerminateAtIsValid(DateTime terminateAt)
+        {
+            return terminateAt > DateTime.Now;
+        }
+
+        public static bool NameIsValid(string name)
+        {
+            return name.Length > 0;
+        }
+        public static bool DescriptionIsValid(string description)
+        {
+            return description.Length > 0;
+        }
+        public static bool BirthDateIsValid(DateTime birthDate)
+        {
+            return birthDate < DateTime.Now;
+        }
+
     }
 }
