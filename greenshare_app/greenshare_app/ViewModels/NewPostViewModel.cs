@@ -32,7 +32,11 @@ namespace greenshare_app.ViewModels
         private string category;
         private bool pickerValue;
         private int index;
-        
+        private DateTime minDate;
+        private DateTime maxDate;
+        private DateTime selectedDate;
+
+
         private IEnumerable<Image> photos;
         private Image postIcon;
         private IEnumerable<Tag> tags;
@@ -80,15 +84,32 @@ namespace greenshare_app.ViewModels
             get => pickerValue;
             set => SetProperty(ref pickerValue, value);
         }
-
-      /*  
-        public EventHandler Picker_OnSelectedIndex(object sender, EventArgs e)
+        public DateTime MinDate
         {
-            if (Index == 1) PickerValue = false;
-            else PickerValue = true;
-
+            get => minDate;
+            set => SetProperty(ref minDate, value);
         }
-      */
+
+        public DateTime MaxDate
+        {
+            get => maxDate;
+            set => SetProperty(ref maxDate, value);
+        }
+        public DateTime SelectedDate
+        {
+            get => selectedDate;
+            set => SetProperty(ref selectedDate, value);
+        }
+
+        
+        /*  
+          public EventHandler Picker_OnSelectedIndex(object sender, EventArgs e)
+          {
+              if (Index == 1) PickerValue = false;
+              else PickerValue = true;
+
+          }
+        */
 
 
     }
