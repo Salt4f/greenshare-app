@@ -46,14 +46,11 @@ namespace greenshare_app.ViewModels
             {
                 IsBusy = true;
                 var loc = await Geolocation.GetLastKnownLocationAsync();
-                var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
-                postCardList.AddRange(cards);
+                var cards = await PostRetriever.Instance().GetOffers(loc);
+                PostCardList.AddRange(cards);
             }
             catch (Exception)
             {
-                //var type = e.GetType();
-                //var error = e.Message;
-                //var stack = e.StackTrace;
                 IsBusy = false;
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }

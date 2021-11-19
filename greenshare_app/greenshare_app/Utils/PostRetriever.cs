@@ -49,7 +49,7 @@ namespace greenshare_app.Utils
                         Id = info.Id,
                         Name = info.Name,
                         Author = info.Author,
-                        Tags = info.Tags,
+                        Tags = new MvvmHelpers.ObservableRangeCollection<Tag>(info.Tags),
                         Icon = null
                     };
                     cards.Add(card);
@@ -78,7 +78,7 @@ namespace greenshare_app.Utils
                         Id = info.Id,
                         Name = info.Name,
                         Author = info.Author,
-                        Tags = info.Tags,
+                        Tags = new MvvmHelpers.ObservableRangeCollection<Tag>(info.Tags),
                         Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
                     };
                     cards.Add(card);
