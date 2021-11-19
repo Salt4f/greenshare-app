@@ -5,27 +5,30 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
-             
-            BackgroundColor="{StaticResource colorWhite}">
+             BackgroundColor="{StaticResource colorWhite}">
 
     <ScrollView>
         <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
 
 
             <StackLayout Margin="15,20,15,15" >
-                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
-                    <Picker 
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
+                        
+                    <control:BorderlessPicker
+                        Margin="15,20,15,15"
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
                         Title="Select an option"
-                        SelectedIndexChanged="Handle_Picker"
+                        SelectedIndex="{Binding Index}"
                         />
+                    <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
+
                 </Frame>
             </StackLayout>
+            
 
-            <Frame IsVisible ="False" Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" >
-                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                    <ImageButton
+            <StackLayout IsVisible="{Binding pickerValue}"  HorizontalOptions="Center" VerticalOptions="Center">
+                <ImageButton
                         Margin="15,20,15,15"
                         HeightRequest="80"
                         WidthRequest="80"
@@ -34,31 +37,16 @@
                         VerticalOptions="Start"
                         x:Name="selectedImage"
                         Clicked="Handle_Clicked">
-                    </ImageButton>
-                    <Label TextColor="RED" Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" ></Label>
-                
-                </StackLayout>
-            </Frame>
+                </ImageButton>
+            </StackLayout>
+            
 
 
-            <!-- 
-            <ImageButton
-                HeightRequest="40"
-                WidthRequest="40"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                x:Name="selectedImage2"
-                Clicked="Handle_Clicked"
-                Background="Blue"
-                BackgroundColor="White"
-                >
-            </ImageButton>
-        -->
+            
             <StackLayout  Padding="0" Margin="15,0,15,15" >
                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
                     <StackLayout Padding="10"  Orientation="Horizontal" >
-                        <control:BorderlessEntry 
-                            
+                        <control:BorderlessEntry      
                             Style="{StaticResource styleEntryDefault}" 
                             Text="{Binding ProductName}" 
                             Placeholder="Product name" 

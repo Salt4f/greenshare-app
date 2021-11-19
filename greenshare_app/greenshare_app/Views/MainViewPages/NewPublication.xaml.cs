@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using greenshare_app.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 
@@ -14,6 +15,8 @@ namespace greenshare_app.Views.MainViewPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewPublication : ContentPage
     {
+
+       // private bool pickerValue = false;
         public NewPublication()
         {
             InitializeComponent();
@@ -25,14 +28,17 @@ namespace greenshare_app.Views.MainViewPages
             PickerCategory.Items.Add("IT");
             PickerCategory.Items.Add("Pets");
             PickerCategory.Items.Add("Sport");
+            BindingContext = new ViewModels.NewPublicationViewModel(Navigation, this);
 
         }
         
-        async void Handle_Picker(object sender, System.EventArgs e)
+        /*private void Picker_OnSelectedIndex(object sender, System.EventArgs e)
         {
-
+            if (PickerOption.SelectedIndex == 1) pickerValue = false;
+            else pickerValue = true;
         }
-
+        */
+        
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
@@ -65,5 +71,11 @@ namespace greenshare_app.Views.MainViewPages
 
             selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
         }
+
+        private new Task DisplayAlert(string v1, string v2, string v3)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

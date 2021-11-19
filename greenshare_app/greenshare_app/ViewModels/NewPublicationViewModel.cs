@@ -18,6 +18,8 @@ namespace greenshare_app.ViewModels
 
             this.navigation = navigation;
             this.view = view;
+            
+
         }
 
         private INavigation navigation;
@@ -26,6 +28,9 @@ namespace greenshare_app.ViewModels
         private string productName;
         private string description;
         private string category;
+        private bool pickerValue;
+        private int index;
+        
         //private Array Options;
 
         public string ProductName
@@ -43,6 +48,26 @@ namespace greenshare_app.ViewModels
             get => category;
             set => SetProperty(ref category, value);
         }
+
+        public int Index
+        {
+            get => index;
+            set => SetProperty(ref index, value);
+        }
+        public bool PickerValue
+        {
+            get => pickerValue;
+            set => SetProperty(ref pickerValue, value);
+        }
+
+      /*  
+        public EventHandler Picker_OnSelectedIndex(object sender, EventArgs e)
+        {
+            if (Index == 1) PickerValue = false;
+            else PickerValue = true;
+
+        }
+      */
 
 
     }
