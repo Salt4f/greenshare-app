@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace greenshare_app.Views
 {
-    public partial class MainView : TabbedPage
+    public partial class MainView : Shell
     {
         public MainView()
         {

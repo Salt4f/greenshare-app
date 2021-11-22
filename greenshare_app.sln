@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "greenshare_app.Android", "g
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "greenshare_app.iOS", "greenshare_app\greenshare_app.iOS\greenshare_app.iOS.csproj", "{3370DFFD-D989-4E8C-9A62-4FF367AD33A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "greenshare_app", "greenshare_app\greenshare_app\greenshare_app.csproj", "{9373709E-18F5-4A1F-8643-417774AD40F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "greenshare_app", "greenshare_app\greenshare_app\greenshare_app.csproj", "{9373709E-18F5-4A1F-8643-417774AD40F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

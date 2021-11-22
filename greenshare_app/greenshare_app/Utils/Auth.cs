@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using greenshare_app.Exceptions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net;
@@ -25,7 +26,7 @@ namespace greenshare_app.Utils
         int id;
         string token;
         bool rememberMe;
-        HttpClient httpClient;
+        readonly HttpClient httpClient;
 
         public async Task<bool> Login(string email, string password, bool rememberMe)
         {
@@ -46,27 +47,32 @@ namespace greenshare_app.Utils
             }
             return false;
         }
-
         
 
         public async Task<bool> CheckLoggedIn()
         {
             if (rememberMe)
             {
-                var login = new ValidationInfo { Id = id, Token = token };
-                string json = JsonConvert.SerializeObject(login);
-                var httpContent = new StringContent(json);
-                httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-                var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/validate", httpContent);
-                if (response.StatusCode == HttpStatusCode.OK) return true;
+                return await ValidateLogin();
             }
             return false;
         }
 
-        public async Task<bool> Register(string email, string password, string nickname)
+        private async Task<bool> ValidateLogin()
         {
-            RegisterInfo register = new RegisterInfo { Email = email, Password = password, Nickname = nickname };
+            var login = new ValidationInfo { Id = id, Token = token };
+            string json = JsonConvert.SerializeObject(login);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/validate", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK) return true;
+            return false;
+        }
+
+        public async Task<bool> Register(string email, string password, string nickname, DateTime birthDate, string fullName, string dni)
+        {
+            RegisterInfo register = new RegisterInfo { Email = email, Password = password, Nickname = nickname, Dni = dni, BirthDate = birthDate, FullName = fullName };
             string json = JsonConvert.SerializeObject(register);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
@@ -123,6 +129,12 @@ namespace greenshare_app.Utils
             }
         }
 
+        public async Task<Tuple<int, string>> GetAuth()
+        {
+            if (!await ValidateLogin()) throw new InvalidLoginException();
+            return new Tuple<int, string>(id, token);
+        }
+
         private class LoginInfo
         {
             [JsonProperty(PropertyName = "email")]
@@ -139,10 +151,19 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "password")]
             public string Password { get; set; }
+
             [JsonProperty(PropertyName = "nickname")]
             public string Nickname { get; set; }
 
-            
+            [JsonProperty(PropertyName = "dni")]
+            public string Dni { get; set; }
+
+            [JsonProperty(PropertyName = "birthDate")]
+            public DateTime BirthDate { get; set; }
+
+            [JsonProperty(PropertyName = "fullName")]
+            public string FullName { get; set; }
+
         }
 
         private class ValidationInfo

@@ -4,6 +4,7 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
@@ -16,6 +17,7 @@ namespace greenshare_app.ViewModels
             Email = string.Empty;
             Password = string.Empty;
             RepeatPassword = string.Empty;
+            birthDate = DateTime.Today;
 
             this.navigation = navigation;
             this.view = view;
@@ -28,8 +30,14 @@ namespace greenshare_app.ViewModels
         private string email;
         private string password;
         private string repeatPassword;
-        public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterButton);
+        private string fullName;
+        private string dni;
+        private DateTime birthDate;
 
+        private bool dniPhotoValid;
+
+        public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterButton);
+        public AsyncCommand DniButtonCommand => new AsyncCommand(OnDniButton);
         public string Nickname
         {
             get => nickname;
@@ -50,25 +58,69 @@ namespace greenshare_app.ViewModels
             get => repeatPassword;
             set => SetProperty(ref repeatPassword, value);
         }
-
+        public string FullName
+        {
+            get => fullName;
+            set => SetProperty(ref fullName, value);
+        }
+        public DateTime BirthDate
+        {
+            get => birthDate;
+            set => SetProperty(ref birthDate, value);
+        }
+        public string Dni
+        {
+            get => dni;
+            set
+            {
+                dniPhotoValid = false;
+                SetProperty(ref dni, value);
+            }
+        }
         private async Task OnRegisterButton()
         {
+            if (Nickname.Length <= 5)
+            {
+                await view.DisplayAlert("Nickname too short", "Please enter a longer nickname", "OK");                
+                return;
+            }
+            if (Nickname.Length > 30)
+            {
+                await view.DisplayAlert("Nickname too long", "Please enter a shorter nickname", "OK");
+                return;
+            }
+            if (!Validation.ValidateDni(Dni))
+            {
+                await view.DisplayAlert("DNI not valid", "Please enter a valid DNI", "OK");
+                return;
+            }
+            if (string.IsNullOrEmpty(FullName))
+            {
+                await view.DisplayAlert("Full name not valid", "Please enter a valid full name", "OK");
+                return;
+            }
 
             if (!Validation.PasswordsAreEqual(Password, RepeatPassword))
             {
-                await view.DisplayAlert("Passwords are not the same!", "Please make sure both passwords are equal", "OK");
+                await view.DisplayAlert("Passwords are not the same", "Please make sure both passwords are equal", "OK");
                 RepeatPassword = string.Empty;
                 return;
             }
             if (!Validation.ValidateEmail(Email))
             {   
-                await view.DisplayAlert("Email not valid!", "Please check if the email is correct", "OK");
+                await view.DisplayAlert("Email not valid", "Please check if the email is correct", "OK");
+                return;
+            }
+
+            if (!dniPhotoValid)
+            {
+                await view.DisplayAlert("DNI not verified", "Please take a photo of your DNI", "OK");
                 return;
             }
 
             try
             {
-                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname))
+                if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname, BirthDate, FullName, Dni))
                 {
                     Application.Current.MainPage = new MainView();
                 }
@@ -80,7 +132,16 @@ namespace greenshare_app.ViewModels
             }
         
         }
+        private async Task OnDniButton()
+        {
+            var photo = await MediaPicker.CapturePhotoAsync();
 
+            if (photo is null) return;
+
+            dniPhotoValid = true;
+            await view.DisplayAlert("DNI verified", "Your DNI has been verified", "OK");
+
+        }
         private void OnGoogleClicked(object obj)
         {
             throw new NotImplementedException();
