@@ -17,7 +17,7 @@ namespace greenshare_app.Views.MainViewPages
         public NewPublication()
         {
             InitializeComponent();
-            BindingContext = new NewPublicationViewModel(Navigation, this);
+            BindingContext = new NewPostViewModel(Navigation, this);
         }
 
         private void selectedImage_Clicked(object sender, EventArgs e)
