@@ -19,7 +19,7 @@
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
                         Title="Select an option"
-                        SelectedIndex="{Binding Index}"
+                        SelectedItem="{Binding PostType}"
                         />
                     <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
 

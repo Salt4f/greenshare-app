@@ -32,7 +32,7 @@ namespace greenshare_app.ViewModels
         private string name;
         private string description;
         private string category;
-        private bool pickerValue;
+        private bool postType;
         private int index;
         private DateTime minDate;
         private DateTime maxDate;
@@ -81,10 +81,10 @@ namespace greenshare_app.ViewModels
             get => index;
             set => SetProperty(ref index, value);
         }
-        public bool PickerValue
+        public bool PostType
         {
-            get => pickerValue;
-            set => SetProperty(ref pickerValue, value);
+            get => postType;
+            set => SetProperty(ref postType, value);
         }
         public DateTime MinDate
         {
@@ -97,11 +97,7 @@ namespace greenshare_app.ViewModels
             get => maxDate;
             set => SetProperty(ref maxDate, value);
         }
-        public DateTime SelectedDate
-        {
-            get => selectedDate;
-            set => SetProperty(ref selectedDate, value);
-        }
+        
 
         
         /*  
