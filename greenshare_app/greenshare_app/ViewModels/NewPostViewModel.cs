@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using Command = MvvmHelpers.Commands.Command;
+using System.IO;
 
 namespace greenshare_app.ViewModels
 {
@@ -37,7 +39,7 @@ namespace greenshare_app.ViewModels
         private DateTime selectedDate;
 
 
-        private IEnumerable<Image> photos;
+        private IList<Image> photos;
         private Image postIcon;
         private IEnumerable<Tag> tags;
         private DateTime terminateAt;
@@ -64,7 +66,7 @@ namespace greenshare_app.ViewModels
             get => postIcon;
             set => SetProperty(ref postIcon, value);
         }
-        public IEnumerable<Image> Photos
+        public IList<Image> Photos
         {
             get => photos;
             set => SetProperty(ref photos, value);
@@ -111,6 +113,17 @@ namespace greenshare_app.ViewModels
           }
         */
 
+        /* WIP RAUL
+        public async Task<bool> OnAddPhotoButton()
+        {
+            var photo = await MediaPicker.CapturePhotoAsync();
 
+            if (photo is null) return false;
+
+
+            Image photoImage = new Image() { Source=ImageSource.FromStream(() => { return new MemoryStream(photo); }) };
+            photos.Add(photo);
+        }
+        */
     }
 }
