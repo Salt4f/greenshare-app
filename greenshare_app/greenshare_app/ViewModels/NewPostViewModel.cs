@@ -17,7 +17,7 @@ namespace greenshare_app.ViewModels
     {
         public NewPostViewModel(INavigation navigation, Page view)
         {
-            Title = "New Publication";
+            Title = "New Post";
             //Options = Array.Empty;
 
             this.navigation = navigation;
@@ -31,18 +31,12 @@ namespace greenshare_app.ViewModels
 
         private string name;
         private string description;
-        private string category;
-        private bool postType;
-        private int index;
-        private DateTime minDate;
-        private DateTime maxDate;
-        private DateTime selectedDate;
-
+        private string postType;
 
         private IList<Image> photos;
-        private Image postIcon;
+        private Image icon;
         private IEnumerable<Tag> tags;
-        private DateTime terminateAt;
+        private DateTime terminationDateTime;
 
         //private Array Options;
 
@@ -61,43 +55,29 @@ namespace greenshare_app.ViewModels
             get => tags;
             set => SetProperty(ref tags, value);
         }        
-        public Image PostIcon
+        public Image Icon
         {
-            get => postIcon;
-            set => SetProperty(ref postIcon, value);
+            get => icon;
+            set => SetProperty(ref icon, value);
         }
         public IList<Image> Photos
         {
             get => photos;
             set => SetProperty(ref photos, value);
         }
-        public DateTime TerminateAt
+        public DateTime TerminationDateTime
         {
-            get => terminateAt;
-            set => SetProperty(ref terminateAt, value);
+            get => terminationDateTime;
+            set => SetProperty(ref terminationDateTime, value);
         }
-        public int Index
-        {
-            get => index;
-            set => SetProperty(ref index, value);
-        }
-        public bool PostType
+        
+        public string PostType
         {
             get => postType;
             set => SetProperty(ref postType, value);
         }
-        public DateTime MinDate
-        {
-            get => minDate;
-            set => SetProperty(ref minDate, value);
-        }
-
-        public DateTime MaxDate
-        {
-            get => maxDate;
-            set => SetProperty(ref maxDate, value);
-        }
         
+       
 
         
         /*  
