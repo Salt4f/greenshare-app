@@ -8,7 +8,8 @@
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     BackgroundColor="{StaticResource colorWhite}"
     >
-    <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
+    <ScrollView>
+        <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
         <Grid>
 
             <AbsoluteLayout>
@@ -106,4 +107,5 @@
             </StackLayout>
         </Grid>
     </StackLayout>
+    </ScrollView>
 </ContentPage>
