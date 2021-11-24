@@ -37,6 +37,7 @@ namespace greenshare_app.ViewModels
         private Image icon;
         private IEnumerable<Tag> tags;
         private DateTime terminationDateTime;
+        private bool isVisible;
 
         //private Array Options;
 
@@ -70,11 +71,37 @@ namespace greenshare_app.ViewModels
             get => terminationDateTime;
             set => SetProperty(ref terminationDateTime, value);
         }
-        
+        public bool IsVisible
+        {
+            get => isVisible;
+            set => SetProperty(ref isVisible, value);
+        }
+
+        public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
+
+        private async Task OnSubmit()
+        {
+            await view.DisplayAlert("Not implemented yet", "Sorry not Sorry", "Yessir");
+        }
+
         public string PostType
         {
             get => postType;
-            set => SetProperty(ref postType, value);
+            set
+            {
+                switch (value)
+                {
+                    case nameof(Offer):
+                        IsVisible = true;
+                        break;
+                    case nameof(Request):
+                        IsVisible = false;
+                        break;
+                    default:
+                        break;
+                }
+                SetProperty(ref postType, value); 
+            }
         }
         
        
