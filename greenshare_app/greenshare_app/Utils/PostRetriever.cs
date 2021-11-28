@@ -136,7 +136,7 @@ namespace greenshare_app.Utils
                 post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); });
 
                 //Photos
-                /*var photos = new List<Image>();
+                var photos = new List<Image>();
                 foreach (byte[] photo in info.Photos)
                 {
                     Image definitivePhoto = new Image
@@ -145,7 +145,7 @@ namespace greenshare_app.Utils
                     };
                     photos.Add(definitivePhoto);
                 }
-                post.Photos = photos;*/
+                post.Photos = photos;
 
                 return post;
             }
@@ -226,7 +226,7 @@ namespace greenshare_app.Utils
             public Location Location { get; set; }
 
             [JsonProperty(PropertyName = "tags")]
-            public IEnumerable<Tag> Tags { get; set; }
+            public IList<Tag> Tags { get; set; }
 
         }
 
@@ -235,8 +235,8 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "icon")]
             public byte[] Icon { get; set; }
 
-            //[JsonProperty(PropertyName = "photos")]
-            //public IEnumerable<byte[]> Photos { get; set; }
+            [JsonProperty(PropertyName = "photos")]
+            public IList<byte[]> Photos { get; set; }
         }
 
         private class RequestInfo : PostInfo { }

@@ -92,7 +92,8 @@ namespace greenshare_app.ViewModels
         }
 
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
-        
+        public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
+        public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
@@ -121,7 +122,6 @@ namespace greenshare_app.ViewModels
                 default:
                     break;
             }
-            await view.DisplayAlert("Not implemented yet", "Sorry not Sorry", "Yessir");
         }
 
         public string PostType

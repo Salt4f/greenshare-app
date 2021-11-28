@@ -78,7 +78,7 @@ namespace greenshare_app.Utils
 
         }
 
-        public async Task<bool> EditOffer(int offerId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
+        public async Task<bool> EditOffer(int offerId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IList<byte[]> photos, byte[] icon)
         {
             Tuple<int, string> session;
             try
