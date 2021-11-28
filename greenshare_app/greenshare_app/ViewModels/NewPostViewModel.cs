@@ -81,6 +81,37 @@ namespace greenshare_app.ViewModels
 
         private async Task OnSubmit()
         {
+            if (Name.Length == 0)
+            {
+                await view.DisplayAlert("Name field not filled", "Please enter a name", "OK");
+                return;
+            }
+            if (Description.Length == 0)
+            {
+                await view.DisplayAlert("Description field not filled", "Please enter a description", "OK");
+                return;
+            }
+            if (TerminationDateTime < DateTime.Now)
+            {
+                await view.DisplayAlert("Invalid termination date", "Please make sure your termination date is set later or equals "+DateTime.Today, "OK");
+                return;
+            }
+            switch (PostType)
+            {
+                case nameof(Offer):
+                    if (Icon == null)
+                    {
+                        await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
+                        return;
+                    }
+                    await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, Photos, Icon);
+                    break;
+                case nameof(Request):
+                    await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+                    break;
+                default:
+                    break;
+            }
             await view.DisplayAlert("Not implemented yet", "Sorry not Sorry", "Yessir");
         }
 
