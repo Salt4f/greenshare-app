@@ -122,6 +122,7 @@ namespace greenshare_app.Utils
                 {
                     Active = info.Active,
                     Id = info.Id,
+                    //Status = Enum.Parse(typeof(Status), info.Status),
                     OwnerId = info.OwnerId,
                     Name = info.Name,
                     Description = info.Description,
@@ -130,11 +131,11 @@ namespace greenshare_app.Utils
                     TerminateAt = info.TerminateAt,
                     EcoImpact = 0,
                     Tags = info.Tags,
-                    Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    Icon = info.Icon,
+                    Photos = info.Photos
                 };
 
-                post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); });
-
+                /*
                 //Photos
                 var photos = new List<Image>();
                 foreach (byte[] photo in info.Photos)
@@ -146,7 +147,7 @@ namespace greenshare_app.Utils
                     photos.Add(definitivePhoto);
                 }
                 post.Photos = photos;
-
+                */
                 return post;
             }
             return null;
@@ -202,6 +203,9 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "active")]
             public bool Active { get; set; }
+
+            //[JsonProperty(PropertyName = "status")]
+            //public string Status { get; set; }
 
             [JsonProperty(PropertyName = "ownerId")]
             public int OwnerId { get; set; }

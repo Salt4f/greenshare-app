@@ -32,7 +32,7 @@ namespace greenshare_app.ViewModels
             if (post.GetType() == typeof(Offer))
             {
                 IsVisible = true;
-                Icon = ((Offer) post).Icon;
+                Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); })};
                 Photos = ((Offer) post).Photos;
             }            
 
@@ -144,7 +144,7 @@ namespace greenshare_app.ViewModels
             else
             {
                 await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
-            }           
+            }          
         }
 
         public async Task<bool> OnAddPhotoButton()
@@ -166,8 +166,7 @@ namespace greenshare_app.ViewModels
         private async Task OnRemovePhotoButton()
         {
             Photos.RemoveAt(selectedImage);
-            photoBytesArray.RemoveAt(selectedImage);
-            throw new NotImplementedException();
+            photoBytesArray.RemoveAt(selectedImage);            
         }
 
         public async Task<bool> OnAddIconButton()

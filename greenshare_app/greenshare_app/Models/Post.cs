@@ -8,6 +8,7 @@ namespace greenshare_app.Models
     public class Post
     {
         public int Id { get; set; }
+        public Status Status { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -19,4 +20,12 @@ namespace greenshare_app.Models
         public IList<Tag> Tags { get; set; }
 
     }
+
+    public enum Status
+    {
+        Idle,
+        Pending,
+        Accepted,
+        Rejected
+    };
 }
