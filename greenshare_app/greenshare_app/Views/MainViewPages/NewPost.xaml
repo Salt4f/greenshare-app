@@ -36,7 +36,7 @@
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
                         x:Name="selectedImage"
-                        Source="{Binding Photos}">
+                        Source="{Binding Photos.Source}">
                 </ImageButton>
             </StackLayout>
             
@@ -87,9 +87,8 @@
                 Title="Select a category"
             />
             
-            <DatePicker MinimumDate="{Binding MinDate}"
-                MaximumDate="{Binding MaxDate}"
-                Date="{Binding CreationDateTime}" 
+            <DatePicker MinimumDate="{Binding MinDate}"               
+                Date="{Binding TerminationDateTime}" 
              />
 
 
