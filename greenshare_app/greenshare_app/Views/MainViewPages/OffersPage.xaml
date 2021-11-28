@@ -22,65 +22,54 @@
 
         <ListView.Header>
             <StackLayout Padding="15">
-                <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25">
+                <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25" FontAttributes="Bold">
                 </Label>
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
             </StackLayout>
         </ListView.Header>
 
-        <!--<ListView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>My first post</x:String>
-                <x:String>My second post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-                <x:String>My third post</x:String>
-            </x:Array>
-        </ListView.ItemsSource>-->
-
-        <!--Apunt per fer binding amb les dades que ens passin-->
-        <!--ItemsSource="{Binding .}"-->
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostCard">
-                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
-                <!--x:DataType="model:Request"-->
-                <!--<TextCell Text="{Binding .}"/>-->
                 <ViewCell>
-                    <Grid Padding="15">
-                        <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout>
-                                    <Image Source="{Binding Icon.Source}"></Image>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Name}"
-                                           Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
-                                    <Label Text="{Binding Author}"
-                                           Style="{StaticResource styleLabelWhite}"
-                                       VerticalOptions="Center"/>
-                                    <StackLayout Orientation="Horizontal">
-                                        <ListView ItemsSource="{Binding Tags}">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate x:DataType="model:Tag">
-                                                    <ViewCell>
-                                                        <Frame BackgroundColor="{Binding Color}" CornerRadius="25">
-                                                            <Label Text="{Binding Name}"
-                                                            Style="{StaticResource styleLabelWhite}"
-                                                            VerticalOptions="Center"/>
-                                                        </Frame>
-                                                    </ViewCell>
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                        </ListView>
+                    <Grid Padding="10">
+                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
+                            <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
+                                <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
+                                    <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
+                                        <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Vertical">
+                                            <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" Padding="2" HorizontalOptions="Center">
+                                                <Label Text="{Binding Name}" FontSize="22"
+                                                       Style="{StaticResource styleLabelWhite}"
+                                                   VerticalOptions="Center"/>
+                                            </Frame>
+                                            <Label Text="{Binding Author}"
+                                                   Style="{StaticResource styleLabelWhite}"
+                                               VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                                                <ListView.ItemTemplate>
+                                                        <DataTemplate x:DataType="model:Tag">
+                                                            <ViewCell>
+                                                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                                                        <Label Text="{Binding Name}"
+                                                                        Style="{StaticResource styleLabelWhite}"
+                                                                        VerticalOptions="Center"/>
+                                                                    </Frame>
+                                                                </StackLayout>
+                                                            </ViewCell>
+                                                        </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
+                            </Frame>
                         </Frame>
                     </Grid>
                 </ViewCell>

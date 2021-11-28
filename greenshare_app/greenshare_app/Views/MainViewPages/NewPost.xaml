@@ -27,7 +27,7 @@
             </StackLayout>
             
 
-            <StackLayout IsVisible="{Binding pickerValue}"  HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout IsVisible="{Binding IsVisible}"  HorizontalOptions="Center" VerticalOptions="Center">
                 <ImageButton
                         Margin="15,20,15,15"
                         HeightRequest="80"
@@ -35,7 +35,8 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        x:Name="selectedImage">
+                        x:Name="selectedImage"
+                        Source="{Binding Photos}">
                 </ImageButton>
             </StackLayout>
             
@@ -47,7 +48,7 @@
                     <StackLayout Padding="10"  Orientation="Horizontal" >
                         <control:BorderlessEntry      
                             Style="{StaticResource styleEntryDefault}" 
-                            Text="{Binding ProductName}" 
+                            Text="{Binding Name}" 
                             Placeholder="Product name" 
                             FontAttributes="None"/>
                     </StackLayout>
@@ -61,7 +62,7 @@
 
             <StackLayout Padding="0" Margin="15,20,15,15" >
                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
-                    <Editor 
+                    <control:BorderlessEditor
                         Style="{StaticResource styleEntryDefault}"
                         Placeholder="Description" 
                         AutoSize="TextChanges"
@@ -79,7 +80,7 @@
     -->
 
 
-            <Picker
+            <control:BorderlessPicker
                 Style="{StaticResource styleEntryDefault}"
                 Margin="15,20,15,15"
                 x:Name = "PickerCategory"
@@ -88,11 +89,12 @@
             
             <DatePicker MinimumDate="{Binding MinDate}"
                 MaximumDate="{Binding MaxDate}"
-                Date="{Binding SelectedDate}" 
+                Date="{Binding CreationDateTime}" 
              />
 
 
-            <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
+            <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+            
 
 
         </StackLayout>

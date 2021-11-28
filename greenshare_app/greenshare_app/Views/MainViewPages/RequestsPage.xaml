@@ -37,15 +37,9 @@
             </StackLayout>
         </ListView.Header>
 
-        <!--Apunt per fer binding amb les dades que ens passin-->
-        <!--ItemsSource="{Binding .}"-->
-        
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostCard">
-                <!--Haura d'anar dins del DataTemplate definint quin sera el tipus de dades que ens passaran per poder-les mostrar per pantalla-->
-                <!---->
-                <!--<TextCell Text="{Binding .}"/>-->
                 <ViewCell>
                     <Grid Padding="15">
                         <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10">
