@@ -34,7 +34,7 @@ namespace greenshare_app.ViewModels
                 IsVisible = true;
                 Icon = ((Offer) post).Icon;
                 Photos = ((Offer) post).Photos;
-            }
+            }            
 
         }
 
@@ -71,6 +71,7 @@ namespace greenshare_app.ViewModels
 
         private byte[] iconBytes;
         private DateTime minDate;
+        private int selectedImage;
 
         public Image Icon
         {
@@ -97,10 +98,28 @@ namespace greenshare_app.ViewModels
             get => isVisible;
             set => SetProperty(ref isVisible, value);
         }
+        public int SelectedImage
+        {
+            get => selectedImage;
+            set => SetProperty(ref selectedImage, value);
+        }
+        private async Task Selected(object args)
+        {
+            /*
+            var image = args as int;
+            if (image == null)
+                return;
 
+            SelectedImage = null;
+            //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
+            */
+
+        }
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
+        public AsyncCommand OnRemovePhotoButtonCommand => new AsyncCommand(OnRemovePhotoButton);
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
+        public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
@@ -142,6 +161,13 @@ namespace greenshare_app.ViewModels
             photoBytesArray.Add(photoBytes);
             Photos.Add(photoImage);
             return true;
+        }
+
+        private async Task OnRemovePhotoButton()
+        {
+            Photos.RemoveAt(selectedImage);
+            photoBytesArray.RemoveAt(selectedImage);
+            throw new NotImplementedException();
         }
 
         public async Task<bool> OnAddIconButton()
