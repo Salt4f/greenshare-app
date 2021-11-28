@@ -17,12 +17,16 @@ namespace greenshare_app.ViewModels
     {
         public NewPostViewModel(INavigation navigation, Page view)
         {
-            Title = "New Publication";
+            Title = "New Post";
             //Options = Array.Empty;
 
             this.navigation = navigation;
             this.view = view;
-            
+            photoBytesArray = new List<byte[]>();
+            photos = new List<Image>();
+            tags = new List<Tag>();
+            minDate = DateTime.Now;
+            terminationDateTime = DateTime.Now;
 
         }
 
@@ -31,18 +35,14 @@ namespace greenshare_app.ViewModels
 
         private string name;
         private string description;
-        private string category;
-        private bool postType;
-        private int index;
-        private DateTime minDate;
-        private DateTime maxDate;
-        private DateTime selectedDate;
-
+        private string postType;
 
         private IList<Image> photos;
-        private Image postIcon;
+        private Image icon;
         private IEnumerable<Tag> tags;
-        private DateTime terminateAt;
+        private DateTime terminationDateTime;
+        private bool isVisible;
+        private IList<byte[]> photoBytesArray;
 
         //private Array Options;
 
@@ -60,44 +60,91 @@ namespace greenshare_app.ViewModels
         {
             get => tags;
             set => SetProperty(ref tags, value);
-        }        
-        public Image PostIcon
+        }
+
+        private byte[] iconBytes;
+        private DateTime minDate;
+
+        public Image Icon
         {
-            get => postIcon;
-            set => SetProperty(ref postIcon, value);
+            get => icon;
+            set => SetProperty(ref icon, value);
         }
         public IList<Image> Photos
         {
             get => photos;
             set => SetProperty(ref photos, value);
         }
-        public DateTime TerminateAt
+        public DateTime TerminationDateTime
         {
-            get => terminateAt;
-            set => SetProperty(ref terminateAt, value);
-        }
-        public int Index
-        {
-            get => index;
-            set => SetProperty(ref index, value);
-        }
-        public bool PostType
-        {
-            get => postType;
-            set => SetProperty(ref postType, value);
+            get => terminationDateTime;
+            set => SetProperty(ref terminationDateTime, value);
         }
         public DateTime MinDate
         {
             get => minDate;
             set => SetProperty(ref minDate, value);
         }
-
-        public DateTime MaxDate
+        public bool IsVisible
         {
-            get => maxDate;
-            set => SetProperty(ref maxDate, value);
+            get => isVisible;
+            set => SetProperty(ref isVisible, value);
+        }
+
+        public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
+        
+        private async Task OnSubmit()
+        {
+            if (Name.Length == 0)
+            {
+                await view.DisplayAlert("Name field not filled", "Please enter a name", "OK");
+                return;
+            }
+            if (Description.Length == 0)
+            {
+                await view.DisplayAlert("Description field not filled", "Please enter a description", "OK");
+                return;
+            }           
+            switch (PostType)
+            {
+                case nameof(Offer):
+                    if (Icon == null)
+                    {
+                        await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
+                        return;
+                    }                  
+                    await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
+                    break;
+                case nameof(Request):
+                    await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+                    break;
+                default:
+                    break;
+            }
+            await view.DisplayAlert("Not implemented yet", "Sorry not Sorry", "Yessir");
+        }
+
+        public string PostType
+        {
+            get => postType;
+            set
+            {
+                switch (value)
+                {
+                    case nameof(Offer):
+                        IsVisible = true;
+                        break;
+                    case nameof(Request):
+                        IsVisible = false;
+                        break;
+                    default:
+                        break;
+                }
+                SetProperty(ref postType, value); 
+            }
         }
         
+       
 
         
         /*  
@@ -108,18 +155,37 @@ namespace greenshare_app.ViewModels
 
           }
         */
-
-        /* WIP RAUL
+      
         public async Task<bool> OnAddPhotoButton()
         {
-            var photo = await MediaPicker.CapturePhotoAsync();
+            var photo = await MediaPicker.PickPhotoAsync();
 
             if (photo is null) return false;
 
+            var photoStream = await photo.OpenReadAsync();
 
-            Image photoImage = new Image() { Source=ImageSource.FromStream(() => { return new MemoryStream(photo); }) };
-            photos.Add(photo);
+            byte[] photoBytes = new byte[photoStream.Length];
+            await photoStream.ReadAsync(photoBytes, 0, (int)photoStream.Length);
+            Image photoImage = new Image() { Source=ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };          
+            photoBytesArray.Add(photoBytes);
+            Photos.Add(photoImage);
+            return true;
         }
-        */
+
+        public async Task<bool> OnAddIconButton()
+        {
+            var photo = await MediaPicker.PickPhotoAsync();
+
+            if (photo is null) return false;
+
+            var photoStream = await photo.OpenReadAsync();
+
+            byte[] photoBytes = new byte[photoStream.Length];
+            await photoStream.ReadAsync(photoBytes, 0, (int)photoStream.Length);
+            Image photoImage = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };
+            iconBytes = photoBytes;
+            Icon = photoImage;
+            return true;
+        }
     }
 }
