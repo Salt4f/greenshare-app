@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.greenshare_app" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
-	<application android:label="greenshare_app.Android" android:theme="@style/MainTheme" android:usesCleartextTraffic="true"></application>
+	<application android:label="greenshare_app.Android" android:theme="@style/MainTheme" android:usesCleartextTraffic="true">
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDR_gz8Gv-dU5EKcqLCnV15Xk3R81w-wC8"/>
+		<uses-library android:name="org.apache.http.legacy" android:required="false"/>
+	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
