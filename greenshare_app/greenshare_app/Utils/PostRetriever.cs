@@ -122,6 +122,7 @@ namespace greenshare_app.Utils
                 {
                     Active = info.Active,
                     Id = info.Id,
+                    //Status = Enum.Parse(typeof(Status), info.Status),
                     OwnerId = info.OwnerId,
                     Name = info.Name,
                     Description = info.Description,
@@ -130,13 +131,13 @@ namespace greenshare_app.Utils
                     TerminateAt = info.TerminateAt,
                     EcoImpact = 0,
                     Tags = info.Tags,
-                    Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    Icon = info.Icon,
+                    Photos = info.Photos
                 };
 
-                post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); });
-
+                /*
                 //Photos
-                /*var photos = new List<Image>();
+                var photos = new List<Image>();
                 foreach (byte[] photo in info.Photos)
                 {
                     Image definitivePhoto = new Image
@@ -145,8 +146,8 @@ namespace greenshare_app.Utils
                     };
                     photos.Add(definitivePhoto);
                 }
-                post.Photos = photos;*/
-
+                post.Photos = photos;
+                */
                 return post;
             }
             return null;
@@ -203,6 +204,9 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "active")]
             public bool Active { get; set; }
 
+            //[JsonProperty(PropertyName = "status")]
+            //public string Status { get; set; }
+
             [JsonProperty(PropertyName = "ownerId")]
             public int OwnerId { get; set; }
 
@@ -226,7 +230,7 @@ namespace greenshare_app.Utils
             public Location Location { get; set; }
 
             [JsonProperty(PropertyName = "tags")]
-            public IEnumerable<Tag> Tags { get; set; }
+            public IList<Tag> Tags { get; set; }
 
         }
 
@@ -235,8 +239,8 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "icon")]
             public byte[] Icon { get; set; }
 
-            //[JsonProperty(PropertyName = "photos")]
-            //public IEnumerable<byte[]> Photos { get; set; }
+            [JsonProperty(PropertyName = "photos")]
+            public IList<byte[]> Photos { get; set; }
         }
 
         private class RequestInfo : PostInfo { }
