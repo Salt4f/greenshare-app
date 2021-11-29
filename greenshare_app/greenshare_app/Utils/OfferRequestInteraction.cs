@@ -62,7 +62,16 @@ namespace greenshare_app.Utils
             {
                 throw new InvalidLoginException();
             }
-            InteractionInfo interaction = new InteractionInfo { OfferId = offerId, RequestId = requestId };
+            SessionInfo sessionInfo = new SessionInfo { Id = session.Item1, Token = session.Item2 };
+            string json = JsonConvert.SerializeObject(sessionInfo);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
 
         }
 

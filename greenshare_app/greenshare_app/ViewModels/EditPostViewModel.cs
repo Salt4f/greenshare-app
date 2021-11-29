@@ -176,7 +176,8 @@ namespace greenshare_app.ViewModels
         private async Task OnRemovePhotoButton()
         {
             Photos.RemoveAt(selectedImage);
-            photoBytesArray.RemoveAt(selectedImage);            
+            photoBytesArray.RemoveAt(selectedImage);
+            await view.DisplayAlert(" Photo deleted successfully", "", "OK");
         }
 
         public async Task<bool> OnAddIconButton()
