@@ -18,9 +18,7 @@ namespace greenshare_app.Models
         public int OwnerId { get; set; }
         public int EcoImpact { get; set; }
         public IList<Tag> Tags { get; set; }
-
     }
-
     public enum Status
     {
         Idle,

@@ -32,8 +32,18 @@ namespace greenshare_app.ViewModels
             if (post.GetType() == typeof(Offer))
             {
                 IsVisible = true;
-                Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); })};
-                Photos = ((Offer) post).Photos;
+                Icon = new Image() { 
+                    Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); }) 
+                };
+                Photos = new List<Image>();
+                foreach (byte[] photo in ((Offer)post).Photos)
+                {
+                    Image definitivePhoto = new Image
+                    {
+                        Source = ImageSource.FromStream(() => { return new MemoryStream(photo); })
+                    };
+                    Photos.Add(definitivePhoto);
+                }               
             }            
 
         }
