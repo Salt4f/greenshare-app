@@ -20,6 +20,7 @@ namespace greenshare_app.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -29,8 +30,6 @@ namespace greenshare_app.Droid
             Android.Graphics.Color myRed = Android.Graphics.Color.ParseColor("#ff52734d");
             Window.SetStatusBarColor(myRed);
 
-            /*CachedImageRenderer.Init(true);
-            var ignore = typeof(SvgCachedImage);*/
 
             LoadApplication(new App());
         }
