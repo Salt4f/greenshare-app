@@ -1,41 +1,58 @@
 ﻿using greenshare_app.Models;
 using greenshare_app.Utils;
-using greenshare_app.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Essentials;
-using Command = MvvmHelpers.Commands.Command;
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
 {
-    class NewPostViewModel : BaseViewModel
+    public class EditPostViewModel : BaseViewModel
     {
-        public NewPostViewModel(INavigation navigation, Page view)
+        public EditPostViewModel(INavigation navigation, Page view, Post post)
         {
             Title = "New Post";
             //Options = Array.Empty;
 
             this.navigation = navigation;
             this.view = view;
+            this.post = post;
             photoBytesArray = new List<byte[]>();
-            photos = new List<Image>();
-            tags = new List<Tag>();
+            Name = post.Name;
+            Description = post.Description;
+            TerminationDateTime = post.TerminateAt;
+            tags = post.Tags;
+            
             minDate = DateTime.Now;
-            terminationDateTime = DateTime.Now;
+            if (post.GetType() == typeof(Offer))
+            {
+                IsVisible = true;
+                Icon = new Image() { 
+                    Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); }) 
+                };
+                Photos = new List<Image>();
+                foreach (byte[] photo in ((Offer)post).Photos)
+                {
+                    Image definitivePhoto = new Image
+                    {
+                        Source = ImageSource.FromStream(() => { return new MemoryStream(photo); })
+                    };
+                    Photos.Add(definitivePhoto);
+                }               
+            }            
 
         }
 
         private INavigation navigation;
         private Page view;
-
+        private Post post;
         private string name;
         private string description;
-        private string postType;
 
         private IList<Image> photos;
         private Image icon;
@@ -64,6 +81,7 @@ namespace greenshare_app.ViewModels
 
         private byte[] iconBytes;
         private DateTime minDate;
+        private int selectedImage;
 
         public Image Icon
         {
@@ -90,10 +108,28 @@ namespace greenshare_app.ViewModels
             get => isVisible;
             set => SetProperty(ref isVisible, value);
         }
+        public int SelectedImage
+        {
+            get => selectedImage;
+            set => SetProperty(ref selectedImage, value);
+        }
+        private async Task Selected(object args)
+        {
+            /*
+            var image = args as int;
+            if (image == null)
+                return;
 
+            SelectedImage = null;
+            //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
+            */
+
+        }
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
+        public AsyncCommand OnRemovePhotoButtonCommand => new AsyncCommand(OnRemovePhotoButton);
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
+        public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
@@ -105,57 +141,22 @@ namespace greenshare_app.ViewModels
             {
                 await view.DisplayAlert("Description field not filled", "Please enter a description", "OK");
                 return;
-            }           
-            switch (PostType)
-            {
-                case nameof(Offer):
-                    if (Icon == null)
-                    {
-                        await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
-                        return;
-                    }                  
-                    await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
-                    break;
-                case nameof(Request):
-                    await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
-                    break;
-                default:
-                    break;
             }
-        }
-
-        public string PostType
-        {
-            get => postType;
-            set
+            if (post.GetType() == typeof(Offer))
             {
-                switch (value)
+                if (Icon == null)
                 {
-                    case nameof(Offer):
-                        IsVisible = true;
-                        break;
-                    case nameof(Request):
-                        IsVisible = false;
-                        break;
-                    default:
-                        break;
+                    await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
+                    return;
                 }
-                SetProperty(ref postType, value); 
+                await PostSender.Instance().EditOffer(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
             }
+            else
+            {
+                await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+            }          
         }
-        
-       
 
-        
-        /*  
-          public EventHandler Picker_OnSelectedIndex(object sender, EventArgs e)
-          {
-              if (Index == 1) PickerValue = false;
-              else PickerValue = true;
-
-          }
-        */
-      
         public async Task<bool> OnAddPhotoButton()
         {
             var photo = await MediaPicker.PickPhotoAsync();
@@ -166,10 +167,17 @@ namespace greenshare_app.ViewModels
 
             byte[] photoBytes = new byte[photoStream.Length];
             await photoStream.ReadAsync(photoBytes, 0, (int)photoStream.Length);
-            Image photoImage = new Image() { Source=ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };          
+            Image photoImage = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };
             photoBytesArray.Add(photoBytes);
             Photos.Add(photoImage);
             return true;
+        }
+
+        private async Task OnRemovePhotoButton()
+        {
+            Photos.RemoveAt(selectedImage);
+            photoBytesArray.RemoveAt(selectedImage);
+            await view.DisplayAlert(" Photo deleted successfully", "", "OK");
         }
 
         public async Task<bool> OnAddIconButton()
