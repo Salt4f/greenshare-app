@@ -5,7 +5,8 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
-             BackgroundColor="{StaticResource colorWhite}">
+            BackgroundColor="{StaticResource colorWhite}"
+            xmlns:model="clr-namespace:greenshare_app.Models">
 
     <ScrollView>
         <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
@@ -82,7 +83,9 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
                     BindingContext ="{Binding Icon}"
                     Grid.Row="0" 
-                    Grid.Column="0" >
+                    Grid.Column="0" 
+                    >
+                    
                     <ImageButton.Source>
                         <FontImageSource
                             
@@ -173,6 +176,57 @@
                 </ImageButton>
             </Grid>
 
+            <StackLayout Margin="15,20,15,15" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout >
+                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" >
+                            <StackLayout Padding="10"  Orientation="Horizontal" >
+                                <control:BorderlessEntry      
+                                    Style="{StaticResource styleEntryDefault}" 
+                                    Text="{Binding NewTag}" 
+                                    Placeholder="New Tag"
+                                    Grid.Column="0" 
+                                    HorizontalOptions="Fill" 
+                                    VerticalOptions="Fill"
+                                    WidthRequest="120"/> 
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <Button 
+                        Grid.Column="1" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"
+                        Text="Add Tag"
+                        Command="{Binding OnAddTagButtonCommand }"
+                        Style="{StaticResource styleButtonDefault}"
+                        />
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Tag">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                        <Label Text="{Binding Name}"
+                                            Style="{StaticResource styleLabelWhite}"
+                                            VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+
+
 
 
 
@@ -186,6 +240,7 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
+            
 
             <StackLayout Margin="15,20,15,15" >
                 <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
