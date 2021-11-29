@@ -39,7 +39,7 @@ namespace greenshare_app.ViewModels
 
         private IList<Image> photos;
         private Image icon;
-        private IEnumerable<Tag> tags;
+        private IList<Tag> tags;
         private DateTime terminationDateTime;
         private bool isVisible;
         private IList<byte[]> photoBytesArray;
@@ -56,7 +56,7 @@ namespace greenshare_app.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-        public IEnumerable<Tag> Tags
+        public IList<Tag> Tags
         {
             get => tags;
             set => SetProperty(ref tags, value);
@@ -64,6 +64,7 @@ namespace greenshare_app.ViewModels
 
         private byte[] iconBytes;
         private DateTime minDate;
+        private string newTag;
 
         public Image Icon
         {
@@ -90,8 +91,27 @@ namespace greenshare_app.ViewModels
             get => isVisible;
             set => SetProperty(ref isVisible, value);
         }
+        
+        public string NewTag
+        {
+            get => newTag;
+            set => SetProperty(ref newTag, value);
+        }
 
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
+        public AsyncCommand OnAddTagButtonCommand => new AsyncCommand(OnAddTag);
+
+        private async Task OnAddTag()
+        {           
+            //Tag no existe
+            Random rnd = new Random();
+            byte[] colors = new byte[3];
+            rnd.NextBytes(colors);
+            Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
+            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+
+        }
+
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
         private async Task OnSubmit()

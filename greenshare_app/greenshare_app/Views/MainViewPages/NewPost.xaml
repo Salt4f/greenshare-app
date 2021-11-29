@@ -201,7 +201,7 @@
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"
                         Text="Add Tag"
-                        Command="{Binding OnAddTagButtonCommand }"
+                        Command="{Binding OnAddTagButtonCommand}"
                         Style="{StaticResource styleButtonDefault}"
                         />
                 </Grid>
