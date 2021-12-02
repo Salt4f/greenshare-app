@@ -16,12 +16,12 @@
                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}">DESCRIPTION</Label>
                 </Frame> 
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding postType}">POST TYPE</Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}">POST TYPE</Label>
                 </Frame> 
             </StackLayout>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
-            <StackLayout IsVisible="{Binding isVisible}" Orientation="Horizontal">
-                <ListView ItemsSource="{Binding photosList}">
+            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
+                <ListView ItemsSource="{Binding Photos}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:PostCard">
                             <ViewCell>
