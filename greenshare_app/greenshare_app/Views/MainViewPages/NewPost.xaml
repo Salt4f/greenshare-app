@@ -63,6 +63,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
+
                 <ImageButton 
                     Margin="15,10,10,15"
                     HeightRequest="80"
@@ -81,6 +82,7 @@
                     -->
 
                 </ImageButton>
+                
                 <ImageButton 
                     Margin="15,10,10,15"
                     HeightRequest="80"
@@ -162,7 +164,7 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    Source ="{Binding Photos[4]}"
+                    Source ="{Binding Photos[4].Source}"
                     Grid.Row="1" 
                     Grid.Column="2" 
                     Command="{Binding OnAddPhotoButtonCommand}">
