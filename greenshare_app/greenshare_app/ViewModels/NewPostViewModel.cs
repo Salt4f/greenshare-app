@@ -27,7 +27,10 @@ namespace greenshare_app.ViewModels
             tags = new List<Tag>();
             minDate = DateTime.Now;
             terminationDateTime = DateTime.Now;
-
+            PostTypes = new List<string> {
+                nameof(Offer),
+                nameof(Request)
+            };
         }
 
         private INavigation navigation;
@@ -66,6 +69,12 @@ namespace greenshare_app.ViewModels
         private DateTime minDate;
         private string newTag;
 
+        private IList<string> postTypes;
+        public IList<string> PostTypes
+        {
+            get => postTypes;
+            private set => SetProperty(ref postTypes, value);
+        }
         public Image Icon
         {
             get => icon;

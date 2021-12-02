@@ -16,6 +16,7 @@
                 <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
                         
                     <control:BorderlessPicker
+                        ItemsSource="{Binding PostTypes}"
                         Margin="15,20,15,15"
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
@@ -23,7 +24,6 @@
                         SelectedItem="{Binding PostType}"
                         />
                     <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
-
                 </Frame>
             </StackLayout>
 
@@ -39,7 +39,7 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-           
+
             <StackLayout  Margin="15,20,15,15" >
                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
                     <StackLayout Padding="10"  Orientation="Horizontal" >
@@ -50,19 +50,6 @@
                             AutoSize="TextChanges"
                             Text="{Binding Description}"/>
                     </StackLayout>
-                </Frame>
-            </StackLayout>
-
-
-            <StackLayout Margin="15,20,15,15" >
-                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
-
-                    <control:BorderlessPicker
-                        Margin="15,20,15,15"
-                        Style="{StaticResource styleEntryDefault}"
-                        x:Name = "PickerCategory"
-                        Title="Select a category"
-                    />
                 </Frame>
             </StackLayout>
 
@@ -81,17 +68,17 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    BindingContext ="{Binding Icon}"
+                    Source ="{Binding Icon.Source}"
                     Grid.Row="0" 
                     Grid.Column="0" 
                     >
-                    
+                    <!--
                     <ImageButton.Source>
                         <FontImageSource
-                            
                             FontFamily="FAR"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
                     </ImageButton.Source>
+                    -->
 
                 </ImageButton>
                 <ImageButton 
@@ -99,15 +86,17 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    BindingContext ="{Binding Photo[0]}"
+                    Source ="{Binding Photos[0].Source}"
                     Grid.Row="0" 
                     Grid.Column="1" >
+                    <!--
                     <ImageButton.Source>
                         <FontImageSource
                             
                             FontFamily="FAR"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
                     </ImageButton.Source>
+                    -->
 
                 </ImageButton>
                 <ImageButton 
@@ -115,15 +104,17 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    BindingContext ="{Binding Photo[1]}"
+                    Source ="{Binding Photos[1].Source}"
                     Grid.Row="0" 
                     Grid.Column="2" >
+                    <!--
                     <ImageButton.Source>
                         <FontImageSource
                             
                             FontFamily="FAR"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
                     </ImageButton.Source>
+                    -->
 
                 </ImageButton>
                 <ImageButton 
@@ -131,15 +122,17 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    BindingContext ="{Binding Photo[2]}"
+                    Source ="{Binding Photos[2].Source}"
                      Grid.Row="1" 
                     Grid.Column="0" >
+                    <!--
                     <ImageButton.Source>
                         <FontImageSource
                             
                             FontFamily="FAR"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
                     </ImageButton.Source>
+                    -->
 
                 </ImageButton>
                 <ImageButton 
@@ -147,15 +140,17 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    BindingContext ="{Binding Photo[3]}"
+                    Source ="{Binding Photos[3].Source}"
                     Grid.Row="1" 
                     Grid.Column="1" >
+                    <!--
                     <ImageButton.Source>
                         <FontImageSource
                             
                             FontFamily="FAR"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
                     </ImageButton.Source>
+                    -->
 
                 </ImageButton>
                 <ImageButton
@@ -163,15 +158,17 @@
                     HeightRequest="80"
                     WidthRequest="80"
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                    BindingContext ="{Binding Photo[4]}"
+                    Source ="{Binding Photos[4]}"
                     Grid.Row="1" 
                     Grid.Column="2" >
+                    <!--
                     <ImageButton.Source>
                         <FontImageSource
                             
                             FontFamily="FAR"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
                     </ImageButton.Source>
+                    -->
 
                 </ImageButton>
             </Grid>
