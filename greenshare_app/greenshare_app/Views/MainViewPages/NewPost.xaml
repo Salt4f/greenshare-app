@@ -5,14 +5,15 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
-             BackgroundColor="{StaticResource colorWhite}">
+            BackgroundColor="{StaticResource colorWhite}"
+            xmlns:model="clr-namespace:greenshare_app.Models">
 
     <ScrollView>
         <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
 
 
             <StackLayout Margin="15,20,15,15" >
-                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
                         
                     <control:BorderlessPicker
                         Margin="15,20,15,15"
@@ -25,24 +26,8 @@
 
                 </Frame>
             </StackLayout>
-            
 
-            <StackLayout IsVisible="{Binding IsVisible}"  HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton
-                        Margin="15,20,15,15"
-                        HeightRequest="80"
-                        WidthRequest="80"
-                        AbsoluteLayout.LayoutFlags="PositionProportional" 
-                        HorizontalOptions="Start"
-                        VerticalOptions="Start"
-                        x:Name="selectedImage"
-                        Source="{Binding Photos.Source}">
-                </ImageButton>
-            </StackLayout>
-            
-
-
-            
+      
             <StackLayout  Padding="0" Margin="15,0,15,15" >
                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
                     <StackLayout Padding="10"  Orientation="Horizontal" >
@@ -54,48 +39,212 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            <!--            PRODUCT NAME PREVI
-                <StackLayout Padding="0" Margin="15,20,15,15" >
-                    <Entry Style="{StaticResource styleEntryDefault}" Placeholder="Product name" Text="{Binding ProductName}" />
-                </StackLayout>
-    -->
-
-            <StackLayout Padding="0" Margin="15,20,15,15" >
-                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="0,15,0,0">
-                    <control:BorderlessEditor
-                        Style="{StaticResource styleEntryDefault}"
-                        Placeholder="Description" 
-                        AutoSize="TextChanges"
-                        Text="{Binding Description}"/>
+           
+            <StackLayout  Margin="15,20,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal" >
+                        <control:BorderlessEditor
+                            HeightRequest="100"
+                            Style="{StaticResource styleEntryDefault}"
+                            Placeholder="Description" 
+                            AutoSize="TextChanges"
+                            Text="{Binding Description}"/>
+                    </StackLayout>
                 </Frame>
             </StackLayout>
-            <!--        Description previ
-                <StackLayout  Padding="0" Margin="15,0,15,15" >
-                    <Editor 
+
+
+            <StackLayout Margin="15,20,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
+
+                    <control:BorderlessPicker
+                        Margin="15,20,15,15"
                         Style="{StaticResource styleEntryDefault}"
-                        Placeholder="Description" 
-                        AutoSize="TextChanges"
-                        Text="{Binding Description}"/>
-                </StackLayout>
-    -->
+                        x:Name = "PickerCategory"
+                        Title="Select a category"
+                    />
+                </Frame>
+            </StackLayout>
+
+            <Grid IsVisible="{Binding IsVisible}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BindingContext ="{Binding Icon}"
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    >
+                    
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+
+                </ImageButton>
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BindingContext ="{Binding Photo[0]}"
+                    Grid.Row="0" 
+                    Grid.Column="1" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+
+                </ImageButton>
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BindingContext ="{Binding Photo[1]}"
+                    Grid.Row="0" 
+                    Grid.Column="2" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+
+                </ImageButton>
+                <ImageButton 
+                   Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BindingContext ="{Binding Photo[2]}"
+                     Grid.Row="1" 
+                    Grid.Column="0" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+
+                </ImageButton>
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BindingContext ="{Binding Photo[3]}"
+                    Grid.Row="1" 
+                    Grid.Column="1" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+
+                </ImageButton>
+                <ImageButton
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BindingContext ="{Binding Photo[4]}"
+                    Grid.Row="1" 
+                    Grid.Column="2" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+
+                </ImageButton>
+            </Grid>
+
+            <StackLayout Margin="15,20,15,15" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout >
+                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" >
+                            <StackLayout Padding="10"  Orientation="Horizontal" >
+                                <control:BorderlessEntry      
+                                    Style="{StaticResource styleEntryDefault}" 
+                                    Text="{Binding NewTag}" 
+                                    Placeholder="New Tag"
+                                    Grid.Column="0" 
+                                    HorizontalOptions="Fill" 
+                                    VerticalOptions="Fill"
+                                    WidthRequest="120"/> 
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <Button 
+                        Grid.Column="1" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"
+                        Text="Add Tag"
+                        Command="{Binding OnAddTagButtonCommand}"
+                        Style="{StaticResource styleButtonDefault}"
+                        />
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Tag">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                        <Label Text="{Binding Name}"
+                                            Style="{StaticResource styleLabelWhite}"
+                                            VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
 
 
-            <control:BorderlessPicker
-                Style="{StaticResource styleEntryDefault}"
-                Margin="15,20,15,15"
-                x:Name = "PickerCategory"
-                Title="Select a category"
-            />
+
+
+
+
+            <StackLayout Margin="15,20,15,15">
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
+                    <StackLayout  Orientation="Horizontal">
+                        <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                            <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
+                        </Frame>
+                        <DatePicker Date="{Binding TerminationDateTime}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
             
-            <DatePicker MinimumDate="{Binding MinDate}"               
-                Date="{Binding TerminationDateTime}" 
-             />
 
-
-            <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
-            
-
-
+            <StackLayout Margin="15,20,15,15" >
+                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
