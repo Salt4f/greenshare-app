@@ -151,6 +151,7 @@ namespace greenshare_app.ViewModels
                 default:
                     break;
             }
+            await view.DisplayAlert("Offer Created", "", "ok");
         }
 
         public string PostType

@@ -71,7 +71,7 @@
                     Source ="{Binding Icon.Source}"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    >
+                    Command="{Binding OnAddIconButtonCommand}">
                     <!--
                     <ImageButton.Source>
                         <FontImageSource
@@ -88,7 +88,8 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
                     Source ="{Binding Photos[0].Source}"
                     Grid.Row="0" 
-                    Grid.Column="1" >
+                    Grid.Column="1" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
                     <!--
                     <ImageButton.Source>
                         <FontImageSource
@@ -106,7 +107,8 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
                     Source ="{Binding Photos[1].Source}"
                     Grid.Row="0" 
-                    Grid.Column="2" >
+                    Grid.Column="2" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
                     <!--
                     <ImageButton.Source>
                         <FontImageSource
@@ -124,7 +126,8 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
                     Source ="{Binding Photos[2].Source}"
                      Grid.Row="1" 
-                    Grid.Column="0" >
+                    Grid.Column="0" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
                     <!--
                     <ImageButton.Source>
                         <FontImageSource
@@ -142,7 +145,8 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
                     Source ="{Binding Photos[3].Source}"
                     Grid.Row="1" 
-                    Grid.Column="1" >
+                    Grid.Column="1" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
                     <!--
                     <ImageButton.Source>
                         <FontImageSource
@@ -160,7 +164,8 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional" 
                     Source ="{Binding Photos[4]}"
                     Grid.Row="1" 
-                    Grid.Column="2" >
+                    Grid.Column="2" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
                     <!--
                     <ImageButton.Source>
                         <FontImageSource
