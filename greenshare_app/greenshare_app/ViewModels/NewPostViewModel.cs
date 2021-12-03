@@ -22,12 +22,22 @@ namespace greenshare_app.ViewModels
 
             this.navigation = navigation;
             this.view = view;
-            photoBytesArray = new List<byte[]>();
-            photos = new List<Image>();
-            tags = new List<Tag>();
+            photoBytesArray = new List<byte[]>();           
+            photos = new ObservableRangeCollection<Image>();
+            int i = 0;
+            while (i < 5)
+            {
+                photos.Add(new Image());
+                ++i;
+            };
+
+            tags = new ObservableRangeCollection<Tag>();
             minDate = DateTime.Now;
             terminationDateTime = DateTime.Now;
-
+            PostTypes = new List<string> {
+                nameof(Offer),
+                nameof(Request)
+            };
         }
 
         private INavigation navigation;
@@ -37,9 +47,9 @@ namespace greenshare_app.ViewModels
         private string description;
         private string postType;
 
-        private IList<Image> photos;
+        private ObservableRangeCollection<Image> photos;
         private Image icon;
-        private IList<Tag> tags;
+        private ObservableRangeCollection<Tag> tags;
         private DateTime terminationDateTime;
         private bool isVisible;
         private IList<byte[]> photoBytesArray;
@@ -56,7 +66,7 @@ namespace greenshare_app.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-        public IList<Tag> Tags
+        public ObservableRangeCollection<Tag> Tags
         {
             get => tags;
             set => SetProperty(ref tags, value);
@@ -66,12 +76,18 @@ namespace greenshare_app.ViewModels
         private DateTime minDate;
         private string newTag;
 
+        private IList<string> postTypes;
+        public IList<string> PostTypes
+        {
+            get => postTypes;
+            private set => SetProperty(ref postTypes, value);
+        }
         public Image Icon
         {
             get => icon;
             set => SetProperty(ref icon, value);
         }
-        public IList<Image> Photos
+        public ObservableRangeCollection<Image> Photos
         {
             get => photos;
             set => SetProperty(ref photos, value);
@@ -142,6 +158,7 @@ namespace greenshare_app.ViewModels
                 default:
                     break;
             }
+            await view.DisplayAlert("Offer Created", "", "ok");
         }
 
         public string PostType
