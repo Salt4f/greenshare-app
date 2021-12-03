@@ -82,7 +82,7 @@
                     -->
 
                 </ImageButton>
-                
+                <!--LAS PHOTOS NO FUNCIONAN, SEGURAMENTE DEBIDO A HACER EL BINDING A UNA POSICIÓN DE UN ARRAY-->
                 <ImageButton 
                     Margin="15,10,10,15"
                     HeightRequest="80"
@@ -210,7 +210,7 @@
                         />
                 </Grid>
             </StackLayout>
-
+            <!--LOS TAGS SE AÑADEN, PERO NO SE VEN EN LA VISTA UNA VEZ AÑADIDOS-->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
                     <ListView.ItemTemplate>
