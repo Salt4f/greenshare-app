@@ -35,7 +35,7 @@ namespace greenshare_app.ViewModels
                 Icon = new Image() { 
                     Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); }) 
                 };
-                Photos = new List<Image>();
+                Photos = new ObservableRangeCollection<Image>();
                 foreach (byte[] photo in ((Offer)post).Photos)
                 {
                     Image definitivePhoto = new Image
@@ -54,9 +54,9 @@ namespace greenshare_app.ViewModels
         private string name;
         private string description;
 
-        private IList<Image> photos;
+        private ObservableRangeCollection<Image> photos;
         private Image icon;
-        private IEnumerable<Tag> tags;
+        private ObservableRangeCollection<Tag> tags;
         private DateTime terminationDateTime;
         private bool isVisible;
         private IList<byte[]> photoBytesArray;
@@ -73,7 +73,7 @@ namespace greenshare_app.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-        public IEnumerable<Tag> Tags
+        public ObservableRangeCollection<Tag> Tags
         {
             get => tags;
             set => SetProperty(ref tags, value);
@@ -88,7 +88,7 @@ namespace greenshare_app.ViewModels
             get => icon;
             set => SetProperty(ref icon, value);
         }
-        public IList<Image> Photos
+        public ObservableRangeCollection<Image> Photos
         {
             get => photos;
             set => SetProperty(ref photos, value);
