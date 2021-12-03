@@ -57,7 +57,7 @@
                     <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="Image">
-                                <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="Black">
+                                <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
                                     <Image Source="{Binding Source}" VerticalOptions="Start"/>
                                 </Frame>
                             </DataTemplate>
@@ -70,34 +70,30 @@
             </StackLayout>
         </StackLayout>
 
-        <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="5">
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="5">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                    <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center" Rotation="270">
-                        <ListView.ItemTemplate>
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">
+            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="4">
+                <ScrollView Orientation="Horizontal" Padding="8">
+                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Tags}">
+                        <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="model:Tag">
-                                <ViewCell>
-                                    <StackLayout Orientation="Horizontal" Padding="5" HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
-                                            <Label Text="{Binding Name}"
-                                                    Style="{StaticResource styleLabelWhite}"
-                                                    VerticalOptions="Center"/>
-                                        </Frame>
-                                    </StackLayout>
-                                </ViewCell>
+                                <Frame BackgroundColor="{StaticResource colorBackground}" CornerRadius="15" Padding="8" Margin="1">
+                                    <Label Text="{Binding Name}"
+                                           TextColor="Black"
+                                           Style="{StaticResource styleLabelWhite}"
+                                           VerticalOptions="Center"/>
+                                </Frame>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
             </Frame>
-            <StackLayout Margin="5" Orientation="Horizontal">
+            <StackLayout Margin="5,0,5,5" Orientation="Horizontal">
                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" >
                     <StackLayout Padding="10"  Orientation="Horizontal" >
                         <control:BorderlessEntry      
                                     Style="{StaticResource styleEntryDefault}" 
                                     Text="{Binding NewTag}" 
                                     Placeholder="New Tag"
-                                    Grid.Column="0" 
                                     HorizontalOptions="Fill" 
                                     VerticalOptions="Fill"
                                     WidthRequest="120"/>
@@ -125,7 +121,7 @@
         </StackLayout>
 
 
-        <StackLayout Margin="5" >
+        <StackLayout Margin="5,0,5,5" >
             <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
         </StackLayout>
     </StackLayout>
