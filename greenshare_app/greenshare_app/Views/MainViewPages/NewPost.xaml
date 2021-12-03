@@ -9,7 +9,7 @@
             xmlns:model="clr-namespace:greenshare_app.Models">
     
     <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}" Padding="12">
-        <StackLayout Padding="5,10,5,5" HorizontalOptions="Center">
+        <StackLayout Padding="5,10,5,5" HorizontalOptions="Center" Orientation="Horizontal">
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="10">
                 <control:BorderlessPicker
                         HorizontalOptions="Center"
@@ -51,7 +51,7 @@
             </Frame>
         </StackLayout>
 
-        <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="5,0,5,5">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                 <ScrollView Orientation="Horizontal" Padding="17">
                     <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
@@ -65,18 +65,19 @@
                     </StackLayout>
                 </ScrollView>
             </Frame>
-            <StackLayout Padding="0,5,0,0">
-                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Buto Afegir" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="AFEGIR ICON" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="AFEGIR FOTO" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
         </StackLayout>
 
         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="4">
-                <ScrollView Orientation="Horizontal" Padding="8">
+            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="0">
+                <ScrollView Orientation="Horizontal" Padding="15">
                     <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Tags}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="model:Tag">
-                                <Frame BackgroundColor="{StaticResource colorBackground}" CornerRadius="15" Padding="8" Margin="1">
+                                <Frame BackgroundColor="{Binding Color}" CornerRadius="15" Padding="4" Margin="0">
                                     <Label Text="{Binding Name}"
                                            TextColor="Black"
                                            Style="{StaticResource styleLabelWhite}"
