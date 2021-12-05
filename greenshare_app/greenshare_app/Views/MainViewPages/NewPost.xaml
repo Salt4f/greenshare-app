@@ -18,7 +18,7 @@
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
                         Title="Select an option"
-                        SelectedItem="{Binding PostType}"
+                        SelectedItem="{Binding PostType}"                        
                         TitleColor="{StaticResource colorBlack}"
                         FontAttributes="Bold"
                         TextColor="{StaticResource colorBlack}"
@@ -51,11 +51,11 @@
             </Frame>
         </StackLayout>
 
-        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
+        <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                 <ScrollView Orientation="Horizontal" Padding="17">
-                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
-                        <BindableLayout.ItemTemplate>
+                    <StackLayout Orientation="Horizontal" >
+						<BindableLayout.ItemTemplate ItemsSource="{Binding Photos}">
                             <DataTemplate x:DataType="Image">
                                 <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
                                     <Image Source="{Binding Source}" VerticalOptions="Start"/>
@@ -66,8 +66,8 @@
                 </ScrollView>
             </Frame>
             <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="AFEGIR ICON" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="AFEGIR FOTO" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Icon" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
         </StackLayout>
 

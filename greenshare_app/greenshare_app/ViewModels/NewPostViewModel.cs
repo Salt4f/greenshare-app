@@ -203,7 +203,7 @@ namespace greenshare_app.ViewModels
 
             byte[] photoBytes = new byte[photoStream.Length];
             await photoStream.ReadAsync(photoBytes, 0, (int)photoStream.Length);
-            Image photoImage = new Image() { Source=ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };          
+            Image photoImage = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };
             photoBytesArray.Add(photoBytes);
             Photos.Add(photoImage);
             return true;
