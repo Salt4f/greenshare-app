@@ -7,17 +7,28 @@
             BackgroundColor="{StaticResource colorWhite}"
             xmlns:model="clr-namespace:greenshare_app.Models">
     <ScrollView>
+
         <StackLayout Padding="20">
+
+            <StackLayout>
+                <Button HorizontalOptions="EndAndExpand"
+                Text="Go To Edit"
+                Command="{Binding OnGoToEditButtonCommand}"
+                Style="{StaticResource styleButtonDefault}"/>
+            </StackLayout>
             <StackLayout Orientation="Vertical" Padding="20">
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"> POST 1 </Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"> POST NAME </Label>
                 </Frame>
                 <Frame>
                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}">DESCRIPTION</Label>
                 </Frame> 
                 <Frame>
                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}">POST TYPE</Label>
-                </Frame> 
+                </Frame>
+                <Frame>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}">Fecha</Label>
+                </Frame>
             </StackLayout>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
             <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
@@ -40,13 +51,24 @@
                         <DataTemplate x:DataType="model:PostCard">
                             <ViewCell>
                                 <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                    
+
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+            <!--
+            <StackLayout  Orientation="Vertical" Padding="20" >
+                
+        
+                <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                    <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
+                </Frame>
+                <DatePicker IsEnabled="False" Date="{Binding TerminationDateTime}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
+        
+             </StackLayout>
+            -->
         </StackLayout>
     </ScrollView>
 </ContentPage>
