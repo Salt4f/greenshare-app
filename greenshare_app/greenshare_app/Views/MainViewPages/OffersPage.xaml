@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.OffersPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
-             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewModels:OffersPageViewModel">
 
     <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
@@ -12,7 +12,7 @@
               SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
               CachingStrategy="RecycleElement"
               IsPullToRefreshEnabled="True"
-              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
               RefreshCommand="{Binding RefreshCommand}"
               RefreshControlColor="{StaticResource colorGreen2}"
               ItemsSource="{Binding PostCardList}">

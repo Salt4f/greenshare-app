@@ -48,6 +48,7 @@ namespace greenshare_app.ViewModels
                 var loc = await Geolocation.GetLastKnownLocationAsync();
                 var cards = await PostRetriever.Instance().GetOffers(loc);
                 PostCardList.AddRange(cards);
+                IsBusy = false;
             }
             catch (Exception)
             {
