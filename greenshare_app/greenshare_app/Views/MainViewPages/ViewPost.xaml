@@ -31,6 +31,11 @@
                 </Frame>
             </StackLayout>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
+            <StackLayout>
+                <Frame>
+                    <Label Style="{StaticResource styleLabelBlack}">Image</Label>
+                </Frame>
+            </StackLayout>
             <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
                 <ListView ItemsSource="{Binding Photos}">
                     <ListView.ItemTemplate>
@@ -48,6 +53,26 @@
                 </Frame>
             </StackLayout>
             <!--TAGS-->
+            
+            <StackLayout>
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Tag">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                        <Label Text="{Binding Name}"
+                                            Style="{StaticResource styleLabelWhite}"
+                                            VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+<!--
             <StackLayout Orientation="Horizontal">
                 <ListView ItemsSource="{Binding Tags}">
                     <ListView.ItemTemplate>
@@ -61,7 +86,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-
+-->
         </StackLayout>
     </ScrollView>
 </ContentPage>
