@@ -113,7 +113,7 @@ namespace greenshare_app.ViewModels
             {
                 switch (value)
                 {
-                    case nameof(Offer):
+                    case nameof(Offer):                       
                         IsVisible = true;
                         break;
                     case nameof(Request):
