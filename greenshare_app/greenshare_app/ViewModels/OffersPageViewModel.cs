@@ -86,12 +86,12 @@ namespace greenshare_app.ViewModels
                 return;
 
             SelectedPostCard = null;
-
-
             await view.DisplayAlert("Selected", postCard.Name, "OK");
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }
+
+
 
 
 
