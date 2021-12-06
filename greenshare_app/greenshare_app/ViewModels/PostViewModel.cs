@@ -100,13 +100,7 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref isVisible, value);
         }
 
-        public AsyncCommand OnEditPostButtonCommand => new AsyncCommand(OnEditButton);
-
-        private async Task OnEditButton()
-        {
-            //await navigation.PushModalAsync(new EditPost(post));
-        }
-
+       
         private async Task OnEdit()
         {
             await view.DisplayAlert("Sorry not sorry", "WIP", "OK");
