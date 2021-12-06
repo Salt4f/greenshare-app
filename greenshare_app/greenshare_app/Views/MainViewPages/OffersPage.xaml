@@ -3,15 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.OffersPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
-             xmlns:model="clr-namespace:greenshare_app.Models">
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewModels:OffersPageViewModel">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
               SeparatorVisibility="None"
               SelectionMode="Single"
+              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
               CachingStrategy="RecycleElement"
               IsPullToRefreshEnabled="True"
-              IsRefreshing="{Binding isBusy, Mode=OneWay}"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
               RefreshCommand="{Binding RefreshCommand}"
               RefreshControlColor="{StaticResource colorGreen2}"
               ItemsSource="{Binding PostCardList}">
@@ -20,6 +26,12 @@
         <!--ItemSelected="ListView_ItemSelected"
               ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
 
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
         <ListView.Header>
             <StackLayout Padding="15">
                 <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25" FontAttributes="Bold">
@@ -27,7 +39,7 @@
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
             </StackLayout>
         </ListView.Header>
-
+        
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostCard">

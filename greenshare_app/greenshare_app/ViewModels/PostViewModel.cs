@@ -21,7 +21,9 @@ namespace greenshare_app.ViewModels
         private string name;
         private string description;
         private string postType;
+        public AsyncCommand OnEditButtonCommand => new AsyncCommand(OnEdit);
 
+        
         private IList<Image> photos;
         private Image icon;
         private IEnumerable<Tag> tags;
@@ -41,6 +43,7 @@ namespace greenshare_app.ViewModels
             Tags = post.Tags;
             if (post.GetType() == typeof(Offer))
             {
+                IsVisible = true;
                 Icon = new Image()
                 {
                     Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); })
@@ -55,6 +58,7 @@ namespace greenshare_app.ViewModels
                     Photos.Add(definitivePhoto);
                 }
             }
+            else IsVisible = false;
 
         }
         public string Name
@@ -96,11 +100,10 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref isVisible, value);
         }
 
-        public AsyncCommand OnEditPostButtonCommand => new AsyncCommand(OnEditButton);
-
-        private async Task OnEditButton()
+       
+        private async Task OnEdit()
         {
-            //await navigation.PushModalAsync(new EditPost(post));
+            await view.DisplayAlert("Sorry not sorry", "WIP", "OK");
         }
 
         public string PostType
@@ -110,7 +113,7 @@ namespace greenshare_app.ViewModels
             {
                 switch (value)
                 {
-                    case nameof(Offer):
+                    case nameof(Offer):                       
                         IsVisible = true;
                         break;
                     case nameof(Request):
