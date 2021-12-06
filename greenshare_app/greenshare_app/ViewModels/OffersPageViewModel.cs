@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using greenshare_app.Utils;
+using greenshare_app.Views.MainViewPages;
 using Xamarin.Essentials;
 using System.Text;
 
@@ -28,9 +29,8 @@ namespace greenshare_app.ViewModels
             Title = "Ofertes";
 
             IsBusy = true;
-            SelectedCommand = new AsyncCommand<object>(Selected);
             RefreshCommand = new AsyncCommand(Refresh);
-
+            SelectedCommand = new AsyncCommand<object>(Selected);
             this.navigation = navigation;
             this.view = view;
             selectedPostCard = new PostCard();
@@ -76,17 +76,21 @@ namespace greenshare_app.ViewModels
         public PostCard SelectedPostCard
         {
             get => selectedPostCard;
-            set => SetProperty(ref selectedPostCard, value);
+            set {
+                SetProperty(ref selectedPostCard, value);
+
+            }
         }
 
-        private async Task Selected(object args)
+        async Task Selected(object args)
         {
-            var postCard = args as PostCard;
-            if (postCard == null)
+            var card = args as PostCard;
+            if (card == null)
                 return;
 
-            SelectedPostCard = null;
-            await view.DisplayAlert("Selected", postCard.Name, "OK");
+            Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
+
+            await navigation.PushModalAsync(new ViewOffer(offer));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }

@@ -14,10 +14,10 @@ namespace greenshare_app.Views.MainViewPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewOffer : ContentPage
     {
-        public ViewOffer(Post post)
+        public ViewOffer(Offer offer)
         {
             InitializeComponent();
-            BindingContext = new PostViewModel(Navigation, this, post);
+            BindingContext = new PostViewModel(Navigation, this, offer);
         }
     }
 }

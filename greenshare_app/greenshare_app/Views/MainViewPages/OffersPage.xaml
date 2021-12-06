@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.OffersPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
-             xmlns:model="clr-namespace:greenshare_app.Models">
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
               SeparatorVisibility="None"
               SelectionMode="Single"
+              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
               CachingStrategy="RecycleElement"
               IsPullToRefreshEnabled="True"
               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -27,7 +28,7 @@
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
             </StackLayout>
         </ListView.Header>
-
+        
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostCard">
