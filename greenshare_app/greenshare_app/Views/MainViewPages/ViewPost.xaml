@@ -18,16 +18,16 @@
             </StackLayout>
             <StackLayout Orientation="Vertical" Padding="20">
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"> POST NAME </Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"></Label>
                 </Frame>
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}">DESCRIPTION</Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}"></Label>
                 </Frame> 
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}">POST TYPE</Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}"></Label>
                 </Frame>
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}">Fecha</Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}"></Label>
                 </Frame>
             </StackLayout>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
