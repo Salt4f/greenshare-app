@@ -14,8 +14,8 @@
         <Tab Icon="plus.png">
             <ShellContent ContentTemplate="{DataTemplate local:NewPublication}" />
         </Tab>
-        <Tab Icon="trophy.png">
-            <ShellContent ContentTemplate="{DataTemplate local:RewardsPage}" />
+        <Tab Icon="map.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MapsPage}" />
         </Tab>
         <Tab Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />

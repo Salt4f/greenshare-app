@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.NewPublication"
+            xmlns:control="clr-namespace:greenshare_app.Controls"
+            xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+            xmlns:fontAwesome="clr-namespace:FontAwesome"
+            BackgroundColor="{StaticResource colorWhite}"
+            xmlns:model="clr-namespace:greenshare_app.Models">
+
+    <ScrollView>
+        <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
+
+
+            <StackLayout Margin="15,20,15,15" >
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
+                        
+                    <control:BorderlessPicker
+                        ItemsSource="{Binding PostTypes}"
+                        Margin="15,20,15,15"
+                        Style="{StaticResource styleEntryDefault}"
+                        x:Name = "PickerOption"
+                        Title="Select an option"
+                        SelectedItem="{Binding PostType}"
+                        />
+                    <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
+                </Frame>
+            </StackLayout>
+
+      
+            <StackLayout  Padding="0" Margin="15,0,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal" >
+                        <control:BorderlessEntry      
+                            Style="{StaticResource styleEntryDefault}" 
+                            Text="{Binding Name}" 
+                            Placeholder="Product name" 
+                            FontAttributes="None"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout  Margin="15,20,15,15" >
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal" >
+                        <control:BorderlessEditor
+                            HeightRequest="100"
+                            Style="{StaticResource styleEntryDefault}"
+                            Placeholder="Description" 
+                            AutoSize="TextChanges"
+                            Text="{Binding Description}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <Grid IsVisible="{Binding IsVisible}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Source ="{Binding Icon.Source}"
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Command="{Binding OnAddIconButtonCommand}">
+                    <!--
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+                    -->
+
+                </ImageButton>
+                <!--LAS PHOTOS NO FUNCIONAN, SEGURAMENTE DEBIDO A HACER EL BINDING A UNA POSICIÓN DE UN ARRAY-->
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Source ="{Binding Photos[0].Source}"
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
+                    <!--
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+                    -->
+
+                </ImageButton>
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Source ="{Binding Photos[1].Source}"
+                    Grid.Row="0" 
+                    Grid.Column="2" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
+                    <!--
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+                    -->
+
+                </ImageButton>
+                <ImageButton 
+                   Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Source ="{Binding Photos[2].Source}"
+                     Grid.Row="1" 
+                    Grid.Column="0" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
+                    <!--
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+                    -->
+
+                </ImageButton>
+                <ImageButton 
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Source ="{Binding Photos[3].Source}"
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
+                    <!--
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+                    -->
+
+                </ImageButton>
+                <ImageButton
+                    Margin="15,10,10,15"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Source ="{Binding Photos[4].Source}"
+                    Grid.Row="1" 
+                    Grid.Column="2" 
+                    Command="{Binding OnAddPhotoButtonCommand}">
+                    <!--
+                    <ImageButton.Source>
+                        <FontImageSource
+                            
+                            FontFamily="FAR"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Image}"/>
+                    </ImageButton.Source>
+                    -->
+
+                </ImageButton>
+            </Grid>
+
+            <StackLayout Margin="15,20,15,15" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout >
+                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" >
+                            <StackLayout Padding="10"  Orientation="Horizontal" >
+                                <control:BorderlessEntry      
+                                    Style="{StaticResource styleEntryDefault}" 
+                                    Text="{Binding NewTag}" 
+                                    Placeholder="New Tag"
+                                    Grid.Column="0" 
+                                    HorizontalOptions="Fill" 
+                                    VerticalOptions="Fill"
+                                    WidthRequest="120"/> 
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <Button 
+                        Grid.Column="1" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"
+                        Text="Add Tag"
+                        Command="{Binding OnAddTagButtonCommand}"
+                        Style="{StaticResource styleButtonDefault}"
+                        />
+                </Grid>
+            </StackLayout>
+            <!--LOS TAGS SE AÑADEN, PERO NO SE VEN EN LA VISTA UNA VEZ AÑADIDOS-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Tag">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                        <Label Text="{Binding Name}"
+                                            Style="{StaticResource styleLabelWhite}"
+                                            VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+
+
+
+
+
+            <StackLayout Margin="15,20,15,15">
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
+                    <StackLayout  Orientation="Horizontal">
+                        <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                            <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
+                        </Frame>
+                        <DatePicker Date="{Binding TerminationDateTime}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            
+
+            <StackLayout Margin="15,20,15,15" >
+                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
