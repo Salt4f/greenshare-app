@@ -13,7 +13,7 @@
             <StackLayout>
                 <Button HorizontalOptions="EndAndExpand"
                 Text="Go To Edit"
-                Command="{Binding OnGoToEditButtonCommand}"
+                Command="{Binding OnEditButtonCommand}"
                 Style="{StaticResource styleButtonDefault}"/>
             </StackLayout>
             <StackLayout Orientation="Vertical" Padding="20">
@@ -58,17 +58,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <!--
-            <StackLayout  Orientation="Vertical" Padding="20" >
-                
-        
-                <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
-                    <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
-                </Frame>
-                <DatePicker IsEnabled="False" Date="{Binding TerminationDateTime}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
-        
-             </StackLayout>
-            -->
+
         </StackLayout>
     </ScrollView>
 </ContentPage>
