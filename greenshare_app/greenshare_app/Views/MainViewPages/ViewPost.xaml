@@ -5,7 +5,7 @@
              xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
             BackgroundColor="{StaticResource colorWhite}"
-            xmlns:model="clr-namespace:greenshare_app.Models">
+            xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
     <ScrollView>
 
         <StackLayout Padding="20">
@@ -34,15 +34,18 @@
             <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
                 <ListView ItemsSource="{Binding Photos}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:PostCard">
+                        <DataTemplate x:DataType="Image">
                             <ViewCell>
                                 <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
+                                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Source}"></Image>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
+                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
+                </Frame>
             </StackLayout>
             <!--TAGS-->
             <StackLayout Orientation="Horizontal">
