@@ -135,8 +135,20 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
         public AsyncCommand OnRemovePhotoButtonCommand => new AsyncCommand(OnRemovePhotoButton);
+
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
         public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
+        public AsyncCommand OnAddTagButtonCommand => new AsyncCommand(OnAddTag);
+
+        private async Task OnAddTag()
+        {
+            //Tag no existe
+            Random rnd = new Random();
+            byte[] colors = new byte[3];
+            rnd.NextBytes(colors);
+            Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
+            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+        }
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
