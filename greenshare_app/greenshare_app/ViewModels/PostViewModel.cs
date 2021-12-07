@@ -1,5 +1,6 @@
 ﻿using greenshare_app.Models;
 using greenshare_app.Utils;
+using greenshare_app.Views.MainViewPages;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
@@ -103,6 +104,8 @@ namespace greenshare_app.ViewModels
        
         private async Task OnEdit()
         {
+            if (PostType == nameof(Offer))await navigation.PushModalAsync(new EditOffer((Offer)post));
+            //else await navigation.PushModalAsync(new EditRequest((Request)post));
             await view.DisplayAlert("Sorry not sorry", "WIP", "OK");
         }
 

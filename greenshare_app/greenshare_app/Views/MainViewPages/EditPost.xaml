@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.EditPost"
-            xmlns:control="clr-namespace:greenshare_app.Controls"
-            xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+             x:Class="greenshare_app.Views.MainViewPages.EditOffer"
+             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
             BackgroundColor="{StaticResource colorWhite}"
-            xmlns:model="clr-namespace:greenshare_app.Models">
+            xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:EditPostViewModel">
 
     <ScrollView>
         <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}">
@@ -15,14 +14,14 @@
             <StackLayout Margin="15,20,15,15" >
                 <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
 
-                    <control:BorderlessPicker
+                    <!--<control:BorderlessPicker
                         ItemsSource="{Binding PostTypes}"
                         Margin="15,20,15,15"
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
                         Title="Select an option"
                         SelectedItem="{Binding PostType}"
-                        />
+                        />-->
                     <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
                 </Frame>
             </StackLayout>

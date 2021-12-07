@@ -64,7 +64,11 @@ namespace greenshare_app.ViewModels
         private IList<byte[]> photoBytesArray;
 
         //private Array Options;
-
+        public String NewTag
+        {
+            get => newTag;
+            set => SetProperty(ref newTag, value);
+        }
         public string Name
         {
             get => name;
@@ -84,6 +88,7 @@ namespace greenshare_app.ViewModels
         private byte[] iconBytes;
         private DateTime minDate;
         private int selectedImage;
+        private string newTag;
 
         public Image Icon
         {
