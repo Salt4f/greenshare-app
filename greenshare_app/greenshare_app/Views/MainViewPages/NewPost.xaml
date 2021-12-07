@@ -7,7 +7,7 @@
             xmlns:fontAwesome="clr-namespace:FontAwesome"
             BackgroundColor="{StaticResource colorWhite}"
             xmlns:model="clr-namespace:greenshare_app.Models">
-    
+    <ScrollView>  
     <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}" Padding="12">
         <StackLayout Padding="5,10,5,5" HorizontalOptions="Center" Orientation="Horizontal">
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="10">
@@ -131,4 +131,5 @@
             <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
         </StackLayout>
     </StackLayout>
+    </ScrollView>
 </ContentPage>
