@@ -12,7 +12,7 @@
               SelectionMode="Single"
               CachingStrategy="RecycleElement"
               IsPullToRefreshEnabled="True"
-              IsRefreshing="{Binding isBusy, Mode=OneWay}"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
               RefreshCommand="{Binding RefreshCommand}"
               RefreshControlColor="{StaticResource colorGreen2}"
               ItemsSource="{Binding PostCardList}">

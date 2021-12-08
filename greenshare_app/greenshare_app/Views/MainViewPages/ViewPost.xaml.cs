@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class addPage : ContentPage
+    public partial class ViewOffer : ContentPage
     {
-        public addPage()
+        public ViewOffer()
         {
             InitializeComponent();
         }

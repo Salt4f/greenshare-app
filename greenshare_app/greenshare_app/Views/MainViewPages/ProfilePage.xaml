@@ -38,13 +38,13 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.UserInfo}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
+
+                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.UserInfo}"/>
                         </StackLayout>
                     </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
 
                 <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
@@ -55,13 +55,12 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.Publications}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
+                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.Publications}"/>
                         </StackLayout>
                     </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
 
                 <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
@@ -72,13 +71,12 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.LogOut}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
+                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.LogOut}"/>
                         </StackLayout>
                     </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 
             </StackLayout>
