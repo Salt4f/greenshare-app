@@ -89,6 +89,7 @@ namespace greenshare_app.ViewModels
         private DateTime minDate;
         private Image selectedImage;
         private string newTag;
+        private Tag selectedTag;
 
         public Image Icon
         {
@@ -120,6 +121,12 @@ namespace greenshare_app.ViewModels
             get => selectedImage;
             set => SetProperty(ref selectedImage, value);
         }
+
+        public Tag SelectedTag
+        {
+            get => selectedTag;
+            set => SetProperty(ref selectedTag, value);
+        }
         private async Task Selected(object args)
         {
             
@@ -127,7 +134,7 @@ namespace greenshare_app.ViewModels
             if (image == null)
                 return;
 
-            SelectedImage = null;
+            //SelectedImage = null;
             
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
             
@@ -141,6 +148,8 @@ namespace greenshare_app.ViewModels
         public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
         public AsyncCommand OnAddTagButtonCommand => new AsyncCommand(OnAddTag);
 
+        public AsyncCommand OnRemoveTagButtonCommand => new AsyncCommand(OnRemoveTag);
+
         private async Task OnAddTag()
         {
             //Tag no existe
@@ -149,6 +158,13 @@ namespace greenshare_app.ViewModels
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
             Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+        }
+
+        private async Task OnRemoveTag()
+        {
+            //Tag no existe
+            Tags.Remove(SelectedTag);
+            await view.DisplayAlert(" Tag deleted successfully", "", "OK");
         }
         private async Task OnSubmit()
         {
