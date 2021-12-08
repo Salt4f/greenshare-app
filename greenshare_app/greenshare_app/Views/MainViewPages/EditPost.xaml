@@ -207,11 +207,12 @@
                         Command="{Binding OnAddTagButtonCommand}"
                         Style="{StaticResource styleButtonDefault}"
                         />
+                    
                 </Grid>
             </StackLayout>
             <!--LOS TAGS SE AÑADEN, PERO NO SE VEN EN LA VISTA UNA VEZ AÑADIDOS-->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center" SelectedItem="{Binding SelectedTag}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Tag">
                             <ViewCell>
@@ -226,6 +227,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button 
+                        Grid.Column="0" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"
+                        Text="Remove Tag"
+                        Command="{Binding OnRemoveTagButtonCommand}"
+                        Style="{StaticResource styleButtonDefault}"
+                        />
             </StackLayout>
 
 
@@ -246,7 +255,7 @@
 
 
             <StackLayout Margin="15,20,15,15" >
-                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                <Button Text="Submit Changes" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>
