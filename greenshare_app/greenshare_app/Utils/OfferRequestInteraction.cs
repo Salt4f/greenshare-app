@@ -98,6 +98,8 @@ namespace greenshare_app.Utils
             }
             return false;
         }
+
+
         //Una oferta denega la petició d'un altre usuari
         public async Task<bool> RejectRequest(int offerId, int requestId)
         {
@@ -123,8 +125,7 @@ namespace greenshare_app.Utils
             return false;
         }
 
-        //Completa una offer / request. Això marca la request i la offer com no actives, i indica que s'ha completat la transacció sense problemes.
-        public async Task<bool> CompletePost(int offerId, int requestId)
+        public async Task<bool> AcceptOffer(int offerId, int requestId)
         {
             Tuple<int, string> session;
             try
@@ -140,7 +141,55 @@ namespace greenshare_app.Utils
             string json = JsonConvert.SerializeObject(sessionInfo);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/accept", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+        //Completa una offer / request. Això marca la request i la offer com no actives, i indica que s'ha completat la transacció sense problemes.
+        public async Task<bool> CompletePostFromRequest(int offerId, int requestId, string valoration = null)
+        {
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            CompletionInfo sessionInfo = new CompletionInfo { Id = session.Item1, Token = session.Item2, Valoration = valoration };
+            string json = JsonConvert.SerializeObject(sessionInfo);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, string valoration = null)
+        {
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            CompletionInfo sessionInfo = new CompletionInfo { Id = session.Item1, Token = session.Item2, Valoration = valoration };
+            string json = JsonConvert.SerializeObject(sessionInfo);
+            var httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/completed", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -154,6 +203,12 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "token")]
             public string Token { get; set; }
+        }
+
+        private class CompletionInfo : SessionInfo
+        {
+            [JsonProperty(PropertyName = "valoration")]
+            public string Valoration { get; set; }
         }
     }
 }
