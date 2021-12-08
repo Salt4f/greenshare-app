@@ -61,6 +61,33 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add icon.
+        /// </summary>
+        internal static string AddIcon {
+            get {
+                return ResourceManager.GetString("AddIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add photo.
+        /// </summary>
+        internal static string AddPhoto {
+            get {
+                return ResourceManager.GetString("AddPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add tag.
+        /// </summary>
+        internal static string AddTag {
+            get {
+                return ResourceManager.GetString("AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average valoration.
         /// </summary>
         internal static string AvgValoration {
@@ -84,6 +111,15 @@ namespace greenshare_app.Text {
         internal static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot password?.
+        /// </summary>
+        internal static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
             }
         }
         
@@ -124,6 +160,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Or.
+        /// </summary>
+        internal static string Or {
+            get {
+                return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         internal static string Profile {
@@ -151,11 +196,56 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        internal static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send message.
         /// </summary>
         internal static string SendMessage {
             get {
                 return ResourceManager.GetString("SendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in.
+        /// </summary>
+        internal static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up.
+        /// </summary>
+        internal static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Still not registered?.
+        /// </summary>
+        internal static string StillNot {
+            get {
+                return ResourceManager.GetString("StillNot", resourceCulture);
             }
         }
         
@@ -183,6 +273,15 @@ namespace greenshare_app.Text {
         internal static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify DNI.
+        /// </summary>
+        internal static string VerifyDNI {
+            get {
+                return ResourceManager.GetString("VerifyDNI", resourceCulture);
             }
         }
         

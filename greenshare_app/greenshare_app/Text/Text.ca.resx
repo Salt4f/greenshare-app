@@ -57,4 +57,37 @@
   <data name="LogOut" xml:space="preserve">
     <value>Desconnectar-se</value>
   </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Afegir foto</value>
+  </data>
+  <data name="AddIcon" xml:space="preserve">
+    <value>Afegir icone</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Afegir tag</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recordar dades</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Has oblidat la contrasenya?</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Inicia sessió</value>
+  </data>
+  <data name="StillNot" xml:space="preserve">
+    <value>No estàs registrat?</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Registra't</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrar-se</value>
+  </data>
+  <data name="VerifyDNI" xml:space="preserve">
+    <value>Verificar DNI</value>
+  </data>
 </root>

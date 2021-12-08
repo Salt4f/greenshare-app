@@ -29,7 +29,7 @@
                 <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True" HorizontalOptions="FillAndExpand">
                     <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <StackLayout Margin="20,60,20,0">
-                            <Label Style="{StaticResource styleLabelGreen}" Text="REGISTER" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
+                                <Label Style="{StaticResource styleLabelGreen}" Text="{x:Static multiIdioma:Text.Register}" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
                         </StackLayout>
 
                         <StackLayout Padding="0" Margin="15,0,15,15" HorizontalOptions="FillAndExpand">
@@ -84,7 +84,7 @@
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.IdCard}" FontFamily="FAS"></Label>
                                     </Frame>
                                     <control:BorderlessEntry Style="{StaticResource styleEntryDefault}" Text="{Binding Dni}" Placeholder="DNI" MaxLength="9"/>
-                                    <Button Text="Verify DNI" Command="{Binding DniButtonCommand}" Style="{StaticResource styleButtonDefault}"/>
+                                        <Button Text="{x:Static multiIdioma:Text.VerifyDNI}" Command="{Binding DniButtonCommand}" Style="{StaticResource styleButtonDefault}"/>
                                 </StackLayout>
                                 
                             </Frame>
@@ -100,7 +100,7 @@
 
                             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
 
-                            <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
+                                <Button Text="{x:Static multiIdioma:Text.SignUp}" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>

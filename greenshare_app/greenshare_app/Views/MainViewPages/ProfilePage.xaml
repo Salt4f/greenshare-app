@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
 
@@ -38,7 +39,6 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-
                             <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.UserInfo}"/>
                         </StackLayout>
                     </StackLayout>

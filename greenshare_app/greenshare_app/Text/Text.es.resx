@@ -57,4 +57,37 @@
   <data name="LogOut" xml:space="preserve">
     <value>Desconectarse</value>
   </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Añadir foto</value>
+  </data>
+  <data name="AddIcon" xml:space="preserve">
+    <value>Añadir icono</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Añadir tag</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recuérdame</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Has olvidado la contraseña?</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Inicia sesión</value>
+  </data>
+  <data name="StillNot" xml:space="preserve">
+    <value>No estás registrado?</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Regístrate</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="VerifyDNI" xml:space="preserve">
+    <value>Verificar DNI</value>
+  </data>
 </root>
