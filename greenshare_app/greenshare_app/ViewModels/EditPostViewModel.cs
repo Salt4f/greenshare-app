@@ -26,8 +26,8 @@ namespace greenshare_app.ViewModels
             Name = post.Name;
             Description = post.Description;
             TerminationDateTime = post.TerminateAt;
-            tags = (ObservableRangeCollection<Tag>)post.Tags;
-            
+            tags = new ObservableRangeCollection<Tag>();
+            tags.AddRange(post.Tags);
             minDate = DateTime.Now;
             if (post.GetType() == typeof(Offer))
             {
