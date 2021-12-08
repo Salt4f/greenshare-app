@@ -5,6 +5,7 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              BackgroundColor="{StaticResource colorWhite}">
 
     <ScrollView>
@@ -87,7 +88,7 @@
                     />
 
 
-            <Button Text="Publish" Style="{StaticResource styleButtonDefault}" />
+            <Button Text="{x:Static multiIdioma:Text.Publish}" Style="{StaticResource styleButtonDefault}" />
 
 
         </StackLayout>

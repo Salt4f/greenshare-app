@@ -11,7 +11,7 @@
             
             <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="0">
                 <StackLayout  Padding="20" Spacing="30">
-                    <Label Text="Perfil" TextColor="Black" FontSize="25" FontFamily="Montserrat-Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="0,30,0,5"/>
+                    <Label Text="{x:Static multiIdioma:Text.Profile}" TextColor="Black" FontSize="25" FontFamily="Montserrat-Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="0,30,0,5"/>
                     <Frame BackgroundColor="white" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0" CornerRadius="20">
                         <StackLayout>
                             <Grid>
@@ -38,7 +38,7 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="User Information">
+                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.UserInfo}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
                                 </Label.GestureRecognizers>
@@ -55,7 +55,7 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Publications">
+                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.Publications}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
                                 </Label.GestureRecognizers>
@@ -72,7 +72,7 @@
                             </Frame>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Log out">
+                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="{x:Static multiIdioma:Text.LogOut}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
                                 </Label.GestureRecognizers>

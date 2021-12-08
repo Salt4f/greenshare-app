@@ -80,6 +80,8 @@
     </Compile>
     <Compile Update="Text\Text.Designer.cs">
       <DependentUpon>Text.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="Text\Text.es.Designer.cs">
       <DependentUpon>Text.es.resx</DependentUpon>
