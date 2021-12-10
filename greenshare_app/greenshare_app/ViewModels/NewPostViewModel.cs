@@ -24,13 +24,6 @@ namespace greenshare_app.ViewModels
             this.view = view;
             photoBytesArray = new List<byte[]>();           
             photos = new ObservableRangeCollection<Image>();
-            int i = 0;
-            while (i < 5)
-            {
-                photos.Add(new Image());
-                ++i;
-            };
-
             tags = new ObservableRangeCollection<Tag>();
             minDate = DateTime.Now;
             terminationDateTime = DateTime.Now;
@@ -204,8 +197,8 @@ namespace greenshare_app.ViewModels
             byte[] photoBytes = new byte[photoStream.Length];
             await photoStream.ReadAsync(photoBytes, 0, (int)photoStream.Length);
             Image photoImage = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(photoBytes); }) };
-            photoBytesArray.Add(photoBytes);
             Photos.Add(photoImage);
+            photoBytesArray.Add(photoBytes);
             return true;
         }
 

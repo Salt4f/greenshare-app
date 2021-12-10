@@ -12,12 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ViewPost : ContentPage
+    public partial class EditPost : ContentPage
     {
-        public ViewPost(Post post)
+        public EditPost(Post post)
         {
             InitializeComponent();
-            BindingContext = new PostViewModel(Navigation, this, post);
-        }
-    }   
+            BindingContext = new EditPostViewModel(Navigation, this, post);
+        }       
+    }
 }

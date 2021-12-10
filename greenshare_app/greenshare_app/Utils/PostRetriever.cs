@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using greenshare_app.Exceptions;
 using greenshare_app.Models;
+using MvvmHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
@@ -59,7 +60,7 @@ namespace greenshare_app.Utils
             return null;
         }
 
-        public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
+        public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
 
@@ -78,7 +79,7 @@ namespace greenshare_app.Utils
                         Id = info.Id,
                         Name = info.Name,
                         Author = info.Author,
-                        Tags = new MvvmHelpers.ObservableRangeCollection<Tag>(info.Tags),
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
                         Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
                     };
                     cards.Add(card);

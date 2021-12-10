@@ -12,6 +12,5 @@ namespace greenshare_app.Views.MainViewPages
             InitializeComponent();
             BindingContext = new OffersPageViewModel(Navigation, this);
         }
-
     }
 }

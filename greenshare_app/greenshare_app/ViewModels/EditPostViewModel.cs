@@ -26,14 +26,15 @@ namespace greenshare_app.ViewModels
             Name = post.Name;
             Description = post.Description;
             TerminationDateTime = post.TerminateAt;
-            tags = (ObservableRangeCollection<Tag>)post.Tags;
-            
+            tags = new ObservableRangeCollection<Tag>();
+            tags.AddRange(post.Tags);
             minDate = DateTime.Now;
             if (post.GetType() == typeof(Offer))
             {
                 IsVisible = true;
-                Icon = new Image() { 
-                    Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); }) 
+                Icon = new Image()
+                {
+                    Source = ImageSource.FromStream(() => { return new MemoryStream(((Offer)post).Icon); })
                 };
                 Photos = new ObservableRangeCollection<Image>();
                 foreach (byte[] photo in ((Offer)post).Photos)
@@ -43,8 +44,9 @@ namespace greenshare_app.ViewModels
                         Source = ImageSource.FromStream(() => { return new MemoryStream(photo); })
                     };
                     Photos.Add(definitivePhoto);
-                }               
-            }            
+                }
+            }
+            else IsVisible = false;
 
         }
 
@@ -62,7 +64,11 @@ namespace greenshare_app.ViewModels
         private IList<byte[]> photoBytesArray;
 
         //private Array Options;
-
+        public String NewTag
+        {
+            get => newTag;
+            set => SetProperty(ref newTag, value);
+        }
         public string Name
         {
             get => name;
@@ -81,7 +87,9 @@ namespace greenshare_app.ViewModels
 
         private byte[] iconBytes;
         private DateTime minDate;
-        private int selectedImage;
+        private Image selectedImage;
+        private string newTag;
+        private Tag selectedTag;
 
         public Image Icon
         {
@@ -108,28 +116,56 @@ namespace greenshare_app.ViewModels
             get => isVisible;
             set => SetProperty(ref isVisible, value);
         }
-        public int SelectedImage
+        public Image SelectedImage
         {
             get => selectedImage;
             set => SetProperty(ref selectedImage, value);
         }
+
+        public Tag SelectedTag
+        {
+            get => selectedTag;
+            set => SetProperty(ref selectedTag, value);
+        }
         private async Task Selected(object args)
         {
-            /*
-            var image = args as int;
+            
+            var image = args as Image;
             if (image == null)
                 return;
 
-            SelectedImage = null;
+            //SelectedImage = null;
+            
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
-            */
+            
 
         }
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
         public AsyncCommand OnRemovePhotoButtonCommand => new AsyncCommand(OnRemovePhotoButton);
+
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
         public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
+        public AsyncCommand OnAddTagButtonCommand => new AsyncCommand(OnAddTag);
+
+        public AsyncCommand OnRemoveTagButtonCommand => new AsyncCommand(OnRemoveTag);
+
+        private async Task OnAddTag()
+        {
+            //Tag no existe
+            Random rnd = new Random();
+            byte[] colors = new byte[3];
+            rnd.NextBytes(colors);
+            Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
+            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+        }
+
+        private async Task OnRemoveTag()
+        {
+            //Tag no existe
+            Tags.Remove(SelectedTag);
+            await view.DisplayAlert(" Tag deleted successfully", "", "OK");
+        }
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
@@ -175,8 +211,9 @@ namespace greenshare_app.ViewModels
 
         private async Task OnRemovePhotoButton()
         {
-            Photos.RemoveAt(selectedImage);
-            photoBytesArray.RemoveAt(selectedImage);
+            int index = Photos.IndexOf(SelectedImage);
+            Photos.RemoveAt(index);
+            photoBytesArray.RemoveAt(index);
             await view.DisplayAlert(" Photo deleted successfully", "", "OK");
         }
 
