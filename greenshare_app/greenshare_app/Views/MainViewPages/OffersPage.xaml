@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.OffersPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
-             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewModels:OffersPageViewModel">
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewModels:OffersPageViewModel"
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -34,8 +35,6 @@
         </ListView.Behaviors>
         <ListView.Header>
             <StackLayout Padding="15">
-                <Label HorizontalOptions="Center" Text="OFFERS" Style="{StaticResource styleLabelBlack}" FontSize="25" FontAttributes="Bold">
-                </Label>
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
             </StackLayout>
         </ListView.Header>
