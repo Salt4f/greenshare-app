@@ -22,7 +22,7 @@
                 </Frame>
                 <Frame>
                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}"></Label>
-                </Frame> 
+                </Frame>
                 <Frame>
                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}"></Label>
                 </Frame>
@@ -36,15 +36,15 @@
                     <Label Style="{StaticResource styleLabelBlack}">Image</Label>
                 </Frame>
             </StackLayout>
-            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical">
+            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
                 <ScrollView Orientation="Horizontal" Padding="17">
                     <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="Image">
                                 <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
                                     <Image  Aspect="AspectFill"
-                                                HeightRequest="200"
-                                                WidthRequest="200"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
                                                 Source="{Binding Source}" VerticalOptions="Start"/>
                                 </Frame>
                             </DataTemplate>
@@ -56,9 +56,12 @@
                 </Frame>
             </StackLayout>
             <!--TAGS-->
-            
+
             <StackLayout>
-                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                <ListView ItemsSource="{Binding Tags}" 
+                          HorizontalOptions="Center"
+                          VerticalOptions="Start"
+                          HeightRequest="100">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Tag">
                             <ViewCell>
@@ -75,21 +78,6 @@
                 </ListView>
             </StackLayout>
 
-<!--
-            <StackLayout Orientation="Horizontal">
-                <ListView ItemsSource="{Binding Tags}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:PostCard">
-                            <ViewCell>
-                                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
--->
         </StackLayout>
     </ScrollView>
 </ContentPage>
