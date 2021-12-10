@@ -12,7 +12,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:RequestsPage}" />
         </Tab>
         <Tab Icon="plus.png">
-            <ShellContent ContentTemplate="{DataTemplate local:NewPublication}" />
+            <ShellContent ContentTemplate="{DataTemplate local:NewPost}" />
         </Tab>
         <Tab Icon="map.png">
             <ShellContent ContentTemplate="{DataTemplate local:MapsPage}" />
