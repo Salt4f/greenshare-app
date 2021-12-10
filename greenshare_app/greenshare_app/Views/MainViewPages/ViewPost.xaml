@@ -37,17 +37,20 @@
                 </Frame>
             </StackLayout>
             <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
-                <ListView ItemsSource="{Binding Photos}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="Image">
-                            <ViewCell>
-                                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Source}"></Image>
+                <ScrollView Orientation="Horizontal" Padding="17">
+                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="Image">
+                                <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
+                                    <Image  Aspect="AspectFill"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
+                                                Source="{Binding Source}" VerticalOptions="Start"/>
                                 </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
                 <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
                     <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
                 </Frame>

@@ -53,18 +53,21 @@
 
         <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
-                <ScrollView Orientation="Horizontal" Padding="17">
-                    <StackLayout Orientation="Horizontal" >
-						<BindableLayout.ItemTemplate ItemsSource="{Binding Photos}">
-                            <DataTemplate x:DataType="Image">
-                                <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
-                                    <Image Source="{Binding Source}" VerticalOptions="Start"/>
-                                </Frame>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                </ScrollView>
-            </Frame>
+                    <ScrollView Orientation="Horizontal" Padding="17">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="Image">
+                                    <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
+                                        <Image  Aspect="AspectFill"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
+                                                Source="{Binding Source}" VerticalOptions="Start"/>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                 <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
                     <Image Source="{Binding Icon.Source}" VerticalOptions="Start"/>
