@@ -105,9 +105,7 @@ namespace greenshare_app.ViewModels
         private async Task OnEdit()
         {
             
-            if (post.GetType() == typeof(Offer))await navigation.PushModalAsync(new EditOffer((Offer)post));
-            //else await navigation.PushModalAsync(new EditRequest((Request)post));
-            await view.DisplayAlert("Sorry not sorry", "WIP", "OK");
+            await navigation.PushModalAsync(new EditPost(post));            
         }
 
         public string PostType
