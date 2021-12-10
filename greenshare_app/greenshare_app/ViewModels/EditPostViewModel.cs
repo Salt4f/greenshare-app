@@ -17,8 +17,7 @@ namespace greenshare_app.ViewModels
         public EditPostViewModel(INavigation navigation, Page view, Post post)
         {
             Title = "New Post";
-            //Options = Array.Empty;
-
+            //Options = Array.Empty;         
             this.navigation = navigation;
             this.view = view;
             this.post = post;
@@ -127,19 +126,7 @@ namespace greenshare_app.ViewModels
             get => selectedTag;
             set => SetProperty(ref selectedTag, value);
         }
-        private async Task Selected(object args)
-        {
-            
-            var image = args as Image;
-            if (image == null)
-                return;
-
-            //SelectedImage = null;
-            
-            //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
-            
-
-        }
+       
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
         public AsyncCommand OnRemovePhotoButtonCommand => new AsyncCommand(OnRemovePhotoButton);
@@ -208,7 +195,15 @@ namespace greenshare_app.ViewModels
             Photos.Add(photoImage);
             return true;
         }
+        private async Task Selected(object args)
+        {
+            var card = args as Image;
+            if (card == null)
+                return;
+            SelectedImage = card;            
+            //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
+        }
         private async Task OnRemovePhotoButton()
         {
             int index = Photos.IndexOf(SelectedImage);
