@@ -12,8 +12,11 @@
 
   <ItemGroup>
     <Compile Remove="Images\**" />
+    <Compile Remove="Resources\NewFolder\**" />
     <EmbeddedResource Remove="Images\**" />
+    <EmbeddedResource Remove="Resources\NewFolder\**" />
     <None Remove="Images\**" />
+    <None Remove="Resources\NewFolder\**" />
     <None Remove="Exceptions\" />
   </ItemGroup>
 
@@ -148,9 +151,5 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\logo.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\NewFolder\" />
   </ItemGroup>
 </Project>

@@ -1,52 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.ViewOffer"
+             x:Class="greenshare_app.Views.MainViewPages.ViewPost"
              xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
             BackgroundColor="{StaticResource colorWhite}"
-            xmlns:model="clr-namespace:greenshare_app.Models">
+            xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
     <ScrollView>
+
         <StackLayout Padding="20">
+
+            <StackLayout>
+                <Button HorizontalOptions="EndAndExpand"
+                Text="Go To Edit"
+                Command="{Binding OnEditButtonCommand}"
+                Style="{StaticResource styleButtonDefault}"/>
+            </StackLayout>
             <StackLayout Orientation="Vertical" Padding="20">
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"> POST 1 </Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"></Label>
                 </Frame>
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}">DESCRIPTION</Label>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}"></Label>
                 </Frame> 
                 <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}">POST TYPE</Label>
-                </Frame> 
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}"></Label>
+                </Frame>
+                <Frame>
+                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}"></Label>
+                </Frame>
             </StackLayout>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
-            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Horizontal">
-                <ListView ItemsSource="{Binding Photos}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:PostCard">
-                            <ViewCell>
-                                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
+            <StackLayout>
+                <Frame>
+                    <Label Style="{StaticResource styleLabelBlack}">Image</Label>
+                </Frame>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical">
+                <ScrollView Orientation="Horizontal" Padding="17">
+                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="Image">
+                                <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="AliceBlue" Margin="1">
+                                    <Image  Aspect="AspectFill"
+                                                HeightRequest="200"
+                                                WidthRequest="200"
+                                                Source="{Binding Source}" VerticalOptions="Start"/>
                                 </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+                <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
+                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
+                </Frame>
+            </StackLayout>
+            <!--TAGS-->
+            
+            <StackLayout>
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Tag">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                        <Label Text="{Binding Name}"
+                                            Style="{StaticResource styleLabelWhite}"
+                                            VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <!--TAGS-->
+
+<!--
             <StackLayout Orientation="Horizontal">
                 <ListView ItemsSource="{Binding Tags}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:PostCard">
                             <ViewCell>
                                 <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                    
+
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+-->
         </StackLayout>
     </ScrollView>
 </ContentPage>
