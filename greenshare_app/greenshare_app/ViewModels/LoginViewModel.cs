@@ -77,7 +77,7 @@ namespace greenshare_app.ViewModels
         {
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
-                await view.DisplayAlert(Text.Text.WrongInfo, "Email or password empty", Text.Text.OK);
+                await view.DisplayAlert(Text.Text.WrongInfo, Text.Text.EmailPasswordEmpty, Text.Text.OK);
             }
             else
             {
