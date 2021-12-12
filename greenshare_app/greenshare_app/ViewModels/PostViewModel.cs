@@ -40,6 +40,18 @@ namespace greenshare_app.ViewModels
             this.view = view;
             Name = post.Name;
             PostType = post.GetType().ToString();
+            if (PostType == "greenshare_app.Models.Offer")
+            {
+                PostType = "Offer";
+            }
+            else if (PostType == "greenshare_app.Models.Request")
+            {
+                PostType = "Request";
+            }
+            else
+            {
+                PostType = "";
+            }
             Description = post.Description;
             Tags = post.Tags;
             if (post.GetType() == typeof(Offer))
@@ -115,10 +127,11 @@ namespace greenshare_app.ViewModels
             {
                 switch (value)
                 {
-                    case nameof(Offer):                       
+                    case "Offer":
+
                         IsVisible = true;
                         break;
-                    case nameof(Request):
+                    case "Request":
                         IsVisible = false;
                         break;
                     default:

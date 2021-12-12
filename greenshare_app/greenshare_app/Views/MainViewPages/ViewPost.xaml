@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.ViewPost"
              xmlns:control="clr-namespace:greenshare_app.Controls"
-            xmlns:fontAwesome="clr-namespace:FontAwesome"
-            BackgroundColor="{StaticResource colorWhite}"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             BackgroundColor="{StaticResource colorWhite}"
+             
             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
     <ScrollView>
 
@@ -34,22 +35,38 @@
                         <StackLayout Padding="5" BackgroundColor="Transparent">
                             <Label Style="{StaticResource styleLabelBlack}" Text="Description" FontSize="12" VerticalOptions="Center"/>
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5" HeightRequest="100">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="EndAndExpand" Padding="5" HeightRequest="100">
                                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
                     </Frame>
-                    
-                    <!--<Frame>
-                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}"></Label>
+                    <!--POST TYPE-->
+                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
+                        <StackLayout Padding="5" BackgroundColor="Transparent">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
+                                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
+                                        <Label Style="{StaticResource styleLabelWhite}" Text="Post Type" FontSize="14" VerticalOptions="Center" FontAttributes="Bold"/>
+                                    </Frame>
+                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}" FontSize="14" TextColor="{StaticResource colorBlack}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
                     </Frame>
-                    <Frame>
-                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}"></Label>
+                    <!--TERMINATION DATE-->
+                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
+                        <StackLayout Padding="5" BackgroundColor="Transparent">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
+                                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
+                                        <Label Style="{StaticResource styleLabelWhite}" Text="Termination Date" FontSize="12" VerticalOptions="Center" FontAttributes="Bold"/>
+                                    </Frame>
+                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
                     </Frame>
-                    <Frame>
-                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}"></Label>
-                    </Frame>-->
                 </StackLayout>
             </Frame>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
