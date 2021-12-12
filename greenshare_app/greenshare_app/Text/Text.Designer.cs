@@ -19,7 +19,7 @@ namespace greenshare_app.Text {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Text {
@@ -115,6 +115,24 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email or password empty.
+        /// </summary>
+        internal static string EmailPasswordEmpty {
+            get {
+                return ResourceManager.GetString("EmailPasswordEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email and/or password incorrect.
+        /// </summary>
+        internal static string EmailPasswordIncorrect {
+            get {
+                return ResourceManager.GetString("EmailPasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         internal static string ForgotPassword {
@@ -129,6 +147,15 @@ namespace greenshare_app.Text {
         internal static string Fullname {
             get {
                 return ResourceManager.GetString("Fullname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal server error.
+        /// </summary>
+        internal static string InternalServerError {
+            get {
+                return ResourceManager.GetString("InternalServerError", resourceCulture);
             }
         }
         
@@ -151,11 +178,20 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OFFERS.
+        ///   Looks up a localized string similar to Offers.
         /// </summary>
-        internal static string OFFERS {
+        internal static string Offers {
             get {
-                return ResourceManager.GetString("OFFERS", resourceCulture);
+                return ResourceManager.GetString("Offers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         
@@ -241,6 +277,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something went wrong.
+        /// </summary>
+        internal static string SomethingWentWrong {
+            get {
+                return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Still not registered?.
         /// </summary>
         internal static string StillNot {
@@ -291,6 +336,15 @@ namespace greenshare_app.Text {
         internal static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong Info.
+        /// </summary>
+        internal static string WrongInfo {
+            get {
+                return ResourceManager.GetString("WrongInfo", resourceCulture);
             }
         }
     }

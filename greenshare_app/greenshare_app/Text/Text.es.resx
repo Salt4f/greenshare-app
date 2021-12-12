@@ -42,8 +42,8 @@
   <data name="Publish" xml:space="preserve">
     <value>Publicar</value>
   </data>
-  <data name="OFFERS" xml:space="preserve">
-    <value>OFERTAS</value>
+  <data name="Offers" xml:space="preserve">
+    <value>Ofertas</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Perfil</value>
@@ -89,5 +89,23 @@
   </data>
   <data name="VerifyDNI" xml:space="preserve">
     <value>Verificar DNI</value>
+  </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Error interno del servidor</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Algo salió mal</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WrongInfo" xml:space="preserve">
+    <value>Información incorrecta</value>
+  </data>
+  <data name="EmailPasswordIncorrect" xml:space="preserve">
+    <value>Email y/o contraseña incorrecta</value>
+  </data>
+  <data name="EmailPasswordEmpty" xml:space="preserve">
+    <value>Correo electrónico o contraseña vacía</value>
   </data>
 </root>
