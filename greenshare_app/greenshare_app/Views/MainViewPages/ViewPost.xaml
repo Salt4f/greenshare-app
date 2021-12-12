@@ -8,7 +8,7 @@
             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
     <ScrollView>
 
-        <StackLayout Padding="20">
+        <StackLayout Padding="15">
 
             <StackLayout>
                 <Button HorizontalOptions="EndAndExpand"
@@ -16,20 +16,42 @@
                 Command="{Binding OnEditButtonCommand}"
                 Style="{StaticResource styleButtonDefault}"/>
             </StackLayout>
-            <StackLayout Orientation="Vertical" Padding="20">
-                <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}"></Label>
-                </Frame>
-                <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}"></Label>
-                </Frame> 
-                <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}"></Label>
-                </Frame>
-                <Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}"></Label>
-                </Frame>
-            </StackLayout>
+            <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10">
+                <StackLayout Orientation="Vertical" Padding="2" BackgroundColor="Transparent">
+                    <!--TITLE-->
+                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="15">
+                        <StackLayout Style="{StaticResource styleStackLayoutDefault}">
+                            <Label Style="{StaticResource styleLabelBlack}" Text="Title" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen4}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10">
+                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}" FontSize="25" FontAttributes="bold" TextColor="{StaticResource colorWhite}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                    <!--DESCRIPTION-->
+                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
+                        <StackLayout Padding="5" BackgroundColor="Transparent">
+                            <Label Style="{StaticResource styleLabelBlack}" Text="Description" FontSize="12" VerticalOptions="Center"/>
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5" HeightRequest="100">
+                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                    
+                    <!--<Frame>
+                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}"></Label>
+                    </Frame>
+                    <Frame>
+                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}"></Label>
+                    </Frame>
+                    <Frame>
+                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}"></Label>
+                    </Frame>-->
+                </StackLayout>
+            </Frame>
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
             <StackLayout>
                 <Frame>
@@ -58,7 +80,9 @@
             <!--TAGS-->
             
             <StackLayout>
-                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center"
+                          VerticalOptions="Start"
+                          HeightRequest="100">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Tag">
                             <ViewCell>
