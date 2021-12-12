@@ -48,6 +48,7 @@ namespace greenshare_app.Utils
                     Banned = info.Banned,
                     TotalEcoPoints = 0,
                     TotalGreenCoins = 0,
+                    BirthDate = info.BirthDate,
                     AverageValoration = 0.0,
                 };
                 return user;
@@ -64,6 +65,10 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "fullname")]
             public string FullName { get; set; }
+
+            [JsonProperty(PropertyName = "birthDate")]
+            public DateTime BirthDate { get; set; }
+
 
             [JsonProperty(PropertyName = "profilePicture")]
             public byte[] ProfilePicture { get; set; }

@@ -31,15 +31,45 @@ namespace greenshare_app.ViewModels
             get => nickName;
             set => SetProperty(ref nickName, value);
         }
-
+        public string Description 
+        {
+            get => description;
+            set => SetProperty(ref description, value);
+        }
         public Image ProfilePicture { get; set; }
-
+        public double AverageValoration
+        {
+            get => averageValoration;
+            set => SetProperty(ref averageValoration, value);
+        }
+        public DateTime BirthDate
+        {
+            get => birthDate;
+            set => SetProperty(ref birthDate, value);
+        }
+        public int TotalEcoPoints
+        {
+            get => totalEcoPoints;
+            set => SetProperty(ref totalEcoPoints, value);
+        }
+        public int TotalGreenCoins
+        {
+            get => totalGreenCoins;
+            set => SetProperty(ref totalGreenCoins, value);
+        }
         private async void OnStart(object sender, EventArgs args)
         {
             try
             {
                 User user = await UserInfoUtil.Instance().GetUserInfo();
                 NickName = user.NickName;
+                Description = user.Description;
+                ProfilePicture = user.ProfilePicture;
+                AverageValoration = user.AverageValoration;
+                BirthDate = user.BirthDate;
+                TotalEcoPoints = user.TotalEcoPoints;
+                TotalGreenCoins = user.TotalGreenCoins;
+
             }
             catch (Exception e)
             {
@@ -54,6 +84,12 @@ namespace greenshare_app.ViewModels
         public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoClicked);
         private INavigation navigation;
         private Page view;
+        private string description;
+        private double averageValoration;
+        private DateTime birthDate;
+        private int totalEcoPoints;
+        private int totalGreenCoins;
+
         private async Task OnUserInfoClicked()
         {
             await navigation.PushModalAsync(new UserInfoPage());
