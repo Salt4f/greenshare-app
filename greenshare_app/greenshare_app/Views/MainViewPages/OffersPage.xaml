@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewModels:OffersPageViewModel"
-             Title="{x:Static multiIdioma:Text.OFFERS}">
+             Title="{x:Static multiIdioma:Text.Offers}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

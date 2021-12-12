@@ -83,13 +83,13 @@
                                 <ColumnDefinition Width="300" />
                             </Grid.ColumnDefinitions>
                             <Frame BackgroundColor="#eceff1" HasShadow="True" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" WidthRequest="352">
-                                <Label Text="{x:Static multiIdioma:Text.Username :}" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                <Label Text="{x:Static multiIdioma:Text.Username}" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
                             </Frame>
                             <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352">
                                 <Label Text="{Binding UserName}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
                             </Frame>
                             <Frame Grid.Row="1" Grid.Column="0" HasShadow="False" HorizontalOptions="StartAndExpand" WidthRequest="352">
-                                <Label Text="{x:Static multiIdioma:Text.BirthDate :} " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                <Label Text="{x:Static multiIdioma:Text.BirthDate} " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
                             </Frame>
                             <Frame BackgroundColor="White" Margin="-6,0,0,0" HasShadow="True" Grid.Row="1" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352">
                                 <Label Text="{Binding BirthDate}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
@@ -107,7 +107,7 @@
                                 <Label Text="{Binding GreenPoints}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
                             </Frame>
                             <Frame BackgroundColor="#eceff1" Grid.Row="4" Grid.Column="0" HorizontalOptions="StartAndExpand" WidthRequest="352">
-                                <Label Text="{x:Static multiIdioma:Text.AvgValoration :}" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                <Label Text="{x:Static multiIdioma:Text.AvgValoration}" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
                             </Frame>
                             <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352">
                                 <Label Text="{Binding AverageValoration}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
