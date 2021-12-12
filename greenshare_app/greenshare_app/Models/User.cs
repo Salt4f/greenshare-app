@@ -8,6 +8,8 @@ namespace greenshare_app.Models
     public class User
     {     
         public string FullName { get; set; }
+
+        public DateTime BirthDate { get; set; }
         public string NickName { get; set; }
         public string Description { get; set; }
         public Image ProfilePicture { get; set; }
