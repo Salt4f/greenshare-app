@@ -106,8 +106,7 @@ namespace greenshare_app.Utils
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/offers/"+ offerId.ToString(), httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
-            {
-                
+            {               
                 return true;
             }
             return false;
