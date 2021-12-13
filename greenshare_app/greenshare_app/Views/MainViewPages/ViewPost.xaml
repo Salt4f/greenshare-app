@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.ViewPost"
              BackgroundColor="{StaticResource colorGreen9}"
-            xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
     <ScrollView>
         <StackLayout Padding="10" Margin="2">
             <!--BOTO EDITAR-->
-            <StackLayout>
-                <Button HorizontalOptions="EndAndExpand"
-                Text="Go To Edit"
-                Command="{Binding OnEditButtonCommand}"
-                Style="{StaticResource styleButtonDefault}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                <Frame Style="{StaticResource styleFrameEntry}" HorizontalOptions="EndAndExpand" CornerRadius="20" WidthRequest="75" BackgroundColor="{StaticResource colorGreen3}">
+                    <Button Text="{x:Static fontAwesome:FontAwesomeIcons.PenAlt}" FontFamily="FAS"
+                            Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="20"/>
+                </Frame>
             </StackLayout>
             <!--CAMPS PRINCIPALS-->
             <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10">
