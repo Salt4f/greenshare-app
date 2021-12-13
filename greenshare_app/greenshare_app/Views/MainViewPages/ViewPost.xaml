@@ -77,9 +77,9 @@
             <StackLayout>
                 <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorGreen5}">
                     <StackLayout>
-                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
+                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorBlack}">
                             <StackLayout Padding="5" BackgroundColor="Transparent">
-                                <Label Style="{StaticResource styleLabelBlack}" Text="TAGS" FontSize="16" VerticalOptions="Center" FontAttributes="bold"/>
+                                <Label Style="{StaticResource styleLabelWhite}" Text="TAGS" FontSize="16" VerticalOptions="Center" FontAttributes="bold"/>
                             </StackLayout>
                         </Frame>
                         <ScrollView Orientation="Horizontal" Padding="10">
@@ -107,9 +107,9 @@
             <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical">
                 <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorGreen5}">
                     <StackLayout>
-                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
+                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorBlack}">
                             <StackLayout Padding="5" BackgroundColor="Transparent">
-                                <Label Style="{StaticResource styleLabelBlack}" Text="IMAGES" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
+                                <Label Style="{StaticResource styleLabelWhite}" Text="IMAGES" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
                             </StackLayout>
                         </Frame>
                         <ScrollView Orientation="Horizontal" Padding="10">
