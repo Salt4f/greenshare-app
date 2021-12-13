@@ -67,8 +67,12 @@
                                                         <DataTemplate x:DataType="model:Tag">
                                                             <ViewCell>
                                                                 <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
-                                                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
-                                                                        <Label Text="{Binding Name}"
+                                                                    <Frame BackgroundColor="{StaticResource colorBlack}" CornerRadius="25" Padding="5">
+
+                                                                    <!--TODO: CANVIAR EL COLOR DEL BACKGROUND D'UN TAG PEL DEL BINDING-->
+                                                                    <!--TODO: BackgroundColor="{Binding Color}"-->
+
+                                                                    <Label Text="{Binding Name}"
                                                                         Style="{StaticResource styleLabelWhite}"
                                                                         VerticalOptions="Center"/>
                                                                     </Frame>
