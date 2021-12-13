@@ -151,7 +151,23 @@ namespace greenshare_app.ViewModels
                 default:
                     break;
             }
-            await view.DisplayAlert("Offer Created", "", "ok");
+            await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            ResetProperties();
+
+        }
+
+        private void ResetProperties()
+        {
+            Description = string.Empty;
+            Name = string.Empty;
+            photoBytesArray = new List<byte[]>();
+            Photos = new ObservableRangeCollection<Image>();
+            Tags = new ObservableRangeCollection<Tag>();
+            Icon = new Image();
+            TerminationDateTime = DateTime.Now;
+            MinDate = DateTime.Now;
+            NewTag = string.Empty;
+
         }
 
         public string PostType
