@@ -118,7 +118,7 @@ namespace greenshare_app.ViewModels
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
             Tags.Add(new Tag { Color = tagColor, Name = NewTag });
-
+            NewTag = string.Empty;
         }
 
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
