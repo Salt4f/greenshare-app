@@ -144,16 +144,16 @@ namespace greenshare_app.ViewModels
                         return;
                     }                  
                     await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
-                    ResetProperties();
                     break;
                 case nameof(Request):
                     await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
-                    ResetProperties();
                     break;
                 default:
                     break;
             }
-            await view.DisplayAlert("Offer Created", "", "ok");
+            await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            ResetProperties();
+
         }
 
         private void ResetProperties()
