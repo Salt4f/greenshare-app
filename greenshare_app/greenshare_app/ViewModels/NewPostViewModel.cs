@@ -144,14 +144,30 @@ namespace greenshare_app.ViewModels
                         return;
                     }                  
                     await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
+                    ResetProperties();
                     break;
                 case nameof(Request):
                     await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+                    ResetProperties();
                     break;
                 default:
                     break;
             }
             await view.DisplayAlert("Offer Created", "", "ok");
+        }
+
+        private void ResetProperties()
+        {
+            Description = string.Empty;
+            Name = string.Empty;
+            photoBytesArray = new List<byte[]>();
+            Photos = new ObservableRangeCollection<Image>();
+            Tags = new ObservableRangeCollection<Tag>();
+            Icon = new Image();
+            TerminationDateTime = DateTime.Now;
+            MinDate = DateTime.Now;
+            NewTag = string.Empty;
+
         }
 
         public string PostType
