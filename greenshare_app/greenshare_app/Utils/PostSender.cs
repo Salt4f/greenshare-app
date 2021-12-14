@@ -52,7 +52,7 @@ namespace greenshare_app.Utils
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
                 //falta ver que hacemos con el id y el createdAt que nos devuelven
                 return true;
-            }
+            }            
             return false;
 
         }
