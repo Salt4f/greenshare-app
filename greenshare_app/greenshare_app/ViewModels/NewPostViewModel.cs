@@ -127,31 +127,34 @@ namespace greenshare_app.ViewModels
         {
             if (Name.Length == 0)
             {
-                await view.DisplayAlert("Name field not filled", "Please enter a name", "OK");
+                await view.DisplayAlert("Error while creating Post", "Please enter a name", "OK");
                 return;
             }
             if (Description.Length == 0)
             {
-                await view.DisplayAlert("Description field not filled", "Please enter a description", "OK");
+                await view.DisplayAlert("Error while creating Post", "Please enter a description", "OK");
                 return;
-            }           
+            }
+            bool response;
             switch (PostType)
             {
                 case nameof(Offer):
                     if (Icon == null)
                     {
-                        await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
+                        await view.DisplayAlert("Error while creating Post", "Please enter an icon", "OK");
                         return;
                     }                  
-                    await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
+                    response = await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
                     break;
                 case nameof(Request):
-                    await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+                    response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
                     break;
                 default:
+                    response = false;
                     break;
             }
-            await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            if (response) await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            else await view.DisplayAlert("Error while creating Post", "Invalid Session, please make sure you are logged in", "OK");
             ResetProperties();
 
         }
