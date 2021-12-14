@@ -18,7 +18,6 @@ namespace greenshare_app.ViewModels
             Password = string.Empty;
             RepeatPassword = string.Empty;
             birthDate = DateTime.Today;
-
             this.navigation = navigation;
             this.view = view;
         }

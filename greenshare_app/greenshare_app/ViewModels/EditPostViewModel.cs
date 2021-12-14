@@ -151,7 +151,7 @@ namespace greenshare_app.ViewModels
         {
             //Tag no existe
             Tags.Remove(SelectedTag);
-            await view.DisplayAlert(" Tag deleted successfully", "", "OK");
+            await view.DisplayAlert("Tag deleted successfully", "", "OK");
         }
         private async Task OnSubmit()
         {
@@ -177,7 +177,8 @@ namespace greenshare_app.ViewModels
             else
             {
                 await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
-            }          
+            }
+            await view.DisplayAlert("Post Edited successfully", "", "OK");
         }
 
         public async Task<bool> OnAddPhotoButton()
