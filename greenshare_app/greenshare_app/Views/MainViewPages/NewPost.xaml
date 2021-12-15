@@ -72,11 +72,12 @@
                 </Frame>
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                     <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
-                    <Image Source="{Binding Icon.Source}" 
+                        <Image Source="{Binding Icon.Source}" 
                            Aspect="AspectFill"
                            HeightRequest="100"
                            WidthRequest="100"
                            VerticalOptions="Start"/>
+                    </Frame>
                 </Frame>
                 <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
                     <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
