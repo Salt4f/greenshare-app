@@ -27,7 +27,7 @@ namespace greenshare_app.ViewModels
         public OffersPageViewModel(INavigation navigation, Page view)
         {
             Title = "Ofertes";
-
+            
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
@@ -45,7 +45,7 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                var loc = await Geolocation.GetLastKnownLocationAsync();
+                var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetOffers(loc);
                 PostCardList.AddRange(cards);
                 IsBusy = false;
@@ -53,19 +53,28 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "No offers found in your surrounding area", "OK");
+                await view.DisplayAlert("No offers found in your surrounding area", "Make sure location is enabled and refresh to check if there are any new offers around you", "OK");
             }
             IsBusy = false;
         }
 
         private async Task Refresh()
         {
-            IsBusy = true;
-            var loc = await Geolocation.GetLastKnownLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
-            PostCardList.Clear();
-            postCardList.AddRange(cards);
-            IsBusy = false;
+            try
+            {
+                IsBusy = true;
+                await navigation.PopToRootAsync();
+                var loc = await Geolocation.GetLocationAsync();
+                var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
+                PostCardList.Clear();
+                postCardList.AddRange(cards);
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("No offers found in your surrounding area", "Make sure location is enabled and refresh to check if there are any new offers around you", "OK");
+            }
         }
 
         public ObservableRangeCollection<PostCard> PostCardList
@@ -90,8 +99,8 @@ namespace greenshare_app.ViewModels
                 return;
 
             Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
-
-            await navigation.PushModalAsync(new ViewPost(offer));
+            if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
+            else await navigation.PushModalAsync(new ViewPost(offer));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }

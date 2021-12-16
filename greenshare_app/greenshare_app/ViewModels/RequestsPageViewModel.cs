@@ -26,8 +26,7 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public RequestsPageViewModel(INavigation navigation, Page view)
         {
-            Title = "Peticions";
-
+            Title = "Peticions";            
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
@@ -45,7 +44,8 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                var loc = await Geolocation.GetLastKnownLocationAsync();
+                await navigation.PopToRootAsync();
+                var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.AddRange(cards);
                 IsBusy = false;
@@ -53,18 +53,28 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "No requests found in your surrounding area", "OK");
+                await view.DisplayAlert("No requests found in your surrounding area", "Make sure location is enabled and refresh to check if there are any new requests around you", "OK");
             }
             IsBusy = false;
         }
 
         private async Task Refresh()
         {
-            IsBusy = true;
-            var loc = await Geolocation.GetLastKnownLocationAsync();
-            var cards = await PostRetriever.Instance().GetRequests(loc/*, int.MaxValue*/);
-            PostCardList.Clear();
-            postCardList.AddRange(cards);
+            try
+            {
+                IsBusy = true;
+                await navigation.PopToRootAsync();
+                var loc = await Geolocation.GetLocationAsync();
+                var cards = await PostRetriever.Instance().GetRequests(loc);
+                PostCardList.Clear();
+                PostCardList.AddRange(cards);
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("No requests found in your surrounding area", "Make sure location is enabled and refresh to check if there are any new requests around you", "OK");
+            }
             IsBusy = false;
         }
 
@@ -92,7 +102,8 @@ namespace greenshare_app.ViewModels
 
             Request request = await PostRetriever.Instance().GetRequest(SelectedPostCard.Id);
 
-            await navigation.PushModalAsync(new ViewPost(request));
+            if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Request not found", "OK");
+            else await navigation.PushModalAsync(new ViewPost(request));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }

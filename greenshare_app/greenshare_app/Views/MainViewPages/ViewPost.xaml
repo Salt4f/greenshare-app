@@ -10,7 +10,7 @@
             <!--BOTO EDITAR-->
             <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                 <Frame Style="{StaticResource styleFrameEntry}" HorizontalOptions="EndAndExpand" CornerRadius="20" WidthRequest="75" BackgroundColor="{StaticResource colorGreen3}">
-                    <Button Text="{x:Static fontAwesome:FontAwesomeIcons.PenAlt}" FontFamily="FAS"
+                    <Button IsVisible ="{Binding IsEditButtonVisible}" Text="{x:Static fontAwesome:FontAwesomeIcons.PenAlt}" FontFamily="FAS"
                             Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="20"/>
                 </Frame>
             </StackLayout>
