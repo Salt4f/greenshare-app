@@ -45,7 +45,7 @@ namespace greenshare_app.ViewModels
             {
                 IsBusy = true;
                 await navigation.PopToRootAsync();
-                var loc = await Geolocation.GetLastKnownLocationAsync();
+                var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.AddRange(cards);
                 IsBusy = false;
@@ -53,7 +53,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("No requests found in your surrounding area", "Refresh to check if there are any new requests around you", "OK");
+                await view.DisplayAlert("No requests found in your surrounding area", "Make sure location is enabled and refresh to check if there are any new requests around you", "OK");
             }
             IsBusy = false;
         }
@@ -64,7 +64,7 @@ namespace greenshare_app.ViewModels
             {
                 IsBusy = true;
                 await navigation.PopToRootAsync();
-                var loc = await Geolocation.GetLastKnownLocationAsync();
+                var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.Clear();
                 PostCardList.AddRange(cards);
@@ -73,7 +73,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("No requests found in your surrounding area", "Refresh to check if there are any new requests around you", "OK");
+                await view.DisplayAlert("No requests found in your surrounding area", "Make sure location is enabled and refresh to check if there are any new requests around you", "OK");
             }
             IsBusy = false;
         }
