@@ -27,7 +27,7 @@ namespace greenshare_app.ViewModels
         public OffersPageViewModel(INavigation navigation, Page view)
         {
             Title = "Ofertes";
-
+            
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
@@ -60,12 +60,21 @@ namespace greenshare_app.ViewModels
 
         private async Task Refresh()
         {
-            IsBusy = true;
-            var loc = await Geolocation.GetLastKnownLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
-            PostCardList.Clear();
-            postCardList.AddRange(cards);
-            IsBusy = false;
+            try
+            {
+                IsBusy = true;
+                await navigation.PopToRootAsync();
+                var loc = await Geolocation.GetLastKnownLocationAsync();
+                var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
+                PostCardList.Clear();
+                postCardList.AddRange(cards);
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("No offers found in your surrounding area", "Refresh to check if there are any new offers around you", "OK");
+            }
         }
 
         public ObservableRangeCollection<PostCard> PostCardList

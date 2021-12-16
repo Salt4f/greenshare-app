@@ -26,8 +26,7 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public RequestsPageViewModel(INavigation navigation, Page view)
         {
-            Title = "Peticions";
-
+            Title = "Peticions";            
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
@@ -45,6 +44,7 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
+                await navigation.PopToRootAsync();
                 var loc = await Geolocation.GetLastKnownLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.AddRange(cards);
@@ -60,11 +60,21 @@ namespace greenshare_app.ViewModels
 
         private async Task Refresh()
         {
-            IsBusy = true;
-            var loc = await Geolocation.GetLastKnownLocationAsync();
-            var cards = await PostRetriever.Instance().GetRequests(loc/*, int.MaxValue*/);
-            PostCardList.Clear();
-            postCardList.AddRange(cards);
+            try
+            {
+                IsBusy = true;
+                await navigation.PopToRootAsync();
+                var loc = await Geolocation.GetLastKnownLocationAsync();
+                var cards = await PostRetriever.Instance().GetRequests(loc);
+                PostCardList.Clear();
+                PostCardList.AddRange(cards);
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("No requests found in your surrounding area", "Refresh to check if there are any new requests around you", "OK");
+            }
             IsBusy = false;
         }
 
