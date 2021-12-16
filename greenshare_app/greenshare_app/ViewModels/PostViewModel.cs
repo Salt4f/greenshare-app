@@ -24,7 +24,7 @@ namespace greenshare_app.ViewModels
         private string postType;
         public AsyncCommand OnEditButtonCommand => new AsyncCommand(OnEdit);
 
-        
+        private event EventHandler Starting = delegate { };
         private IList<Image> photos;
         private Image icon;
         private IEnumerable<Tag> tags;
@@ -40,6 +40,7 @@ namespace greenshare_app.ViewModels
             this.view = view;
             Name = post.Name;
             PostType = post.GetType().ToString();
+            
             if (PostType == "greenshare_app.Models.Offer")
             {
                 PostType = "Offer";
@@ -72,7 +73,18 @@ namespace greenshare_app.ViewModels
                 }
             }
             else IsVisible = false;
-
+            Starting += OnStart;
+            Starting(this, EventArgs.Empty);
+            
+        }
+        private async void OnStart(object sender, EventArgs args)
+        {
+            
+            IsBusy = true;
+            var session = await Auth.Instance().GetAuth();
+            if (session.Item1 != post.OwnerId) IsEditButtonVisible = false;
+            else IsEditButtonVisible = true;
+            IsBusy = false;
         }
         public string Name
         {
@@ -91,6 +103,7 @@ namespace greenshare_app.ViewModels
         }
 
         private DateTime minDate;
+        private bool isEditButtonVisible;
 
         public Image Icon
         {
@@ -113,7 +126,13 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref isVisible, value);
         }
 
-       
+        public bool IsEditButtonVisible
+        {
+            get => isEditButtonVisible;
+            set => SetProperty(ref isEditButtonVisible, value);
+        }
+
+
         private async Task OnEdit()
         {
             
