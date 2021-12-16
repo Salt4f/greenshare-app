@@ -21,6 +21,7 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             this.post = post;
+            tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();
             Name = post.Name;
             Description = post.Description;
@@ -89,6 +90,7 @@ namespace greenshare_app.ViewModels
         private Image selectedImage;
         private string newTag;
         private Tag selectedTag;
+        private IList<string> tagNames;
 
         public Image Icon
         {
@@ -144,7 +146,16 @@ namespace greenshare_app.ViewModels
             byte[] colors = new byte[3];
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
-            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+            if (!tagNames.Contains(NewTag))
+            {
+                Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+                tagNames.Add(NewTag);
+            }
+            else
+            {
+                await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
+            }
+            NewTag = string.Empty;
         }
 
         private async Task OnRemoveTag()
@@ -152,6 +163,8 @@ namespace greenshare_app.ViewModels
             //Tag no existe
             if (SelectedTag != null)
             {
+                string name = SelectedTag.Name;
+                tagNames.Remove(name);
                 Tags.Remove(SelectedTag);
                 SelectedTag = null;
                 await view.DisplayAlert("Tag deleted successfully", "", "OK");

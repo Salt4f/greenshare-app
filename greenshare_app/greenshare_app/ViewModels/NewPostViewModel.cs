@@ -22,6 +22,7 @@ namespace greenshare_app.ViewModels
 
             this.navigation = navigation;
             this.view = view;
+            tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();           
             photos = new ObservableRangeCollection<Image>();
             tags = new ObservableRangeCollection<Tag>();
@@ -66,6 +67,8 @@ namespace greenshare_app.ViewModels
         }
 
         private byte[] iconBytes;
+        //Used to check repeated tags
+        private IList<string> tagNames;
         private DateTime minDate;
         private string newTag;
 
@@ -117,7 +120,15 @@ namespace greenshare_app.ViewModels
             byte[] colors = new byte[3];
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
-            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+            if (!tagNames.Contains(NewTag))
+            {
+                Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+                tagNames.Add(NewTag);
+            }
+            else
+            {
+                await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
+            }            
             NewTag = string.Empty;
         }
 
@@ -135,6 +146,7 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Error while creating Post", "Please enter a description", "OK");
                 return;
             }
+            
             bool response;
             switch (PostType)
             {
@@ -170,6 +182,7 @@ namespace greenshare_app.ViewModels
             TerminationDateTime = DateTime.Now;
             MinDate = DateTime.Now;
             NewTag = string.Empty;
+            tagNames = new List<string>();
 
         }
 

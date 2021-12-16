@@ -53,7 +53,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "No requests found in your surrounding area", "OK");
+                await view.DisplayAlert("No requests found in your surrounding area", "Refresh to check if there are any new requests around you", "OK");
             }
             IsBusy = false;
         }
