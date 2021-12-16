@@ -146,7 +146,12 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Error while creating Post", "Please enter a description", "OK");
                 return;
             }
-            
+            var loc = await Geolocation.GetLocationAsync();
+            if (loc == null)
+            {
+                await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device", "OK");
+                return;
+            }
             bool response;
             switch (PostType)
             {
@@ -156,10 +161,10 @@ namespace greenshare_app.ViewModels
                         await view.DisplayAlert("Error while creating Post", "Please enter an icon", "OK");
                         return;
                     }                  
-                    response = await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
+                    response = await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, loc, Tags, photoBytesArray, iconBytes);
                     break;
                 case nameof(Request):
-                    response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+                    response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, loc, Tags);
                     break;
                 default:
                     response = false;
