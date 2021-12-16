@@ -92,7 +92,8 @@ namespace greenshare_app.ViewModels
 
             Request request = await PostRetriever.Instance().GetRequest(SelectedPostCard.Id);
 
-            await navigation.PushModalAsync(new ViewPost(request));
+            if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Request not found", "OK");
+            else await navigation.PushModalAsync(new ViewPost(request));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }

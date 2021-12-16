@@ -90,8 +90,8 @@ namespace greenshare_app.ViewModels
                 return;
 
             Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
-
-            await navigation.PushModalAsync(new ViewPost(offer));
+            if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
+            else await navigation.PushModalAsync(new ViewPost(offer));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }
