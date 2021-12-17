@@ -24,6 +24,7 @@ namespace greenshare_app.ViewModels
             tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();
             Name = post.Name;
+        
             Description = post.Description;
             TerminationDateTime = post.TerminateAt;
             tags = new ObservableRangeCollection<Tag>();
@@ -39,6 +40,7 @@ namespace greenshare_app.ViewModels
                 Photos = new ObservableRangeCollection<Image>();
                 foreach (byte[] photo in ((Offer)post).Photos)
                 {
+                    photoBytesArray.Add(photo);
                     Image definitivePhoto = new Image
                     {
                         Source = ImageSource.FromStream(() => { return new MemoryStream(photo); })
@@ -231,7 +233,6 @@ namespace greenshare_app.ViewModels
             if (SelectedImage != null)
             {
                 int index = Photos.IndexOf(SelectedImage);
-                if (index == 0) return;
                 Photos.RemoveAt(index);
                 photoBytesArray.RemoveAt(index);
                 SelectedImage = null;
