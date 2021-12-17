@@ -4,81 +4,67 @@
              xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
+    <StackLayout>
+        <StackLayout  Padding="20" Spacing="30" BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Frame BackgroundColor="{StaticResource colorWhite}" Padding="30,70" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="250" Margin="0">
+                <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
+            </Frame>
+            <Frame BackgroundColor="{StaticResource colorWhite}" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0" CornerRadius="20">
+                <Label Text="{Binding NickName}" Margin="40,25" FontSize="25" Style="{StaticResource styleLabelBlack}" HorizontalOptions="Center"/>
+            </Frame>
+        </StackLayout>
 
 
-    <ContentPage.Content>
-        <StackLayout>
-            
-            <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="0">
-                <StackLayout  Padding="20" Spacing="30">
-                    <Label Text="Perfil" TextColor="Black" FontSize="25" FontFamily="Montserrat-Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="0,30,0,5"/>
-                    <Frame BackgroundColor="white" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0" CornerRadius="20">
-                        <StackLayout>
-                            <Grid>
-                                <Frame BackgroundColor="Transparent" Margin="0,40,0,0" Padding="0" HorizontalOptions="Center" CornerRadius="50">
-                                    <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
-                                </Frame>
-                            </Grid>
-                            <Grid>
-                                <Label Text="{Binding NickName}" Margin="0,5,0,40" Font="25" FontFamily="Montserrat-Medium" TextColor="Black" HorizontalOptions="Center" />
-                            </Grid>
-                        </StackLayout>
+
+        <StackLayout Orientation="Vertical" Padding="10" Margin="10">
+
+        <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" ></Label>
                     </Frame>
                 </StackLayout>
-            </Frame>
-
-
-            <StackLayout Orientation="Vertical" Padding="15" Margin="15">
-
-                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR" ></Label>
-                            </Frame>
-                        </StackLayout>
-                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="User Information"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-
-                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                            <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.FileAlt}" FontFamily="FAS"></Label>
-                            </Frame>
-                        </StackLayout>
-                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Publications"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-
-                <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.SignOutAlt}" FontFamily="FAS" ></Label>
-                            </Frame>
-                        </StackLayout>
-                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Log out"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-                
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="User Information"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.FileAlt}" FontFamily="FAS"></Label>
+                    </Frame>
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Publications"/>
+                </StackLayout>
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <Frame Style="{StaticResource styleFrameDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="15" Margin="10" CornerRadius="20" BackgroundColor="{StaticResource colorGreen4}">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.SignOutAlt}" FontFamily="FAS" ></Label>
+                    </Frame>
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="18" Text="Log out"/>
+                </StackLayout>
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+    </StackLayout>
+    </StackLayout>
 </ContentPage>
