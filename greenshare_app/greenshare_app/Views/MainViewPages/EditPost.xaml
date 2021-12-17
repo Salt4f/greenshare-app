@@ -42,30 +42,36 @@
                     <!--FOTOS-->
                     <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
                         <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="5" BackgroundColor="{StaticResource colorGreen9}">
-                            <ScrollView Orientation="Horizontal" Padding="10">
-                                <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate x:DataType="Image">
-                                            <Frame CornerRadius="10" Padding="10" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen4}">
-                                                <Image  Aspect="AspectFill"
-                                                        HeightRequest="100"
-                                                        WidthRequest="100"
-                                                        Source="{Binding Source}" VerticalOptions="Start"/>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
-                            </ScrollView>
+                            <ListView ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedImage}"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Start"
+                                      HeightRequest="125">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="Image">
+                                        <ViewCell>
+                                            <Image  Aspect="AspectFit"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center"
+                                                        Source="{Binding Source}"
+                                                    BackgroundColor="{StaticResource colorGreen4}"
+                                                    Margin="5"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Frame>
+                        <Button HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                Text="Borrar Foto"
+                                Command="{Binding OnRemovePhotoButtonCommand}"
+                                Style="{StaticResource styleButtonDefault}"/>
                         <!--ICON-->
-                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
-                            <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
-                                <Image Source="{Binding Icon.Source}" 
+                        <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
+                            <Image Source="{Binding Icon.Source}" 
                                Aspect="AspectFill"
                                HeightRequest="100"
                                WidthRequest="100"
                                VerticalOptions="Start"/>
-                            </Frame>
                         </Frame>
                         <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
                             <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
