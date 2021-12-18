@@ -179,6 +179,35 @@ namespace greenshare_app.Utils
             return null;
         }
 
+        public async Task<IEnumerable<PostStatus>> GetPostsByUserId(string type)
+        {
+            string query = "?type=" + type;
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts" + query);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostStatus>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostStatusInfo>();
+                    var card = new PostStatus()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                        Description = info.Description,
+                        Active = info.Active,
+                        Status = info.Status,
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+
         private class PostCardInfo
         {
             [JsonProperty(PropertyName = "id")]
@@ -196,6 +225,19 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "author")]
             public string Author { get; set; }
         }
+        private class PostStatusInfo : PostCardInfo 
+        {
+            [JsonProperty(PropertyName = "description")]
+            public string Description { get; set; }
+
+            [JsonProperty(PropertyName = "active")]
+            public bool Active { get; set; }
+
+            [JsonProperty(PropertyName = "status")]
+            public string Status { get; set; }
+
+        }
+
 
         private class PostInfo
         {

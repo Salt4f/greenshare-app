@@ -15,7 +15,7 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
-        private ObservableRangeCollection<PostCard> myPosts;
+        private ObservableRangeCollection<PostStatus> myPosts;
 
         private event EventHandler Starting = delegate { };
         public MyPostsViewModel(INavigation navigation, Page view)
@@ -37,10 +37,10 @@ namespace greenshare_app.ViewModels
                 IsBusy = true;
                 var loc = await Geolocation.GetLocationAsync();
                 var ownerId = (await Auth.Instance().GetAuth()).Item1;
-                var cards = await PostRetriever.Instance().GetOffers(loc, 200, null, ownerId);
-                MyPosts.AddRange(cards);
-                cards = await PostRetriever.Instance().GetRequests(loc, 200, null, ownerId);
-                MyPosts.AddRange(cards);
+                var offers = await PostRetriever.Instance().GetPostsByUserId("offers");
+                if (offers != null) MyPosts.AddRange(offers);
+                var requests = await PostRetriever.Instance().GetPostsByUserId("requests");
+                if (requests != null) MyPosts.AddRange(requests);
                 if (MyPosts.Count == 0) await view.DisplayAlert("No Posts Found", "Please create a post first", "OK");
                 IsBusy = false;
             }
@@ -53,7 +53,7 @@ namespace greenshare_app.ViewModels
         }
 
 
-        public ObservableRangeCollection<PostCard> MyPosts
+        public ObservableRangeCollection<PostStatus> MyPosts
         {
             get => myPosts;
             set => SetProperty(ref myPosts, value);
