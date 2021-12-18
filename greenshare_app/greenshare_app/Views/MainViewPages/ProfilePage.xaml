@@ -55,7 +55,7 @@
                     <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="OUTGOING REQUESTS"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
+                    <TapGestureRecognizer Command="{Binding UserOutgoingInteractionsCommand}"/>
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -68,7 +68,7 @@
                     <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="INCOMING REQUESTS"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
+                    <TapGestureRecognizer Command="{Binding UserIncomingInteractionsCommand}"/>
                 </Frame.GestureRecognizers>
             </Frame>
 
