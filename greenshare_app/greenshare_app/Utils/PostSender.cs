@@ -149,6 +149,9 @@ namespace greenshare_app.Utils
             };
 
             string json = JsonConvert.SerializeObject(post);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/requests/" + requestId.ToString(), httpContent);
