@@ -60,11 +60,11 @@ namespace greenshare_app.Utils
 
         private async Task<bool> ValidateLogin()
         {
-            var login = new ValidationInfo { Id = id, Token = token };
-            string json = JsonConvert.SerializeObject(login);
-            var httpContent = new StringContent(json);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", id.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", token);
+            var httpContent = new StringContent("");
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/validate", httpContent);
             if (response.StatusCode == HttpStatusCode.OK) return true;
             return false;
