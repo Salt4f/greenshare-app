@@ -42,9 +42,12 @@ namespace greenshare_app.Utils
             {
                 throw new InvalidLoginException();
             }
-            RequestInfo post = new RequestInfo { OwnerId = session.Item1, Name = name, Token = session.Item2, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags };
+            RequestInfo post = new RequestInfo { Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags };
             string json = JsonConvert.SerializeObject(post);
             var httpContent = new StringContent(json);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
@@ -60,12 +63,21 @@ namespace greenshare_app.Utils
         public async Task<bool> PostOffer(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
         {
             Tuple<int, string> session;
-            session = await Auth.Instance().GetAuth();
+            try
+            {
+                session = await Auth.Instance().GetAuth();
 
-            OfferInfo post = new OfferInfo { OwnerId = session.Item1, Name = name, Token = session.Item2, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags, Photos = photos, Icon = icon };
-            string json = JsonConvert.SerializeObject(post);
-           
-            var httpContent = new StringContent(json);          
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            OfferInfo post = new OfferInfo {  Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags, Photos = photos, Icon = icon };
+            string json = JsonConvert.SerializeObject(post);           
+            var httpContent = new StringContent(json);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
@@ -91,9 +103,7 @@ namespace greenshare_app.Utils
                 throw new InvalidLoginException();
             }
             OfferInfo post = new OfferInfo { 
-                OwnerId = session.Item1, 
                 Name = name, 
-                Token = session.Item2, 
                 Description = description, 
                 TerminateAt = terminateAt, 
                 Location = location, 
@@ -103,6 +113,9 @@ namespace greenshare_app.Utils
 
             string json = JsonConvert.SerializeObject(post);
             var httpContent = new StringContent(json);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/offers/"+ offerId.ToString(), httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -126,10 +139,8 @@ namespace greenshare_app.Utils
                 throw new InvalidLoginException();
             }
             RequestInfo post = new RequestInfo
-            {
-                OwnerId = session.Item1,
+            {                
                 Name = name,
-                Token = session.Item2,
                 Description = description,
                 TerminateAt = terminateAt,
                 Location = location,
@@ -150,15 +161,10 @@ namespace greenshare_app.Utils
         }
         private class PostInfo
         {
-            [JsonProperty(PropertyName = "id")]
-            public int OwnerId { get; set; }
-
+            
             [JsonProperty(PropertyName = "name")]
             public string Name { get; set; }
-
-            [JsonProperty(PropertyName = "token")]
-            public string Token { get; set; }
-
+            
             [JsonProperty(PropertyName = "description")]
             public string Description { get; set; }
 

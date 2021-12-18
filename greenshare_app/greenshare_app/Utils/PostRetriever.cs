@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-
+            
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -182,8 +182,23 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostStatus>> GetPostsByUserId(string type)
         {
             string query = "?type=" + type;
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts" + query);
 
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts" + query);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
@@ -237,7 +252,6 @@ namespace greenshare_app.Utils
             public string Status { get; set; }
 
         }
-
 
         private class PostInfo
         {
