@@ -21,6 +21,7 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             this.post = post;
+            this.TerminationDateTime = post.TerminateAt;
             tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();
             Name = post.Name;
