@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
-             xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
     <StackLayout>
-        <StackLayout  Padding="20" Spacing="30" BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-            <Frame BackgroundColor="{StaticResource colorWhite}" Padding="30,70" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="250" Margin="0">
+        
+        <!--HEADER, PICTURE AND USERNAME-->
+        <StackLayout Padding="20" Spacing="10" BackgroundColor="{StaticResource colorGreen9}" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Frame BackgroundColor="{StaticResource colorWhite}" Padding="20,60" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="100" Margin="5" BorderColor="{StaticResource colorBlack}">
                 <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
             </Frame>
-            <Frame BackgroundColor="{StaticResource colorWhite}" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" Margin="0" CornerRadius="20">
-                <Label Text="{Binding NickName}" Margin="40,25" FontSize="25" Style="{StaticResource styleLabelBlack}" HorizontalOptions="Center"/>
+            <Frame BackgroundColor="{StaticResource colorWhite}" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" Padding="0" CornerRadius="20" Margin="5" BorderColor="{StaticResource colorBlack}">
+                <Label Text="{Binding NickName}" Margin="30,15" FontSize="17" Style="{StaticResource styleLabelBlack}" HorizontalOptions="Center"/>
             </Frame>
         </StackLayout>
 

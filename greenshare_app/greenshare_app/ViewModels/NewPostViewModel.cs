@@ -24,8 +24,8 @@ namespace greenshare_app.ViewModels
             this.view = view;
             tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();           
-            photos = new ObservableRangeCollection<Image>();
-            tags = new ObservableRangeCollection<Tag>();
+            Photos = new ObservableRangeCollection<Image>();
+            Tags = new ObservableRangeCollection<Tag>();
             minDate = DateTime.Now;
             terminationDateTime = DateTime.Now;
             PostTypes = new List<string> {
@@ -150,6 +150,11 @@ namespace greenshare_app.ViewModels
             if (loc == null)
             {
                 await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device", "OK");
+                return;
+            }
+            if (Tags.Count == 0)
+            {
+                await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
                 return;
             }
             bool response;
