@@ -38,6 +38,7 @@ namespace greenshare_app.ViewModels
             this.post = post;
             this.navigation = navigation;
             this.view = view;
+            this.TerminationDateTime = post.TerminateAt;
             Name = post.Name;
             PostType = post.GetType().ToString();
             
