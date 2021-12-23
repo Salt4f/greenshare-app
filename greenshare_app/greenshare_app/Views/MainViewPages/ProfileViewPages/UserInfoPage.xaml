@@ -6,7 +6,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoPage">
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Spacing="0" Margin="0" Padding="0">
             <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="-10" WidthRequest="600" HeightRequest="220">
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="1,0"
@@ -51,19 +51,42 @@
                     </Frame>
                 </StackLayout>
             </Frame>
-            <Frame BackgroundColor="Transparent" VerticalOptions="Start" HasShadow="False" HorizontalOptions="Start" Margin="0,4,0,0" WidthRequest="600" HeightRequest="70" Padding="0">
-                <StackLayout Padding="-1" Margin="0">
-                    <Frame BackgroundColor="#eceff1" HorizontalOptions="Start" HasShadow="False" Margin="0,0,0,0" WidthRequest="157" HeightRequest="50">
+            <Frame Margin="0,0,0,0" Padding="0">
+                <StackLayout Spacing="0" Margin="0" Padding="0" HorizontalOptions="Center">
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#eceff1" HasShadow="False" WidthRequest="160" HeightRequest="30">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SendMessageUserCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="SEND MESSAGE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="#212121" />
+                        </Frame>
+                        <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#ffcc80" HorizontalOptions="End" HasShadow="False" WidthRequest="160" HeightRequest="30">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UpdateProfileInfoCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="UPDATE PROFILE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
+                        </Frame>
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="600" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#c4001d" HorizontalOptions="Center" HasShadow="False" WidthRequest="500" HeightRequest="30">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SendMessageUserCommand}"/>
+                            <TapGestureRecognizer Command="{Binding BlockUserCommand}"/>
                         </Frame.GestureRecognizers>
-                        <Label Text="SEND MESSAGE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="#212121" />
-                    </Frame>
-                    <Frame BackgroundColor="#ffcc80" HorizontalOptions="End" HasShadow="False" Margin="0,-76,0,0" WidthRequest="157" HeightRequest="50">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UpdateProfileInfoCommand}"/>
-                        </Frame.GestureRecognizers>
-                        <Label Text="UPDATE PROFILE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
+                        <Label Text="BLOCK USER" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
                     </Frame>
                 </StackLayout>
             </Frame>
