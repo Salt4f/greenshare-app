@@ -17,6 +17,8 @@ namespace greenshare_app.ViewModels
     {
         private ObservableRangeCollection<PostCard> postCardList;
         private PostCard selectedPostCard;
+        private string searchWord;
+        private bool filterVisible;
         private INavigation navigation;
         private Page view;
 
@@ -94,6 +96,21 @@ namespace greenshare_app.ViewModels
             }
         }
 
+
+        public String SearchWord
+        {
+            get => searchWord;
+            set => SetProperty(ref searchWord, value);
+        }
+        public Boolean FilterVisible
+        {
+            get => filterVisible;
+            set => SetProperty(ref filterVisible, value);
+        }
+
+        public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
+        public AsyncCommand OnFilterButtonCommand => new AsyncCommand(OnFilter);
+
         async Task Selected(object args)
         {
             var card = args as PostCard;
@@ -105,6 +122,17 @@ namespace greenshare_app.ViewModels
             else await navigation.PushModalAsync(new ViewPost(offer));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
+        }
+
+        private async Task OnSearch()
+        {
+            return;
+        }
+
+        private async Task OnFilter()
+        {
+            FilterVisible = !FilterVisible;
+            return;
         }
 
 
