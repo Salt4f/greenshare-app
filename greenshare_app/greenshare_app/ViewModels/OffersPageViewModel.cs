@@ -19,6 +19,7 @@ namespace greenshare_app.ViewModels
         private PostCard selectedPostCard;
         private string searchWord;
         private bool filterVisible;
+        private int slideValue;
         private INavigation navigation;
         private Page view;
 
@@ -35,6 +36,7 @@ namespace greenshare_app.ViewModels
             SelectedCommand = new AsyncCommand<object>(Selected);
             this.navigation = navigation;
             this.view = view;
+            this.slideValue = 10;
             selectedPostCard = new PostCard();
             postCardList = new ObservableRangeCollection<PostCard>();
 
@@ -107,6 +109,11 @@ namespace greenshare_app.ViewModels
             get => filterVisible;
             set => SetProperty(ref filterVisible, value);
         }
+        public int SlideValue
+        {
+            get => slideValue;
+            set => SetProperty(ref slideValue, value);
+        }
 
         public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
         public AsyncCommand OnFilterButtonCommand => new AsyncCommand(OnFilter);
@@ -131,7 +138,8 @@ namespace greenshare_app.ViewModels
 
         private async Task OnFilter()
         {
-            FilterVisible = !FilterVisible;
+            if (FilterVisible == false) FilterVisible = true;
+            else FilterVisible = false;
             return;
         }
 
