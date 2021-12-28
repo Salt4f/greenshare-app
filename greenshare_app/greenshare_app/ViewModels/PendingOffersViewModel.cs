@@ -32,8 +32,6 @@ namespace greenshare_app.ViewModels
         private ObservableRangeCollection<PendingPost> pendingOffers;
         private INavigation navigation;
         private Page view;
-        private bool acceptButtonsVisible;
-
         public ObservableRangeCollection<PendingPost> PendingOffers
         {
             get => pendingOffers;
