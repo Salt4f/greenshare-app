@@ -19,12 +19,22 @@ namespace greenshare_app.ViewModels
         {
             this.navigation = navigation;
             this.view = view;
+            PositionMap(MyMap);
             AddPins(MyMap);
+
+        }
+        private async void PositionMap(Xamarin.Forms.Maps.Map MyMap) {
+            var loc = await Geolocation.GetLocationAsync();
+            MyMap.MoveToRegion(
+                MapSpan.FromCenterAndRadius(
+                    new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
+                    ));
+        
         }
         private async void AddPins(Xamarin.Forms.Maps.Map MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc);
+            var cards = await PostRetriever.Instance().GetOffers(loc, 10000);
 
             foreach (var card in cards)
             {
