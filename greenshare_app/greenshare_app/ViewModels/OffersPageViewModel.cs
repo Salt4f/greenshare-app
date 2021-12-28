@@ -8,7 +8,6 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using greenshare_app.Utils;
 using greenshare_app.Views.MainViewPages;
-using Xamarin.Essentials;
 using System.Text;
 
 namespace greenshare_app.ViewModels
