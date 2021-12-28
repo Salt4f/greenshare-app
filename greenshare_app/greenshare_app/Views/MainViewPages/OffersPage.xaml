@@ -58,13 +58,13 @@
                     Text="Distance"
                     />
                 <Slider Grid.Column="1"
-                        Maximum="100"
-                        Minimum="0"
+                        Maximum="200"
+                        Minimum="1"
                         MaximumTrackColor="{StaticResource colorGreen2}" 
                         MinimumTrackColor="{StaticResource colorGreen2}"
                         ThumbColor="{StaticResource colorGreen5}"
-                        Value="{Binding SlideValue}"/>
-                <Label Grid.Column="2" Text="{Binding SlideValue}"></Label>
+                        Value="{Binding DistanceValue}"/>
+                <Label Grid.Column="2" Text="{Binding DistanceValue}"></Label>
             </Grid>
         </StackLayout>
       

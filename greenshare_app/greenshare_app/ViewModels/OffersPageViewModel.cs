@@ -19,7 +19,7 @@ namespace greenshare_app.ViewModels
         private PostCard selectedPostCard;
         private string searchWord;
         private bool filterVisible;
-        private int slideValue;
+        private int distanceValue;
         private INavigation navigation;
         private Page view;
 
@@ -36,7 +36,7 @@ namespace greenshare_app.ViewModels
             SelectedCommand = new AsyncCommand<object>(Selected);
             this.navigation = navigation;
             this.view = view;
-            this.slideValue = 10;
+            this.distanceValue = 15;
             selectedPostCard = new PostCard();
             postCardList = new ObservableRangeCollection<PostCard>();
 
@@ -109,10 +109,10 @@ namespace greenshare_app.ViewModels
             get => filterVisible;
             set => SetProperty(ref filterVisible, value);
         }
-        public int SlideValue
+        public int DistanceValue
         {
-            get => slideValue;
-            set => SetProperty(ref slideValue, value);
+            get => distanceValue;
+            set => SetProperty(ref distanceValue, value);
         }
 
         public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
@@ -133,6 +133,22 @@ namespace greenshare_app.ViewModels
 
         private async Task OnSearch()
         {
+            //Esto filtra por tag y por distanceValue
+            IsBusy = true;
+            var loc = await Geolocation.GetLocationAsync();
+            IEnumerable<PostCard> cards = new List<PostCard>();
+            if (SearchWord != null)
+            {                
+                //cards = await PostRetriever.Instance().GetOffersByName(SearchWord, loc, DistanceValue);
+            }
+            else
+            {
+                cards = await PostRetriever.Instance().GetOffers(loc, DistanceValue);
+            }
+            PostCardList.Clear();
+            PostCardList.AddRange(cards);
+            if (PostCardList.Count == 0) await view.DisplayAlert("No offers found", "please change the introduced parameters, make sure location is enabled and refresh", "OK");
+            IsBusy = false;
             return;
         }
 
