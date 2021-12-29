@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.IncomingInteractionsPage"
+             xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
+             xmlns:model="clr-namespace:greenshare_app.Models"
+             x:DataType="viewModels:IncomingInteractionsViewModel"
+             Title="{Binding Title}">
+
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              >
+        <!--SelectionMode="Single"
+              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              RefreshControlColor="{StaticResource colorGreen2}"
+              ItemsSource="{Binding PostCardList}"-->
+
+        <!--<ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>-->
+
+        <!--<ListView.Header>
+            <StackLayout Padding="15">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
+            </StackLayout>
+        </ListView.Header>-->
+
+        <!--<ListView.ItemsSource>
+            <x:Array Type="{x:Type model:Interaction}">
+                <model:Interaction x:Name=""/>
+            </x:Array>
+        </ListView.ItemsSource>-->
+
+        <!--public int Id { get; set; }
+        public string Name { get; set; }
+        public ObservableRangeCollection
+        <Tag>Tags { get; set; }
+        public Image Icon { get; set; }
+        public string Author { get; set; }-->
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:PostCard">
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5" >
+                            <!--IsVisible="{Binding IsVisible}"-->
+                            <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
+                                <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
+                                    <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Vertical">
+                                            <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" Padding="2" HorizontalOptions="Center">
+                                                <Label Text="{Binding Name}" FontSize="22"
+                                                       Style="{StaticResource styleLabelWhite}"
+                                                   VerticalOptions="Center"/>
+                                            </Frame>
+                                            <Label Text="{Binding Author}"
+                                                   Style="{StaticResource styleLabelWhite}"
+                                               VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate x:DataType="model:Tag">
+                                                        <ViewCell>
+                                                            <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                                                <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                                                    <Label Text="{Binding Name}"
+                                                                        Style="{StaticResource styleLabelWhite}"
+                                                                        VerticalOptions="Center"/>
+                                                                </Frame>
+                                                            </StackLayout>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

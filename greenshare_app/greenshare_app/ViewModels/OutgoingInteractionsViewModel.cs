@@ -11,11 +11,11 @@ using System.Text;
 
 namespace greenshare_app.ViewModels
 {
-    internal class PendingRequestsViewModel : BaseViewModel
+    internal class OutgoingInteractionsViewModel : BaseViewModel
     {
-        public PendingRequestsViewModel(INavigation navigation, Page view)
+        public OutgoingInteractionsViewModel(INavigation navigation, Page view)
         {
-            Title = "Outgoing Interactions";
+            Title = "Outgoing";
         }
     }
 }
