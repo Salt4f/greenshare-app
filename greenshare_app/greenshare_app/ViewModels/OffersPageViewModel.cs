@@ -36,7 +36,7 @@ namespace greenshare_app.ViewModels
             SelectedCommand = new AsyncCommand<object>(Selected);
             this.navigation = navigation;
             this.view = view;
-            this.distanceValue = 15;
+            this.DistanceValue = 100;
             selectedPostCard = new PostCard();
             postCardList = new ObservableRangeCollection<PostCard>();
 
@@ -139,7 +139,7 @@ namespace greenshare_app.ViewModels
             IEnumerable<PostCard> cards = new List<PostCard>();
             if (SearchWord != null)
             {                
-                //cards = await PostRetriever.Instance().GetOffersByName(SearchWord, loc, DistanceValue);
+                cards = await PostRetriever.Instance().SearchOffers(loc, DistanceValue, SearchWord);
             }
             else
             {
