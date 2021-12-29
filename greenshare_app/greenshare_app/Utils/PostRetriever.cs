@@ -35,7 +35,20 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -63,6 +76,49 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                        Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<PostCard>> SearchOffers(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
 
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
 
@@ -81,6 +137,34 @@ namespace greenshare_app.Utils
                         Author = info.Author,
                         Tags = new ObservableRangeCollection<Tag>(info.Tags),
                         Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+        public async Task<IEnumerable<PostCard>> SearchRequests(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
                     };
                     cards.Add(card);
                 }

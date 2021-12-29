@@ -49,7 +49,7 @@ namespace greenshare_app.Utils
                     TotalEcoPoints = 0,
                     TotalGreenCoins = 0,
                     BirthDate = info.BirthDate,
-                    AverageValoration = 0.0,
+                    AverageValoration = await GetAverageValoration(session.Item1),
                 };
                 return user;
             }            
@@ -57,6 +57,17 @@ namespace greenshare_app.Utils
             
         }
 
+        public async Task<double> GetAverageValoration(int userId)
+        {
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/user/" + userId +"/valorations");
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                double info = JsonConvert.DeserializeObject<double>(json);
+                return info;
+            }
+            return -1.0;
+        }
         private class UserInfo
         {
            
