@@ -89,6 +89,64 @@ namespace greenshare_app.Utils
             return null;
         }
 
+        public async Task<IEnumerable<PostCard>> SearchOffers(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                        Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+        public async Task<IEnumerable<PostCard>> SearchRequests(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+
+            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+
         private static string GetQuery(Location location, int distance, IEnumerable<Tag> tags, int? owner, int quantity)
         {
             if (location is null) throw new NullLocationException();

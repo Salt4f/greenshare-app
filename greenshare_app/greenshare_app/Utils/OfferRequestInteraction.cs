@@ -181,33 +181,6 @@ namespace greenshare_app.Utils
             return false;
         }
 
-        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, string valoration = null)
-        {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            CompletionInfo valorationInfo = new CompletionInfo { Valoration = valoration };
-            string json = JsonConvert.SerializeObject(valorationInfo);
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
-            var httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/completed", httpContent);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                return true;
-            }
-            return false;
-        }
-        
         private class CompletionInfo
         {
             [JsonProperty(PropertyName = "valoration")]
