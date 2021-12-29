@@ -19,6 +19,9 @@ namespace greenshare_app.ViewModels
         private PostCard selectedPostCard;
         private INavigation navigation;
         private Page view;
+        private int distanceValue;
+        private bool filterVisible;
+        private string searchWord;
 
         public AsyncCommand<object> SelectedCommand { get; }
         public AsyncCommand RefreshCommand { get; }
@@ -97,6 +100,26 @@ namespace greenshare_app.ViewModels
             }
         }
 
+        public String SearchWord
+        {
+            get => searchWord;
+            set => SetProperty(ref searchWord, value);
+        }
+        public Boolean FilterVisible
+        {
+            get => filterVisible;
+            set => SetProperty(ref filterVisible, value);
+        }
+        public int DistanceValue
+        {
+            get => distanceValue;
+            set => SetProperty(ref distanceValue, value);
+        }
+
+        public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
+        public AsyncCommand OnFilterButtonCommand => new AsyncCommand(OnFilter);
+
+
         async Task Selected(object args)
         {
             var card = args as PostCard;
@@ -109,6 +132,34 @@ namespace greenshare_app.ViewModels
             else await navigation.PushModalAsync(new ViewPost(request));
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
+        }
+
+        private async Task OnSearch()
+        {
+            //Esto filtra por tag y por distanceValue
+            IsBusy = true;
+            var loc = await Geolocation.GetLocationAsync();
+            IEnumerable<PostCard> cards = new List<PostCard>();
+            if (SearchWord != null)
+            {
+                cards = await PostRetriever.Instance().SearchRequests(loc, DistanceValue, SearchWord);
+            }
+            else
+            {
+                cards = await PostRetriever.Instance().GetRequests(loc, DistanceValue);
+            }
+            PostCardList.Clear();
+            PostCardList.AddRange(cards);
+            if (PostCardList.Count == 0) await view.DisplayAlert("No requests found", "please change the introduced parameters, make sure location is enabled and refresh", "OK");
+            IsBusy = false;
+            return;
+        }
+
+        private async Task OnFilter()
+        {
+            if (FilterVisible == false) FilterVisible = true;
+            else FilterVisible = false;
+            return;
         }
 
 
