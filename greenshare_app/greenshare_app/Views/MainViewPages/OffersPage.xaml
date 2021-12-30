@@ -17,8 +17,7 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <StackLayout>
-            <Grid Padding="20">
+        <Grid Padding="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="0.15*" />
@@ -44,30 +43,35 @@
                         Command="{Binding OnFilterButtonCommand}"/>
                 
             </Grid>
-            <Grid Padding="20" IsVisible="{Binding FilterVisible}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.1*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
-                <Label
+        <Grid Padding="20" HorizontalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="0.6*" />
+                <ColumnDefinition Width="0.1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Label
+                    VerticalOptions="Center"
                     Style="{StaticResource styleEntryDefault}" 
                     Text="Distance"
                     />
-                <Slider Grid.Column="1"
+            <Slider Grid.Column="1"
                         Maximum="200"
                         Minimum="1"
                         MaximumTrackColor="{StaticResource colorGreen2}" 
                         MinimumTrackColor="{StaticResource colorGreen2}"
                         ThumbColor="{StaticResource colorGreen5}"
                         Value="{Binding DistanceValue}"/>
-                <Label Grid.Column="2" Text="{Binding DistanceValue}"></Label>
-            </Grid>
-        </StackLayout>
-      
+            <Label 
+                VerticalOptions="Center" 
+                Grid.Column="2" 
+                Text="{Binding DistanceValue}">
+                
+            </Label>
+        </Grid>
+
 
         <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
