@@ -19,7 +19,8 @@
             <Color x:Key="colorGreen7">#D2E459</Color>
             <Color x:Key="colorGreen8">#ddffbc</Color>
             <Color x:Key="colorGreen9">#feffde</Color>
-            <Color x:Key="colorRed1">#e60000</Color>
+            <Color x:Key="colorRed1">#DD4A48</Color>
+            <Color x:Key="colorOrange">#e69138</Color>
 
             <Color x:Key="colorBlack">
                 <x:Arguments>
