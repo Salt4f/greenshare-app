@@ -80,7 +80,6 @@ namespace greenshare_app.Utils
             string query = GetQuery(location, distance, tags, owner, quantity);
             addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
-
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());

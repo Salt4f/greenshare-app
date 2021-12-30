@@ -56,7 +56,7 @@ namespace greenshare_app.Utils
             var httpContent = new StringContent(json);
             addHeaders();
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(url, httpContent) ;
+            var response = await httpClient.PostAsync(url, httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());

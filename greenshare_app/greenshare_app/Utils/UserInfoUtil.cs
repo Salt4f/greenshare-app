@@ -50,6 +50,7 @@ namespace greenshare_app.Utils
 
         public async Task<User> GetUserInfo()
         {
+            addHeaders();
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/user/" + session.Item1);
             if (response.StatusCode == HttpStatusCode.OK)
