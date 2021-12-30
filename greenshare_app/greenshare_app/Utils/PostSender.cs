@@ -28,9 +28,7 @@ namespace greenshare_app.Utils
             return instance;
         }
 
-        private readonly HttpClient httpClient;
-
-        public async Task<bool> PostRequest(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
+        public async void addHeaders()
         {
             Tuple<int, string> session;
             try
@@ -42,12 +40,19 @@ namespace greenshare_app.Utils
             {
                 throw new InvalidLoginException();
             }
-            RequestInfo post = new RequestInfo { Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags };
-            string json = JsonConvert.SerializeObject(post);
-            var httpContent = new StringContent(json);
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
             httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+        }
+
+        private readonly HttpClient httpClient;
+
+        public async Task<bool> PostRequest(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
+        {
+            addHeaders();
+            RequestInfo post = new RequestInfo { Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags };
+            string json = JsonConvert.SerializeObject(post);
+            var httpContent = new StringContent(json);           
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
@@ -62,22 +67,10 @@ namespace greenshare_app.Utils
 
         public async Task<bool> PostOffer(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
         {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
+            addHeaders();
             OfferInfo post = new OfferInfo {  Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags, Photos = photos, Icon = icon };
             string json = JsonConvert.SerializeObject(post);           
-            var httpContent = new StringContent(json);
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            var httpContent = new StringContent(json);           
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
@@ -92,16 +85,7 @@ namespace greenshare_app.Utils
 
         public async Task<bool> EditOffer(int offerId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
         {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
+            addHeaders();
             OfferInfo post = new OfferInfo { 
                 Name = name, 
                 Description = description, 
@@ -112,10 +96,7 @@ namespace greenshare_app.Utils
                 Icon = icon };
 
             string json = JsonConvert.SerializeObject(post);
-            var httpContent = new StringContent(json);
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            var httpContent = new StringContent(json);           
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/offers/"+ offerId.ToString(), httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -128,16 +109,7 @@ namespace greenshare_app.Utils
 
         public async Task<bool> EditRequest(int requestId, string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
         {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
+            addHeaders();
             RequestInfo post = new RequestInfo
             {                
                 Name = name,
@@ -148,10 +120,7 @@ namespace greenshare_app.Utils
                 
             };
 
-            string json = JsonConvert.SerializeObject(post);
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            string json = JsonConvert.SerializeObject(post);            
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PutAsync("http://server.vgafib.org/api/posts/requests/" + requestId.ToString(), httpContent);

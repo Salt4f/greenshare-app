@@ -29,12 +29,8 @@ namespace greenshare_app.Utils
             if (instance is null) instance = new PostRetriever();
             return instance;
         }
-
-        private readonly HttpClient httpClient;
-
-        public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
+        public async void addHeaders()
         {
-            string query = GetQuery(location, distance, tags, owner, quantity);
             Tuple<int, string> session;
             try
             {
@@ -45,10 +41,16 @@ namespace greenshare_app.Utils
             {
                 throw new InvalidLoginException();
             }
-
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
             httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+        }
+        private readonly HttpClient httpClient;
+
+        public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
+        {
+            string query = GetQuery(location, distance, tags, owner, quantity);
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -76,20 +78,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -119,7 +108,7 @@ namespace greenshare_app.Utils
         {
             string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&q=" + searchWord + "&distance=" + distance;
-
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -148,7 +137,7 @@ namespace greenshare_app.Utils
         {
             string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&q=" + searchWord + "&distance=" + distance;
-
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -197,6 +186,7 @@ namespace greenshare_app.Utils
      
         public async Task<Offer> GetOffer(int id)
         {
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/" + id);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -240,6 +230,7 @@ namespace greenshare_app.Utils
 
         public async Task<Request> GetRequest(int id)
         {
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/" + id);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -267,20 +258,8 @@ namespace greenshare_app.Utils
         {
             string query = "?type=" + type;
 
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
+            addHeaders();
 
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
 
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts" + query);
             if (response.StatusCode == HttpStatusCode.OK)

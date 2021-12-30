@@ -27,14 +27,8 @@ namespace greenshare_app.Utils
         }
 
         private readonly HttpClient httpClient;
-        public async Task<bool> PostReport(string message, string type, int itemId)
+        public async void addHeaders()
         {
-            string url;
-            if (type == "POST")
-            {
-                url = "http://server.vgafib.org/api/posts/" + itemId + "/report";
-            }
-            else url = "http://server.vgafib.org/api/user/" + itemId + "/report";
             Tuple<int, string> session;
             try
             {
@@ -45,11 +39,21 @@ namespace greenshare_app.Utils
             {
                 throw new InvalidLoginException();
             }
-            string json = JsonConvert.SerializeObject(message);
-            var httpContent = new StringContent(json);
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
             httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+        }
+        public async Task<bool> PostReport(string message, string type, int itemId)
+        {
+            string url;
+            if (type == "POST")
+            {
+                url = "http://server.vgafib.org/api/posts/" + itemId + "/report";
+            }
+            else url = "http://server.vgafib.org/api/user/" + itemId + "/report";            
+            string json = JsonConvert.SerializeObject(message);
+            var httpContent = new StringContent(json);
+            addHeaders();
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync(url, httpContent) ;
             if (response.StatusCode == HttpStatusCode.Created)
@@ -65,18 +69,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<Report>> GetAllReports()
         {
             Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }            
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/admin/reports/");
             if (response.StatusCode == HttpStatusCode.OK)
             {

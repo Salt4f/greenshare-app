@@ -29,11 +29,29 @@ namespace greenshare_app.Utils
             return instance;
         }
 
+        public async void addHeaders()
+        {
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+        }
+
         private readonly HttpClient httpClient;
 
         public async Task<User> GetUserInfo()
         {
-            Tuple<int, string> session = await Auth.Instance().GetAuth();            
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            addHeaders();
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/user/" + session.Item1);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -60,6 +78,7 @@ namespace greenshare_app.Utils
         public async Task<double> GetAverageValoration(int userId)
         {
             var response = await httpClient.GetAsync("http://server.vgafib.org/api/user/" + userId +"/valorations");
+            addHeaders();
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
