@@ -21,7 +21,6 @@ namespace greenshare_app.ViewModels
             this.view = view;
             PositionMap(MyMap);
             AddPins(MyMap);
-
         }
         private async void PositionMap(Xamarin.Forms.Maps.Map MyMap) {
             var loc = await Geolocation.GetLocationAsync();
@@ -29,7 +28,6 @@ namespace greenshare_app.ViewModels
                 MapSpan.FromCenterAndRadius(
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
-        
         }
         private async void AddPins(Xamarin.Forms.Maps.Map MyMap)
         {
@@ -39,6 +37,18 @@ namespace greenshare_app.ViewModels
             foreach (var card in cards)
             {
                 var offer = await PostRetriever.Instance().GetOffer(card.Id);
+                var pin = new Pin();
+                pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
+                pin.Label = offer.Name;
+
+                MyMap.Pins.Add(pin);
+            }
+
+            cards = await PostRetriever.Instance().GetRequests(loc, 10000);
+
+            foreach (var card in cards)
+            {
+                var offer = await PostRetriever.Instance().GetRequest(card.Id);
                 var pin = new Pin();
                 pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
                 pin.Label = offer.Name;
