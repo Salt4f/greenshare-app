@@ -62,6 +62,46 @@ namespace greenshare_app.Utils
 
         }
 
+        public async Task<IEnumerable<Report>> GetAllReports()
+        {
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }            
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
+            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
+            var response = await httpClient.GetAsync("http://server.vgafib.org/admin/reports/");
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var reports = new List<Report>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<ReportInfo>();
+                    var report = new Report()
+                    {
+                        Id = info.Id,
+                        Type = info.Type,
+                        ReporterId = info.ReporterId,
+                        ItemId = info.ItemId,
+                        Message = info.Message,
+                        Solved = info.Solved
+                    };
+                    reports.Add(report);
+                }
+                return reports;
+            }
+            return new List<Report>();
+        }
+
         private class ReportInfo
         {
             [JsonProperty(PropertyName = "id")]
