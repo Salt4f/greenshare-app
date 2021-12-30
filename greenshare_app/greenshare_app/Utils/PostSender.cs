@@ -47,6 +47,24 @@ namespace greenshare_app.Utils
 
         private readonly HttpClient httpClient;
 
+        public async Task<bool> DeactivatePost(int postId, string postType)
+        {
+            addHeaders();
+            string url;
+            if (postType == "OFFER") url = "http://server.vgafib.org/api/posts/offers/" + postId + "/deactivate";
+            else if (postType == "REQUEST") url = "http://server.vgafib.org/api/posts/requests/" + postId + "/deactivate";
+            else return false;
+            var httpContent = new StringContent("");
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(url, httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                //falta ver que hacemos con el id y el createdAt que nos devuelven
+                return true;
+            }
+            return false;
+        }
         public async Task<bool> PostRequest(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
         {
             addHeaders();

@@ -50,13 +50,31 @@ namespace greenshare_app.Utils
             {
                 url = "http://server.vgafib.org/api/posts/" + itemId + "/report";
             }
-            else url = "http://server.vgafib.org/api/user/" + itemId + "/report";            
+            else if (type == "OFFER") url = "http://server.vgafib.org/api/user/" + itemId + "/report";
+            else return false;
             string json = JsonConvert.SerializeObject(message);
             var httpContent = new StringContent(json);
             addHeaders();
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync(url, httpContent) ;
             if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                //falta ver que hacemos con el id y el createdAt que nos devuelven
+                return true;
+            }
+            return false;
+
+        }
+
+        public async Task<bool> SolveReport(int reportId)
+        {
+            
+            var httpContent = new StringContent("");
+            addHeaders();
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/admin/reports/" + reportId, httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
                 //falta ver que hacemos con el id y el createdAt que nos devuelven
