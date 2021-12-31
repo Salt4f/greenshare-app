@@ -8,6 +8,7 @@ using MvvmHelpers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using MvvmHelpers.Commands;
 
 namespace greenshare_app.ViewModels
 {
@@ -15,6 +16,15 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
+
+        public AsyncCommand<MapClickedEventArgs> OnMapClickedCommand => new AsyncCommand<MapClickedEventArgs>(OnMapClicked);
+
+        private Task OnMapClicked(MapClickedEventArgs eventData)
+        {
+            Location l = new Location(eventData.Position.Latitude, eventData.Position.Longitude);
+            throw new NotImplementedException();
+        }
+
         public MapsPageViewModel(INavigation navigation, Page view, Xamarin.Forms.Maps.Map MyMap)
         {
             this.navigation = navigation;
