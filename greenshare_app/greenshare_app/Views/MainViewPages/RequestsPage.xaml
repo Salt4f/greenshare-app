@@ -92,13 +92,7 @@
                 EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                 EventName="ItemSelected" />
         </ListView.Behaviors>
-        <ListView.Header>
-            <StackLayout Padding="15">
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
-            </StackLayout>
-        </ListView.Header>
-
-
+        
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostCard">
                 <ViewCell>

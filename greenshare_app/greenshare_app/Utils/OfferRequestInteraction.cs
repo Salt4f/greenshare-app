@@ -43,8 +43,8 @@ namespace greenshare_app.Utils
       
         public async Task<bool> RequestAnOffer(int offerId, int requestId)
         {
-            addHeaders();
-            var httpContent = new StringContent("");
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/"+offerId+"/request/"+requestId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -57,8 +57,8 @@ namespace greenshare_app.Utils
 
         public async Task<bool> OfferARequest(int offerId, int requestId)
         {
-            addHeaders();
-            var httpContent = new StringContent("");
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -71,8 +71,8 @@ namespace greenshare_app.Utils
         //Una oferta accepta la petició d'un altre usuari
         public async Task<bool> AcceptRequest(int offerId, int requestId)
         {
-            addHeaders();
-            var httpContent = new StringContent("");
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/accept", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -86,8 +86,8 @@ namespace greenshare_app.Utils
         //Una oferta denega la petició d'un altre usuari
         public async Task<bool> RejectRequest(int offerId, int requestId)
         {
-            addHeaders();
-            var httpContent = new StringContent("");
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/reject", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -99,8 +99,8 @@ namespace greenshare_app.Utils
 
         public async Task<bool> AcceptOffer(int offerId, int requestId)
         {
-            addHeaders();
-            var httpContent = new StringContent("");
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/accept", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -111,12 +111,11 @@ namespace greenshare_app.Utils
         }
         //Completa una offer / request. Això marca la request i la offer com no actives, i indica que s'ha completat la transacció sense problemes.
         public async Task<bool> CompletePostFromRequest(int offerId, int requestId, string valoration = null)
-        {
-            addHeaders();
+        {           
             CompletionInfo valorationInfo = new CompletionInfo { Valoration = valoration };
-            string json = JsonConvert.SerializeObject(valorationInfo);           
-            var httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            string json = JsonConvert.SerializeObject(valorationInfo);
+            HttpContent httpContent = new StringContent(json);
+            httpContent = await Auth.AddHeaders(httpContent);
             var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {

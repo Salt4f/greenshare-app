@@ -40,13 +40,13 @@ namespace greenshare_app.ViewModels
             this.view = view;
             this.TerminationDateTime = post.TerminateAt;
             Name = post.Name;
-            PostType = post.GetType().ToString();
+            var type = post.GetType();
             
-            if (PostType == "greenshare_app.Models.Offer")
+            if (type == typeof(Offer))
             {
                 PostType = "Offer";
             }
-            else if (PostType == "greenshare_app.Models.Request")
+            else if (type == typeof(Request))
             {
                 PostType = "Request";
             }
