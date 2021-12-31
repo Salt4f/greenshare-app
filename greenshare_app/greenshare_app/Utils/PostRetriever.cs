@@ -29,14 +29,15 @@ namespace greenshare_app.Utils
             if (instance is null) instance = new PostRetriever();
             return instance;
         }
-
+        
         private readonly HttpClient httpClient;
 
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/requests" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
@@ -63,8 +64,39 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/offers" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
 
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                        Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<PostCard>> SearchOffers(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/offers" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -81,6 +113,35 @@ namespace greenshare_app.Utils
                         Author = info.Author,
                         Tags = new ObservableRangeCollection<Tag>(info.Tags),
                         Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+        public async Task<IEnumerable<PostCard>> SearchRequests(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/requests" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
                     };
                     cards.Add(card);
                 }
@@ -113,7 +174,9 @@ namespace greenshare_app.Utils
      
         public async Task<Offer> GetOffer(int id)
         {
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/offers/" + id);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
@@ -156,7 +219,9 @@ namespace greenshare_app.Utils
 
         public async Task<Request> GetRequest(int id)
         {
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/requests/" + id);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
@@ -182,23 +247,9 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostStatus>> GetPostsByUserId(string type)
         {
             string query = "?type=" + type;
-
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
-
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());

@@ -29,12 +29,16 @@ namespace greenshare_app.Utils
             return instance;
         }
 
-        private readonly HttpClient httpClient;
+        
 
+        private readonly HttpClient httpClient;
+        //Salta internal server error
         public async Task<User> GetUserInfo()
         {
-            Tuple<int, string> session = await Auth.Instance().GetAuth();            
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/user/" + session.Item1);
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
@@ -46,17 +50,30 @@ namespace greenshare_app.Utils
                     Description = info.Description,
                     ProfilePicture = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.ProfilePicture); }) },
                     Banned = info.Banned,
-                    TotalEcoPoints = 0,
-                    TotalGreenCoins = 0,
+                    TotalEcoPoints = info.TotalEcoPoints,
+                    TotalGreenCoins = info.TotalGreenCoins,
                     BirthDate = info.BirthDate,
-                    AverageValoration = 0.0,
+                    AverageValoration = await GetAverageValoration(session.Item1)
                 };
                 return user;
             }            
             return null;
             
         }
-
+        //No queremos un endpoint de esto, se debe devolver con GetUserInfo
+        public async Task<double> GetAverageValoration(int userId)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + userId + "/valorations");
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                double info = JsonConvert.DeserializeObject<double>(json);
+                return info;
+            }
+            return -1.0;
+        }
         private class UserInfo
         {
            
