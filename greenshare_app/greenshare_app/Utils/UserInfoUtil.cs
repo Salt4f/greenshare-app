@@ -53,7 +53,7 @@ namespace greenshare_app.Utils
                     TotalEcoPoints = info.TotalEcoPoints,
                     TotalGreenCoins = info.TotalGreenCoins,
                     BirthDate = info.BirthDate,
-                    AverageValoration = await GetAverageValoration(session.Item1)
+                    AverageValoration = info.AverageValoration
                 };
                 return user;
             }            
@@ -61,19 +61,7 @@ namespace greenshare_app.Utils
             
         }
         //No queremos un endpoint de esto, se debe devolver con GetUserInfo
-        public async Task<double> GetAverageValoration(int userId)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + userId + "/valorations");
-            request = await Auth.AddHeaders(request);
-            var response = await httpClient.SendAsync(request);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                string json = await response.Content.ReadAsStringAsync();
-                double info = JsonConvert.DeserializeObject<double>(json);
-                return info;
-            }
-            return -1.0;
-        }
+        
         private class UserInfo
         {
            
