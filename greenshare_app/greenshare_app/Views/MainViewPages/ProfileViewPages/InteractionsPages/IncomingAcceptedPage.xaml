@@ -4,7 +4,6 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.IncomingAcceptedPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             x:DataType="viewModels:IncomingInteractionsViewModel"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
     <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
@@ -43,110 +42,20 @@
 
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:Post">
+            <DataTemplate x:DataType="model:AcceptedPostInteraction">
                 <ViewCell>
                     <Grid Padding="10">
-                        <!--INCOMING OFFER-->
-                        <!--REALMENT EL QUE S'ESTÀ MOSTRANT AQUI ÉS UNA REQUEST, JA QUE L'AUTOR DE UNA SOLCITUD A UNA OFERTA SERÀ EL DE LA REQUEST-->
-                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="300" Margin="5" Padding="5" IsVisible="{Binding Offer}" BorderColor="{StaticResource colorWhite}">
+                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="300" Margin="5" Padding="5" BorderColor="{StaticResource colorWhite}">
                             <StackLayout Orientation="Vertical" Margin="5" Padding="10">
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
-                                    <Label Text="OFFER" Style="{StaticResource styleLabelBlack}" FontSize="20"/>
+                                    <Label Text="{Binding OfferName}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
                                 </Frame>
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
-                                    <Label Text="{Binding Name}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
-                                </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
-                                    <Label Text="AUTOR DE LA REQUEST" Style="{StaticResource styleLabelWhite}" FontSize="15"/>
-                                </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5" HeightRequest="75">
-                                    <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <!--NOM DE QUI ESTÀ SOLICITANT-->
-                                                <Span Text="Guillem"/>
-                                                <Span Text=" t'està sol·licitant la teva "/>
-                                                <!--NOM DE L'OFERTA-->
-                                                <Span Text="{Binding Name}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                    <Label Text="{Binding OfferUserName}" Style="{StaticResource styleLabelWhite}" FontSize="15"/>
                                 </Frame>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <!--afegir un isvisible si estem al estat pending-->
-                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
-                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Check}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
-                                        <Frame.GestureRecognizers>
-                                            <!--METODE AL ACCEPTAR OFFER-->
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
-                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
-                                        <Frame.GestureRecognizers>
-                                            <!--METODE AL DENEGAR OFFER-->
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-
                                     <!--afegir un isvisible si estem al estat running-->
-                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorOrange}" Padding="20" Margin="10" CornerRadius="35" IsVisible="False">
-                                        <Label Text="En curs..." Style="{StaticResource styleLabelBlack}" FontSize="15"/>
-                                    </Frame>
-
-                                    <!--afegir un isvisible si estem al estat rated-->
-                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" Padding="20" Margin="10" CornerRadius="35" IsVisible="False">
-                                        <Label Text="Valorat!" Style="{StaticResource styleLabelBlack}" FontSize="15"/>
-                                    </Frame>
-                                </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                        <!--INCOMING REQUEST-->
-                        <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" HeightRequest="325" Margin="5" Padding="5" IsVisible="{Binding Request}" BorderColor="{StaticResource colorWhite}">
-                            <StackLayout Orientation="Vertical" Margin="5" Padding="10">
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="5">
-                                    <Label Text="REQUEST" Style="{StaticResource styleLabelBlack}" FontSize="20"/>
-                                </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2">
-                                    <Label Text="{Binding Name}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
-                                </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2">
-                                    <Label Text="NOM DE L'AUTOR" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
-                                </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorBlack}" CornerRadius="15" Padding="10">
-                                    <Label Text="OFERTA RELACIONADA" Style="{StaticResource styleLabelWhite}" FontSize="15"/>
-                                    <Frame.GestureRecognizers>
-                                        <!--METODE QUE PORTI A L'OFERTA RELACIONADA A LA REQUEST DE L'USUARI-->
-                                    </Frame.GestureRecognizers>
-                                </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2" HeightRequest="50">
-                                    <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <!--NOM DE QUI ESTÀ OFERINT-->
-                                                <Span Text="Guillem"/>
-                                                <Span Text=" està oferint a la teva request "/>
-                                                <!--NOM DE LA REQUEST-->
-                                                <Span Text="{Binding Name}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </Frame>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <!--afegir un isvisible si estem al estat pending-->
-                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
-                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Check}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
-                                        <Frame.GestureRecognizers>
-                                            <!--METODE AL ACCEPTAR OFFER-->
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
-                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
-                                        <Frame.GestureRecognizers>
-                                            <!--METODE AL DENEGAR OFFER-->
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-
-                                    <!--afegir un isvisible si estem al estat running-->
-                                    <StackLayout Orientation="Horizontal" IsVisible="False">
+                                    <StackLayout Orientation="Horizontal">
                                         <Label Text="En curs..." Style="{StaticResource styleLabelBlack}" FontSize="15"/>
                                         <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorBlack}" Padding="20" Margin="10" CornerRadius="35" >
                                             <Label Text="{x:Static fontAwesome:FontAwesomeIcons.FlagCheckered}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>

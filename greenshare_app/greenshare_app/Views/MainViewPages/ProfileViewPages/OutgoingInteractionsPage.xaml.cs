@@ -16,7 +16,6 @@ namespace greenshare_app.Views.MainViewPages.ProfileViewPages
         public OutgoingInteractionsPage()
         {
             InitializeComponent();
-            BindingContext = new OutgoingInteractionsViewModel(Navigation, this);
         }
     }
 }

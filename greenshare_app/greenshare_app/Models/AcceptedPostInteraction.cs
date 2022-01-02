@@ -8,7 +8,7 @@ namespace greenshare_app.Models
     {
         public int OfferId { get; set; }
         public int RequestId { get; set; }
-        public string OfferTitle { get; set; }
+        public string OfferName { get; set; }
         public string OfferUserName { get; set; }
         public string UserName { get; set; }
     }
