@@ -6,12 +6,12 @@ namespace greenshare_app.Models
 {
     public class PendingPost
     {
-        public String UserNickName { get; set; }
-        public String UserId { get; set; }
-        public String PostName { get; set; }
-        public bool AcceptButtonsVisible { get; set; }//En caso de que sea una pending offer creada por nosotros y no esté completada será True. En los demás, False. Lo calculamos nosotros
-        public int PostId { get; set; }//Id del post al que aplico
-        public int OwnPostId { get; set; }//Id de mi propio post
+        public string UserName { get; set; }
+        public string UserId { get; set; }
+        public string Type { get; set; }
+        public int PostId { get; set; }
+        public string PostName { get; set; }
+        public int OwnPostId { get; set; }
 
     }
 }
