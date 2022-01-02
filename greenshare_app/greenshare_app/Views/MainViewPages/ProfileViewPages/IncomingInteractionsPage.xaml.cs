@@ -11,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages.ProfileViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PendingOffersPage : ContentPage
+    public partial class IncomingInteractionsPage : ContentPage
     {
-        public PendingOffersPage()
+        public IncomingInteractionsPage()
         {
             InitializeComponent();
-            BindingContext = new PendingOffersViewModel(Navigation, this);
+            BindingContext = new IncomingInteractionsViewModel(Navigation, this);
         }
     }
 }

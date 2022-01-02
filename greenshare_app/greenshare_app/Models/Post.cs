@@ -18,12 +18,14 @@ namespace greenshare_app.Models
         public int OwnerId { get; set; }
         public int EcoImpact { get; set; }
         public IList<Tag> Tags { get; set; }
+        public bool Offer { get; set; }
+        public bool Request { get; set; }
     }
     public enum Status
     {
-        Idle,
+        Idle, //If the post is not associated with another one
         Pending,
-        Accepted,
-        Rejected
+        Running, 
+        Archived //Rated, finished and archived
     };
 }

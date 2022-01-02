@@ -53,8 +53,8 @@ namespace greenshare_app.ViewModels
         public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
-        public AsyncCommand UserPendingOffersCommand => new AsyncCommand(OnPendingOffersButton);
-        public AsyncCommand UserPendingRequestsCommand => new AsyncCommand(OnPendingRequestsButton);
+        public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
+        public AsyncCommand UserOutgoingInteractionsCommand => new AsyncCommand(OnOutgoingInteractionsButton);
 
         private INavigation navigation;
         private Page view;
@@ -71,13 +71,13 @@ namespace greenshare_app.ViewModels
             await Auth.Instance().Logout();
             Application.Current.MainPage = new LoginView();
         }
-        private async Task OnPendingOffersButton()
+        private async Task OnIncomingInteractionsButton()
         {
-            await navigation.PushModalAsync(new PendingOffersPage());
+            await navigation.PushModalAsync(new IncomingInteractionsPage());
         }
-        private async Task OnPendingRequestsButton()
+        private async Task OnOutgoingInteractionsButton()
         {
-            await navigation.PushModalAsync(new PendingRequestsPage());
+            await navigation.PushModalAsync(new OutgoingInteractionsPage());
         }
     }
 }

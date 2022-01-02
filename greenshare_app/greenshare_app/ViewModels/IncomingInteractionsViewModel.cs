@@ -12,13 +12,13 @@ using greenshare_app.Views.MainViewPages;
 
 namespace greenshare_app.ViewModels
 {
-    internal class PendingOffersViewModel : BaseViewModel
+    internal class IncomingInteractionsViewModel : BaseViewModel
     {
 
         private event EventHandler Starting = delegate { };
         public AsyncCommand<object> SelectedCommand { get; }
 
-        public PendingOffersViewModel(INavigation navigation, Page view)
+        public IncomingInteractionsViewModel(INavigation navigation, Page view)
         {
             Title = "Pending Offers";
             PendingOffers = new ObservableRangeCollection<PendingPost>();

@@ -79,11 +79,11 @@
     <Compile Update="Views\MainViewPages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\MainViewPages\ProfileViewPages\PendingRequestsPage.xaml.cs">
-      <DependentUpon>PendingRequestsPage.xaml</DependentUpon>
+    <Compile Update="Views\MainViewPages\ProfileViewPages\OutgoingInteractionsPage.xaml.cs">
+      <DependentUpon>OutgoingInteractionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\MainViewPages\ProfileViewPages\PendingOffersPage.xaml.cs">
-      <DependentUpon>PendingOffersPage.xaml</DependentUpon>
+    <Compile Update="Views\MainViewPages\ProfileViewPages\IncomingInteractionsPage.xaml.cs">
+      <DependentUpon>IncomingInteractionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MainViewPages\RequestsPage.xaml.cs">
       <DependentUpon>RequestsPage.xaml</DependentUpon>
@@ -136,13 +136,13 @@
     <EmbeddedResource Update="Views\MainViewPages\NewPost.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\PendingOffersPage.xaml">
+    <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\IncomingInteractionsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\MyPostsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\PendingRequestsPage.xaml">
+    <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\OutgoingInteractionsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainViewPages\RewardsPage.xaml">
