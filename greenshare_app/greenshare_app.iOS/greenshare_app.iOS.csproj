@@ -178,4 +178,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\plus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\clock.png" />
+  </ItemGroup>
 </Project>
