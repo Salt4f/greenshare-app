@@ -4,7 +4,7 @@ using System.Text;
 
 namespace greenshare_app.Models
 {
-    public class AcceptedPost
+    public class AcceptedPostInteraction
     {
         public int OfferId { get; set; }
         public int RequestId { get; set; }
