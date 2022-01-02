@@ -1,12 +1,158 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingAcceptedPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingAcceptedPage"
+             xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
+             xmlns:model="clr-namespace:greenshare_app.Models"
+             x:DataType="viewModels:OutgoingInteractionsViewModel"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             Title="{Binding Title}">
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              >
+        <!--SelectionMode="Single"
+              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              RefreshControlColor="{StaticResource colorGreen2}"
+              ItemsSource="{Binding PostCardList}"-->
+
+        <!--<ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>-->
+
+        <!--<ListView.Header>
+            <StackLayout Padding="15">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
+            </StackLayout>
+        </ListView.Header>-->
+        <!--OFFERS I REQUESTS PER TESTEJAR-->
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type model:Post}">
+                <model:Post Name="Bicicleta" Offer="True" Request="False" OwnerId="1"></model:Post>
+                <model:Post Name="Rentaplats" Offer="False" Request="True"></model:Post>
+                <model:Post Name="Ordinador" Offer="False" Request="True"></model:Post>
+            </x:Array>
+        </ListView.ItemsSource>
+
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Post">
+                <ViewCell>
+                    <Grid Padding="10">
+                        <!--OUTGOING OFFER-->
+                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="300" Margin="5" Padding="5" IsVisible="{Binding Offer}" BorderColor="{StaticResource colorWhite}">
+                            <StackLayout Orientation="Vertical" Margin="5" Padding="10">
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
+                                    <Label Text="OFFER" Style="{StaticResource styleLabelBlack}" FontSize="20"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
+                                    <Label Text="{Binding Name}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
+                                    <Label Text="AUTOR DE LA OFFER" Style="{StaticResource styleLabelWhite}" FontSize="15"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5" HeightRequest="75">
+                                    <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Has sol·licitat la "/>
+                                                <!--NOM DE L'OFERTA-->
+                                                <Span Text="{Binding Name}"/>
+                                                <Span Text=" de "/>
+                                                <!--NOM DE QUI L'ESTÀ OFERINT-->
+                                                <Span Text="Guillem"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Frame>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <!--afegir un isvisible si estem al estat pending-->
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
+                                        <Label Text="Esperant resposta..." Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
+                                    </Frame>
+
+                                    <!--afegir un isvisible si estem al estat running-->
+                                    <StackLayout Orientation="Horizontal" IsVisible="False">
+                                        <Label Text="En curs..." Style="{StaticResource styleLabelBlack}" FontSize="15"/>
+                                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorBlack}" Padding="20" Margin="10" CornerRadius="35" >
+                                            <Label Text="{x:Static fontAwesome:FontAwesomeIcons.FlagCheckered}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
+                                            <Frame.GestureRecognizers>
+                                                <!--METODE AL ACABAR LA REQUEST, UN COP CLICAT LLAVORS ES VALORARÀ L'USUARI QUE M'HA DEIXAT EL PRODUCTE-->
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </StackLayout>
+
+                                    <!--afegir un isvisible si estem al estat rated-->
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" Padding="20" Margin="10" CornerRadius="35" IsVisible="False">
+                                        <Label Text="Valorat!" Style="{StaticResource styleLabelBlack}" FontSize="15"/>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <!--OUTGOING REQUEST-->
+                        <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" HeightRequest="325" Margin="5" Padding="5" IsVisible="{Binding Request}" BorderColor="{StaticResource colorWhite}">
+                            <StackLayout Orientation="Vertical" Margin="5" Padding="10">
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="5">
+                                    <Label Text="REQUEST" Style="{StaticResource styleLabelBlack}" FontSize="20"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2">
+                                    <Label Text="{Binding Name}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2">
+                                    <Label Text="NOM DE L'AUTOR" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2" HeightRequest="50">
+                                    <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Has ofert "/>
+                                                <!--NOM DE LA REQUEST-->
+                                                <Span Text="{Binding Name}"/>
+                                                <Span Text=" a la petició de "/>
+                                                <!--NOM DE QUI L'ESTÀ DEMANANT-->
+                                                <Span Text="Guillem"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Frame>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <!--afegir un isvisible si estem al estat pending-->
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35" IsVisible="False">
+                                        <Label Text="Esperant resposta..." Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
+                                    </Frame>
+
+                                    <!--afegir un isvisible si estem al estat running-->
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="3" Margin="5" CornerRadius="5">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorOrange}" Padding="20" Margin="10" CornerRadius="5">
+                                                <Label Text="En curs..." Style="{StaticResource styleLabelBlack}" FontSize="15"/>
+                                            </Frame>
+                                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorBlack}" Padding="20" Margin="10" CornerRadius="35" >
+                                                <Label Text="{x:Static fontAwesome:FontAwesomeIcons.FlagCheckered}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
+                                                <Frame.GestureRecognizers>
+                                                    <!--METODE AL ACABAR LA REQUEST, UN COP CLICAT LLAVORS ES VALORARÀ L'USUARI QUE M'HA DEIXAT EL PRODUCTE-->
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <!--afegir un isvisible si estem al estat rated-->
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" Padding="20" Margin="10" CornerRadius="35" IsVisible="False">
+                                        <Label Text="Valorat!" Style="{StaticResource styleLabelBlack}" FontSize="15"/>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
