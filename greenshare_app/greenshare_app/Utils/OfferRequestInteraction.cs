@@ -62,18 +62,19 @@ namespace greenshare_app.Utils
                         PostName = info.Name,
                         PostType = info.Type,
                         UserName = info.Username,
+                        OwnPostId = info.OwnPostId
                     };
                     if (interactionType == "Incoming")
                     {
-                        if (pendingPost.PostType == "offer")
+                        if (pendingPost.PostType == "offer")//tipo del post del user loggeado
                         {
-                            pendingPost.PostId = info.Id;
-                            pendingPost.InteractionText = pendingPost.UserName + " is offering you a " + pendingPost.PostName;
+                            pendingPost.UserId = info.Userid;
+                            pendingPost.InteractionText = pendingPost.UserName + " is requesting your " + pendingPost.PostName;
                         }
                         else
                         {
-                            pendingPost.UserId = info.Userid;
-                            pendingPost.InteractionText = pendingPost.UserName + " is requesting you a " + pendingPost.PostName;
+                            pendingPost.PostId = info.Id;
+                            pendingPost.InteractionText = pendingPost.UserName + " is offering you a" + pendingPost.PostName;
                         }
                     }
                     else if (interactionType == "Outgoing")
@@ -194,6 +195,9 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "id")]
             public int Id { get; set; }
+
+            [JsonProperty(PropertyName = "ownPostId")]
+            public int OwnPostId { get; set; }
 
             [JsonProperty(PropertyName = "username")]
             public string Username { get; set; }

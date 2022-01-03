@@ -28,6 +28,8 @@ namespace greenshare_app.ViewModels
 
         public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
         public AsyncCommand RefreshCommand => new AsyncCommand(Refresh);
+        public AsyncCommand OnAcceptButtonCommand => new AsyncCommand(OnAccept);
+        public AsyncCommand OnRejectButtonCommand => new AsyncCommand(OnReject);
 
         public IncomingPendingViewModel(INavigation navigation, Page view)
         {
@@ -100,7 +102,7 @@ namespace greenshare_app.ViewModels
                 IsBusy = false;
                 return;
             }
-            if (SelectedPostInteraction.PostType == "Offer")
+            if (SelectedPostInteraction.PostType == "request")
             {
                 Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostInteraction.PostId);
                 IsBusy = false;
@@ -114,6 +116,58 @@ namespace greenshare_app.ViewModels
                 if (user == null) await view.DisplayAlert("Error while retrieving Selected user", "user not found", "OK");
                 //else await navigation.PushModalAsync(new ViewPost(offer));
             }            
+        }
+
+        private async Task OnAccept()
+        {
+            if (SelectedPostInteraction != null)
+            {
+                try
+                {
+                    if (SelectedPostInteraction.PostType == "offer")
+                    {
+                        await OfferRequestInteraction.Instance().AcceptRequest(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
+                    }
+                    else
+                    {
+                        await OfferRequestInteraction.Instance().AcceptOffer(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
+                    }
+                }
+                catch (Exception)
+                {
+                    await view.DisplayAlert("Error while Rejecting Interaction", "Error while sending request to server", "OK");
+                }
+            }
+            else
+            {
+                await view.DisplayAlert("Error while Accepting Interaction", "Something went wrong", "OK");
+            }
+        }
+
+        private async Task OnReject()
+        {
+            if (SelectedPostInteraction != null)
+            {
+                try
+                {
+                    if (SelectedPostInteraction.PostType == "offer")
+                    {
+                        await OfferRequestInteraction.Instance().RejectRequest(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
+                    }
+                    else
+                    {
+                        //await OfferRequestInteraction.Instance().RejectOffer(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
+                    }
+                }
+                catch (Exception)
+                {
+                    await view.DisplayAlert("Error while Rejecting Interaction", "Error while sending request to server", "OK");
+                }
+            }
+            else
+            {
+                await view.DisplayAlert("Error while Rejecting Interaction", "Error while retrieving selected interaction", "OK");
+            }
         }
     }
 }
