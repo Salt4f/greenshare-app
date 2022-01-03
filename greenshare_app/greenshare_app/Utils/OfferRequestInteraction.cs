@@ -44,7 +44,7 @@ namespace greenshare_app.Utils
         }
         private readonly HttpClient httpClient;
 
-        public async Task<IEnumerable<PendingPostInteraction>> GetPendingPosts(string interactionType)
+        public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);
@@ -56,7 +56,7 @@ namespace greenshare_app.Utils
                 var pendingPosts = new List<PendingPostInteraction>();
                 foreach (var item in array)
                 {                    
-                    if (interactionType == "Incoming")
+                    if (interactionType == "incoming")
                     {
                         var info = item.ToObject<PendingPostIncomingInfo>();
                         var type = info.Type;
@@ -99,7 +99,7 @@ namespace greenshare_app.Utils
                             }
                         }
                     }
-                    else if (interactionType == "Outgoing")
+                    else if (interactionType == "outgoing")
                     {
                         var info = item.ToObject<PendingPostOutgoingInfo>();
                         var type = info.Type;

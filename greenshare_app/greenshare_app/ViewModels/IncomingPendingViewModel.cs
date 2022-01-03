@@ -34,6 +34,7 @@ namespace greenshare_app.ViewModels
             Title = "Incoming Pending Interactions";
             this.navigation = navigation;
             this.view = view;
+            PendingPostInteractions = new ObservableRangeCollection<PendingPostInteraction>();
             IsBusy = true;
             Starting += OnStart;
             Starting(this, EventArgs.Empty);
@@ -55,7 +56,8 @@ namespace greenshare_app.ViewModels
         {
             try
             {
-                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
+                List<PendingPostInteraction> pendingInteractions = new List<PendingPostInteraction>();
+                pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
                 PendingPostInteractions.Clear();
                 PendingPostInteractions.AddRange(pendingInteractions);
                 if (PendingPostInteractions.Count == 0)
