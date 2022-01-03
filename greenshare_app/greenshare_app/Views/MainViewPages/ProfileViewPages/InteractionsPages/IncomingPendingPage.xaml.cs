@@ -15,6 +15,7 @@ namespace greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages
         public IncomingPendingPage()
         {
             InitializeComponent();
+            
         }
     }
 }

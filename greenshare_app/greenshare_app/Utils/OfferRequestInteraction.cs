@@ -1,4 +1,6 @@
 ﻿using greenshare_app.Exceptions;
+using greenshare_app.Models;
+using MvvmHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -40,7 +42,22 @@ namespace greenshare_app.Utils
             httpClient.DefaultRequestHeaders.Add("token", session.Item2);
         }
         private readonly HttpClient httpClient;
-      
+
+        public async Task<IEnumerable<PendingPostInteraction>> GetPendingPosts(string interactionType)
+        {
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var pendingPosts = new ObservableRangeCollection<PendingPostInteraction>();
+
+                return pendingPosts;
+            }
+            return new ObservableRangeCollection<PendingPostInteraction>();
+        }
+
         public async Task<bool> RequestAnOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
