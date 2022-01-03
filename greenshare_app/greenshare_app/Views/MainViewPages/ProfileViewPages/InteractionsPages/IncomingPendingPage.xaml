@@ -79,13 +79,13 @@
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Check}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
                                         <Frame.GestureRecognizers>
-                                            <!--METODE AL ACCEPTAR OFFER-->
+                                            <TapGestureRecognizer Command="{Binding OnAcceptButtonCommand}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
                                         <Frame.GestureRecognizers>
-                                            <!--METODE AL DENEGAR OFFER-->
+                                            <TapGestureRecognizer Command="{Binding OnRejectButtonCommand}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                 </StackLayout>
