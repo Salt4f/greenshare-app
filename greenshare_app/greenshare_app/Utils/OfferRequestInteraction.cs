@@ -44,7 +44,7 @@ namespace greenshare_app.Utils
         }
         private readonly HttpClient httpClient;
 
-        public async Task<IEnumerable<PendingPostInteraction>> GetPendingPosts(string interactionType)
+        public async Task<ObservableRangeCollection<PendingPostInteraction>> GetPendingPosts(string interactionType)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);

@@ -32,11 +32,18 @@ namespace greenshare_app.Utils
         
 
         private readonly HttpClient httpClient;
-        //Salta internal server error
-        public async Task<User> GetUserInfo()
+        public async Task<User> GetUserInfo(int? userId = null)
         {
-            Tuple<int, string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1);
+            HttpRequestMessage request;
+            if (userId != null)
+            {
+                Tuple<int, string> session = await Auth.Instance().GetAuth();
+                request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1);
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + userId);
+            }
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)

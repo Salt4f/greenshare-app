@@ -4,12 +4,20 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.IncomingPendingPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             xmlns:fontAwesome="clr-namespace:FontAwesome">
+             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="viewModels:IncomingPendingViewModel">
     
-    <ListView BackgroundColor="{StaticResource colorWhite}"
-              HasUnevenRows="True"
-              SeparatorVisibility="None"
-              >
+    <ListView 
+             BackgroundColor="{StaticResource colorWhite}"
+             HasUnevenRows="True"
+             SeparatorVisibility="None"
+             SelectedItem="{Binding SelectedPostInteraction, Mode=TwoWay}"
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+             RefreshCommand="{Binding RefreshCommand}"
+             ItemsSource="{Binding PendingPostInteractions}"
+             >
         <!--SelectionMode="Single"
               SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
               CachingStrategy="RecycleElement"
@@ -19,12 +27,12 @@
               RefreshControlColor="{StaticResource colorGreen2}"
               ItemsSource="{Binding PostCardList}"-->
 
-        <!--<ListView.Behaviors>
+        <ListView.Behaviors>
             <xct:EventToCommandBehavior
                 Command="{Binding SelectedCommand}"
                 EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                 EventName="ItemSelected" />
-        </ListView.Behaviors>-->
+        </ListView.Behaviors>
 
         <!--<ListView.Header>
             <StackLayout Padding="15">
@@ -32,16 +40,7 @@
             </StackLayout>
         </ListView.Header>-->
 
-        <!--OFFERS I REQUESTS PER TESTEJAR-->
-        <ListView.ItemsSource>
-            <x:Array Type="{x:Type model:Post}">
-                <model:Post Name="Bicicleta" Offer="True" Request="False" OwnerId="1"></model:Post>
-                <model:Post Name="Rentaplats" Offer="False" Request="True"></model:Post>
-                <model:Post Name="Ordinador" Offer="False" Request="True"></model:Post>
-            </x:Array>
-        </ListView.ItemsSource>
-
-
+        <!--OFFERS I REQUESTS PER TESTEJAR-->       
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PendingPostInteraction">
                 <ViewCell>
