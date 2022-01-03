@@ -44,7 +44,7 @@ namespace greenshare_app.Utils
         }
         private readonly HttpClient httpClient;
 
-        public async Task<ObservableRangeCollection<PendingPostInteraction>> GetPendingPosts(string interactionType)
+        public async Task<IEnumerable<PendingPostInteraction>> GetPendingPosts(string interactionType)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);
@@ -53,46 +53,77 @@ namespace greenshare_app.Utils
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
-                var pendingPosts = new ObservableRangeCollection<PendingPostInteraction>();
+                var pendingPosts = new List<PendingPostInteraction>();
                 foreach (var item in array)
-                {
-                    var info = item.ToObject<PendingPostInteractionInfo>();
-                    var pendingPost = new PendingPostInteraction()
-                    {
-                        PostName = info.Name,
-                        PostType = info.Type,
-                        UserName = info.Username,
-                        OwnPostId = info.OwnPostId
-                    };
+                {                    
                     if (interactionType == "Incoming")
                     {
-                        if (pendingPost.PostType == "offer")//tipo del post del user loggeado
+                        var info = item.ToObject<PendingPostIncomingInfo>();
+                        var type = info.Type;
+                        if (type == "offer")//tipo del post del user loggeado
                         {
-                            pendingPost.UserId = info.Userid;
-                            pendingPost.InteractionText = pendingPost.UserName + " is requesting your " + pendingPost.PostName;
+                            IEnumerable<IncomingPostsInfo> incomingRequests = new List<IncomingPostsInfo>();
+                            incomingRequests = info.Requests;
+                            foreach (var req in incomingRequests)
+                            {
+                                var pendingInteraction = new PendingPostInteraction()
+                                {
+                                    OwnPostId = info.Id,
+                                    PostId = req.Id,
+                                    PostName = info.Name,
+                                    PostType = info.Type,
+                                    UserId = req.OwnerId,
+                                    UserName = req.Nickname
+                                };
+                                pendingInteraction.InteractionText = pendingInteraction.UserName + " is requesting your " + pendingInteraction.PostName;
+                                pendingPosts.Add(pendingInteraction);
+                            }
                         }
                         else
                         {
-                            pendingPost.PostId = info.Id;
-                            pendingPost.InteractionText = pendingPost.UserName + " is offering you a" + pendingPost.PostName;
+                            IEnumerable<IncomingPostsInfo> incomingOffers = new List<IncomingPostsInfo>();
+                            incomingOffers = info.Offers;
+                            foreach (var req in incomingOffers)
+                            {
+                                var pendingInteraction = new PendingPostInteraction()
+                                {
+                                    OwnPostId = info.Id,
+                                    PostId = req.Id,
+                                    PostName = info.Name,
+                                    PostType = info.Type,
+                                    UserId = req.OwnerId,
+                                    UserName = req.Nickname
+                                };
+                                pendingInteraction.InteractionText = pendingInteraction.UserName + " is offering you a " + pendingInteraction.PostName;
+                                pendingPosts.Add(pendingInteraction);
+                            }
                         }
                     }
                     else if (interactionType == "Outgoing")
                     {
-                        if (pendingPost.PostType == "offer")
+                        var info = item.ToObject<PendingPostOutgoingInfo>();
+                        var type = info.Type;
+                        var pendingInteraction = new PendingPostInteraction()
                         {
-                            pendingPost.InteractionText = "Waiting for " + pendingPost.UserName + " to respond to your request on " + pendingPost.PostName;
+                            UserName = info.NickName,
+                            PostName = info.Name,
+                            UserId = info.OwnerId,
+                            PostType = type,
+                        };
+                        if (type == "offer")
+                        {                       
+                            pendingInteraction.InteractionText = "Waiting for " + pendingInteraction.UserName + " to respond to your request on " + pendingInteraction.PostName;
                         }
                         else
                         {
-                            pendingPost.InteractionText = "Waiting for " + pendingPost.UserName + " to respond to your offer on " + pendingPost.PostName;
+                            pendingInteraction.InteractionText = "Waiting for " + pendingInteraction.UserName + " to respond to your offer on " + pendingInteraction.PostName;
                         }
+                        pendingPosts.Add(pendingInteraction);
                     }
-                    pendingPosts.Add(pendingPost);
                 }
                 return pendingPosts;
             }
-            return new ObservableRangeCollection<PendingPostInteraction>();
+            return new List<PendingPostInteraction>();
         }
 
         public async Task<bool> RequestAnOffer(int offerId, int requestId)
@@ -151,6 +182,19 @@ namespace greenshare_app.Utils
             return false;
         }
 
+        public async Task<bool> RejectOffer(int requestId, int offerId)
+        {
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/reject", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<bool> AcceptOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
@@ -186,24 +230,43 @@ namespace greenshare_app.Utils
 
         private class PendingPostInteractionInfo
         {
-
             [JsonProperty(PropertyName = "name")]
             public string Name { get; set; }
 
             [JsonProperty(PropertyName = "type")]
             public string Type { get; set; }
 
+        }
+        private class PendingPostOutgoingInfo : PendingPostInteractionInfo
+        {            
+            [JsonProperty(PropertyName = "nickname")]   //outgoing only
+            public string NickName { get; set; }
+
+            [JsonProperty(PropertyName = "ownerId")]    //outgoing only
+            public int OwnerId { get; set; }
+        }
+        private class PendingPostIncomingInfo : PendingPostInteractionInfo
+        {
+            
+            [JsonProperty(PropertyName = "id")]
+            public int Id { get; set; }            
+
+            [JsonProperty(PropertyName = "Requests")]
+            public IEnumerable<IncomingPostsInfo> Requests { get; set; }
+
+            [JsonProperty(PropertyName = "Offers")]
+            public IEnumerable<IncomingPostsInfo> Offers { get; set; }
+        }       
+        private class IncomingPostsInfo
+        {
             [JsonProperty(PropertyName = "id")]
             public int Id { get; set; }
 
-            [JsonProperty(PropertyName = "ownPostId")]
-            public int OwnPostId { get; set; }
+            [JsonProperty(PropertyName = "ownerId")]
+            public int OwnerId { get; set; }
 
-            [JsonProperty(PropertyName = "username")]
-            public string Username { get; set; }
-
-            [JsonProperty(PropertyName = "userid")]
-            public int Userid { get; set; }          
+            [JsonProperty(PropertyName = "nickname")]
+            public string Nickname { get; set; }
         }
     }
 }

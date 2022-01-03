@@ -27,9 +27,7 @@ namespace greenshare_app.ViewModels
         };
 
         public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
-        public AsyncCommand RefreshCommand => new AsyncCommand(Refresh);
-        public AsyncCommand OnAcceptButtonCommand => new AsyncCommand(OnAccept);
-        public AsyncCommand OnRejectButtonCommand => new AsyncCommand(OnReject);
+        public AsyncCommand RefreshCommand => new AsyncCommand(Refresh);        
 
         public IncomingPendingViewModel(INavigation navigation, Page view)
         {
@@ -57,7 +55,9 @@ namespace greenshare_app.ViewModels
         {
             try
             {
-                PendingPostInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
+                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
+                PendingPostInteractions.Clear();
+                PendingPostInteractions.AddRange(pendingInteractions);
                 if (PendingPostInteractions.Count == 0)
                 {
                     await view.DisplayAlert("No Pending Interactions left", "", "OK");
@@ -78,8 +78,9 @@ namespace greenshare_app.ViewModels
             {
                 IsBusy = true;
                 await navigation.PopToRootAsync();
+                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
                 PendingPostInteractions.Clear();
-                PendingPostInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("Incoming");
+                PendingPostInteractions.AddRange(pendingInteractions);
                 IsBusy = false;
                 if (PendingPostInteractions.Count == 0)
                 {
@@ -117,57 +118,6 @@ namespace greenshare_app.ViewModels
                 //else await navigation.PushModalAsync(new ViewPost(offer));
             }            
         }
-
-        private async Task OnAccept()
-        {
-            if (SelectedPostInteraction != null)
-            {
-                try
-                {
-                    if (SelectedPostInteraction.PostType == "offer")
-                    {
-                        await OfferRequestInteraction.Instance().AcceptRequest(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
-                    }
-                    else
-                    {
-                        await OfferRequestInteraction.Instance().AcceptOffer(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
-                    }
-                }
-                catch (Exception)
-                {
-                    await view.DisplayAlert("Error while Rejecting Interaction", "Error while sending request to server", "OK");
-                }
-            }
-            else
-            {
-                await view.DisplayAlert("Error while Accepting Interaction", "Something went wrong", "OK");
-            }
-        }
-
-        private async Task OnReject()
-        {
-            if (SelectedPostInteraction != null)
-            {
-                try
-                {
-                    if (SelectedPostInteraction.PostType == "offer")
-                    {
-                        await OfferRequestInteraction.Instance().RejectRequest(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
-                    }
-                    else
-                    {
-                        //await OfferRequestInteraction.Instance().RejectOffer(SelectedPostInteraction.OwnPostId, SelectedPostInteraction.PostId);
-                    }
-                }
-                catch (Exception)
-                {
-                    await view.DisplayAlert("Error while Rejecting Interaction", "Error while sending request to server", "OK");
-                }
-            }
-            else
-            {
-                await view.DisplayAlert("Error while Rejecting Interaction", "Error while retrieving selected interaction", "OK");
-            }
-        }
+        
     }
 }
