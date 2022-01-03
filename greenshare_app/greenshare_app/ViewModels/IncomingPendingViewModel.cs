@@ -71,11 +71,11 @@ namespace greenshare_app.ViewModels
                 await navigation.PopToRootAsync();
                 PendingPostInteractions.Clear();
                 PendingPostInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("Incoming");
+                IsBusy = false;
                 if (PendingPostInteractions.Count == 0)
                 {
                     await view.DisplayAlert("No Pending Interactions left", "", "OK");
                 }
-                IsBusy = false;
             }
             catch (Exception)
             {
@@ -86,18 +86,24 @@ namespace greenshare_app.ViewModels
 
         private async Task Selected(object args)
         {
+            IsBusy = true;
             var card = args as PendingPostInteraction;
             if (card == null)
+            {
+                IsBusy = false;
                 return;
+            }
             if (SelectedPostInteraction.PostType == "Offer")
             {
                 Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostInteraction.PostId);
+                IsBusy = false;
                 if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
                 else await navigation.PushModalAsync(new ViewPost(offer));
             }
             else
             {
                 User user = await UserInfoUtil.Instance().GetUserInfo(SelectedPostInteraction.UserId);
+                IsBusy = false;
                 if (user == null) await view.DisplayAlert("Error while retrieving Selected user", "user not found", "OK");
                 //else await navigation.PushModalAsync(new ViewPost(offer));
             }            
