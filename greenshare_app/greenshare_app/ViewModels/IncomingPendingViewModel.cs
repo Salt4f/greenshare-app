@@ -19,15 +19,14 @@ namespace greenshare_app.ViewModels
         private ObservableRangeCollection<PendingPostInteraction> pendingPostInteractions;
         private PendingPostInteraction selectedPostInteraction;
 
-        public AsyncCommand<object> SelectedCommand { get; }
-        public AsyncCommand RefreshCommand { get; }
+        public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
+        public AsyncCommand RefreshCommand => new AsyncCommand(Refresh);
 
         public IncomingPendingViewModel(INavigation navigation, Page view)
         {
-            Title = "Ofertes";
+            Title = "Incoming Pending Interactions";
             this.navigation = navigation;
             this.view = view;
-            RefreshCommand = new AsyncCommand(Refresh);
             IsBusy = true;
             Starting += OnStart;
             Starting(this, EventArgs.Empty);
@@ -81,11 +80,11 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving requests", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert("Error while retrieving Pending Interactions", "Something went wrong", "OK");
             }
         }
 
-        async Task Selected(object args)
+        private async Task Selected(object args)
         {
             var card = args as PendingPostInteraction;
             if (card == null)
