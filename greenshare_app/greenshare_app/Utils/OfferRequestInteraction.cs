@@ -2,6 +2,7 @@
 using greenshare_app.Models;
 using MvvmHelpers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -51,8 +52,43 @@ namespace greenshare_app.Utils
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
                 var pendingPosts = new ObservableRangeCollection<PendingPostInteraction>();
-
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PendingPostInteractionInfo>();
+                    var pendingPost = new PendingPostInteraction()
+                    {
+                        PostName = info.Name,
+                        PostType = info.Type,
+                        UserName = info.Username,
+                    };
+                    if (interactionType == "Incoming")
+                    {
+                        if (pendingPost.PostType == "offer")
+                        {
+                            pendingPost.PostId = info.Id;
+                            pendingPost.InteractionText = pendingPost.UserName + " is offering you a " + pendingPost.PostName;
+                        }
+                        else
+                        {
+                            pendingPost.UserId = info.Userid;
+                            pendingPost.InteractionText = pendingPost.UserName + " is requesting you a " + pendingPost.PostName;
+                        }
+                    }
+                    else if (interactionType == "Outgoing")
+                    {
+                        if (pendingPost.PostType == "offer")
+                        {
+                            pendingPost.InteractionText = "Waiting for " + pendingPost.UserName + " to respond to your request on " + pendingPost.PostName;
+                        }
+                        else
+                        {
+                            pendingPost.InteractionText = "Waiting for " + pendingPost.UserName + " to respond to your offer on " + pendingPost.PostName;
+                        }
+                    }
+                    pendingPosts.Add(pendingPost);
+                }
                 return pendingPosts;
             }
             return new ObservableRangeCollection<PendingPostInteraction>();
@@ -145,6 +181,25 @@ namespace greenshare_app.Utils
         {
             [JsonProperty(PropertyName = "valoration")]
             public string Valoration { get; set; }
+        }
+
+        private class PendingPostInteractionInfo
+        {
+
+            [JsonProperty(PropertyName = "name")]
+            public string Name { get; set; }
+
+            [JsonProperty(PropertyName = "type")]
+            public string Type { get; set; }
+
+            [JsonProperty(PropertyName = "id")]
+            public int Id { get; set; }
+
+            [JsonProperty(PropertyName = "username")]
+            public string Username { get; set; }
+
+            [JsonProperty(PropertyName = "userid")]
+            public int Userid { get; set; }          
         }
     }
 }
