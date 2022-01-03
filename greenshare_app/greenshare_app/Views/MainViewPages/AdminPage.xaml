@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.AdminPage">
+  <ListView x:Name="MyListView"
+            HasUnevenRows="true">
+    <!--Built in Cells-->
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell Height="400">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="#aed581" WidthRequest="600" HeightRequest="800">
+                            <StackLayout>
+                                <Frame BorderColor="red" WidthRequest="40" HeightRequest="350">
+                                    <StackLayout Padding="0" Margin="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="200" />
+                                                <RowDefinition Height="70" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="150" />
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="Blue" WidthRequest="30" HeightRequest="40" >
+                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding UserOrPost}"></Label>
+                                            </Frame>
+                                            <Frame Grid.Row="0" Grid.Column="1" BorderColor="Green" WidthRequest="30" HeightRequest="40">
+                                                <Label Text="{Binding UserOrPostReported}"></Label>
+                                            </Frame>
+                                            <Frame Grid.Row="1" Grid.Column="0" BorderColor="Orange" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="80" HeightRequest="80" CornerRadius="100">
+                                                <Label Text="{Binding ProfileImageReporting}"></Label>
+                                            </Frame>
+                                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="Purple" WidthRequest="30" HeightRequest="40">
+                                                <Label Text="{Binding DescriptionFromReporting}"></Label>
+                                            </Frame>
+                                            <Button Grid.Row="2" Grid.Column="0" Text="Not ban" Command="{Binding NotBan}"></Button>
+                                            <Button Grid.Row="2" Grid.Column="1" Text="ban" Command="{Binding Ban}"></Button>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
