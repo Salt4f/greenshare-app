@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
         public async Task<User> GetUserInfo(int? userId = null)
         {
             HttpRequestMessage request;
-            if (userId != null)
+            if (userId == null)
             {
                 Tuple<int, string> session = await Auth.Instance().GetAuth();
                 request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1);

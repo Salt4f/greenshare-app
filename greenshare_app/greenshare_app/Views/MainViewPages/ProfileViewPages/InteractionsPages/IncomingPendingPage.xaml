@@ -4,13 +4,20 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.IncomingPendingPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:DataType="viewModels:IncomingPendingViewModel">
-    
+             xmlns:fontAwesome="clr-namespace:FontAwesome" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="viewModels:IncomingPendingViewModel"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ListView 
              BackgroundColor="{StaticResource colorWhite}"
              HasUnevenRows="True"
              SeparatorVisibility="None"
+             SelectionMode="Single"
              SelectedItem="{Binding SelectedPostInteraction, Mode=TwoWay}"
              CachingStrategy="RecycleElement"
              IsPullToRefreshEnabled="True"
