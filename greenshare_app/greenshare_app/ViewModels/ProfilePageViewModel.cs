@@ -15,11 +15,19 @@ namespace greenshare_app.ViewModels
     public class ProfilePageViewModel : BaseViewModel
     {
         private event EventHandler Starting = delegate { };
-        public ProfilePageViewModel(INavigation navigation, Page view)
+        private int userId;
+        private bool ownPage;
+        public ProfilePageViewModel(INavigation navigation, Page view, int? userId = null)
         {
             Title = "Perfil";
             this.navigation = navigation;
             this.view = view;
+            if (userId != null)
+            {
+                this.userId = (int)userId;
+                ownPage = false;
+            }
+            else ownPage = true;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -37,7 +45,9 @@ namespace greenshare_app.ViewModels
         {
             try
             {
-                User user = await UserInfoUtil.Instance().GetUserInfo();
+                User user;
+                if (ownPage) user = await UserInfoUtil.Instance().GetUserInfo();
+                else user = await UserInfoUtil.Instance().GetUserInfo(userId);
                 NickName = user.NickName;
             }
             catch (Exception e)

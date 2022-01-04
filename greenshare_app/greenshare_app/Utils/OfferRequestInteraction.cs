@@ -58,67 +58,53 @@ namespace greenshare_app.Utils
                 {                    
                     if (interactionType == "incoming")
                     {
-                        var info = item.ToObject<PendingPostIncomingInfo>();
-                        var type = info.Type;
-                        if (type == "offer")//tipo del post del user loggeado
+                        var info = item.ToObject<PendingPostInteractionInfo>();
+                        foreach (var postsArray in info.Posts)
                         {
-                            IEnumerable<IncomingPostsInfo> incomingRequests = new List<IncomingPostsInfo>();
-                            incomingRequests = info.Requests;
-                            foreach (var req in incomingRequests)
+                            var pending = new PendingPostInteraction()
                             {
-                                var pendingInteraction = new PendingPostInteraction()
-                                {
-                                    OwnPostId = info.Id,
-                                    PostId = req.Id,
-                                    PostName = info.Name,
-                                    PostType = info.Type,
-                                    UserId = req.OwnerId,
-                                    UserName = req.Nickname
-                                };
-                                pendingInteraction.InteractionText = pendingInteraction.UserName + " is requesting your " + pendingInteraction.PostName;
-                                pendingPosts.Add(pendingInteraction);
-                            }
-                        }
-                        else
-                        {
-                            IEnumerable<IncomingPostsInfo> incomingOffers = new List<IncomingPostsInfo>();
-                            incomingOffers = info.Offers;
-                            foreach (var req in incomingOffers)
+                                OwnPostId = info.OwnPostId,
+                                PostType = postsArray.PostType,
+                                UserName = postsArray.NickName,
+                                UserId = postsArray.UserId,
+                                PostId = postsArray.Id,
+                            };
+                            if (pending.PostType == "offer")
                             {
-                                var pendingInteraction = new PendingPostInteraction()
-                                {
-                                    OwnPostId = info.Id,
-                                    PostId = req.Id,
-                                    PostName = info.Name,
-                                    PostType = info.Type,
-                                    UserId = req.OwnerId,
-                                    UserName = req.Nickname
-                                };
-                                pendingInteraction.InteractionText = pendingInteraction.UserName + " is offering you a " + pendingInteraction.PostName;
-                                pendingPosts.Add(pendingInteraction);
+                                pending.PostName = postsArray.PostName;
+                                pending.InteractionText = pending.UserName + " is offering you a " + pending.PostName;
                             }
+                            else
+                            {
+                                pending.PostName = info.OwnPostName;
+                                pending.InteractionText = pending.UserName + " is requesting your " + pending.PostName;
+
+                            }
+                            pendingPosts.Add(pending);
                         }
+
                     }
                     else if (interactionType == "outgoing")
                     {
-                        var info = item.ToObject<PendingPostOutgoingInfo>();
-                        var type = info.Type;
-                        var pendingInteraction = new PendingPostInteraction()
+                        var info = item.ToObject<IncomingPostsInfo>();
+                        var pending = new PendingPostInteraction()
                         {
+                            OwnPostId = info.OwnPostId,
+                            PostType = info.PostType,
                             UserName = info.NickName,
-                            PostName = info.Name,
-                            UserId = info.OwnerId,
-                            PostType = type,
+                            UserId = info.UserId,
+                            PostId = info.Id,
+                            PostName = info.PostName,
                         };
-                        if (type == "offer")
-                        {                       
-                            pendingInteraction.InteractionText = "Waiting for " + pendingInteraction.UserName + " to respond to your request on " + pendingInteraction.PostName;
+                        if (pending.PostType == "offer")
+                        {
+                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your request on " + pending.PostName;
                         }
                         else
                         {
-                            pendingInteraction.InteractionText = "Waiting for " + pendingInteraction.UserName + " to respond to your offer on " + pendingInteraction.PostName;
+                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your offer on " + pending.PostName;
                         }
-                        pendingPosts.Add(pendingInteraction);
+                        pendingPosts.Add(pending);
                     }
                 }
                 return pendingPosts;
@@ -230,43 +216,31 @@ namespace greenshare_app.Utils
 
         private class PendingPostInteractionInfo
         {
-            [JsonProperty(PropertyName = "name")]
-            public string Name { get; set; }
+            [JsonProperty(PropertyName = "ownPostName")]
+            public string OwnPostName { get; set; }
 
-            [JsonProperty(PropertyName = "type")]
-            public string Type { get; set; }
+            [JsonProperty(PropertyName = "ownPostId")]
+            public int OwnPostId { get; set; }            
 
-        }
-        private class PendingPostOutgoingInfo : PendingPostInteractionInfo
-        {            
-            [JsonProperty(PropertyName = "nickname")]   //outgoing only
-            public string NickName { get; set; }
-
-            [JsonProperty(PropertyName = "ownerId")]    //outgoing only
-            public int OwnerId { get; set; }
-        }
-        private class PendingPostIncomingInfo : PendingPostInteractionInfo
+            [JsonProperty(PropertyName = "posts")]
+            public IEnumerable<IncomingPostsInfo> Posts { get; set; }
+        }                  
+        private class IncomingPostsInfo : PendingPostInteractionInfo
         {
-            
-            [JsonProperty(PropertyName = "id")]
-            public int Id { get; set; }            
-
-            [JsonProperty(PropertyName = "Requests")]
-            public IEnumerable<IncomingPostsInfo> Requests { get; set; }
-
-            [JsonProperty(PropertyName = "Offers")]
-            public IEnumerable<IncomingPostsInfo> Offers { get; set; }
-        }       
-        private class IncomingPostsInfo
-        {
-            [JsonProperty(PropertyName = "id")]
+            [JsonProperty(PropertyName = "postId")]
             public int Id { get; set; }
 
-            [JsonProperty(PropertyName = "ownerId")]
-            public int OwnerId { get; set; }
+            [JsonProperty(PropertyName = "postName")]
+            public string PostName { get; set; }
+
+            [JsonProperty(PropertyName = "postType")]
+            public string PostType { get; set; }
 
             [JsonProperty(PropertyName = "nickname")]
-            public string Nickname { get; set; }
+            public string NickName { get; set; }
+
+            [JsonProperty(PropertyName = "userId")]   //outgoing only
+            public int UserId { get; set; }
         }
     }
 }
