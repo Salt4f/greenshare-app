@@ -11,7 +11,7 @@
                 <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
                 <!--BOTO DESACTIVAR PUBLICACIÓ-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsEditButtonVisible}">
-                    <Button Text="CANCEL" FontFamily="Montserrat-SemiBold"
+                    <Button Text="DEACTIVATE" FontFamily="Montserrat-SemiBold"
                             Command="{Binding OnDeactivateButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
                 </Frame>
                 <!--BOTO EDITAR-->
