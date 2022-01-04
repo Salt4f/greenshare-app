@@ -65,9 +65,17 @@
                                         </Label.FormattedText>
                                     </Label>
                                 </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
-                                    <Label Text="Esperant resposta..." Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
-                                </Frame>
+                                <StackLayout Style="{StaticResource styleStackLayoutDefault}" Orientation="Horizontal">
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
+                                        <Label Text="Esperant resposta..." Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
+                                    </Frame>
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
+                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OnRejectButtonCommand}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </StackLayout>
                             </StackLayout>
                         </Frame>
                     </Grid>
