@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace greenshare_app.Utils
 {
@@ -44,7 +45,7 @@ namespace greenshare_app.Utils
         }
         private readonly HttpClient httpClient;
 
-        public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType)
+        public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType, INavigation navigation, Page view)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);
@@ -61,7 +62,7 @@ namespace greenshare_app.Utils
                         var info = item.ToObject<PendingPostInteractionInfo>();
                         foreach (var postsArray in info.Posts)
                         {
-                            var pending = new PendingPostInteraction()
+                            var pending = new PendingPostInteraction(navigation, view)
                             {
                                 OwnPostId = info.OwnPostId,
                                 PostType = postsArray.PostType,
@@ -87,7 +88,7 @@ namespace greenshare_app.Utils
                     else if (interactionType == "outgoing")
                     {
                         var info = item.ToObject<IncomingPostsInfo>();
-                        var pending = new PendingPostInteraction()
+                        var pending = new PendingPostInteraction(navigation,view)
                         {
                             OwnPostId = info.OwnPostId,
                             PostType = info.PostType,

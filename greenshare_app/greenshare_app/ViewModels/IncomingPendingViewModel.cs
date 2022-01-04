@@ -18,13 +18,7 @@ namespace greenshare_app.ViewModels
         private INavigation navigation;
         private ObservableRangeCollection<PendingPostInteraction> pendingPostInteractions;
         private PendingPostInteraction selectedPostInteraction;
-        private PendingPostInteraction pendingTest = new PendingPostInteraction()
-        {
-            PostName = "Bicicleta",
-            PostType = "Offer",
-            UserName = "Guillem",
-            InteractionText = "En Guillem Vol la teva Bicileta"
-        };
+        
 
         //public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
         public AsyncCommand RefreshCommand => new AsyncCommand(Refresh);        
@@ -57,7 +51,7 @@ namespace greenshare_app.ViewModels
             try
             {
                 List<PendingPostInteraction> pendingInteractions = new List<PendingPostInteraction>();
-                pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
+                pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming", navigation, view);
                 PendingPostInteractions.Clear();
                 PendingPostInteractions.AddRange(pendingInteractions);
                 if (PendingPostInteractions.Count == 0)
@@ -79,8 +73,7 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
-                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming");
+                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming", navigation, view);
                 PendingPostInteractions.Clear();
                 PendingPostInteractions.AddRange(pendingInteractions);
                 IsBusy = false;

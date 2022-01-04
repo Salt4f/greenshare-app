@@ -33,7 +33,7 @@ namespace greenshare_app.ViewModels
             Title = "Perfil";
             this.navigation = navigation;
             this.view = view;            
-            this.userId = (int)userId;
+            this.userId = userId;
             ownPage = false;                       
             nickName = string.Empty;
             IsBusy = true;

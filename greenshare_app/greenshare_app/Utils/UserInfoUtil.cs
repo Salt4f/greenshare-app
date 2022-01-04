@@ -44,24 +44,35 @@ namespace greenshare_app.Utils
             {
                 request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + userId);
             }
-            request = await Auth.AddHeaders(request);
+            if (userId == null) request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
                 UserInfo info = JsonConvert.DeserializeObject<UserInfo>(json);
-                User user = new User()
+                User user;
+                if (userId == null)
                 {
-                    FullName = info.FullName,
-                    NickName = info.NickName,
-                    Description = info.Description,
-                    ProfilePicture = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.ProfilePicture); }) },
-                    Banned = info.Banned,
-                    TotalEcoPoints = info.TotalEcoPoints,
-                    TotalGreenCoins = info.TotalGreenCoins,
-                    BirthDate = info.BirthDate,
-                    AverageValoration = info.AverageValoration
-                };
+                    user = new User()
+                    {
+                        FullName = info.FullName,
+                        NickName = info.NickName,
+                        Description = info.Description,
+                        ProfilePicture = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.ProfilePicture); }) },
+                        Banned = info.Banned,
+                        TotalEcoPoints = info.TotalEcoPoints,
+                        TotalGreenCoins = info.TotalGreenCoins,
+                        BirthDate = info.BirthDate,
+                        AverageValoration = info.AverageValoration
+                    };
+                }
+                else
+                {
+                    user = new User()
+                    {                        
+                        NickName = info.NickName                        
+                    };
+                }
                 return user;
             }            
             return null;

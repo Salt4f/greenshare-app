@@ -10,16 +10,19 @@ namespace greenshare_app.Models
 {
     public class PendingPostInteraction
     {
-        public PendingPostInteraction()
+        public PendingPostInteraction(INavigation navigation, Page view)
         {
             OnAcceptButtonCommand = new AsyncCommand(OnAccept);
+            Navigation = navigation;
+            View = view;
             OnRejectButtonCommand = new AsyncCommand(OnReject);
             OnCancelButtonCommand = new AsyncCommand(OnCancel);
-            OnUserNameLabelCommand = new AsyncCommand(OnUser);
+            OnUserNameLabelCommand = new AsyncCommand(OnUser);           
             OnTitleLabelCommand = new AsyncCommand(OnTitle);
         }
         public string UserName { get; set; }
-        public INavigation navigation { get; set; }
+        public INavigation Navigation { get; set; }
+        public Page View { get; set; }
         public int UserId { get; set; }
         public string PostType { get; set; }
         public int PostId { get; set; }
@@ -48,7 +51,7 @@ namespace greenshare_app.Models
         }
         private async Task OnUser()
         {            
-            await navigation.PushModalAsync(new ProfilePage(UserId));
+            await Navigation.PushModalAsync(new ProfilePage(UserId));
         }
 
         private async Task OnTitle()
@@ -56,20 +59,21 @@ namespace greenshare_app.Models
 
             if (PostType == "offer")
             {
-                Request request = await PostRetriever.Instance().GetRequest(PostId); 
-                await navigation.PushModalAsync(new ViewPost(request));
+                Offer offer = await PostRetriever.Instance().GetOffer(PostId); 
+                await Navigation.PushModalAsync(new ViewPost(offer));
             }
             else
             {
-                Offer offer = await PostRetriever.Instance().GetOffer(PostId);
-                await navigation.PushModalAsync(new ViewPost(offer));
+                Request request = await PostRetriever.Instance().GetRequest(PostId);
+                await Navigation.PushModalAsync(new ViewPost(request));
             }
         }
         private async Task OnAccept()
         {
-            if (PostType == "offer")
+            if (PostType == "request")
             {
-                await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId);
+                if(await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId))
+                await View.DisplayAlert("Request accepted", "", "OK");
             }
             else
             {
@@ -79,9 +83,10 @@ namespace greenshare_app.Models
 
         private async Task OnReject()
         {                           
-            if (PostType == "offer")
+            if (PostType == "request")
             {
-                await OfferRequestInteraction.Instance().RejectRequest(OwnPostId, PostId);
+                if (await OfferRequestInteraction.Instance().RejectRequest(OwnPostId, PostId))
+                await View.DisplayAlert("Request rejected", "", "OK");
             }
             else
             {
