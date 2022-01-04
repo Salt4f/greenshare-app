@@ -50,7 +50,7 @@
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
                                     <Label Text="{Binding OfferName}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
                                 </Frame>
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="5" Padding="2" HeightRequest="50">
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
                                     <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
                                         <Label.FormattedText>
                                             <FormattedString>
