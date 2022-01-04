@@ -33,8 +33,8 @@ namespace greenshare_app.Utils
         public async Task<bool> DeactivatePost(int postId, string postType)
         {
             string url;
-            if (postType == "OFFER") url = "http://server.vgafib.org/api/posts/offers/" + postId + "/deactivate";
-            else if (postType == "REQUEST") url = "http://server.vgafib.org/api/posts/requests/" + postId + "/deactivate";
+            if (postType == "Offer") url = "http://server.vgafib.org/api/posts/offers/" + postId + "/deactivate";
+            else if (postType == "Request") url = "http://server.vgafib.org/api/posts/requests/" + postId + "/deactivate";
             else return false;
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
@@ -48,7 +48,7 @@ namespace greenshare_app.Utils
             }
             return false;
         }
-        public async Task<bool> PostRequest(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
+        public async Task<int> PostRequest(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags)
         {
             RequestInfo post = new RequestInfo { Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags };
             string json = JsonConvert.SerializeObject(post);
@@ -59,14 +59,15 @@ namespace greenshare_app.Utils
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                var info = tokenJson.ToObject<ReturnInfo>();
                 //falta ver que hacemos con el id y el createdAt que nos devuelven
-                return true;
+                return info.Id;
             }            
-            return false;
+            return -1;
 
         }
 
-        public async Task<bool> PostOffer(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
+        public async Task<int> PostOffer(string name, string description, DateTime terminateAt, Location location, IEnumerable<Tag> tags, IEnumerable<byte[]> photos, byte[] icon)
         {
             OfferInfo post = new OfferInfo {  Name = name, Description = description, TerminateAt = terminateAt, Location = location, Tags = tags, Photos = photos, Icon = icon };
             string json = JsonConvert.SerializeObject(post);
@@ -77,10 +78,11 @@ namespace greenshare_app.Utils
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                var info = tokenJson.ToObject<ReturnInfo>();
                 //falta ver que hacemos con el id y el createdAt que nos devuelven
-                return true;
+                return info.Id;
             }
-            return false;
+            return -1;
 
         }
 
@@ -164,5 +166,14 @@ namespace greenshare_app.Utils
         {
             
         }
+        private class ReturnInfo
+        {
+            [JsonProperty(PropertyName = "id")]
+            public int Id { get; set; }
+            [JsonProperty(PropertyName = "createdAt")]
+            public DateTime CreatedAt { get; set; }
+        }
     }
+
+    
 }

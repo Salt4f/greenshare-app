@@ -23,6 +23,11 @@ namespace greenshare_app.ViewModels
         private string description;
         private string postType;
         public AsyncCommand OnEditButtonCommand => new AsyncCommand(OnEdit);
+        public AsyncCommand OnDeactivateButtonCommand => new AsyncCommand(OnDeactivate);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
+        public AsyncCommand OnRequestToOfferButtonCommand => new AsyncCommand(OnRequestToOffer);
+        public AsyncCommand OnOfferToRequestButtonCommand => new AsyncCommand(OnOfferToRequest);
+
 
         private event EventHandler Starting = delegate { };
         private IList<Image> photos;
@@ -135,9 +140,46 @@ namespace greenshare_app.ViewModels
 
 
         private async Task OnEdit()
-        {
-            
+        {            
             await navigation.PushModalAsync(new EditPost(post));            
+        }
+        private async Task OnDeactivate()
+        {
+            if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
+            {
+                await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
+            }
+        }
+        private async Task OnReport()
+        {
+            if (await ReportUtil.Instance().PostReport("default message", typeof(Post), post.Id))
+            {
+                await view.DisplayAlert("Report posted successfully", "an Administrator will review your report", "OK");
+            }
+        }
+        private async Task OnRequestToOffer()
+        {
+            List<Tag> tags = new List<Tag>();
+            Tag tag = new Tag()
+            {
+                Name = "RequestToOffer",
+                Color = Color.White,
+            };
+            tags.Add(tag);
+            var id = await PostSender.Instance().PostRequest("Req-to-Offer-" + post.Id, "request to offer", post.TerminateAt, await Geolocation.GetLocationAsync(), tags);
+            if (id != -1)
+            {
+                if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
+                {
+                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                }
+            }
+        }
+        private async Task OnOfferToRequest()
+        {
+            await view.DisplayAlert("Button WIP!", "missing way to create offer from here", "OK");
+            //var id = await PostSender.Instance().PostOffer("Offer-to-Req-" + post.Id, "offer to request", post.TerminateAt, await Geolocation.GetLocationAsync(), new List<Tag>());
+            //if (id != -1) await OfferRequestInteraction.Instance().OfferARequest(id, post.Id);
         }
 
         public string PostType
