@@ -65,18 +65,19 @@ namespace greenshare_app.Utils
                             var pending = new PendingPostInteraction(navigation, view)
                             {
                                 OwnPostId = info.OwnPostId,
-                                PostType = postsArray.PostType,
                                 UserName = postsArray.NickName,
                                 UserId = postsArray.UserId,
                                 PostId = postsArray.Id,
                             };
-                            if (pending.PostType == "offer")
+                            if (postsArray.PostType == "offer")
                             {
+                                pending.PostType = "request";
                                 pending.PostName = postsArray.PostName;
                                 pending.InteractionText = pending.UserName + " is offering you a " + pending.PostName;
                             }
                             else
                             {
+                                pending.PostType = "offer";
                                 pending.PostName = info.OwnPostName;
                                 pending.InteractionText = pending.UserName + " is requesting your " + pending.PostName;
 
@@ -91,18 +92,19 @@ namespace greenshare_app.Utils
                         var pending = new PendingPostInteraction(navigation,view)
                         {
                             OwnPostId = info.OwnPostId,
-                            PostType = info.PostType,
                             UserName = info.NickName,
                             UserId = info.UserId,
                             PostId = info.Id,
                             PostName = info.PostName,
                         };
-                        if (pending.PostType == "offer")
+                        if (info.PostType == "offer")
                         {
+                            pending.PostType = "request";
                             pending.InteractionText = "Waiting for " + pending.UserName + " to answer your request on " + pending.PostName;
                         }
                         else
                         {
+                            pending.PostType = "offer";
                             pending.InteractionText = "Waiting for " + pending.UserName + " to answer your offer on " + pending.PostName;
                         }
                         pendingPosts.Add(pending);
@@ -169,7 +171,7 @@ namespace greenshare_app.Utils
             return false;
         }
 
-        public async Task<bool> RejectOffer(int requestId, int offerId)
+        public async Task<bool> RejectOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);

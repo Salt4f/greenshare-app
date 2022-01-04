@@ -20,17 +20,17 @@
                             Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="20"/>
                 </Frame>
                 <!--BOTO REPORTAR PUBLICACIÓ-->
-                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20">
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportButtonVisible}">
                     <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
                             Command="{Binding OnReportViewButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
                 <!--BOTO SOL·LICITAR OFERTA-->
-                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsVisible}">
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsRequestButtonVisible}">
                     <Button Text="REQUEST" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
                             Command="{Binding OnRequestToOfferButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
                 <!--BOTO OFERIR A REQUEST-->
-                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="False">
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsOfferButtonVisible}">
                     <Button Text="OFFER" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
                             Command="{Binding OnOfferToRequestButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>

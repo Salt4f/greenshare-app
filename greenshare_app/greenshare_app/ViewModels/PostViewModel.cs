@@ -89,8 +89,26 @@ namespace greenshare_app.ViewModels
             
             IsBusy = true;
             var session = await Auth.Instance().GetAuth();
-            if (session.Item1 != post.OwnerId) IsEditButtonVisible = false;
-            else IsEditButtonVisible = true;
+            if (session.Item1 != post.OwnerId)
+            {
+                IsEditButtonVisible = false;
+                if (PostType == "Offer")
+                {
+                    IsRequestButtonVisible = true;
+                    IsOfferButtonVisible = false;
+                }
+                else
+                {
+                    IsRequestButtonVisible = false;
+                    IsOfferButtonVisible = true;
+                }
+                IsReportButtonVisible = true;
+            }
+            else
+            {
+                IsEditButtonVisible = true;
+                DeactivateButtons();
+            }
             IsBusy = false;
         }
         public string Name
@@ -111,6 +129,9 @@ namespace greenshare_app.ViewModels
 
         private DateTime minDate;
         private bool isEditButtonVisible;
+        private bool isReportButtonVisible;
+        private bool isOfferButtonVisible;
+        private bool isRequestButtonVisible;
 
         public Image Icon
         {
@@ -139,6 +160,21 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref isEditButtonVisible, value);
         }
 
+        public bool IsReportButtonVisible
+        {
+            get => isReportButtonVisible;
+            set => SetProperty(ref isReportButtonVisible, value);
+        }
+        public bool IsRequestButtonVisible
+        {
+            get => isRequestButtonVisible;
+            set => SetProperty(ref isRequestButtonVisible, value);
+        }
+        public bool IsOfferButtonVisible
+        {
+            get => isOfferButtonVisible;
+            set => SetProperty(ref isOfferButtonVisible, value);
+        }
 
         private async Task OnEdit()
         {            
@@ -155,11 +191,18 @@ namespace greenshare_app.ViewModels
         {
             await navigation.PushModalAsync(new ReportPage());
         }
+        private void DeactivateButtons()
+        {
+            IsReportButtonVisible = false;
+            IsRequestButtonVisible = false;
+            IsOfferButtonVisible = false;
+        }
         private async Task OnReport()
         {
             if (await ReportUtil.Instance().PostReport("default message", typeof(Post), post.Id))
             {
                 await view.DisplayAlert("Report posted successfully", "an Administrator will review your report", "OK");
+                DeactivateButtons();
             }
         }
         private async Task OnRequestToOffer()
@@ -177,6 +220,7 @@ namespace greenshare_app.ViewModels
                 if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
                 {
                     await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                    DeactivateButtons();
                 }
             }
         }
@@ -195,10 +239,10 @@ namespace greenshare_app.ViewModels
                 switch (value)
                 {
                     case "Offer":
-                        IsVisible = true;
+                        IsVisible = true;                        
                         break;
                     case "Request":
-                        IsVisible = false;
+                        IsVisible = false;                        
                         break;
                     default:
                         break;
