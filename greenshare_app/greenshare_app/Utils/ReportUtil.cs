@@ -54,7 +54,8 @@ namespace greenshare_app.Utils
             {
                 url = "http://server.vgafib.org/api/user/" + itemId + "/report";
             }
-            string json = JsonConvert.SerializeObject(message);
+            NewReportInfo info = new NewReportInfo() { Message = message };
+            string json = JsonConvert.SerializeObject(info);
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
@@ -114,6 +115,11 @@ namespace greenshare_app.Utils
             return new List<Report>();
         }
 
+        private class NewReportInfo
+        {
+            [JsonProperty(PropertyName = "message")]
+            public string Message { get; set; }            
+        }
         private class ReportInfo
         {
             [JsonProperty(PropertyName = "id")]

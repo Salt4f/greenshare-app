@@ -157,7 +157,7 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
                 return;
             }
-            bool response;
+            int response;
             switch (PostType)
             {
                 case nameof(Offer):
@@ -172,10 +172,10 @@ namespace greenshare_app.ViewModels
                     response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, loc, Tags);
                     break;
                 default:
-                    response = false;
+                    response = -1;
                     break;
             }
-            if (response) await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            if (response != -1) await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
             else await view.DisplayAlert("Error while creating Post", "Invalid Session, please make sure you are logged in", "OK");
             ResetProperties();
 
