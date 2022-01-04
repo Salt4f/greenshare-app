@@ -4,12 +4,27 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.IncomingPendingPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             xmlns:fontAwesome="clr-namespace:FontAwesome">
-    
-    <ListView BackgroundColor="{StaticResource colorWhite}"
-              HasUnevenRows="True"
-              SeparatorVisibility="None"
-              >
+             xmlns:fontAwesome="clr-namespace:FontAwesome" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="viewModels:IncomingPendingViewModel"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView 
+             BackgroundColor="{StaticResource colorWhite}"
+             HasUnevenRows="True"
+             SeparatorVisibility="None"
+             SelectionMode="Single"
+             SelectedItem="{Binding SelectedPostInteraction, Mode=TwoWay}"
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+             RefreshCommand="{Binding RefreshCommand}"
+             ItemsSource="{Binding PendingPostInteractions}"
+             >
         <!--SelectionMode="Single"
               SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
               CachingStrategy="RecycleElement"
@@ -18,30 +33,21 @@
               RefreshCommand="{Binding RefreshCommand}"
               RefreshControlColor="{StaticResource colorGreen2}"
               ItemsSource="{Binding PostCardList}"-->
-
-        <!--<ListView.Behaviors>
+        <!--
+        <ListView.Behaviors>
             <xct:EventToCommandBehavior
                 Command="{Binding SelectedCommand}"
                 EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                 EventName="ItemSelected" />
-        </ListView.Behaviors>-->
-
+        </ListView.Behaviors>
+        -->
         <!--<ListView.Header>
             <StackLayout Padding="15">
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
             </StackLayout>
         </ListView.Header>-->
 
-        <!--OFFERS I REQUESTS PER TESTEJAR-->
-        <ListView.ItemsSource>
-            <x:Array Type="{x:Type model:Post}">
-                <model:Post Name="Bicicleta" Offer="True" Request="False" OwnerId="1"></model:Post>
-                <model:Post Name="Rentaplats" Offer="False" Request="True"></model:Post>
-                <model:Post Name="Ordinador" Offer="False" Request="True"></model:Post>
-            </x:Array>
-        </ListView.ItemsSource>
-
-
+        <!--OFFERS I REQUESTS PER TESTEJAR-->       
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PendingPostInteraction">
                 <ViewCell>
@@ -55,9 +61,15 @@
                                 </Frame>
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
                                     <Label Text="{Binding PostName}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnTitleLabelCommand}"/>
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
                                     <Label Text="{Binding UserName}" Style="{StaticResource styleLabelWhite}" FontSize="15"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnUserNameLabelCommand}"/>
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5" HeightRequest="75">
                                     <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
@@ -73,13 +85,13 @@
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Check}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
                                         <Frame.GestureRecognizers>
-                                            <!--METODE AL ACCEPTAR OFFER-->
+                                            <TapGestureRecognizer Command="{Binding OnAcceptButtonCommand}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
                                         <Frame.GestureRecognizers>
-                                            <!--METODE AL DENEGAR OFFER-->
+                                            <TapGestureRecognizer Command="{Binding OnRejectButtonCommand}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                 </StackLayout>

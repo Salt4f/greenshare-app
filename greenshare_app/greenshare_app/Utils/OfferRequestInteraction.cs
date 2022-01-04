@@ -1,11 +1,15 @@
 ﻿using greenshare_app.Exceptions;
+using greenshare_app.Models;
+using MvvmHelpers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace greenshare_app.Utils
 {
@@ -40,7 +44,75 @@ namespace greenshare_app.Utils
             httpClient.DefaultRequestHeaders.Add("token", session.Item2);
         }
         private readonly HttpClient httpClient;
-      
+
+        public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType, INavigation navigation, Page view)
+        {
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var pendingPosts = new List<PendingPostInteraction>();
+                foreach (var item in array)
+                {                    
+                    if (interactionType == "incoming")
+                    {
+                        var info = item.ToObject<PendingPostInteractionInfo>();
+                        foreach (var postsArray in info.Posts)
+                        {
+                            var pending = new PendingPostInteraction(navigation, view)
+                            {
+                                OwnPostId = info.OwnPostId,
+                                PostType = postsArray.PostType,
+                                UserName = postsArray.NickName,
+                                UserId = postsArray.UserId,
+                                PostId = postsArray.Id,
+                            };
+                            if (pending.PostType == "offer")
+                            {
+                                pending.PostName = postsArray.PostName;
+                                pending.InteractionText = pending.UserName + " is offering you a " + pending.PostName;
+                            }
+                            else
+                            {
+                                pending.PostName = info.OwnPostName;
+                                pending.InteractionText = pending.UserName + " is requesting your " + pending.PostName;
+
+                            }
+                            pendingPosts.Add(pending);
+                        }
+
+                    }
+                    else if (interactionType == "outgoing")
+                    {
+                        var info = item.ToObject<IncomingPostsInfo>();
+                        var pending = new PendingPostInteraction(navigation,view)
+                        {
+                            OwnPostId = info.OwnPostId,
+                            PostType = info.PostType,
+                            UserName = info.NickName,
+                            UserId = info.UserId,
+                            PostId = info.Id,
+                            PostName = info.PostName,
+                        };
+                        if (pending.PostType == "offer")
+                        {
+                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your request on " + pending.PostName;
+                        }
+                        else
+                        {
+                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your offer on " + pending.PostName;
+                        }
+                        pendingPosts.Add(pending);
+                    }
+                }
+                return pendingPosts;
+            }
+            return new List<PendingPostInteraction>();
+        }
+
         public async Task<bool> RequestAnOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
@@ -97,6 +169,19 @@ namespace greenshare_app.Utils
             return false;
         }
 
+        public async Task<bool> RejectOffer(int requestId, int offerId)
+        {
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/reject", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<bool> AcceptOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
@@ -128,6 +213,35 @@ namespace greenshare_app.Utils
         {
             [JsonProperty(PropertyName = "valoration")]
             public string Valoration { get; set; }
+        }
+
+        private class PendingPostInteractionInfo
+        {
+            [JsonProperty(PropertyName = "ownPostName")]
+            public string OwnPostName { get; set; }
+
+            [JsonProperty(PropertyName = "ownPostId")]
+            public int OwnPostId { get; set; }            
+
+            [JsonProperty(PropertyName = "posts")]
+            public IEnumerable<IncomingPostsInfo> Posts { get; set; }
+        }                  
+        private class IncomingPostsInfo : PendingPostInteractionInfo
+        {
+            [JsonProperty(PropertyName = "postId")]
+            public int Id { get; set; }
+
+            [JsonProperty(PropertyName = "postName")]
+            public string PostName { get; set; }
+
+            [JsonProperty(PropertyName = "postType")]
+            public string PostType { get; set; }
+
+            [JsonProperty(PropertyName = "nickname")]
+            public string NickName { get; set; }
+
+            [JsonProperty(PropertyName = "userId")]   //outgoing only
+            public int UserId { get; set; }
         }
     }
 }
