@@ -23,6 +23,11 @@ namespace greenshare_app.ViewModels
         private string description;
         private string postType;
         public AsyncCommand OnEditButtonCommand => new AsyncCommand(OnEdit);
+        public AsyncCommand OnDeactivateButtonCommand => new AsyncCommand(OnDeactivate);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
+        public AsyncCommand OnRequestToOfferButtonCommand => new AsyncCommand(OnRequestToOffer);
+        public AsyncCommand OnOfferToRequestButtonCommand => new AsyncCommand(OnOfferToRequest);
+
 
         private event EventHandler Starting = delegate { };
         private IList<Image> photos;
@@ -135,9 +140,24 @@ namespace greenshare_app.ViewModels
 
 
         private async Task OnEdit()
-        {
-            
+        {            
             await navigation.PushModalAsync(new EditPost(post));            
+        }
+        private async Task OnDeactivate()
+        {
+            await view.DisplayAlert("Button WIP!", "espera bro", "OK");
+        }
+        private async Task OnReport()
+        {
+            await view.DisplayAlert("Button WIP!", "espera bro", "OK");
+        }
+        private async Task OnRequestToOffer()
+        {
+            await view.DisplayAlert("Button WIP!", "espera bro", "OK");
+        }
+        private async Task OnOfferToRequest()
+        {
+            await view.DisplayAlert("Button WIP!", "espera bro", "OK");
         }
 
         public string PostType
