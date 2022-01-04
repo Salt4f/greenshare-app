@@ -7,22 +7,39 @@
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
     <ScrollView>
         <StackLayout Padding="10" Margin="2">
-            <!--BOTO EDITAR-->
             <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                <Frame Style="{StaticResource styleFrameEntry}" HorizontalOptions="EndAndExpand" CornerRadius="20" WidthRequest="75" BackgroundColor="{StaticResource colorGreen3}" IsVisible="{Binding IsEditButtonVisible}">
+                <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
+                <!--BOTO DESACTIVAR PUBLICACIÓ-->
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsEditButtonVisible}">
+                    <Button Text="CANCEL" FontFamily="Montserrat-SemiBold"
+                            Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
+                </Frame>
+                <!--BOTO EDITAR-->
+                <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="20" WidthRequest="75" IsVisible="{Binding IsEditButtonVisible}">
                     <Button Text="{x:Static fontAwesome:FontAwesomeIcons.PenAlt}" FontFamily="FAS"
                             Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="20"/>
                 </Frame>
+                <!--BOTO REPORTAR PUBLICACIÓ-->
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20">
+                    <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
+                            Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
+                </Frame>
+                <!--BOTO SOL·LICITAR OFERTA-->
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsVisible}">
+                    <Button Text="REQUEST" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
+                            Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
+                </Frame>
+                <!--BOTO OFERIR A REQUEST-->
+                <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="False">
+                    <Button Text="OFFER" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
+                            Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
+                </Frame>
             </StackLayout>
             <!--CAMPS PRINCIPALS-->
+            <!--ICON-->
+            <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}" BackgroundColor="{StaticResource colorGreen5}" IsVisible="{Binding IsVisible}"/>
             <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10">
                 <StackLayout Orientation="Vertical" Padding="2" BackgroundColor="Transparent">
-                    <!--ICON-->
-                    <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical">
-                        <Frame BackgroundColor="{StaticResource colorWhite}" CornerRadius="10" Padding="5,0,5,0" Margin="2" VerticalOptions="CenterAndExpand">
-                            <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"/>
-                        </Frame>
-                    </StackLayout>
                     <!--TITLE-->
                     <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="15">
                         <StackLayout Style="{StaticResource styleStackLayoutDefault}">
