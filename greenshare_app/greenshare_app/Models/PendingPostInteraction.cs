@@ -46,7 +46,7 @@ namespace greenshare_app.Models
             }
             else
             {
-                await OfferRequestInteraction.Instance().AcceptOffer(OwnPostId, PostId);
+                await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
             }
         }
         private async Task OnUser()
@@ -59,38 +59,38 @@ namespace greenshare_app.Models
 
             if (PostType == "offer")
             {
-                Offer offer = await PostRetriever.Instance().GetOffer(PostId); 
+                Offer offer = await PostRetriever.Instance().GetOffer(OwnPostId); 
                 await Navigation.PushModalAsync(new ViewPost(offer));
             }
             else
             {
-                Request request = await PostRetriever.Instance().GetRequest(PostId);
-                await Navigation.PushModalAsync(new ViewPost(request));
+                Offer offer = await PostRetriever.Instance().GetOffer(PostId);
+                await Navigation.PushModalAsync(new ViewPost(offer));
             }
         }
         private async Task OnAccept()
         {
-            if (PostType == "request")
+            if (PostType == "offer")
             {
                 if(await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId))
                 await View.DisplayAlert("Request accepted", "", "OK");
             }
             else
             {
-                await OfferRequestInteraction.Instance().AcceptOffer(OwnPostId, PostId);
+                await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
             }
         }
 
         private async Task OnReject()
         {                           
-            if (PostType == "request")
+            if (PostType == "offer")
             {
                 if (await OfferRequestInteraction.Instance().RejectRequest(OwnPostId, PostId))
                 await View.DisplayAlert("Request rejected", "", "OK");
             }
             else
             {
-                await OfferRequestInteraction.Instance().RejectOffer(OwnPostId, PostId);
+                await OfferRequestInteraction.Instance().RejectOffer(PostId, OwnPostId);
             }
         }                       
     }
