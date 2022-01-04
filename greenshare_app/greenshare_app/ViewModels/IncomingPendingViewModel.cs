@@ -26,7 +26,7 @@ namespace greenshare_app.ViewModels
             InteractionText = "En Guillem Vol la teva Bicileta"
         };
 
-        public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
+        //public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
         public AsyncCommand RefreshCommand => new AsyncCommand(Refresh);        
 
         public IncomingPendingViewModel(INavigation navigation, Page view)

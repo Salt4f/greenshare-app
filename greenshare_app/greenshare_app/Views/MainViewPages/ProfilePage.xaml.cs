@@ -9,11 +9,15 @@ namespace greenshare_app.Views.MainViewPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
-        public ProfilePage(int? userId = null)
+        public ProfilePage()
         {
             InitializeComponent();
-            if (userId != null) BindingContext = new ProfilePageViewModel(Navigation, this, userId);
-            else BindingContext = new ProfilePageViewModel(Navigation, this);
+            BindingContext = new ProfilePageViewModel(Navigation, this);
+        }
+        public ProfilePage(int userId)
+        {
+            InitializeComponent();
+            BindingContext = new ProfilePageViewModel(Navigation, this, userId);           
         }
 
     }

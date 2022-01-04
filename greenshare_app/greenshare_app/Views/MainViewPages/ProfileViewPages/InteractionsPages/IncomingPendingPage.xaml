@@ -33,14 +33,14 @@
               RefreshCommand="{Binding RefreshCommand}"
               RefreshControlColor="{StaticResource colorGreen2}"
               ItemsSource="{Binding PostCardList}"-->
-
+        <!--
         <ListView.Behaviors>
             <xct:EventToCommandBehavior
                 Command="{Binding SelectedCommand}"
                 EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                 EventName="ItemSelected" />
         </ListView.Behaviors>
-
+        -->
         <!--<ListView.Header>
             <StackLayout Padding="15">
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>

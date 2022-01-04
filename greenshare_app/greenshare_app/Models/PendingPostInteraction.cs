@@ -10,6 +10,14 @@ namespace greenshare_app.Models
 {
     public class PendingPostInteraction
     {
+        public PendingPostInteraction()
+        {
+            OnAcceptButtonCommand = new AsyncCommand(OnAccept);
+            OnRejectButtonCommand = new AsyncCommand(OnReject);
+            OnCancelButtonCommand = new AsyncCommand(OnCancel);
+            OnUserNameLabelCommand = new AsyncCommand(OnUser);
+            OnTitleLabelCommand = new AsyncCommand(OnTitle);
+        }
         public string UserName { get; set; }
         public INavigation navigation { get; set; }
         public int UserId { get; set; }
@@ -21,11 +29,11 @@ namespace greenshare_app.Models
         //ex: en guillem t'està oferint a la teva solicitud d'una bicicleta
         //ex: en guillem t'està sol·licitant el teu ordinador
         public int OwnPostId { get; set; }
-        public AsyncCommand OnAcceptButtonCommand => new AsyncCommand(OnAccept);
-        public AsyncCommand OnRejectButtonCommand => new AsyncCommand(OnReject);
-        public AsyncCommand OnCancelButtonCommand => new AsyncCommand(OnCancel);
-        public AsyncCommand OnUserNameLabelCommand => new AsyncCommand(OnUser);
-        public AsyncCommand OnTitleLabelCommand => new AsyncCommand(OnTitle);
+        public AsyncCommand OnAcceptButtonCommand { get; set; }
+        public AsyncCommand OnRejectButtonCommand { get; set; }
+        public AsyncCommand OnCancelButtonCommand { get; set; }
+        public AsyncCommand OnUserNameLabelCommand { get; set; }
+        public AsyncCommand OnTitleLabelCommand { get; set; }
 
         private async Task OnCancel()
         {

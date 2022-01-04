@@ -17,17 +17,24 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         private int userId;
         private bool ownPage;
-        public ProfilePageViewModel(INavigation navigation, Page view, int? userId = null)
+        public ProfilePageViewModel(INavigation navigation, Page view)
         {
             Title = "Perfil";
             this.navigation = navigation;
             this.view = view;
-            if (userId != null)
-            {
-                this.userId = (int)userId;
-                ownPage = false;
-            }
-            else ownPage = true;
+            ownPage = true;
+            nickName = string.Empty;
+            IsBusy = true;
+            Starting += OnStart;
+            Starting(this, EventArgs.Empty);
+        }
+        public ProfilePageViewModel(INavigation navigation, Page view, int userId)
+        {
+            Title = "Perfil";
+            this.navigation = navigation;
+            this.view = view;            
+            this.userId = (int)userId;
+            ownPage = false;                       
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
