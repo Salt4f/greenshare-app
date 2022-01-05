@@ -30,7 +30,6 @@ namespace greenshare_app.Views.MainViewPages
             };
             ReportPostOrUser = "Post";
 
-            MyListView.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

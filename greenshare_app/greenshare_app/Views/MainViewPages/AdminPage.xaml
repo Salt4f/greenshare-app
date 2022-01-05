@@ -1,43 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:greenshare_app.Models"
              x:Class="greenshare_app.Views.MainViewPages.AdminPage">
-  <ListView x:Name="MyListView"
+    <ListView x:Name="MyListView"
             HasUnevenRows="true">
-    <!--Built in Cells-->
-
+        
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type model:Report}">
+                <model:Report UserOrPost="User" UserOrPostReported="Raul" UserReporting="Planso" Description="Me ha dicho que soy demasiado sexy y me ha molestado, jeje xd lol."></model:Report>
+                <model:Report UserOrPost="Post" UserOrPostReported="#123" UserReporting="Planso" Description="Hay una foto de una pinga negra bien grande."></model:Report>
+                <model:Report UserOrPost="User" UserOrPostReported="Marc Cortadeñas" UserReporting="Planso" Description="Se está haciendo pasar por un amigo mío y subiendo fotos de smart gatos."></model:Report>
+            </x:Array>
+        </ListView.ItemsSource>
+        
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell Height="400">
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="#aed581" WidthRequest="600" HeightRequest="800">
                             <StackLayout>
-                                <Frame BorderColor="red" WidthRequest="40" HeightRequest="350">
+                                <Frame BorderColor="#a5d6a7" WidthRequest="40" HeightRequest="350">
                                     <StackLayout Padding="0" Margin="0">
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="60" />
                                                 <RowDefinition Height="200" />
-                                                <RowDefinition Height="70" />
+                                                <RowDefinition Height="60" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="150" />
                                                 <ColumnDefinition Width="150" />
                                             </Grid.ColumnDefinitions>
-                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="Blue" WidthRequest="30" HeightRequest="40" >
-                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding UserOrPost}"></Label>
+                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="#bdbdbd" WidthRequest="30" HeightRequest="40" BackgroundColor="#eeeeee" HasShadow="True">
+                                                <Label Text="{Binding UserOrPost}" Padding="0" Margin="0" FontAttributes="Bold"></Label>
                                             </Frame>
-                                            <Frame Grid.Row="0" Grid.Column="1" BorderColor="Green" WidthRequest="30" HeightRequest="40">
-                                                <Label Text="{Binding UserOrPostReported}"></Label>
+                                            <Frame Grid.Row="0" Grid.Column="1" BorderColor="#bdbdbd" BackgroundColor="#eeeeee" HasShadow="True" WidthRequest="30" HeightRequest="40">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding GoToUserOrPostReported}"/>
+                                                </Frame.GestureRecognizers>
+                                                <Label Text="{Binding UserOrPostReported}" FontAttributes="Bold"></Label>
                                             </Frame>
-                                            <Frame Grid.Row="1" Grid.Column="0" BorderColor="Orange" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="80" HeightRequest="80" CornerRadius="100">
-                                                <Label Text="{Binding ProfileImageReporting}"></Label>
+                                            <Frame Grid.Row="1" Grid.Column="0" BorderColor="#ffee58" BackgroundColor="#fff9c4" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="80" HeightRequest="80" CornerRadius="100" HasShadow="True">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding GoToUserReporting}"/>
+                                                </Frame.GestureRecognizers>
+                                                <Label Text="{Binding UserReporting}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
                                             </Frame>
-                                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="Purple" WidthRequest="30" HeightRequest="40">
-                                                <Label Text="{Binding DescriptionFromReporting}"></Label>
+                                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="#a5d6a7" BackgroundColor="#dcedc8" WidthRequest="30" HeightRequest="40">
+                                                <Label Text="{Binding Description}"></Label>
                                             </Frame>
-                                            <Button Grid.Row="2" Grid.Column="0" Text="Not ban" Command="{Binding NotBan}"></Button>
-                                            <Button Grid.Row="2" Grid.Column="1" Text="ban" Command="{Binding Ban}"></Button>
+                                            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Solved" Command="{Binding NotBan}"></Button>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>
