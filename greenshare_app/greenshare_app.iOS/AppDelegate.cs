@@ -23,6 +23,7 @@ namespace greenshare_app.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
+            Syncfusion.SfRating.XForms.iOS.SfRatingRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
