@@ -16,8 +16,8 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         private Page view;
         private INavigation navigation;
-        private ObservableRangeCollection<PendingPostInteraction> pendingPostInteractions;
-        private PendingPostInteraction selectedPostInteraction;
+        private ObservableRangeCollection<AcceptedPostInteraction> acceptedPostInteractions;
+        private AcceptedPostInteraction selectedPostInteraction;
 
 
         //public AsyncCommand<object> SelectedCommand => new AsyncCommand<object>(Selected);
@@ -28,19 +28,19 @@ namespace greenshare_app.ViewModels
             Title = "Incoming Accepted Interactions";
             this.navigation = navigation;
             this.view = view;
-            AcceptedPostInteractions = new ObservableRangeCollection<PendingPostInteraction>();
+            AcceptedPostInteractions = new ObservableRangeCollection<AcceptedPostInteraction>();
             IsBusy = true;
             Starting += OnStart;
             Starting(this, EventArgs.Empty);
         }
 
-        public ObservableRangeCollection<PendingPostInteraction> AcceptedPostInteractions
+        public ObservableRangeCollection<AcceptedPostInteraction> AcceptedPostInteractions
         {
-            get => pendingPostInteractions;
-            set => SetProperty(ref pendingPostInteractions, value);
+            get => acceptedPostInteractions;
+            set => SetProperty(ref acceptedPostInteractions, value);
         }
 
-        public PendingPostInteraction SelectedPostInteraction
+        public AcceptedPostInteraction SelectedPostInteraction
         {
             get => selectedPostInteraction;
             set => SetProperty(ref selectedPostInteraction, value);
@@ -50,10 +50,10 @@ namespace greenshare_app.ViewModels
         {
             try
             {
-                List<PendingPostInteraction> pendingInteractions = new List<PendingPostInteraction>();
-                pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming", navigation, view);
+                List<AcceptedPostInteraction> acceptedInteractions = new List<AcceptedPostInteraction>();
+                acceptedInteractions = await OfferRequestInteraction.Instance().GetAcceptedPosts("incoming", navigation, view);
                 AcceptedPostInteractions.Clear();
-                AcceptedPostInteractions.AddRange(pendingInteractions);
+                AcceptedPostInteractions.AddRange(acceptedInteractions);
                 if (AcceptedPostInteractions.Count == 0)
                 {
                     await view.DisplayAlert("No Pending Interactions left", "", "OK");
@@ -73,9 +73,10 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("incoming", navigation, view);
+                List<AcceptedPostInteraction> acceptedInteractions = new List<AcceptedPostInteraction>();
+                acceptedInteractions = await OfferRequestInteraction.Instance().GetAcceptedPosts("incoming", navigation, view);
                 AcceptedPostInteractions.Clear();
-                AcceptedPostInteractions.AddRange(pendingInteractions);
+                AcceptedPostInteractions.AddRange(acceptedInteractions);
                 IsBusy = false;
                 if (AcceptedPostInteractions.Count == 0)
                 {
@@ -89,30 +90,7 @@ namespace greenshare_app.ViewModels
             }
         }
 
-        private async Task Selected(object args)
-        {
-            IsBusy = true;
-            var card = args as PendingPostInteraction;
-            if (card == null)
-            {
-                IsBusy = false;
-                return;
-            }
-            if (SelectedPostInteraction.PostType == "request")
-            {
-                Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostInteraction.PostId);
-                IsBusy = false;
-                if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
-                else await navigation.PushModalAsync(new ViewPost(offer));
-            }
-            else
-            {
-                User user = await UserInfoUtil.Instance().GetUserInfo(SelectedPostInteraction.UserId);
-                IsBusy = false;
-                if (user == null) await view.DisplayAlert("Error while retrieving Selected user", "user not found", "OK");
-                //else await navigation.PushModalAsync(new ViewPost(offer));
-            }
-        }
+       
 
     }
 }
