@@ -48,11 +48,11 @@ namespace greenshare_app.Utils
             string url;
             if (type == typeof(Post))
             {
-                url = "http://server.vgafib.org/api/posts/" + itemId + "/report";
+                url = Config.Config.Instance().BaseServerUrl + "/posts/" + itemId + "/report";
             }
             else
             {
-                url = "http://server.vgafib.org/api/user/" + itemId + "/report";
+                url = Config.Config.Instance().BaseServerUrl + "/user/" + itemId + "/report";
             }
             NewReportInfo info = new NewReportInfo() { Message = message };
             string json = JsonConvert.SerializeObject(info);
@@ -76,7 +76,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/admin/reports/" + reportId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/" + reportId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -90,7 +90,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<Report>> GetAllReports()
         {
             AddHeaders();
-            var response = await httpClient.GetAsync("http://server.vgafib.org/admin/reports/");
+            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/");
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());

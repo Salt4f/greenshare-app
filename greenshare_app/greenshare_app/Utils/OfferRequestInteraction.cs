@@ -48,7 +48,7 @@ namespace greenshare_app.Utils
         public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType, INavigation navigation, Page view)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1+"/pending-posts?type="+interactionType);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1+"/pending-posts?type="+interactionType);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -115,12 +115,36 @@ namespace greenshare_app.Utils
             return new List<PendingPostInteraction>();
         }
 
+        public async Task<List<PendingPostInteraction>> GetAcceptedPosts(string interactionType, INavigation navigation, Page view)
+        {
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/accepted-posts?type=" + interactionType);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var pendingPosts = new List<PendingPostInteraction>();
+                foreach (var item in array)
+                {
+                    if (interactionType == "incoming")
+                    {                       
+                    }
+                    else if (interactionType == "outgoing")
+                    {                        
+                    }
+                }
+                return pendingPosts;
+            }
+            return new List<PendingPostInteraction>();
+        }
+
         public async Task<bool> RequestAnOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/"+offerId+"/request/"+requestId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId+"/request/"+requestId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {                
                 return true;
@@ -134,7 +158,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -148,7 +172,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/accept", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId + "/accept", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -163,7 +187,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/reject", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId + "/reject", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -176,7 +200,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/reject", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId + "/reject", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -189,7 +213,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/requests/" + requestId + "/offer/" + offerId + "/accept", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId + "/accept", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -203,7 +227,7 @@ namespace greenshare_app.Utils
             string json = JsonConvert.SerializeObject(valorationInfo);
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl +"/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
