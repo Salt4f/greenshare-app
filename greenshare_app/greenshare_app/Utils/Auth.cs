@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/login", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/login", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -100,7 +100,7 @@ namespace greenshare_app.Utils
             httpContent.Headers.Add("id", id.ToString());
             httpContent.Headers.Add("token", token);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/validate", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/validate", httpContent);
             if (response.StatusCode == HttpStatusCode.OK) return true;
             return false;
         }
@@ -111,7 +111,7 @@ namespace greenshare_app.Utils
             string json = JsonConvert.SerializeObject(register);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/register", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/register", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
