@@ -40,14 +40,7 @@ namespace greenshare_app.Models
 
         private async Task OnCancel()
         {
-            if (PostType == "offer")
-            {
-                await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId);
-            }
-            else
-            {
-                await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
-            }
+            await View.DisplayAlert("Cancel feature WIP!", "", "OK");
         }
         private async Task OnUser()
         {            

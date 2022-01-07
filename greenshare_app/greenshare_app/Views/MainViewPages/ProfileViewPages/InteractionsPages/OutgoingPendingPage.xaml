@@ -4,11 +4,18 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingPendingPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:fontAwesome="clr-namespace:FontAwesome" x:DataType="viewModels:OutgoingPendingViewModel"
              Title="{Binding Title}">
     <ListView BackgroundColor="{StaticResource colorWhite}"
-              HasUnevenRows="True"
-              SeparatorVisibility="None"
+             HasUnevenRows="True"
+             SeparatorVisibility="None"
+             SelectionMode="Single"
+             SelectedItem="{Binding SelectedPostInteraction, Mode=TwoWay}"
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+             RefreshCommand="{Binding RefreshCommand}"
+             ItemsSource="{Binding PendingPostInteractions}"
               >
         <!--SelectionMode="Single"
               SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
@@ -32,6 +39,7 @@
             </StackLayout>
         </ListView.Header>-->
         <!--OFFERS I REQUESTS PER TESTEJAR-->
+        <!--
         <ListView.ItemsSource>
             <x:Array Type="{x:Type model:Post}">
                 <model:Post Name="Bicicleta" Offer="True" Request="False" OwnerId="1"></model:Post>
@@ -39,7 +47,7 @@
                 <model:Post Name="Ordinador" Offer="False" Request="True"></model:Post>
             </x:Array>
         </ListView.ItemsSource>
-
+        -->
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PendingPostInteraction">
@@ -72,7 +80,7 @@
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
                                         <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OnRejectButtonCommand}"/>
+                                            <TapGestureRecognizer Command="{Binding OnCancelButtonCommand}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                 </StackLayout>
