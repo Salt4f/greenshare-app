@@ -38,11 +38,11 @@ namespace greenshare_app.Utils
             if (userId == null)
             {
                 Tuple<int, string> session = await Auth.Instance().GetAuth();
-                request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + session.Item1);
+                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1);
             }
             else
             {
-                request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/user/" + userId);
+                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + userId);
             }
             if (userId == null) request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
