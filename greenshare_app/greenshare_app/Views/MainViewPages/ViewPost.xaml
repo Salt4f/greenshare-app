@@ -22,7 +22,7 @@
                 <!--BOTO REPORTAR PUBLICACIÓ-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportButtonVisible}">
                     <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
-                            Command="{Binding OnReportViewButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
+                            Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
                 <!--BOTO SOL·LICITAR OFERTA-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsRequestButtonVisible}">

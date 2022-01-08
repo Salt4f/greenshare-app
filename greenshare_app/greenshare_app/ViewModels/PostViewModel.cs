@@ -24,7 +24,6 @@ namespace greenshare_app.ViewModels
         private string postType;
         public AsyncCommand OnEditButtonCommand => new AsyncCommand(OnEdit);
         public AsyncCommand OnDeactivateButtonCommand => new AsyncCommand(OnDeactivate);
-        public AsyncCommand OnReportViewButtonCommand => new AsyncCommand(OnReportView);
         public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
         public AsyncCommand OnRequestToOfferButtonCommand => new AsyncCommand(OnRequestToOffer);
         public AsyncCommand OnOfferToRequestButtonCommand => new AsyncCommand(OnOfferToRequest);
@@ -186,11 +185,7 @@ namespace greenshare_app.ViewModels
             {
                 await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
             }
-        }
-        private async Task OnReportView()
-        {
-            await navigation.PushModalAsync(new ReportPage());
-        }
+        }        
         private void DeactivateButtons()
         {
             IsReportButtonVisible = false;
@@ -199,11 +194,8 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnReport()
         {
-            if (await ReportUtil.Instance().PostReport("default message", typeof(Post), post.Id))
-            {
-                await view.DisplayAlert("Report posted successfully", "an Administrator will review your report", "OK");
-                DeactivateButtons();
-            }
+            DeactivateButtons();
+            await navigation.PushModalAsync(new ReportPage(typeof(Post), post.Id));            
         }
         private async Task OnRequestToOffer()
         {

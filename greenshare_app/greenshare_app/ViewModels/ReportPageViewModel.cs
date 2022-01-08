@@ -22,7 +22,6 @@ namespace greenshare_app.ViewModels
 
         public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
 
-
         public ReportPageViewModel(INavigation navigation, Page view, Type type, int id)
         {
             Title = "Report page";
