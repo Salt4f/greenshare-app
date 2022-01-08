@@ -11,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages.ProfileViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserInfoPage : ContentPage
+    public partial class UserPublicationsPage : ContentPage
     {
-        public UserInfoPage(int userId, bool own)
+        public UserPublicationsPage()
         {
             InitializeComponent();
-            BindingContext = new UserInfoPageViewModel(Navigation, this, userId, own);
+            BindingContext = new MyPostsViewModel(this.Navigation, this);
         }
     }
 }
