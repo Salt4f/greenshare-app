@@ -183,6 +183,31 @@ namespace greenshare_app.Utils
             return false;
         }
 
+        public async Task<bool> CancelOffer(int offerId, int requestId)
+        {
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId , httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> CancelRequest(int offerId, int requestId)
+        {
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId, httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
 
         //Una oferta denega la petició d'un altre usuari
         public async Task<bool> RejectRequest(int offerId, int requestId)

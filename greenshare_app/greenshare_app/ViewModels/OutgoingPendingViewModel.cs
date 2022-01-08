@@ -25,7 +25,7 @@ namespace greenshare_app.ViewModels
 
         public OutgoingPendingViewModel(INavigation navigation, Page view)
         {
-            Title = "Incoming Pending Interactions";
+            Title = "Outgoing Pending Interactions";
             this.navigation = navigation;
             this.view = view;
             PendingPostInteractions = new ObservableRangeCollection<PendingPostInteraction>();

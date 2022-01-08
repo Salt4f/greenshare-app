@@ -34,20 +34,13 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnComplete()
         {
-            if (RatingValue > 5 || RatingValue < 1)
+            try
             {
-                await view.DisplayAlert("Make sure you rate your experience first", "Rating is necessary", "OK");
+                await OfferRequestInteraction.Instance().CompletePostFromOffer(acceptedPost.OfferId, acceptedPost.RequestId, RatingValue);
             }
-            else
+            catch (Exception)
             {
-                try
-                {
-                    await OfferRequestInteraction.Instance().CompletePostFromOffer(acceptedPost.OfferId, acceptedPost.RequestId, RatingValue);
-                }
-                catch (Exception)
-                {
-                    await view.DisplayAlert("Error while completing the post", "something went wrong", "OK");
-                }
+                await view.DisplayAlert("Error while completing the post", "something went wrong", "OK");
             }
         }
 
