@@ -42,11 +42,11 @@ namespace greenshare_app.Models
         {
             if (PostType == "offer")
             {
-                await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId);
+                await OfferRequestInteraction.Instance().CancelRequest(PostId, OwnPostId);
             }
             else
             {
-                await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
+                await OfferRequestInteraction.Instance().CancelOffer(OwnPostId, PostId);
             }
         }
         private async Task OnUser()

@@ -12,9 +12,10 @@
                 HeightRequest="350"
                 BackgroundColor="{StaticResource colorGreen3}"
                 TextColor="{StaticResource colorWhite}"
+                Margin="15"
                 AutoSize="TextChanges"
                 FontSize="15"/>
-            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" Margin="25">
+            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" Margin="5">
                 <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
                             Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
             </Frame>

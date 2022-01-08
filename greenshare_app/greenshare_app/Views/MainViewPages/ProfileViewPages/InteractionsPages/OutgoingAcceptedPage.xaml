@@ -4,11 +4,16 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingAcceptedPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:fontAwesome="clr-namespace:FontAwesome" x:DataType="viewModels:OutgoingAcceptedViewModel"
              Title="{Binding Title}">
     <ListView BackgroundColor="{StaticResource colorWhite}"
-              HasUnevenRows="True"
-              SeparatorVisibility="None"
+             HasUnevenRows="True"
+             SeparatorVisibility="None"             
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+             RefreshCommand="{Binding RefreshCommand}"
+             ItemsSource="{Binding AcceptedPostInteractions}"
               >
         <!--SelectionMode="Single"
               SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
@@ -32,15 +37,7 @@
             </StackLayout>
         </ListView.Header>-->
         <!--OFFERS I REQUESTS PER TESTEJAR-->
-        <ListView.ItemsSource>
-            <x:Array Type="{x:Type model:Post}">
-                <model:Post Name="Bicicleta" Offer="True" Request="False" OwnerId="1"></model:Post>
-                <model:Post Name="Rentaplats" Offer="False" Request="True"></model:Post>
-                <model:Post Name="Ordinador" Offer="False" Request="True"></model:Post>
-            </x:Array>
-        </ListView.ItemsSource>
-
-
+        
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:AcceptedPostInteraction">
                 <ViewCell>

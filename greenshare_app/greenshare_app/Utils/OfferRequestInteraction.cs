@@ -115,7 +115,7 @@ namespace greenshare_app.Utils
             return new List<PendingPostInteraction>();
         }
 
-        public async Task<List<PendingPostInteraction>> GetAcceptedPosts(string interactionType, INavigation navigation, Page view)
+        public async Task<List<AcceptedPostInteraction>> GetAcceptedPosts(string interactionType, INavigation navigation, Page view)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/accepted-posts?type=" + interactionType);
@@ -124,19 +124,22 @@ namespace greenshare_app.Utils
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
-                var pendingPosts = new List<PendingPostInteraction>();
+                var acceptedPosts = new List<AcceptedPostInteraction>();
                 foreach (var item in array)
                 {
-                    if (interactionType == "incoming")
-                    {                       
-                    }
-                    else if (interactionType == "outgoing")
-                    {                        
-                    }
+                    var info = item.ToObject<AcceptedPostInteractionInfo>();
+                    var accepted = new AcceptedPostInteraction(navigation,view)
+                    {
+                        OfferId = info.OfferId,
+                        OfferName = info.OfferName,
+                        UserId = info.UserId,
+                        UserName = info.UserName,
+                        RequestId = info.RequestId,
+                    };
                 }
-                return pendingPosts;
+                return acceptedPosts;
             }
-            return new List<PendingPostInteraction>();
+            return new List<AcceptedPostInteraction>();
         }
 
         public async Task<bool> RequestAnOffer(int offerId, int requestId)
@@ -180,6 +183,31 @@ namespace greenshare_app.Utils
             return false;
         }
 
+        public async Task<bool> CancelOffer(int offerId, int requestId)
+        {
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId , httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> CancelRequest(int offerId, int requestId)
+        {
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId, httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
 
         //Una oferta denega la petició d'un altre usuari
         public async Task<bool> RejectRequest(int offerId, int requestId)
@@ -221,7 +249,7 @@ namespace greenshare_app.Utils
             return false;
         }
         //Completa una offer / request. Això marca la request i la offer com no actives, i indica que s'ha completat la transacció sense problemes.
-        public async Task<bool> CompletePostFromRequest(int offerId, int requestId, string valoration = null)
+        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, int valoration)
         {           
             CompletionInfo valorationInfo = new CompletionInfo { Valoration = valoration };
             string json = JsonConvert.SerializeObject(valorationInfo);
@@ -238,9 +266,26 @@ namespace greenshare_app.Utils
         private class CompletionInfo
         {
             [JsonProperty(PropertyName = "valoration")]
-            public string Valoration { get; set; }
+            public int Valoration { get; set; }
         }
 
+        private class AcceptedPostInteractionInfo
+        {
+            [JsonProperty(PropertyName = "offerId")]
+            public int OfferId { get; set; }
+
+            [JsonProperty(PropertyName = "offerName")]
+            public string OfferName { get; set; }
+
+            [JsonProperty(PropertyName = "requestId")]
+            public int RequestId { get; set; }
+
+            [JsonProperty(PropertyName = "userName")]
+            public string UserName { get; set; }
+
+            [JsonProperty(PropertyName = "userId")]
+            public int UserId { get; set; }
+        }
         private class PendingPostInteractionInfo
         {
             [JsonProperty(PropertyName = "ownPostName")]
