@@ -22,7 +22,7 @@ namespace greenshare_app.ViewModels
             Title = "Perfil";
             this.navigation = navigation;
             this.view = view;
-            ownPage = true;
+            OwnPage = true;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -34,7 +34,7 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;            
             this.userId = userId;
-            ownPage = false;                       
+            OwnPage = false;                       
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -47,13 +47,19 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref nickName, value);
         }
 
+        public bool OwnPage
+        {
+            get => ownPage;
+            private set => SetProperty(ref ownPage, value);
+        }
+
 
         private async void OnStart(object sender, EventArgs args)
         {
             try
             {
                 User user;
-                if (ownPage) user = await UserInfoUtil.Instance().GetUserInfo();
+                if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
                 else user = await UserInfoUtil.Instance().GetUserInfo(userId);
                 NickName = user.NickName;
             }
