@@ -31,7 +31,6 @@ namespace greenshare_app.ViewModels
 
         private async void OnStart(object sender, EventArgs args)
         {
-            await view.DisplayAlert("WIP", "Sorry not sorry", "Okay");
             try
             {
                 IsBusy = true;
