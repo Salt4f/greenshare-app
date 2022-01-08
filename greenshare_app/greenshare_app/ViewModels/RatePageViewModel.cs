@@ -25,6 +25,7 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             this.acceptedPost = acceptedPost;
+            RatingValue = 5;
         }
         public int RatingValue
         {
