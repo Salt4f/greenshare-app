@@ -56,7 +56,7 @@ namespace greenshare_app.ViewModels
                 AcceptedPostInteractions.AddRange(acceptedInteractions);
                 if (AcceptedPostInteractions.Count == 0)
                 {
-                    await view.DisplayAlert("No Pending Interactions left", "", "OK");
+                    await view.DisplayAlert("No Accepted Interactions left", "", "OK");
                     //PendingPostInteractions.Add(pendingTest);                   
                 }
                 IsBusy = false;
@@ -80,13 +80,13 @@ namespace greenshare_app.ViewModels
                 IsBusy = false;
                 if (AcceptedPostInteractions.Count == 0)
                 {
-                    await view.DisplayAlert("No Pending Interactions left", "", "OK");
+                    await view.DisplayAlert("No Accepted Interactions left", "", "OK");
                 }
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving Pending Interactions", "Something went wrong", "OK");
+                await view.DisplayAlert("Error while retrieving Accepted Interactions", "Something went wrong", "OK");
             }
         }
 
