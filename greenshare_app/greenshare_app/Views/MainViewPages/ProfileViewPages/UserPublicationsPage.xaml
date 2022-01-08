@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:MyPostsViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewmodels:MyPostsViewModel"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserPublicationsPage">
 
     <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
               SeparatorVisibility="None"
               SelectionMode="Single"
-              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+              SelectedItem="{Binding SelectedPost, Mode=TwoWay}"
               CachingStrategy="RecycleElement"
               IsPullToRefreshEnabled="True"
               IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
@@ -21,7 +21,14 @@
                 <model:PostStatus Name="Ordinador" Author="Planso"></model:PostStatus>
             </x:Array>
         </ListView.ItemsSource>
-        -->    
+        -->
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
+        
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostStatus">
                 <ViewCell>
