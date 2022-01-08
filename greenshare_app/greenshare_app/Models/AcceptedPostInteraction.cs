@@ -1,4 +1,5 @@
-﻿using MvvmHelpers.Commands;
+﻿using greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages;
+using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,10 +17,10 @@ namespace greenshare_app.Models
         public int UserId { get; set; }
         public Page View { get; set; }
         public INavigation Navigation { get; set; }
-        public AsyncCommand OnCompleteButtonCommand => new AsyncCommand(OnComplete);
-        private async Task OnComplete()
+        public AsyncCommand OnRateButtonCommand => new AsyncCommand(OnRate);
+        private async Task OnRate()
         {
-            await View.DisplayAlert("WIP", "", "OK");
+            await Navigation.PushModalAsync(new RatePage(this));
         }
 
         public AcceptedPostInteraction(INavigation navigation, Page view)

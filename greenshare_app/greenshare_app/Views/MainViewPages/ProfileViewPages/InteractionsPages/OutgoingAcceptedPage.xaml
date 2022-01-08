@@ -4,7 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingAcceptedPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
-             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:fontAwesome="clr-namespace:FontAwesome" x:DataType="viewModels:OutgoingAcceptedViewModel"
              Title="{Binding Title}">
     <ListView BackgroundColor="{StaticResource colorWhite}"
              HasUnevenRows="True"

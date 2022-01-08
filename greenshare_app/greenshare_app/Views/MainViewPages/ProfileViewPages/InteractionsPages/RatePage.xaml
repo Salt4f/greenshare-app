@@ -3,8 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.RatePage"
              xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:model="clr-namespace:greenshare_app.Models"
+             xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              BackgroundColor="{StaticResource colorGreen9}">
+    
     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="15" Padding="10" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
         <StackLayout Style="{StaticResource styleStackLayoutDefault}" Padding="10" Margin="0">
             <rating:SfRating x:Name="rating" ItemCount="5" Precision="Standard" Margin="10" ItemSize="45" HorizontalOptions="Center" Value="{Binding RatingValue}">
@@ -22,8 +25,9 @@
                 AutoSize="TextChanges"
                 FontSize="15"/>
             <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" Margin="5">
-                <Button Text="VALORAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
-                        Style="{StaticResource styleButtonDefault}" FontSize="15"/>
+                <Button Text="Rate and Complete" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
+                        Style="{StaticResource styleButtonDefault}" FontSize="15"
+                        Command="{Binding OnCompleteButtonCommand}"/>
             </Frame>
         </StackLayout>
     </Frame>

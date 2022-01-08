@@ -224,7 +224,7 @@ namespace greenshare_app.Utils
             return false;
         }
         //Completa una offer / request. Això marca la request i la offer com no actives, i indica que s'ha completat la transacció sense problemes.
-        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, string valoration = null)
+        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, int valoration)
         {           
             CompletionInfo valorationInfo = new CompletionInfo { Valoration = valoration };
             string json = JsonConvert.SerializeObject(valorationInfo);
@@ -241,7 +241,7 @@ namespace greenshare_app.Utils
         private class CompletionInfo
         {
             [JsonProperty(PropertyName = "valoration")]
-            public string Valoration { get; set; }
+            public int Valoration { get; set; }
         }
 
         private class AcceptedPostInteractionInfo

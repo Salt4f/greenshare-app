@@ -59,7 +59,7 @@
                                         <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorBlack}" Padding="20" Margin="10" CornerRadius="35" >
                                             <Label Text="{x:Static fontAwesome:FontAwesomeIcons.FlagCheckered}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
                                             <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding OnCompleteButtonCommand}"/>
+                                                <TapGestureRecognizer Command="{Binding OnRateButtonCommand}"/>
                                             </Frame.GestureRecognizers>
                                         </Frame>
                                     </StackLayout>
