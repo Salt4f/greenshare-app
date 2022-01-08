@@ -1,4 +1,5 @@
-﻿using System;
+﻿using greenshare_app.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,10 @@ namespace greenshare_app.Views.MainViewPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReportPage : ContentPage
     {
-        public ReportPage()
+        public ReportPage(Type type, int id)
         {
             InitializeComponent();
+            BindingContext = new ReportPageViewModel(this.Navigation, this, type, id);
         }
     }
 }

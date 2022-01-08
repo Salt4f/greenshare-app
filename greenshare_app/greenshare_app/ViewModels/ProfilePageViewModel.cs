@@ -68,6 +68,8 @@ namespace greenshare_app.ViewModels
         }
 
         public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
+
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
@@ -95,6 +97,10 @@ namespace greenshare_app.ViewModels
         private async Task OnOutgoingInteractionsButton()
         {
             await navigation.PushModalAsync(new OutgoingInteractionsPage());
+        }
+        private async Task OnReport()
+        {
+            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
         }
     }
 }

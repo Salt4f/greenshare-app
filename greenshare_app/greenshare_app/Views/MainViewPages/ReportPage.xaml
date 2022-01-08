@@ -8,6 +8,7 @@
         <StackLayout Style="{StaticResource styleStackLayoutDefault}" Padding="10" Margin="0">
             <control:BorderlessEditor
                 Style="{StaticResource styleEntryDefault}"
+                Text="{Binding Message}"
                 Placeholder="Reason"
                 HeightRequest="350"
                 BackgroundColor="{StaticResource colorGreen3}"
