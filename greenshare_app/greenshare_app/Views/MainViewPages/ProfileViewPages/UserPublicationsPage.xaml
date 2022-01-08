@@ -12,9 +12,16 @@
               IsPullToRefreshEnabled="True"
               IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
               RefreshCommand="{Binding RefreshCommand}"
-              RefreshControlColor="{StaticResource colorGreen2}"
-              ItemsSource="{Binding PostCardList}">
-
+              RefreshControlColor="{StaticResource colorGreen2}">
+        
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type model:PostStatus}">
+                <model:PostStatus Name="Bicicleta" Author="Planso" Status="Pending"></model:PostStatus>
+                <model:PostStatus Name="Rentaplats" Author="Planso"></model:PostStatus>
+                <model:PostStatus Name="Ordinador" Author="Planso"></model:PostStatus>
+            </x:Array>
+        </ListView.ItemsSource>
+        
         <ListView.Header>
             <StackLayout Padding="15">
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
@@ -22,7 +29,7 @@
         </ListView.Header>
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:PostCard">
+            <DataTemplate x:DataType="model:PostStatus">
                 <ViewCell>
                     <Grid Padding="10">
                         <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
@@ -34,10 +41,14 @@
                                     <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
                                         <StackLayout Orientation="Vertical">
                                             <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" Padding="2" HorizontalOptions="Center">
-                                                <Label Text="hola" FontSize="22"
+                                                <Label Text="{Binding Name}" FontSize="22"
                                                        Style="{StaticResource styleLabelWhite}"
                                                    VerticalOptions="Center"/>
                                             </Frame>
+                                            <Label Text="{Binding Status}"
+                                                   Style="{StaticResource styleLabelWhite}"
+                                               VerticalOptions="Center"
+                                                   TextColor="#bdbdbd"/>
                                             <Label Text="{Binding Author}"
                                                    Style="{StaticResource styleLabelWhite}"
                                                VerticalOptions="Center"/>
