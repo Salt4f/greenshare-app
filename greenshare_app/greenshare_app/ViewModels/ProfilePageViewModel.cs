@@ -16,6 +16,7 @@ namespace greenshare_app.ViewModels
     {
         private event EventHandler Starting = delegate { };
         private int userId;
+        private User user;
         private bool ownPage;
         public ProfilePageViewModel(INavigation navigation, Page view)
         {
@@ -58,7 +59,6 @@ namespace greenshare_app.ViewModels
         {
             try
             {
-                User user;
                 if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
                 else user = await UserInfoUtil.Instance().GetUserInfo(userId);
                 NickName = user.NickName;
@@ -75,7 +75,6 @@ namespace greenshare_app.ViewModels
 
         public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
 
-        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
@@ -85,7 +84,12 @@ namespace greenshare_app.ViewModels
         private Page view;
         private async Task OnUserInfoButton()
         {
-            await navigation.PushModalAsync(new UserInfoPage());
+            if (OwnPage)
+            {
+                Tuple<int, string> session = await Auth.Instance().GetAuth();
+                await navigation.PushModalAsync(new UserInfoPage(session.Item1, OwnPage));
+            }
+            else await navigation.PushModalAsync(new UserInfoPage(userId, OwnPage));
         }
         private async Task OnUserPostsButton()
         {
@@ -104,9 +108,6 @@ namespace greenshare_app.ViewModels
         {
             await navigation.PushModalAsync(new OutgoingInteractionsPage());
         }
-        private async Task OnReport()
-        {
-            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
-        }
+        
     }
 }
