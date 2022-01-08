@@ -267,6 +267,10 @@ namespace greenshare_app.Utils
                         Active = info.Active,
                         Status = info.Status,
                     };
+                    if (type == "offers")
+                    {
+                        card.Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) };
+                    }
                     cards.Add(card);
                 }
                 return cards;
