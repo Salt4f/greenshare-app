@@ -4,14 +4,13 @@ using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Widget;
-using CustomRenderer;
-using CustomRenderer.Droid;
+using greenshare_app.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
 
-[assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
-namespace CustomRenderer.Droid
+[assembly: ExportRenderer(typeof(CustomMap), typeof(greenshare_app.Droid.CustomMapRenderer))]
+namespace greenshare_app.Droid
 {
     public class CustomMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter
     {

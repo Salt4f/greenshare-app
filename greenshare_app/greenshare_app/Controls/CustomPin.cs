@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms.Maps;
 
-namespace CustomRenderer
+namespace greenshare_app.Controls
 {
     public class CustomPin : Pin
     {
