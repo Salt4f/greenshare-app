@@ -42,7 +42,7 @@ namespace greenshare_app.ViewModels
         private async void AddPins(Xamarin.Forms.Maps.Map MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, 10000);
+            var cards = await PostRetriever.Instance().GetOffers(loc, 1000);
 
             foreach (var card in cards)
             {
@@ -54,7 +54,7 @@ namespace greenshare_app.ViewModels
                 MyMap.Pins.Add(pin);
             }
 
-            cards = await PostRetriever.Instance().GetRequests(loc, 10000);
+            cards = await PostRetriever.Instance().GetRequests(loc, 1000);
 
             foreach (var card in cards)
             {
