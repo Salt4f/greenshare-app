@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace greenshare_app.Config
 {
@@ -12,7 +13,7 @@ namespace greenshare_app.Config
 
         private Config()
         {
-            var file = File.ReadAllText("./config.json");
+            var file = ReadConfigFile();
             var config = JsonConvert.DeserializeObject<MainConfig>(file);
             BaseServerUrl = config.BaseServerUrl;
         }
@@ -22,6 +23,19 @@ namespace greenshare_app.Config
             if (instance is null) instance = new Config();
             return instance;
         }
+
+        private string ReadConfigFile()
+        {
+            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Config)).Assembly;
+            Stream stream = assembly.GetManifestResourceStream("greenshare_app.Config.config.json");
+            string text;
+            using (var reader = new StreamReader(stream))
+            {
+                text = reader.ReadToEnd();
+            }
+            return text;
+        }
+
         public string BaseServerUrl { get; private set; }
 
         private class MainConfig
