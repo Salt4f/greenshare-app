@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Maps;
+﻿using Xamarin.Forms.Maps;
 
-namespace greenshare_app.Controls
+namespace CustomRenderer
 {
-    [Preserve(AllMembers = true)]
     public class CustomPin : Pin
     {
         public string Name { get; set; }
