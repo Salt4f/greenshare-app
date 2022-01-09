@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
-             xmlns:fontAwesome="clr-namespace:FontAwesome">
+             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:ProfilePageViewModel">
     <StackLayout>
         
         <!--HEADER, PICTURE AND USERNAME-->
         <StackLayout Padding="20" Spacing="10" BackgroundColor="{StaticResource colorGreen9}" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
             <Frame BackgroundColor="{StaticResource colorWhite}" Padding="20,60" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="100" Margin="5" BorderColor="{StaticResource colorBlack}">
-                <ImageButton Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
+                <ImageButton Aspect="AspectFill" WidthRequest="80" Margin="0"/>
             </Frame>
             <Frame BackgroundColor="{StaticResource colorWhite}" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" CornerRadius="20" Margin="5" BorderColor="{StaticResource colorBlack}">
                 <Label Text="{Binding NickName}" Margin="30,15" FontSize="17" Style="{StaticResource styleLabelBlack}" HorizontalOptions="Center"/>
@@ -18,7 +18,7 @@
 
 
         <!--TABS-->
-        <StackLayout Orientation="Vertical" Padding="10" Margin="10">
+        <StackLayout Orientation="Vertical" Padding="10" Margin="10" IsVisible="{Binding OwnPage}">
             
             <!--USER INFORMATION TAB--> 
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0" Padding="5">
@@ -46,29 +46,29 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
-            <!--PENDING OFFERS-->
+            <!--OUTGOING INTERACTIONS-->
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.ArrowUp}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="PENDING OFFERS"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="OUTGOING INTERACTIONS"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UserPendingOffersCommand}"/>
+                    <TapGestureRecognizer Command="{Binding UserOutgoingInteractionsCommand}"/>
                 </Frame.GestureRecognizers>
             </Frame>
 
-            <!--PENDING REQUESTS-->
+            <!--INCOMING INTERACTIONS-->
             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.ArrowDown}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="INCOMING REQUESTS"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="INCOMING INTERACTIONS"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UserPendingRequestsCommand}"/>
+                    <TapGestureRecognizer Command="{Binding UserIncomingInteractionsCommand}"/>
                 </Frame.GestureRecognizers>
             </Frame>
 

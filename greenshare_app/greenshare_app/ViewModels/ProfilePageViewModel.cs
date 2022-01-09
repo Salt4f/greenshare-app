@@ -15,11 +15,27 @@ namespace greenshare_app.ViewModels
     public class ProfilePageViewModel : BaseViewModel
     {
         private event EventHandler Starting = delegate { };
+        private int userId;
+        private User user;
+        private bool ownPage;
         public ProfilePageViewModel(INavigation navigation, Page view)
         {
             Title = "Perfil";
             this.navigation = navigation;
             this.view = view;
+            OwnPage = true;
+            nickName = string.Empty;
+            IsBusy = true;
+            Starting += OnStart;
+            Starting(this, EventArgs.Empty);
+        }
+        public ProfilePageViewModel(INavigation navigation, Page view, int userId)
+        {
+            Title = "Perfil";
+            this.navigation = navigation;
+            this.view = view;            
+            this.userId = userId;
+            OwnPage = false;                       
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -32,12 +48,19 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref nickName, value);
         }
 
+        public bool OwnPage
+        {
+            get => ownPage;
+            private set => SetProperty(ref ownPage, value);
+        }
+
 
         private async void OnStart(object sender, EventArgs args)
         {
             try
             {
-                User user = await UserInfoUtil.Instance().GetUserInfo();
+                if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
+                else user = await UserInfoUtil.Instance().GetUserInfo(userId);
                 NickName = user.NickName;
             }
             catch (Exception e)
@@ -51,33 +74,40 @@ namespace greenshare_app.ViewModels
         }
 
         public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
+
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
-        public AsyncCommand UserPendingOffersCommand => new AsyncCommand(OnPendingOffersButton);
-        public AsyncCommand UserPendingRequestsCommand => new AsyncCommand(OnPendingRequestsButton);
+        public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
+        public AsyncCommand UserOutgoingInteractionsCommand => new AsyncCommand(OnOutgoingInteractionsButton);
 
         private INavigation navigation;
         private Page view;
         private async Task OnUserInfoButton()
         {
-            await navigation.PushModalAsync(new UserInfoPage());
+            if (OwnPage)
+            {
+                Tuple<int, string> session = await Auth.Instance().GetAuth();
+                await navigation.PushModalAsync(new UserInfoPage(session.Item1, OwnPage));
+            }
+            else await navigation.PushModalAsync(new UserInfoPage(userId, OwnPage));
         }
         private async Task OnUserPostsButton()
         {
-            await navigation.PushModalAsync(new OffersPage());
+            await navigation.PushModalAsync(new UserPublicationsPage());
         }
         private async Task OnLogOutButton()
         {
             await Auth.Instance().Logout();
             Application.Current.MainPage = new LoginView();
         }
-        private async Task OnPendingOffersButton()
+        private async Task OnIncomingInteractionsButton()
         {
-            await navigation.PushModalAsync(new PendingOffersPage());
+            await navigation.PushModalAsync(new IncomingInteractionsPage());
         }
-        private async Task OnPendingRequestsButton()
+        private async Task OnOutgoingInteractionsButton()
         {
-            await navigation.PushModalAsync(new PendingRequestsPage());
+            await navigation.PushModalAsync(new OutgoingInteractionsPage());
         }
+        
     }
 }

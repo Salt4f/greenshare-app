@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/requests" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -64,7 +64,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/offers" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -94,7 +94,7 @@ namespace greenshare_app.Utils
         {
             string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&q=" + searchWord + "&distance=" + distance;
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/offers" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
 
@@ -124,7 +124,7 @@ namespace greenshare_app.Utils
         {
             string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&q=" + searchWord + "&distance=" + distance;
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/requests" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
 
@@ -174,7 +174,7 @@ namespace greenshare_app.Utils
      
         public async Task<Offer> GetOffer(int id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/offers/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers/" + id);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -219,7 +219,7 @@ namespace greenshare_app.Utils
 
         public async Task<Request> GetRequest(int id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts/requests/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests/" + id);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -247,7 +247,8 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostStatus>> GetPostsByUserId(string type)
         {
             string query = "?type=" + type;
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://server.vgafib.org/api/posts" + query);
+            var session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/posts" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -267,6 +268,12 @@ namespace greenshare_app.Utils
                         Active = info.Active,
                         Status = info.Status,
                     };
+                    if (type == "offers")
+                    {
+                        card.IsOffer = true;
+                        card.Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) };
+                    }
+                    else card.IsOffer = false;
                     cards.Add(card);
                 }
                 return cards;

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:greenshare_app.Models" 
+             xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             x:DataType="viewmodels:MyPostsViewModel"
+             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserPublicationsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              SelectionMode="Single"
+              SelectedItem="{Binding SelectedPost, Mode=TwoWay}"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+              ItemsSource="{Binding MyPosts}"
+              RefreshControlColor="{StaticResource colorGreen2}">
+        <!--
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type model:PostStatus}">
+                <model:PostStatus Name="Bicicleta" Author="Planso" Status="Pending"></model:PostStatus>
+                <model:PostStatus Name="Rentaplats" Author="Planso"></model:PostStatus>
+                <model:PostStatus Name="Ordinador" Author="Planso"></model:PostStatus>
+            </x:Array>
+        </ListView.ItemsSource>
+        -->
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
+        
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:PostStatus">
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
+                            <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
+                                <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
+                                    <Frame BackgroundColor="{StaticResource colorGreen1}" IsVisible="{Binding IsOffer}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
+                                        <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Vertical">
+                                            <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" Padding="2" HorizontalOptions="Center">
+                                                <Label Text="{Binding Name}" FontSize="22"
+                                                       Style="{StaticResource styleLabelWhite}"
+                                                   VerticalOptions="Center"/>
+                                            </Frame>
+                                            <Label Text="{Binding Status}"
+                                                   Style="{StaticResource styleLabelWhite}"
+                                               VerticalOptions="Center"
+                                                   TextColor="#bdbdbd"/>
+                                            <Label Text="{Binding Author}"
+                                                   Style="{StaticResource styleLabelWhite}"
+                                               VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate x:DataType="model:Tag">
+                                                        <ViewCell>
+                                                            <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                                                <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
+                                                                    <Label Text="{Binding Name}"
+                                                                        Style="{StaticResource styleLabelWhite}"
+                                                                        VerticalOptions="Center"/>
+                                                                </Frame>
+                                                            </StackLayout>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+</ContentPage>

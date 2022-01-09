@@ -78,7 +78,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving requests", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert("Error while retrieving offers", "Please make sure location is enabled on your device", "OK");
             }
         }
 

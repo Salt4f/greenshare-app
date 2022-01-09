@@ -23,6 +23,11 @@ namespace greenshare_app.ViewModels
         private string description;
         private string postType;
         public AsyncCommand OnEditButtonCommand => new AsyncCommand(OnEdit);
+        public AsyncCommand OnDeactivateButtonCommand => new AsyncCommand(OnDeactivate);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
+        public AsyncCommand OnRequestToOfferButtonCommand => new AsyncCommand(OnRequestToOffer);
+        public AsyncCommand OnOfferToRequestButtonCommand => new AsyncCommand(OnOfferToRequest);
+
 
         private event EventHandler Starting = delegate { };
         private IList<Image> photos;
@@ -83,8 +88,26 @@ namespace greenshare_app.ViewModels
             
             IsBusy = true;
             var session = await Auth.Instance().GetAuth();
-            if (session.Item1 != post.OwnerId) IsEditButtonVisible = false;
-            else IsEditButtonVisible = true;
+            if (session.Item1 != post.OwnerId)
+            {
+                IsEditButtonVisible = false;
+                if (PostType == "Offer")
+                {
+                    IsRequestButtonVisible = true;
+                    IsOfferButtonVisible = false;
+                }
+                else
+                {
+                    IsRequestButtonVisible = false;
+                    IsOfferButtonVisible = true;
+                }
+                IsReportButtonVisible = true;
+            }
+            else
+            {
+                IsEditButtonVisible = true;
+                DeactivateButtons();
+            }
             IsBusy = false;
         }
         public string Name
@@ -105,6 +128,9 @@ namespace greenshare_app.ViewModels
 
         private DateTime minDate;
         private bool isEditButtonVisible;
+        private bool isReportButtonVisible;
+        private bool isOfferButtonVisible;
+        private bool isRequestButtonVisible;
 
         public Image Icon
         {
@@ -133,11 +159,68 @@ namespace greenshare_app.ViewModels
             set => SetProperty(ref isEditButtonVisible, value);
         }
 
+        public bool IsReportButtonVisible
+        {
+            get => isReportButtonVisible;
+            set => SetProperty(ref isReportButtonVisible, value);
+        }
+        public bool IsRequestButtonVisible
+        {
+            get => isRequestButtonVisible;
+            set => SetProperty(ref isRequestButtonVisible, value);
+        }
+        public bool IsOfferButtonVisible
+        {
+            get => isOfferButtonVisible;
+            set => SetProperty(ref isOfferButtonVisible, value);
+        }
 
         private async Task OnEdit()
-        {
-            
+        {            
             await navigation.PushModalAsync(new EditPost(post));            
+        }
+        private async Task OnDeactivate()
+        {
+            if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
+            {
+                await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
+            }
+        }        
+        private void DeactivateButtons()
+        {
+            IsReportButtonVisible = false;
+            IsRequestButtonVisible = false;
+            IsOfferButtonVisible = false;
+        }
+        private async Task OnReport()
+        {
+            DeactivateButtons();
+            await navigation.PushModalAsync(new ReportPage(typeof(Post), post.Id));            
+        }
+        private async Task OnRequestToOffer()
+        {
+            List<Tag> tags = new List<Tag>();
+            Tag tag = new Tag()
+            {
+                Name = "RequestToOffer",
+                Color = Color.White,
+            };
+            tags.Add(tag);
+            var id = await PostSender.Instance().PostRequest("Req-to-Offer-" + post.Id, "request to offer", post.TerminateAt, await Geolocation.GetLocationAsync(), tags);
+            if (id != -1)
+            {
+                if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
+                {
+                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                    DeactivateButtons();
+                }
+            }
+        }
+        private async Task OnOfferToRequest()
+        {
+            await view.DisplayAlert("Button WIP!", "missing way to create offer from here", "OK");
+            //var id = await PostSender.Instance().PostOffer("Offer-to-Req-" + post.Id, "offer to request", post.TerminateAt, await Geolocation.GetLocationAsync(), new List<Tag>());
+            //if (id != -1) await OfferRequestInteraction.Instance().OfferARequest(id, post.Id);
         }
 
         public string PostType
@@ -148,10 +231,10 @@ namespace greenshare_app.ViewModels
                 switch (value)
                 {
                     case "Offer":
-                        IsVisible = true;
+                        IsVisible = true;                        
                         break;
                     case "Request":
-                        IsVisible = false;
+                        IsVisible = false;                        
                         break;
                     default:
                         break;
