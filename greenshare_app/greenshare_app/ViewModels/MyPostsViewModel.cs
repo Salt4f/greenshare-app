@@ -25,6 +25,7 @@ namespace greenshare_app.ViewModels
             Title = "My Posts";
             this.navigation = navigation;
             this.view = view;
+            MyPosts = new ObservableRangeCollection<PostStatus>();
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
             Starting += OnStart;

@@ -42,7 +42,6 @@ namespace greenshare_app.Utils
             var response = await httpClient.PostAsync(url, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
                 //falta ver que hacemos con el id y el createdAt que nos devuelven
                 return true;
             }

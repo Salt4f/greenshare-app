@@ -136,6 +136,7 @@ namespace greenshare_app.Utils
                         UserName = info.UserName,
                         RequestId = info.RequestId,
                     };
+                    acceptedPosts.Add(accepted);
                 }
                 return acceptedPosts;
             }
@@ -169,6 +170,7 @@ namespace greenshare_app.Utils
             return false;
 
         }
+
         //Una oferta accepta la petició d'un altre usuari
         public async Task<bool> AcceptRequest(int offerId, int requestId)
         {
@@ -182,13 +184,13 @@ namespace greenshare_app.Utils
             }
             return false;
         }
-
+        //cancel its offer to an existing request
         public async Task<bool> CancelOffer(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId , httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -196,12 +198,13 @@ namespace greenshare_app.Utils
             return false;
         }
 
+        //cancel its request to an existing offer
         public async Task<bool> CancelRequest(int offerId, int requestId)
         {
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId, httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -249,12 +252,13 @@ namespace greenshare_app.Utils
             return false;
         }
         //Completa una offer / request. Això marca la request i la offer com no actives, i indica que s'ha completat la transacció sense problemes.
-        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, int valoration)
+        public async Task<bool> CompletePostFromOffer(int offerId, int requestId, int valoration, string message)
         {           
             CompletionInfo valorationInfo = new CompletionInfo { Valoration = valoration };
             string json = JsonConvert.SerializeObject(valorationInfo);
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl +"/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -267,6 +271,7 @@ namespace greenshare_app.Utils
         {
             [JsonProperty(PropertyName = "valoration")]
             public int Valoration { get; set; }
+            
         }
 
         private class AcceptedPostInteractionInfo

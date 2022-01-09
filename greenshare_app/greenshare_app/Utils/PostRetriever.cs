@@ -247,7 +247,8 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostStatus>> GetPostsByUserId(string type)
         {
             string query = "?type=" + type;
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts" + query);
+            var session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/posts" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)

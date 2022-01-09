@@ -22,6 +22,7 @@ namespace greenshare_app.ViewModels
 
             this.navigation = navigation;
             this.view = view;
+            NewTag = "";
             tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();           
             Photos = new ObservableRangeCollection<Image>();
@@ -120,11 +121,15 @@ namespace greenshare_app.ViewModels
             byte[] colors = new byte[3];
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
-            if (!tagNames.Contains(NewTag))
+            if (NewTag == "")
+            {
+                await view.DisplayAlert("Error while adding Tag", "Please enter a name first", "OK");
+            }
+            else if (!tagNames.Contains(NewTag))
             {
                 Tags.Add(new Tag { Color = tagColor, Name = NewTag });
                 tagNames.Add(NewTag);
-            }
+            }           
             else
             {
                 await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");

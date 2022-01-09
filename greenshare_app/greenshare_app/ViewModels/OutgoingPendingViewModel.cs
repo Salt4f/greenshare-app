@@ -73,7 +73,7 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                var pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("outgoing", navigation, view);
+                List<PendingPostInteraction> pendingInteractions = await OfferRequestInteraction.Instance().GetPendingPosts("outgoing", navigation, view);
                 PendingPostInteractions.Clear();
                 PendingPostInteractions.AddRange(pendingInteractions);
                 IsBusy = false;

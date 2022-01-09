@@ -93,7 +93,7 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnUserPostsButton()
         {
-            await navigation.PushModalAsync(new OffersPage());
+            await navigation.PushModalAsync(new UserPublicationsPage());
         }
         private async Task OnLogOutButton()
         {

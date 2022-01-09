@@ -18,6 +18,7 @@ namespace greenshare_app.ViewModels
         private INavigation navigation;
         private Page view;
         private AcceptedPostInteraction acceptedPost;
+        private string message;
 
         public AsyncCommand OnCompleteButtonCommand => new AsyncCommand(OnComplete);
         public RatePageViewModel(INavigation navigation, Page view, AcceptedPostInteraction acceptedPost)
@@ -32,11 +33,17 @@ namespace greenshare_app.ViewModels
             get => ratingValue;
             set => SetProperty(ref ratingValue, value);
         }
+        public string Message
+        {
+            get => message;
+            set => SetProperty(ref message, value);
+        }
         private async Task OnComplete()
         {
             try
             {
-                await OfferRequestInteraction.Instance().CompletePostFromOffer(acceptedPost.OfferId, acceptedPost.RequestId, RatingValue);
+                await OfferRequestInteraction.Instance().CompletePostFromOffer(acceptedPost.OfferId, acceptedPost.RequestId, RatingValue, Message);
+                await view.DisplayAlert("Post completed successfully", "", "OK");
             }
             catch (Exception)
             {
