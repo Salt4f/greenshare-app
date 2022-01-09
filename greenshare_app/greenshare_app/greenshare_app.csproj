@@ -17,6 +17,7 @@
     <EmbeddedResource Remove="Resources\NewFolder\**" />
     <None Remove="Images\**" />
     <None Remove="Resources\NewFolder\**" />
+    <None Remove="Config\config.json" />
     <None Remove="Exceptions\" />
   </ItemGroup>
 
@@ -39,6 +40,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\TestImages\logo.png" />
+    <EmbeddedResource Include="Config\config.json" />
     <EmbeddedResource Include="Resources\Fonts\fa-brands-400.ttf" />
     <EmbeddedResource Include="Resources\Fonts\fa-regular-400.ttf" />
     <EmbeddedResource Include="Resources\Fonts\fa-solid-900.ttf" />
