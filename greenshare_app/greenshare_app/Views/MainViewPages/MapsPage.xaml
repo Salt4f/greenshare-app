@@ -5,13 +5,12 @@
              x:Class="greenshare_app.Views.MainViewPages.MapsPage">
 
     <control:CustomMap x:Name="MyMap" IsShowingUser="True">
-        <!--ItemsSource="{Binding PinList}"--> 
+        <!--ItemsSource="{Binding PinList}"
         <control:CustomMap.Behaviors>
             <xct:EventToCommandBehavior 
                 EventName="MapClicked"
                 Command="{Binding OnMapClickedCommand}"
                 />
-        </control:CustomMap.Behaviors>
+        </control:CustomMap.Behaviors>-->
     </control:CustomMap>
-    
 </ContentPage>

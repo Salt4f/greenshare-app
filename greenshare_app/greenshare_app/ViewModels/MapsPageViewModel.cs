@@ -6,9 +6,10 @@ using greenshare_app.Models;
 using greenshare_app.Utils;
 using MvvmHelpers;
 using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 using MvvmHelpers.Commands;
+using greenshare_app.Controls;
+using Xamarin.Forms.Maps;
+using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
 {
@@ -25,45 +26,50 @@ namespace greenshare_app.ViewModels
             throw new NotImplementedException();
         }
 
-        public MapsPageViewModel(INavigation navigation, Page view, Xamarin.Forms.Maps.Map MyMap)
+        public MapsPageViewModel(INavigation navigation, Page view, CustomMap MyMap)
         {
             this.navigation = navigation;
             this.view = view;
             PositionMap(MyMap);
             AddPins(MyMap);
         }
-        private async void PositionMap(Xamarin.Forms.Maps.Map MyMap) {
+        private async void PositionMap(CustomMap MyMap)
+        {
             var loc = await Geolocation.GetLocationAsync();
             MyMap.MoveToRegion(
                 MapSpan.FromCenterAndRadius(
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
         }
-        private async void AddPins(Xamarin.Forms.Maps.Map MyMap)
+        private async void AddPins(CustomMap MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
             var cards = await PostRetriever.Instance().GetOffers(loc, 1000);
-
-            foreach (var card in cards)
+            if (cards != null)
             {
-                var offer = await PostRetriever.Instance().GetOffer(card.Id);
-                var pin = new Pin();
-                pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
-                pin.Label = offer.Name;
+                foreach (var card in cards)
+                {
+                    var offer = await PostRetriever.Instance().GetOffer(card.Id);
+                    var pin = new CustomPin();
+                    pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
+                    pin.Label = offer.Name;
 
-                MyMap.Pins.Add(pin);
+                    MyMap.CustomPins.Add(pin);
+                }
             }
 
-            cards = await PostRetriever.Instance().GetRequests(loc, 1000);
-
-            foreach (var card in cards)
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, 1000);
+            if (cards2 != null)
             {
-                var offer = await PostRetriever.Instance().GetRequest(card.Id);
-                var pin = new Pin();
-                pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
-                pin.Label = offer.Name;
+                foreach (var card in cards2)
+                {
+                    var offer = await PostRetriever.Instance().GetRequest(card.Id);
+                    var pin = new CustomPin();
+                    pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
+                    pin.Label = offer.Name;
 
-                MyMap.Pins.Add(pin);
+                    MyMap.CustomPins.Add(pin);
+                }
             }
         }
     }
