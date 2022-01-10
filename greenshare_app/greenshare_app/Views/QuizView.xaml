@@ -43,21 +43,22 @@
                 Content="{Binding Respuesta1}"
                 IsChecked="{Binding IsRespuesta1Checked}"
                 VerticalOptions="FillAndExpand"
-                HeightRequest="100"/>
+                HeightRequest="75"/>
 
                 <RadioButton 
                 Style="{StaticResource styleEntryDefault}"
                 Content="{Binding Respuesta2}"
                 IsChecked="{Binding IsRespuesta2Checked}"
                 VerticalOptions="FillAndExpand"
-                Margin="10,5,10,5"/>
+                HeightRequest="75"/>
+
 
                 <RadioButton 
                 Style="{StaticResource styleEntryDefault}"
                 Content="{Binding Respuesta3}"
                 IsChecked="{Binding IsRespuesta3Checked}"
                 VerticalOptions="FillAndExpand"
-                Margin="10,5,10,5"/>
+                HeightRequest="75"/>
 
                 <!--- IsVisible depen de si la pregunta te 4 respostes-->
                 <RadioButton 
@@ -66,7 +67,7 @@
                 Content="{Binding Respuesta4}"
                 IsChecked="{Binding IsRespuesta4Checked}"
                 VerticalOptions="FillAndExpand"
-                Margin="10,5,10,5"/>
+                HeightRequest="75"/>
 
                 <Grid Padding="20" HorizontalOptions="CenterAndExpand" >
                     <Grid.ColumnDefinitions>
