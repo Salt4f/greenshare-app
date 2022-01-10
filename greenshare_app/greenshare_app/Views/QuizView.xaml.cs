@@ -14,6 +14,7 @@ namespace greenshare_app.Views
     {
         public QuizView()
         {
+            Navigation.PopToRootAsync();
             InitializeComponent();
             BindingContext = new QuizPagePostViewModel(Navigation, this);
         }
