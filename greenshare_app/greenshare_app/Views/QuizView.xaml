@@ -5,6 +5,7 @@
     xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
     x:DataType="viewmodels:QuizPagePostViewModel"
     x:Class="greenshare_app.Views.QuizView"
+    BackgroundColor="{StaticResource colorWhite}"
     IsBusy="{Binding IsBusy}">
     <ContentView>
         <Grid>
@@ -25,6 +26,7 @@
 
                 <Label 
                 HorizontalOptions="CenterAndExpand"
+                VerticalOptions="Fill"
                 Style="{StaticResource styleLabelGreen}" 
                 Text="{Binding Iterator, StringFormat='Questionnaire ({0:F0}/8)' }" 
                 FontSize="25" 
@@ -39,24 +41,32 @@
                 <RadioButton 
                 Style="{StaticResource styleEntryDefault}"
                 Content="{Binding Respuesta1}"
-                IsChecked="{Binding IsRespuesta1Checked}"/>
+                IsChecked="{Binding IsRespuesta1Checked}"
+                VerticalOptions="FillAndExpand"
+                HeightRequest="100"/>
 
                 <RadioButton 
                 Style="{StaticResource styleEntryDefault}"
                 Content="{Binding Respuesta2}"
-                IsChecked="{Binding IsRespuesta2Checked}"/>
+                IsChecked="{Binding IsRespuesta2Checked}"
+                VerticalOptions="FillAndExpand"
+                Margin="10,5,10,5"/>
 
                 <RadioButton 
                 Style="{StaticResource styleEntryDefault}"
                 Content="{Binding Respuesta3}"
-                IsChecked="{Binding IsRespuesta3Checked}"/>
+                IsChecked="{Binding IsRespuesta3Checked}"
+                VerticalOptions="FillAndExpand"
+                Margin="10,5,10,5"/>
 
                 <!--- IsVisible depen de si la pregunta te 4 respostes-->
                 <RadioButton 
                 IsVisible="{Binding IsFirst}"               
                 Style="{StaticResource styleEntryDefault}"
                 Content="{Binding Respuesta4}"
-                IsChecked="{Binding IsRespuesta4Checked}"/>
+                IsChecked="{Binding IsRespuesta4Checked}"
+                VerticalOptions="FillAndExpand"
+                Margin="10,5,10,5"/>
 
                 <Grid Padding="20" HorizontalOptions="CenterAndExpand" >
                     <Grid.ColumnDefinitions>
@@ -69,17 +79,6 @@
                     </Grid.RowDefinitions>
 
 
-                    <!-- IsVisible si es primera pregunta no apareix-->
-                    <!--
-                <Button 
-                    Style="{StaticResource styleButtonDefault}"
-                    IsVisible="{Binding IsNotFirst}"
-                    Grid.Column="0"
-                    Text="Previous"
-                    Command="{Binding OnPreviousButtonCommand}">
-                </Button>
-                -->
-                    <!-- IsVisible si no es ultima pregunta-->
                     <Button
                     Style="{StaticResource styleButtonDefault}"
                     IsVisible="{Binding IsNotLast}"
