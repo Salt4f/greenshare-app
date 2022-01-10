@@ -53,12 +53,17 @@ namespace greenshare_app.ViewModels
             get => ownPage;
             private set => SetProperty(ref ownPage, value);
         }
-
+        public bool IsAdmin
+        {
+            get => isAdmin;
+            private set => SetProperty(ref isAdmin, value);
+        }
 
         private async void OnStart(object sender, EventArgs args)
         {
             try
             {
+                IsAdmin = await Auth.Instance().IsAdmin();
                 if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
                 else user = await UserInfoUtil.Instance().GetUserInfo(userId);
                 NickName = user.NickName;
@@ -74,6 +79,7 @@ namespace greenshare_app.ViewModels
         }
 
         public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
+        public AsyncCommand OnAdminFrameCommand => new AsyncCommand(OnAdmin);
 
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
@@ -82,6 +88,8 @@ namespace greenshare_app.ViewModels
 
         private INavigation navigation;
         private Page view;
+        private bool isAdmin;
+
         private async Task OnUserInfoButton()
         {
             if (OwnPage)
@@ -108,6 +116,11 @@ namespace greenshare_app.ViewModels
         {
             await navigation.PushModalAsync(new OutgoingInteractionsPage());
         }
-        
+
+        private async Task OnAdmin()
+        {
+            await navigation.PushModalAsync(new AdminPage());
+        }
+
     }
 }

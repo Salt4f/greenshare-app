@@ -100,6 +100,7 @@ namespace greenshare_app.Utils
                 foreach (var item in array)
                 {
                     var info = item.ToObject<ReportInfo>();
+                    //cambiar campos en el backend
                     var report = new Report(navigation, view)
                     {
                         Id = info.Id,
