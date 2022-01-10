@@ -66,7 +66,42 @@ namespace greenshare_app.Utils
             }
             return new List<QuizQuestion>();
         }
-        
+
+        public async Task<bool> PostEcoQuizResults(IList<int> responses)
+        {
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            EcoQuizResponseInfo post = new EcoQuizResponseInfo { R1 = responses[0], R2 = responses[1], R3 = responses[2], R4 = responses[3], R5 = responses[4], R6 = responses[5], R7 = responses[6], R8 = responses[7], };
+            string json = JsonConvert.SerializeObject(post);
+            HttpContent httpContent = new StringContent(json);
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/eco-score", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private class EcoQuizResponseInfo
+        {
+            [JsonProperty(PropertyName = "R1")]
+            public int R1 { get; set; }
+            [JsonProperty(PropertyName = "R2")]
+            public int R2 { get; set; }
+            [JsonProperty(PropertyName = "R3")]
+            public int R3 { get; set; }
+            [JsonProperty(PropertyName = "R4")]
+            public int R4 { get; set; }
+            [JsonProperty(PropertyName = "R5")]
+            public int R5 { get; set; }
+            [JsonProperty(PropertyName = "R6")]
+            public int R6 { get; set; }
+            [JsonProperty(PropertyName = "R7")]
+            public int R7 { get; set; }
+            [JsonProperty(PropertyName = "R8")]
+            public int R8 { get; set; }
+        }
     }
 
     
