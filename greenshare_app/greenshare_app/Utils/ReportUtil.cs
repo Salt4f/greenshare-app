@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace greenshare_app.Utils
 {
@@ -86,11 +87,11 @@ namespace greenshare_app.Utils
             return false;
 
         }
-
-        public async Task<IEnumerable<Report>> GetAllReports()
+        //gets all unsolved reports
+        public async Task<IEnumerable<Report>> GetAllReports(INavigation navigation, Page view)
         {
             AddHeaders();
-            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/");
+            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports");
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
@@ -99,16 +100,17 @@ namespace greenshare_app.Utils
                 foreach (var item in array)
                 {
                     var info = item.ToObject<ReportInfo>();
-                    var report = new Report()
+                    var report = new Report(navigation, view)
                     {
                         Id = info.Id,
                         Type = info.Type,
                         ReporterId = info.ReporterId,
                         ItemId = info.ItemId,
+                        ItemName = info.Name,
                         Message = info.Message,
                         Solved = info.Solved
                     };
-                    reports.Add(report);
+                    if (!report.Solved) reports.Add(report);
                 }
                 return reports;
             }
@@ -130,6 +132,9 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "message")]
             public string Message { get; set; }
+
+            [JsonProperty(PropertyName = "name")]
+            public string Name { get; set; }
 
             [JsonProperty(PropertyName = "itemId")]
             public int ItemId { get; set; }
