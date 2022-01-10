@@ -79,7 +79,7 @@ namespace greenshare_app.ViewModels
             get => postTypes;
             private set => SetProperty(ref postTypes, value);
         }
-        public Image Icon
+        public new Image Icon
         {
             get => icon;
             set => SetProperty(ref icon, value);

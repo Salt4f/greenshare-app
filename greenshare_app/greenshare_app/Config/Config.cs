@@ -37,11 +37,15 @@ namespace greenshare_app.Config
         }
 
         public string BaseServerUrl { get; private set; }
+        public int AdminId { get; private set; }
 
         private class MainConfig
         {
             [JsonProperty(PropertyName = "baseServerUrl")]
             public string BaseServerUrl { get; set; }
+
+            [JsonProperty(PropertyName = "adminId")]
+            public int AdminId { get; set; }
         }
 
     }
