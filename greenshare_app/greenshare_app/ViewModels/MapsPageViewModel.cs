@@ -45,7 +45,7 @@ namespace greenshare_app.ViewModels
         private async void AddPins(CustomMap MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, 100, quantity:50);
+            var cards = await PostRetriever.Instance().GetOffers(loc, 1000, quantity:50);
             if (cards != null)
             {
                 foreach (var card in cards)
@@ -54,12 +54,14 @@ namespace greenshare_app.ViewModels
                     var pin = new CustomPin();
                     pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
                     pin.Label = offer.Name;
+                    pin.Name = "Xamarin";
 
                     MyMap.CustomPins.Add(pin);
+                    MyMap.Pins.Add(pin);
                 }
             }
 
-            var cards2 = await PostRetriever.Instance().GetRequests(loc, 100, quantity:50);
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, 1000, quantity:50);
             if (cards2 != null)
             {
                 foreach (var card in cards2)
@@ -68,8 +70,10 @@ namespace greenshare_app.ViewModels
                     var pin = new CustomPin();
                     pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
                     pin.Label = offer.Name;
+                    pin.Name = "Xamarin";
 
                     MyMap.CustomPins.Add(pin);
+                    MyMap.Pins.Add(pin);
                 }
             }
         }
