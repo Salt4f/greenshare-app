@@ -5,6 +5,6 @@ namespace greenshare_app.Controls
 {
     public class CustomMap : Map
     {
-        public List<CustomPin> CustomPins { get; set; }
+        public IList<CustomPin> CustomPins { get; set; }
     }
 }

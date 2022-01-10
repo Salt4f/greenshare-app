@@ -14,7 +14,7 @@ namespace greenshare_app.Droid
 {
     public class CustomMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter
     {
-        List<CustomPin> customPins;
+        IList<CustomPin> customPins;
 
         public CustomMapRenderer(Context context) : base(context)
         {

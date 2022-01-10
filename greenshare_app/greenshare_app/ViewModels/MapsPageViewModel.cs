@@ -30,6 +30,7 @@ namespace greenshare_app.ViewModels
         {
             this.navigation = navigation;
             this.view = view;
+            MyMap.CustomPins = new List<CustomPin>();
             PositionMap(MyMap);
             AddPins(MyMap);
         }
@@ -44,7 +45,7 @@ namespace greenshare_app.ViewModels
         private async void AddPins(CustomMap MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, 1000);
+            var cards = await PostRetriever.Instance().GetOffers(loc, 100, quantity:50);
             if (cards != null)
             {
                 foreach (var card in cards)
@@ -58,7 +59,7 @@ namespace greenshare_app.ViewModels
                 }
             }
 
-            var cards2 = await PostRetriever.Instance().GetRequests(loc, 1000);
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, 100, quantity:50);
             if (cards2 != null)
             {
                 foreach (var card in cards2)
