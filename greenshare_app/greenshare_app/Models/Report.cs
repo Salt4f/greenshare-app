@@ -4,13 +4,13 @@ using System.Text;
 
 namespace greenshare_app.Models
 {
-    class Report
+    public class Report
     {
         public int Id { get; set; }
-        public string UserOrPost { get; set; }
-        public string UserOrPostReported { get; set; }
-        public string UserReporting { get; set; }
-        public string Description { get; set; }
-
+        public string Type { get; set; }
+        public int ItemId { get; set; }
+        public string Message { get; set; }
+        public int ReporterId { get; set; }
+        public bool Solved { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace greenshare_app.ViewModels
 
             this.navigation = navigation;
             this.view = view;
+            NewTag = "";
             tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();           
             Photos = new ObservableRangeCollection<Image>();
@@ -120,11 +121,15 @@ namespace greenshare_app.ViewModels
             byte[] colors = new byte[3];
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
-            if (!tagNames.Contains(NewTag))
+            if (NewTag == "")
+            {
+                await view.DisplayAlert("Error while adding Tag", "Please enter a name first", "OK");
+            }
+            else if (!tagNames.Contains(NewTag))
             {
                 Tags.Add(new Tag { Color = tagColor, Name = NewTag });
                 tagNames.Add(NewTag);
-            }
+            }           
             else
             {
                 await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
@@ -157,7 +162,7 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
                 return;
             }
-            bool response;
+            int response;
             switch (PostType)
             {
                 case nameof(Offer):
@@ -172,10 +177,10 @@ namespace greenshare_app.ViewModels
                     response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, loc, Tags);
                     break;
                 default:
-                    response = false;
+                    response = -1;
                     break;
             }
-            if (response) await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            if (response != -1) await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
             else await view.DisplayAlert("Error while creating Post", "Invalid Session, please make sure you are logged in", "OK");
             ResetProperties();
 

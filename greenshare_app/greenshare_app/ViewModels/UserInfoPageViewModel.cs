@@ -1,5 +1,6 @@
 ﻿using greenshare_app.Models;
 using greenshare_app.Utils;
+using greenshare_app.Views.MainViewPages;
 using greenshare_app.Views.MainViewPages.ProfileViewPages;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -14,11 +15,16 @@ namespace greenshare_app.ViewModels
     public class UserInfoPageViewModel : BaseViewModel
     {
         private event EventHandler Starting = delegate { };
-        public UserInfoPageViewModel(INavigation navigation, Page view)
+
+        private bool ownPage;
+        public UserInfoPageViewModel(INavigation navigation, Page view, int userId, bool ownPage)
         {
             Title = "Perfil";
+            this.userId = userId;
             this.navigation = navigation;
             this.view = view;
+            OwnPage = ownPage;
+            IsReportable = !OwnPage;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -57,6 +63,17 @@ namespace greenshare_app.ViewModels
             get => totalGreenCoins;
             set => SetProperty(ref totalGreenCoins, value);
         }
+
+        public bool IsReportable
+        {
+            get => isReportable;
+            private set => SetProperty(ref isReportable, value);
+        }
+        public bool OwnPage
+        {
+            get => ownPage;
+            private set => SetProperty(ref ownPage, value);
+        }
         private async void OnStart(object sender, EventArgs args)
         {
             try
@@ -81,7 +98,9 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoClicked);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
+
+        private int userId;
         private INavigation navigation;
         private Page view;
         private string description;
@@ -89,10 +108,11 @@ namespace greenshare_app.ViewModels
         private DateTime birthDate;
         private int totalEcoPoints;
         private int totalGreenCoins;
+        private bool isReportable;
 
-        private async Task OnUserInfoClicked()
+        private async Task OnReport()
         {
-            await navigation.PushModalAsync(new UserInfoPage());
+            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
         }
     }
 }

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
+    x:DataType="viewmodels:QuizPagePostViewModel"
+    x:Class="greenshare_app.Views.QuizView"
+    IsBusy="{Binding IsBusy}">
+    <ContentView>
+        <Grid>
+            <AbsoluteLayout>
+                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="-60,-15,150,150" CornerRadius="100" HasShadow="False"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout>
+                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="20,-70,150,150" CornerRadius="100" HasShadow="False"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout>
+                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="180,700,150,150" CornerRadius="100" HasShadow="False"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout>
+                <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="260,625,150,150" CornerRadius="100" HasShadow="False"/>
+            </AbsoluteLayout>
+
+            <StackLayout VerticalOptions="Center" Margin="10,10,10,10" Style="{StaticResource styleStackLayoutDefault}">
+
+                <Label 
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource styleLabelGreen}" 
+                Text="{Binding Iterator, StringFormat='Questionnaire ({0:F0}/8)' }" 
+                FontSize="25" 
+                TextColor="{StaticResource colorGreen2}"
+                Margin="10,10,10,10"/>
+
+
+                <Label 
+                Style="{StaticResource styleLabelGreen}" 
+                Text="{Binding Pregunta}"/>
+
+                <RadioButton 
+                Style="{StaticResource styleEntryDefault}"
+                Content="{Binding Respuesta1}"
+                IsChecked="{Binding IsRespuesta1Checked}"/>
+
+                <RadioButton 
+                Style="{StaticResource styleEntryDefault}"
+                Content="{Binding Respuesta2}"
+                IsChecked="{Binding IsRespuesta2Checked}"/>
+
+                <RadioButton 
+                Style="{StaticResource styleEntryDefault}"
+                Content="{Binding Respuesta3}"
+                IsChecked="{Binding IsRespuesta3Checked}"/>
+
+                <!--- IsVisible depen de si la pregunta te 4 respostes-->
+                <RadioButton 
+                IsVisible="{Binding IsFirst}"               
+                Style="{StaticResource styleEntryDefault}"
+                Content="{Binding Respuesta4}"
+                IsChecked="{Binding IsRespuesta4Checked}"/>
+
+                <Grid Padding="20" HorizontalOptions="CenterAndExpand" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.4*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+
+
+                    <!-- IsVisible si es primera pregunta no apareix-->
+                    <!--
+                <Button 
+                    Style="{StaticResource styleButtonDefault}"
+                    IsVisible="{Binding IsNotFirst}"
+                    Grid.Column="0"
+                    Text="Previous"
+                    Command="{Binding OnPreviousButtonCommand}">
+                </Button>
+                -->
+                    <!-- IsVisible si no es ultima pregunta-->
+                    <Button
+                    Style="{StaticResource styleButtonDefault}"
+                    IsVisible="{Binding IsNotLast}"
+                    Grid.Column="2"
+                    Text="Next"
+                    Command="{Binding OnNextButtonCommand}">
+                    </Button>
+
+                    <!-- IsVisible si es ultima pregunta-->
+                    <Button 
+                    Style="{StaticResource styleButtonDefault}"
+                    IsVisible="{Binding IsLast}"
+                    Grid.Column="2"
+                    Text="Finish"
+                    Command="{Binding OnFinishButtonCommand}">
+                    </Button>
+
+                </Grid>
+
+            </StackLayout>
+        </Grid>
+    </ContentView>
+</ContentPage>
