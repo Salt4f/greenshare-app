@@ -62,7 +62,7 @@
                                             <Frame Grid.Row="1" Grid.Column="1" BorderColor="#a5d6a7" BackgroundColor="#dcedc8" WidthRequest="30" HeightRequest="40">
                                                 <Label Text="{Binding Message}"></Label>
                                             </Frame>
-                                            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Solve" Command="{Binding OnSolveButtonCommand}"></Button>
+                                            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Solve" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSolveButtonCommand}"></Button>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>
