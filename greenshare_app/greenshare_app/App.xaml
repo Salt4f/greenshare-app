@@ -60,6 +60,18 @@
                 <Setter Property="Placeholder" Value="Email"/>
             </Style>
 
+            <!--UserName Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryUserName" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Email"/>
+                <Setter Property="Placeholder" Value="User Name"/>
+            </Style>
+
+            <!--Description Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryDescription" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Email"/>
+                <Setter Property="Placeholder" Value="Description"/>
+            </Style>
+
             <!--EnterpriseName Entry-->
             <Style TargetType="control:BorderlessEntry" x:Key="styleEntryEnterpriseName" BasedOn="{StaticResource styleEntryDefault}">
                 <Setter Property="Keyboard" Value="Text"/>
