@@ -90,7 +90,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<Report>> GetAllReports()
         {
             AddHeaders();
-            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/");
+            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports");
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());

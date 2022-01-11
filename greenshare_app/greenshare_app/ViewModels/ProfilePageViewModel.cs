@@ -18,12 +18,14 @@ namespace greenshare_app.ViewModels
         private int userId;
         private User user;
         private bool ownPage;
+        private bool isReportable;
         public ProfilePageViewModel(INavigation navigation, Page view)
         {
             Title = "Perfil";
             this.navigation = navigation;
             this.view = view;
             OwnPage = true;
+            IsReportable = !OwnPage;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -47,14 +49,16 @@ namespace greenshare_app.ViewModels
             get => nickName;
             set => SetProperty(ref nickName, value);
         }
-
+        public bool IsReportable
+        {
+            get => isReportable;
+            private set => SetProperty(ref isReportable, value);
+        }
         public bool OwnPage
         {
             get => ownPage;
             private set => SetProperty(ref ownPage, value);
         }
-
-
         private async void OnStart(object sender, EventArgs args)
         {
             try
@@ -72,17 +76,19 @@ namespace greenshare_app.ViewModels
             }
             IsBusy = false;
         }
-
-        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
-
+        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfo);
+        public AsyncCommand OnRewardsButtonCommand => new AsyncCommand(OnRewards);
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
         public AsyncCommand UserOutgoingInteractionsCommand => new AsyncCommand(OnOutgoingInteractionsButton);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReportButton);
+        //TODO: RATE PAGE PER USER
+        //public AsyncCommand OnRateButtonCommand => new AsyncCommand(OnRateButton);
 
         private INavigation navigation;
         private Page view;
-        private async Task OnUserInfoButton()
+        private async Task OnUserInfo()
         {
             if (OwnPage)
             {
@@ -90,6 +96,10 @@ namespace greenshare_app.ViewModels
                 await navigation.PushModalAsync(new UserInfoPage(session.Item1, OwnPage));
             }
             else await navigation.PushModalAsync(new UserInfoPage(userId, OwnPage));
+        }
+        private async Task OnRewards()
+        {
+            await navigation.PushModalAsync(new RewardsPage(user));
         }
         private async Task OnUserPostsButton()
         {
@@ -108,6 +118,14 @@ namespace greenshare_app.ViewModels
         {
             await navigation.PushModalAsync(new OutgoingInteractionsPage());
         }
-        
+        private async Task OnReportButton()
+        {
+            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
+        }
+        //TODO: RATE PAGE PER USER
+        //private async Task OnRateButton()
+        //{
+        //    await navigation.PushModalAsync(new RatePage(typeof(User), userId));
+        //}
     }
 }
