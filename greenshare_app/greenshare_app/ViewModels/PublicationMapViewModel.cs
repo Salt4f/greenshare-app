@@ -20,7 +20,6 @@ namespace greenshare_app.ViewModels
         private static Position location;
         private static bool selectedLocation;
         private static Pin pin;
-        private static Geocoder geocoder;
 
 
 
@@ -33,8 +32,6 @@ namespace greenshare_app.ViewModels
             Position l = new Position(eventData.Position.Latitude, eventData.Position.Longitude);
             pin.Position = l;
             location = l;
-            IEnumerable<string> addresses = await geocoder.GetAddressesForPositionAsync(pin.Position);
-            pin.Label = addresses.FirstOrDefault();
         }
         public static Tuple<bool, Location> GetLocation()
         {
@@ -51,7 +48,6 @@ namespace greenshare_app.ViewModels
                 Label = "Location para la publicación"
             };
             location = new Position();
-            geocoder = new Geocoder();
             PositionMap(MyMap);
         }
 
@@ -74,8 +70,6 @@ namespace greenshare_app.ViewModels
                     ));
             pin.Position = new Position(loc.Latitude,loc.Longitude);
             location = new Position(loc.Latitude, loc.Longitude);
-            IEnumerable<string> addresses = await geocoder.GetAddressesForPositionAsync(pin.Position);
-            pin.Label = addresses.FirstOrDefault();
             MyMap.Pins.Add(pin);
             
         }
