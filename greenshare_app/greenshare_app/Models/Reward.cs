@@ -17,13 +17,18 @@ namespace greenshare_app.Models
         public Reward(INavigation navigation, Page view)
         {
             Navigation = navigation;
-            View = view;
+            View = view;            
+            if (UserId == Config.Config.Instance().AdminId)
+                IsAdmin = true;
+            else IsAdmin = false;
             OnDeactivateButtonCommand = new AsyncCommand(OnDeactivate);
             OnEditButtonCommand = new AsyncCommand(OnEdit);
             OnExchangeFrameCommand = new AsyncCommand(OnExchange);
         }
         public int Id { get; set; }
+        public bool IsAdmin { get; set; }
         public int GreenCoinsAvailable { get; set; }
+        public int UserId { get; set; }
         public string Description { get; set; }       
         public string SponsorName { get; set; }        
         public int GreenCoins { get; set; }

@@ -67,10 +67,10 @@
                                                 </Frame>
 
                                                 <!--Botó de modificar la recompensa-->
-                                                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Modificar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
+                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Modificar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
 
                                                 <!--Botó d'eliminar la recompensa-->
-                                                <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="Eliminar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
+                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="Eliminar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
 
                                             </Grid>
                                         </StackLayout>

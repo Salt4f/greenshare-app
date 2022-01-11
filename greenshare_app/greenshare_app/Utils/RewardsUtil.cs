@@ -47,6 +47,7 @@ namespace greenshare_app.Utils
 
         public async Task<List<Reward>> GetAllRewards(INavigation navigation, Page view, int greenCoinsAvailable)
         {
+            Tuple<int,string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/rewards");
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
@@ -63,6 +64,7 @@ namespace greenshare_app.Utils
                         Description = info.Description,
                         GreenCoins = info.GreenCoins,
                         SponsorName = info.SponsorName,
+                        UserId = session.Item1,
                         GreenCoinsAvailable = greenCoinsAvailable,
                         GreenCoinsText = "Cost: "+info.GreenCoins
                     };
@@ -75,6 +77,7 @@ namespace greenshare_app.Utils
 
         public async Task<Reward> GetReward(int rewardId, INavigation navigation, Page view)
         {
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
             var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/rewards/" + rewardId);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
@@ -88,6 +91,7 @@ namespace greenshare_app.Utils
                     Description = info.Description,
                     GreenCoins = info.GreenCoins,
                     SponsorName = info.SponsorName,
+                    UserId = session.Item1,
                     GreenCoinsText = "Cost: " + info.GreenCoins
                 };
                 return card;

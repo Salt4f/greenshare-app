@@ -1,4 +1,4 @@
 ﻿{
-  "baseServerUrl": "http://54.89.126.119/api",
-  "adminId": "888"
+  "baseServerUrl": "http://server.vgafib.org/api",
+  "adminId": 888
 }
