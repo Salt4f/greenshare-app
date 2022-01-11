@@ -4,14 +4,40 @@
              xmlns:mapa="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="greenshare_app.Views.MainViewPages.PublicationMapPage">
+    <StackLayout>
+        <Grid Padding="20" HorizontalOptions="CenterAndExpand" IsVisible = "True" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*" />
+                <ColumnDefinition Width="0.2" />
+                <ColumnDefinition Width="0.4*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
 
-    <mapa:Map x:Name="PublicationMap" IsShowingUser="True">
 
-        <mapa:Map.Behaviors>
-            <xct:EventToCommandBehavior 
+            <Button
+                    Style="{StaticResource styleButtonDefault}"
+                    Grid.Column="0"
+                    Text="Aceptar"
+                    Command="{Binding OnAcceptedButtonCommand}">
+            </Button>
+
+            <Button 
+                    Style="{StaticResource styleButtonDefault}"
+                    Grid.Column="2"
+                    Text="Rechazar"
+                    Command="{Binding OnCancelButtonCommand}">
+            </Button>
+
+        </Grid>
+        <mapa:Map x:Name="PublicationMap" IsShowingUser="True">
+            <mapa:Map.Behaviors>
+                <xct:EventToCommandBehavior 
                 EventName="MapClicked"
                 Command="{Binding OnMapClickedCommand}"
             />
-        </mapa:Map.Behaviors>
-    </mapa:Map>
+            </mapa:Map.Behaviors>
+        </mapa:Map>
+    </StackLayout>
 </ContentPage>

@@ -76,6 +76,8 @@ namespace greenshare_app.ViewModels
         private string newTag;
 
         private IList<string> postTypes;
+        private Location location;
+
         public IList<string> PostTypes
         {
             get => postTypes;
@@ -247,13 +249,13 @@ namespace greenshare_app.ViewModels
             location = PublicationMapViewModel.GetLocation();
             if (location.Item1) Location = location.Item2;
         }  
-        public async Task<bool> OnAddLocationButton() 
+        public async Task OnAddLocationButton() 
         {
             var view = new PublicationMapPage();
             var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
             view.Disappearing += OnDisappear;
             await navigation.PushModalAsync(view);
-            var viewModel = (PublicationMapViewModel)view.BindingContext;
+            
         }
 
         public async Task<bool> OnAddPhotoButton()

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using greenshare_app.Models;
 using greenshare_app.Utils;
 using MvvmHelpers;
-using Xamarin.Essentials;
 using MvvmHelpers.Commands;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace greenshare_app.ViewModels
 {
@@ -17,22 +17,25 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
-        private static Location location;
+        private static Position location;
         private static bool selectedLocation;
+        private static Pin pin;
 
-        Geocoder geocoder = new Geocoder();
+
 
         public AsyncCommand<MapClickedEventArgs> OnMapClickedCommand => new AsyncCommand<MapClickedEventArgs>(OnMapClicked);
+        public AsyncCommand OnAcceptedButtonCommand => new AsyncCommand(OnAcceptedButton);
+        public AsyncCommand OnCancelButtonCommand => new AsyncCommand(OnCancelButton);
 
-        private Task OnMapClicked(MapClickedEventArgs eventData)
+        private async Task OnMapClicked(MapClickedEventArgs eventData)
         {
-            Location l = new Location(eventData.Position.Latitude, eventData.Position.Longitude);
-            
-            throw new NotImplementedException();
+            Position l = new Position(eventData.Position.Latitude, eventData.Position.Longitude);
+            pin.Position = l;
+            location = l;
         }
         public static Tuple<bool, Location> GetLocation()
         {
-            var res = new Tuple<bool, Location>(selectedLocation, location);
+            var res = new Tuple<bool, Location>(selectedLocation, new Location(location.Latitude,location.Longitude));
             selectedLocation = false;
             return res;
         }
@@ -41,15 +44,19 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             selectedLocation = false;
+            pin = new Pin() { 
+                Label = "Location para la publicación"
+            };
+            location = new Position();
             PositionMap(MyMap);
         }
-        
-        public async Task<bool> OnAcceptedButton()
+
+        public async Task OnAcceptedButton()
         {
             selectedLocation = true;
             await navigation.PopModalAsync();   //esto se carga la página
         }
-        public async Task<bool> OnCancelButton()
+        public async Task OnCancelButton()
         {
             selectedLocation = false;
             await navigation.PopModalAsync();   //esto se carga la página
@@ -61,11 +68,10 @@ namespace greenshare_app.ViewModels
                 MapSpan.FromCenterAndRadius(
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
-        }
-
-        internal Task GetSelectedLocation()
-        {
-            throw new NotImplementedException();
+            pin.Position = new Position(loc.Latitude,loc.Longitude);
+            location = new Position(loc.Latitude, loc.Longitude);
+            MyMap.Pins.Add(pin);
+            
         }
 
     }
