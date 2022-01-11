@@ -36,8 +36,8 @@
         <!--TABS-->
         <StackLayout Orientation="Vertical" Padding="10" Margin="10">
             
-            <!--USER INFORMATION TAB--> 
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0" Padding="5">
+            <!--USER INFORMATION TAB-->
+            <Frame IsVisible="{Binding OwnPage}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR"/>
@@ -49,7 +49,7 @@
                 </Frame.GestureRecognizers>
             </Frame>
             <!--REWARDS PAGE-->
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0" Padding="5">
+            <Frame IsVisible="{Binding OwnPage}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Star}" FontFamily="FAR"/>
@@ -115,7 +115,7 @@
             <Frame IsVisible="{Binding IsAdmin}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.SignOutAlt}" FontFamily="FAS"/>
+                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.UserAlien}" FontFamily="FAS"/>
                     </Frame>
                     <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="LOG OUT"/>
                 </StackLayout>
