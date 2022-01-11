@@ -60,6 +60,30 @@
                 <Setter Property="Placeholder" Value="Email"/>
             </Style>
 
+            <!--EnterpriseName Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryEnterpriseName" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="Placeholder" Value="Enterprise Name"/>
+            </Style>
+
+            <!--RewardName Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryRewardName" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="Placeholder" Value="Reward Name"/>
+            </Style>
+
+            <!--GreenCoins Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryGreenCoins" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Numeric"/>
+                <Setter Property="Placeholder" Value="GreenCoins Needed"/>
+            </Style>
+
+            <!--RewardDescription Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryRewardDescription" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="Placeholder" Value="Reward Description"/>
+            </Style>
+
             <!--Password Entry-->
             <Style TargetType="control:BorderlessEntry" x:Key="styleEntryPassword" BasedOn="{StaticResource styleEntryDefault}">
                 <Setter Property="Keyboard" Value="Default"/>

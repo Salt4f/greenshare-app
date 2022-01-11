@@ -57,16 +57,9 @@
                             <RowDefinition Height="65" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="400" />
                         </Grid.ColumnDefinitions>
-                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#eceff1" HasShadow="False" WidthRequest="160" HeightRequest="30">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SendMessageUserCommand}"/>
-                            </Frame.GestureRecognizers>
-                            <Label Text="SEND MESSAGE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="#212121" />
-                        </Frame>
-                        <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#ffcc80" HorizontalOptions="End" HasShadow="False" WidthRequest="160" HeightRequest="30">
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#ffcc80" HorizontalOptions="Center" HasShadow="False" WidthRequest="400" HeightRequest="30">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UpdateProfileInfoCommand}"/>
                             </Frame.GestureRecognizers>
