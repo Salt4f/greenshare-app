@@ -17,6 +17,9 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
+        private static Location location;
+        private static bool selectedLocation;
+
         Geocoder geocoder = new Geocoder();
 
         public AsyncCommand<MapClickedEventArgs> OnMapClickedCommand => new AsyncCommand<MapClickedEventArgs>(OnMapClicked);
@@ -27,12 +30,29 @@ namespace greenshare_app.ViewModels
             
             throw new NotImplementedException();
         }
-
+        public static Tuple<bool, Location> GetLocation()
+        {
+            var res = new Tuple<bool, Location>(selectedLocation, location);
+            selectedLocation = false;
+            return res;
+        }
         public PublicationMapViewModel(INavigation navigation, Page view, Xamarin.Forms.Maps.Map MyMap)
         {
             this.navigation = navigation;
             this.view = view;
+            selectedLocation = false;
             PositionMap(MyMap);
+        }
+        
+        public async Task<bool> OnAcceptedButton()
+        {
+            selectedLocation = true;
+            await navigation.PopModalAsync();   //esto se carga la página
+        }
+        public async Task<bool> OnCancelButton()
+        {
+            selectedLocation = false;
+            await navigation.PopModalAsync();   //esto se carga la página
         }
         private async void PositionMap(Xamarin.Forms.Maps.Map MyMap)
         {
@@ -47,5 +67,6 @@ namespace greenshare_app.ViewModels
         {
             throw new NotImplementedException();
         }
+
     }
 }

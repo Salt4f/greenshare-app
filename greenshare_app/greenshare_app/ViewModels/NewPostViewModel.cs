@@ -10,6 +10,8 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Command = MvvmHelpers.Commands.Command;
 using System.IO;
+using System.Threading;
+using greenshare_app.Views.MainViewPages;
 
 namespace greenshare_app.ViewModels
 {
@@ -78,6 +80,11 @@ namespace greenshare_app.ViewModels
         {
             get => postTypes;
             private set => SetProperty(ref postTypes, value);
+        }
+        public Location Location
+        {
+            get => location;
+            private set => SetProperty(ref location, value);
         }
         public Image Icon
         {
@@ -153,11 +160,12 @@ namespace greenshare_app.ViewModels
                 return;
             }
             var loc = await Geolocation.GetLocationAsync();
-            if (loc == null)
+            if (loc == null && Location == null)
             {
-                await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device or select one", "OK");
                 return;
             }
+            if (Location != null) loc = Location;
             if (Tags.Count == 0)
             {
                 await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
@@ -233,9 +241,17 @@ namespace greenshare_app.ViewModels
 
           }
         */
-
-        public async Task<bool> OnAddLocationButton() {
-            var view = new Views.MainViewPages.PublicationMapPage();
+        private void OnDisappear(object sender, EventArgs args)
+        {
+            Tuple<bool, Location> location;
+            location = PublicationMapViewModel.GetLocation();
+            if (location.Item1) Location = location.Item2;
+        }  
+        public async Task<bool> OnAddLocationButton() 
+        {
+            var view = new PublicationMapPage();
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
             await navigation.PushModalAsync(view);
             var viewModel = (PublicationMapViewModel)view.BindingContext;
         }
