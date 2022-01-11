@@ -50,6 +50,7 @@ namespace greenshare_app.ViewModels
             if (Message != null)
             {
                 await ReportUtil.Instance().PostReport(Message, Type, Id);
+                await navigation.PopModalAsync();
             }
             else
             {
