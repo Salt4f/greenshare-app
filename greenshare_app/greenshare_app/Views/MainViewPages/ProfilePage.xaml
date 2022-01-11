@@ -10,12 +10,7 @@
     <StackLayout BackgroundColor="{StaticResource colorGreen9}">
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10" Margin="0">
             <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
-            <!--BOTO DESACTIVAR PUBLICACIÓ-->
-            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportable}">
-                <Button Text="VALORAR" FontFamily="Montserrat-SemiBold"
-                            Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorGreen2}" FontSize="15"/>
-                <!--Command="{Binding OnRateButtonCommand}"-->
-            </Frame>
+            <!--BOTO REPORTAR USER-->            
             <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportable}">
                 <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold"
                             Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>

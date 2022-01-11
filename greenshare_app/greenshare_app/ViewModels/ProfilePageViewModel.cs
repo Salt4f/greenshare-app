@@ -25,7 +25,6 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             OwnPage = true;
-            IsReportable = !OwnPage;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -37,7 +36,7 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;            
             this.userId = userId;
-            OwnPage = false;                       
+            OwnPage = false;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -67,6 +66,7 @@ namespace greenshare_app.ViewModels
 
         private async void OnStart(object sender, EventArgs args)
         {
+            IsReportable = !OwnPage;
             try
             {
                 IsAdmin = await Auth.Instance().IsAdmin();
