@@ -73,27 +73,6 @@
                             <Label Text="UPDATE PROFILE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="90" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="600" />
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                    <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#ff8a65" HorizontalOptions="Center" HasShadow="False" WidthRequest="500" HeightRequest="30">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding BlockUserCommand}"/>
-                        </Frame.GestureRecognizers>
-                        <Label Text="BLOCK USER" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
-                    </Frame>
-                    <Frame Grid.Row="0" Grid.Column="0" IsVisible="{Binding IsReportable}" BackgroundColor="#d32f2f" HorizontalOptions="Center" HasShadow="False" WidthRequest="500" HeightRequest="30">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnReportButtonCommand}"/>
-                        </Frame.GestureRecognizers>
-                        <Label Text="REPORT USER" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
-                    </Frame>
-
                 </StackLayout>
             </Frame>
             <StackLayout Padding="0" Spacing="0">

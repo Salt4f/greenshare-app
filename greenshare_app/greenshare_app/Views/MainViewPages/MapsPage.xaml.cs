@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using greenshare_app.ViewModels;
 
 namespace greenshare_app.Views.MainViewPages
 {
@@ -15,6 +16,7 @@ namespace greenshare_app.Views.MainViewPages
         public MapsPage()
         {
             InitializeComponent();
+            BindingContext = new MapsPageViewModel(Navigation, this, MyMap);
         }
     }
 }
