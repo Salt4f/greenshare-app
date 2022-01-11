@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:greenshare_app.Controls"
+             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoUpdatePage"
+             xmlns:fontAwesome="clr-namespace:FontAwesome">
+    
+    <ScrollView>
+        <StackLayout Spacing="0" Margin="0" Padding="0">
+            <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="-10" WidthRequest="600" HeightRequest="120">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="1,0"
+                                                     EndPoint="0,1">
+                        <GradientStop Color="#aed581"
+                                                  Offset="0.1"/>
+                        <GradientStop Color="#6b9b37"
+                                                  Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <StackLayout  Padding="0" Spacing="0">
+                    <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0,45,0,0" WidthRequest="600">
+                        <StackLayout>
+                            <Frame BackgroundColor="Transparent" Padding="0" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label Text="Update User Information" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+            <Frame Margin="0,0,0,0" Padding="0">
+                <StackLayout Spacing="20" Margin="5" Padding="5" HorizontalOptions="Center">
+                    <Frame BackgroundColor="Transparent"  HorizontalOptions="Center" HasShadow="False" WidthRequest="300" HeightRequest="0">
+                    </Frame>
+
+                    <!--Nombre usuario-->
+
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAS" ></Label>
+                            </Frame>
+                            <control:BorderlessEntry Style="{StaticResource styleEntryUserName}" Text="{Binding UserName}"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Descripción de la recompensa-->
+
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" VerticalOptions="Start">
+                                <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.PencilAlt}" FontFamily="FAS" ></Label>
+                            </Frame>
+                            <control:BorderlessEditor HeightRequest="200" Style="{StaticResource styleEntryRewardDescription}" Text="{Binding UserDescription}" VerticalOptions="Start" Margin="0,13,0,0"/>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Button Text="Actualizar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnUpdateCommand}"/>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
