@@ -44,8 +44,6 @@
                 
             </Grid>
 
-        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-
 
         <Grid Padding="20" HorizontalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
             <Grid.ColumnDefinitions>
