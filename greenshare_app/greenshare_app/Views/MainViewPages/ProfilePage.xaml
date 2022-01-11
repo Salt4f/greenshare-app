@@ -4,8 +4,7 @@
              xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
              xmlns:fontAwesome="clr-namespace:FontAwesome" 
-             xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels"
-             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
              x:DataType="viewmodels:ProfilePageViewModel">
 
     <StackLayout BackgroundColor="{StaticResource colorGreen9}">
@@ -20,45 +19,12 @@
 
         <!--HEADER, PICTURE AND USERNAME-->
         <StackLayout Padding="5" Spacing="10" Margin="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-
+            <Frame BackgroundColor="{StaticResource colorWhite}" Padding="20,60" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="100" Margin="5" BorderColor="{StaticResource colorBlack}">
+                <ImageButton Aspect="AspectFill" WidthRequest="80" Margin="0"/>
+            </Frame>
             <Frame BackgroundColor="{StaticResource colorWhite}" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" CornerRadius="20" Margin="5" BorderColor="{StaticResource colorBlack}">
-                <Label Text="{Binding NickName}" Margin="30,15" FontSize="20" Style="{StaticResource styleLabelBlack}" HorizontalOptions="Center"/>
+                <Label Text="{Binding NickName}" Margin="30,15" FontSize="17" Style="{StaticResource styleLabelBlack}" HorizontalOptions="Center"/>
             </Frame>
-            <!--<Frame BackgroundColor="{StaticResource colorWhite}" HeightRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" CornerRadius="20" Margin="5" BorderColor="{StaticResource colorBlack}">
-                <rating:SfRating HorizontalOptions="Center" Precision="Standard" ItemSize="40"/>
-            </Frame>
-            -->
-            <Grid Padding="10" HorizontalOptions="CenterAndExpand" IsVisible = "True" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.2*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
-
-                <rating:SfRating 
-                    x:Name="rating"
-                    ReadOnly="True"
-                    HorizontalOptions="Center" 
-                    Grid.Column="1"
-                    Precision="Exact" 
-                    ItemSize="20"
-                    Value="{Binding Rating}">
-                    <rating:SfRating.RatingSettings>
-                        <rating:SfRatingSettings RatedFill="{StaticResource colorGreen2}" UnRatedFill="{StaticResource colorGreen9}" RatedStroke="{StaticResource colorGreen5}" UnRatedStroke="{StaticResource colorGreen5}" UnRatedStrokeWidth="3" RatedStrokeWidth="3" />
-                    </rating:SfRating.RatingSettings>
-                </rating:SfRating>
-                <Label
-                    HorizontalOptions="Start"
-                    Grid.Column="2"
-                    Text="{Binding Source={x:Reference rating}, Path=Value, StringFormat='{0:D2}'}" >
-                </Label>
-
-            </Grid>
-
-            
         </StackLayout>
 
 
@@ -66,7 +32,7 @@
         <StackLayout Orientation="Vertical" Padding="10" Margin="10">
             
             <!--USER INFORMATION TAB-->
-            <Frame IsVisible="{Binding OwnPage}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
+            <Frame IsVisible="{Binding OwnPage}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR"/>

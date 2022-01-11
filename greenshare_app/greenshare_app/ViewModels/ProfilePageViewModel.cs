@@ -41,11 +41,9 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             Starting += OnStart;
             Starting(this, EventArgs.Empty);
-            
         }
 
         private string nickName;
-        private double rating = 3.5;
         public string NickName {
             get => nickName;
             set => SetProperty(ref nickName, value);
@@ -54,13 +52,6 @@ namespace greenshare_app.ViewModels
         {
             get => isReportable;
             private set => SetProperty(ref isReportable, value);
-        }
-
-        public double Rating
-        {
-            get => rating;
-            set => SetProperty(ref rating, value);
-
         }
         public bool OwnPage
         {
