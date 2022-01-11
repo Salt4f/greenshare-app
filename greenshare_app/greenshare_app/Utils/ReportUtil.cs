@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace greenshare_app.Utils
 {
@@ -27,22 +28,7 @@ namespace greenshare_app.Utils
         }
 
         private readonly HttpClient httpClient;
-        public async void AddHeaders()
-        {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
-        }
+        
         public async Task<bool> PostReport(string message, Type type, int itemId)
         {
             string url;
@@ -86,11 +72,12 @@ namespace greenshare_app.Utils
             return false;
 
         }
-
-        public async Task<IEnumerable<Report>> GetAllReports()
+        //gets all unsolved reports
+        public async Task<IEnumerable<Report>> GetAllReports(INavigation navigation, Page view)
         {
-            AddHeaders();
-            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports");
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/admin/reports");
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());
@@ -99,16 +86,18 @@ namespace greenshare_app.Utils
                 foreach (var item in array)
                 {
                     var info = item.ToObject<ReportInfo>();
-                    var report = new Report()
+                    //cambiar campos en el backend
+                    var report = new Report(navigation, view)
                     {
                         Id = info.Id,
                         Type = info.Type,
                         ReporterId = info.ReporterId,
                         ItemId = info.ItemId,
+                        ItemName = info.ItemName,
                         Message = info.Message,
                         Solved = info.Solved
                     };
-                    reports.Add(report);
+                    if (!report.Solved) reports.Add(report);
                 }
                 return reports;
             }
@@ -130,6 +119,9 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "message")]
             public string Message { get; set; }
+
+            [JsonProperty(PropertyName = "itemName")]
+            public string ItemName { get; set; }
 
             [JsonProperty(PropertyName = "itemId")]
             public int ItemId { get; set; }

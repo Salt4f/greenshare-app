@@ -86,17 +86,20 @@ namespace greenshare_app.ViewModels
             var card = args as PostStatus;
             if (card == null)
                 return;
+            IsBusy = true;
             if (SelectedPost.IsOffer)
             {
                 Offer offer = await PostRetriever.Instance().GetOffer(SelectedPost.Id);
                 if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
                 else await navigation.PushModalAsync(new ViewPost(offer));
+                IsBusy = false;
             }
             else
             {
                 Request request = await PostRetriever.Instance().GetRequest(SelectedPost.Id);
                 if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Request not found", "OK");
                 else await navigation.PushModalAsync(new ViewPost(request));
+                IsBusy = false;
             }
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 

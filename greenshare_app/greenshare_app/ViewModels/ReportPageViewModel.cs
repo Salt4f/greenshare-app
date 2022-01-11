@@ -49,7 +49,10 @@ namespace greenshare_app.ViewModels
         {
             if (Message != null)
             {
+                IsBusy = true;
                 await ReportUtil.Instance().PostReport(Message, Type, Id);
+                IsBusy = false;
+                await navigation.PopModalAsync();
             }
             else
             {

@@ -16,6 +16,7 @@ namespace greenshare_app.Config
             var file = ReadConfigFile();
             var config = JsonConvert.DeserializeObject<MainConfig>(file);
             BaseServerUrl = config.BaseServerUrl;
+            AdminId = config.AdminId;
         }
 
         public static Config Instance()

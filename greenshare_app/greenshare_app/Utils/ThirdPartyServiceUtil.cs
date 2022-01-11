@@ -27,7 +27,7 @@ namespace greenshare_app.Utils
             if (instance is null) instance = new ThirdPartyServiceUtil();
             return instance;
         }
-        public async void addHeaders()
+        private async void AddHeaders()
         {
             Tuple<int, string> session;
             try

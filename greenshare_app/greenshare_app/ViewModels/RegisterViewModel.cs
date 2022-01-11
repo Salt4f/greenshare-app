@@ -119,15 +119,18 @@ namespace greenshare_app.ViewModels
 
             try
             {
+                IsBusy = true;
                 if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname, BirthDate, FullName, Dni))
                 {
                     Application.Current.MainPage = new QuizView();
+                    IsBusy = false;
                     return;
                 }
 
             }
             catch (Exception)
             {
+                IsBusy = false;
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
         
@@ -142,9 +145,6 @@ namespace greenshare_app.ViewModels
             await view.DisplayAlert("DNI verified", "Your DNI has been verified", "OK");
 
         }
-        private void OnGoogleClicked(object obj)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

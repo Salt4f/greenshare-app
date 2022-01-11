@@ -39,7 +39,7 @@
                                                 <!--Nom empresa-->
 
                                                 <Frame Grid.Row="0" Grid.Column="0" BorderColor="#bdbdbd" Grid.ColumnSpan="2" WidthRequest="30" HeightRequest="40" BackgroundColor="#eeeeee" HasShadow="True">
-                                                    <Label Text="{Binding SponsorName}" Padding="0" Margin="0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="14"></Label>
+                                                    <Label Text="{Binding SponsorName}" Padding="0" Margin="0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="14" TextColor="Black"></Label>
                                                 </Frame>
 
                                                 <!--GreenCoins necessaris per a comprar l'oferta-->
@@ -48,7 +48,7 @@
                                                     <!--<Frame.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding OnReportedFrameCommand}"/>
                                                 </Frame.GestureRecognizers>-->
-                                                    <Label Text="{Binding GreenCoinsText}" FontAttributes="Bold"></Label>
+                                                    <Label Text="{Binding GreenCoinsText}" FontAttributes="Bold" TextColor="Black"></Label>
                                                 </Frame>
 
                                                 <!--Botó de comprar la recompensa-->
@@ -57,20 +57,20 @@
                                                     <Frame.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding OnExchangeFrameCommand}"/>
                                                     </Frame.GestureRecognizers>
-                                                    <Label Text="Canjear" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
+                                                    <Label Text="Canjear" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" TextColor="Black"></Label>
                                                 </Frame>
 
                                                 <!--Descripció de l'oferta-->
 
                                                 <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" BorderColor="#a5d6a7" BackgroundColor="#dcedc8" WidthRequest="30" HeightRequest="40">
-                                                    <Label Text="{Binding Description}"></Label>
+                                                    <Label Text="{Binding Description}" TextColor="Black"></Label>
                                                 </Frame>
 
                                                 <!--Botó de modificar la recompensa-->
-                                                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Modificar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
+                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Modificar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
 
                                                 <!--Botó d'eliminar la recompensa-->
-                                                <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="Eliminar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
+                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="Eliminar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
 
                                             </Grid>
                                         </StackLayout>

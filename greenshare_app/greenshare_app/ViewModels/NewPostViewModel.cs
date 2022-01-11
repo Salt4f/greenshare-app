@@ -151,19 +151,23 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
         private async Task OnSubmit()
         {
+            IsBusy = true;
             if (Name.Length == 0)
             {
                 await view.DisplayAlert("Error while creating Post", "Please enter a name", "OK");
+                IsBusy = false;
                 return;
             }
             if (Description.Length == 0)
             {
                 await view.DisplayAlert("Error while creating Post", "Please enter a description", "OK");
+                IsBusy = false;
                 return;
             }
             var loc = await Geolocation.GetLocationAsync();
             if (loc == null && Location == null)
             {
+                IsBusy = false;
                 await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device or select one", "OK");
                 return;
             }
@@ -171,27 +175,38 @@ namespace greenshare_app.ViewModels
             if (Tags.Count == 0)
             {
                 await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
+                IsBusy = false;
                 return;
             }
             int response;
+            Post post;
             switch (PostType)
             {
                 case nameof(Offer):
                     if (Icon == null)
                     {
                         await view.DisplayAlert("Error while creating Post", "Please enter an icon", "OK");
+                        IsBusy = false;
                         return;
                     }                  
                     response = await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, loc, Tags, photoBytesArray, iconBytes);
+                    post = await PostRetriever.Instance().GetOffer(response);
                     break;
                 case nameof(Request):
                     response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, loc, Tags);
+                    post = await PostRetriever.Instance().GetRequest(response);
                     break;
                 default:
                     response = -1;
+                    post = null;
                     break;
             }
-            if (response != -1) await view.DisplayAlert("Post Created", "New Post name: "+Name, "ok");
+            IsBusy = false;
+            if (response != -1)
+            {
+                await view.DisplayAlert("Post Created", "New Post name: " + Name, "ok");
+                await navigation.PushModalAsync(new Views.MainViewPages.ViewPost(post));
+            }
             else await view.DisplayAlert("Error while creating Post", "Invalid Session, please make sure you are logged in", "OK");
             ResetProperties();
 
