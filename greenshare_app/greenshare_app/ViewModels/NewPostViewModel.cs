@@ -113,6 +113,7 @@ namespace greenshare_app.ViewModels
 
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddTagButtonCommand => new AsyncCommand(OnAddTag);
+        public AsyncCommand OnAddLocationButtonCommand => new AsyncCommand(OnAddLocationButton);
 
         private async Task OnAddTag()
         {           
@@ -220,10 +221,10 @@ namespace greenshare_app.ViewModels
                 SetProperty(ref postType, value); 
             }
         }
-        
-       
 
-        
+
+
+
         /*  
           public EventHandler Picker_OnSelectedIndex(object sender, EventArgs e)
           {
@@ -232,7 +233,11 @@ namespace greenshare_app.ViewModels
 
           }
         */
-      
+
+        public async Task<bool> OnAddLocationButton() { 
+            
+        }
+
         public async Task<bool> OnAddPhotoButton()
         {
             var photo = await MediaPicker.PickPhotoAsync();

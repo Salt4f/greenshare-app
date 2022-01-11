@@ -61,14 +61,10 @@ namespace greenshare_app.Droid
             {
                 throw new Exception("Custom pin not found");
             }
-
-            if (!string.IsNullOrWhiteSpace(customPin.Url))
-            {
-                var url = Android.Net.Uri.Parse(customPin.Url);
-                var intent = new Intent(Intent.ActionView, url);
-                intent.AddFlags(ActivityFlags.NewTask);
-                Android.App.Application.Context.StartActivity(intent);
+            else { 
+                
             }
+          
         }
 
         public Android.Views.View GetInfoContents(Marker marker)
