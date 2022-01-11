@@ -40,7 +40,9 @@ namespace greenshare_app.Utils
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                string json = await response.Content.ReadAsStringAsync();
+                JObject body = JObject.Parse(json);
+                var array = body.Value<JArray>("infoMessage");
                 var cards = new List<PostCard>();
 
                 foreach (var item in array)

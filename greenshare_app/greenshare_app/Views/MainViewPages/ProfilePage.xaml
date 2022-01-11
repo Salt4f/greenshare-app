@@ -3,11 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfilePage"
-             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:ProfilePageViewModel">
-    <StackLayout>
-        
+             xmlns:fontAwesome="clr-namespace:FontAwesome" 
+             xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
+             x:DataType="viewmodels:ProfilePageViewModel">
+
+    <StackLayout BackgroundColor="{StaticResource colorGreen9}">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10" Margin="0">
+            <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
+            <!--BOTO DESACTIVAR PUBLICACIÓ-->
+            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportable}">
+                <Button Text="VALORAR" FontFamily="Montserrat-SemiBold"
+                            Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorGreen2}" FontSize="15"/>
+                <!--Command="{Binding OnRateButtonCommand}"-->
+            </Frame>
+            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportable}">
+                <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold"
+                            Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
+            </Frame>
+        </StackLayout>
+
         <!--HEADER, PICTURE AND USERNAME-->
-        <StackLayout Padding="20" Spacing="10" BackgroundColor="{StaticResource colorGreen9}" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+        <StackLayout Padding="5" Spacing="10" Margin="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
             <Frame BackgroundColor="{StaticResource colorWhite}" Padding="20,60" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="100" Margin="5" BorderColor="{StaticResource colorBlack}">
                 <ImageButton Aspect="AspectFill" WidthRequest="80" Margin="0"/>
             </Frame>
