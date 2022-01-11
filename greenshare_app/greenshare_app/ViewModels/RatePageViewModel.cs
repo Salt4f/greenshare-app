@@ -42,13 +42,16 @@ namespace greenshare_app.ViewModels
         {
             try
             {
+                IsBusy = true;
                 await OfferRequestInteraction.Instance().CompletePostFromOffer(acceptedPost.OfferId, acceptedPost.RequestId, RatingValue, Message);
+                IsBusy = false;
                 await view.DisplayAlert("Post completed successfully", "", "OK");
             }
             catch (Exception)
             {
                 await view.DisplayAlert("Error while completing the post", "something went wrong", "OK");
             }
+            await navigation.PopModalAsync();
         }
 
     }

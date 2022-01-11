@@ -137,6 +137,7 @@
 
 
             <StackLayout Margin="5,0,5,5" >
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
                 <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
             </StackLayout>
         </StackLayout>

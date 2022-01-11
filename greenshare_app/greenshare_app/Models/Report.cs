@@ -34,19 +34,22 @@ namespace greenshare_app.Models
 
         private async Task OnItemName()
         {
-            if (Type == "Offer")
+            if (Type == "offer")
             {
-                //Offer offer = await PostRetriever.Instance().GetOffer(ItemId);
-                //await Navigation.PushModalAsync(new ViewPost(offer));
+                Offer offer = await PostRetriever.Instance().GetOffer(ItemId);
+                await Navigation.PushModalAsync(new ViewPost(offer));
+                return;
             }
-            else if (Type == "Request")
+            else if (Type == "request")
             {
-                //Request request = await PostRetriever.Instance().GetRequest(ItemId);
-                //await Navigation.PushModalAsync(new ViewPost(request));
+                Request request = await PostRetriever.Instance().GetRequest(ItemId);
+                await Navigation.PushModalAsync(new ViewPost(request));
+                return;
             }
             else
             {
-                //await Navigation.PushModalAsync(new ProfilePage(ReporterId));
+                await Navigation.PushModalAsync(new ProfilePage(ReporterId));
+                return;
             }
         }
         private async Task OnSolve()

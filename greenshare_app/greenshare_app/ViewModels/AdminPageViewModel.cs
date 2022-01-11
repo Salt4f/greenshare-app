@@ -60,7 +60,6 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
                 var cards = await ReportUtil.Instance().GetAllReports(navigation, view);
                 ReportList.Clear();
                 ReportList.AddRange(cards);

@@ -102,20 +102,26 @@ namespace greenshare_app.ViewModels
 
         private async Task OnUserInfo()
         {
+            IsBusy = true;
             if (OwnPage)
             {
                 Tuple<int, string> session = await Auth.Instance().GetAuth();
                 await navigation.PushModalAsync(new UserInfoPage(session.Item1, OwnPage));
             }
             else await navigation.PushModalAsync(new UserInfoPage(userId, OwnPage));
+            IsBusy = false;
         }
         private async Task OnRewards()
         {
+            IsBusy = true;
             await navigation.PushModalAsync(new RewardsPage(user));
+            IsBusy = false;
         }
         private async Task OnUserPostsButton()
         {
+            IsBusy = true;
             await navigation.PushModalAsync(new UserPublicationsPage());
+            IsBusy = false;
         }
         private async Task OnLogOutButton()
         {
@@ -124,26 +130,30 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnIncomingInteractionsButton()
         {
+            IsBusy = true;
             await navigation.PushModalAsync(new IncomingInteractionsPage());
+            IsBusy = false;
         }
         private async Task OnOutgoingInteractionsButton()
-        {
+        {   
+            IsBusy = true;
             await navigation.PushModalAsync(new OutgoingInteractionsPage());
+            IsBusy = false;
         }
 
         private async Task OnAdmin()
         {
+            IsBusy = true;
             await navigation.PushModalAsync(new AdminPage());
+            IsBusy = false;
         }
 
         private async Task OnReportButton()
         {
+            IsBusy = true;
             await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
+            IsBusy = false;
         }
-        //TODO: RATE PAGE PER USER
-        //private async Task OnRateButton()
-        //{
-        //    await navigation.PushModalAsync(new RatePage(typeof(User), userId));
-        //}
+
     }
 }
