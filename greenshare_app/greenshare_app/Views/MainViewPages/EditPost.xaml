@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.EditPost"
+             BackgroundColor="{StaticResource colorWhite}"
+             xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:EditPostViewModel">
+
+    <ScrollView>
+        <StackLayout BackgroundColor="{StaticResource colorGreen2}" Style="{StaticResource styleStackLayoutDefault}" Padding="15">
+            <Frame BackgroundColor="{StaticResource colorWhite}" CornerRadius="10" Margin="5" BorderColor="{StaticResource colorBlack}">
+                <StackLayout Orientation="Vertical" Padding="2" BackgroundColor="Transparent">
+                    <!--TITLE-->
+                    <StackLayout  Padding="5,0,5,5">
+                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                            <StackLayout Padding="10"  Orientation="Horizontal">
+                                <control:BorderlessEntry  
+                                Style="{StaticResource styleEntryDefault}" 
+                                Text="{Binding Name}" 
+                                Placeholder="Product name" 
+                                FontAttributes="None"
+                                    FontSize="20"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <!--DESCRIPTION-->
+                    <StackLayout Padding="5,0,5,5">
+                        <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <control:BorderlessEditor
+                                HeightRequest="60"
+                                Style="{StaticResource styleEntryDefault}"
+                                Placeholder="Description" 
+                                AutoSize="TextChanges"
+                                Text="{Binding Description}"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    
+                    <!--FOTOS-->
+                    <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
+                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="5" BackgroundColor="{StaticResource colorGreen9}">
+                            <ListView ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedImage}"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Start"
+                                      HeightRequest="125">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="Image">
+                                        <ViewCell>
+                                            <Image  Aspect="AspectFit"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center"
+                                                        Source="{Binding Source}"
+                                                    BackgroundColor="{StaticResource colorGreen4}"
+                                                    Margin="5"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Frame>
+                        <Button HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                Text="Borrar Foto"
+                                Command="{Binding OnRemovePhotoButtonCommand}"
+                                Style="{StaticResource styleButtonDefault}"/>
+                        <!--ICON-->
+                        <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
+                            <Image Source="{Binding Icon.Source}" 
+                               Aspect="AspectFill"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               VerticalOptions="Start"/>
+                        </Frame>
+                        <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
+                            <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Icon" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <!--TAGS-->
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">
+                        <StackLayout Margin="5,0,5,5" Orientation="Horizontal">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" >
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <control:BorderlessEntry      
+                                            Style="{StaticResource styleEntryDefault}" 
+                                            Text="{Binding NewTag}" 
+                                            Placeholder="New Tag"
+                                            HorizontalOptions="Fill" 
+                                            VerticalOptions="Fill"
+                                            WidthRequest="120"/>
+                                </StackLayout>
+                            </Frame>
+                            <Button
+                                HorizontalOptions="Start" 
+                                VerticalOptions="Center"
+                                Text="Add Tag"
+                                Command="{Binding OnAddTagButtonCommand}"
+                                Style="{StaticResource styleButtonDefault}"
+                                />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="0">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <ListView ItemsSource="{Binding Tags}" SelectedItem="{Binding SelectedTag}"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Start"
+                                              HeightRequest="100">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="model:Tag">
+                                                <ViewCell>
+                                                    <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                                        
+                                                        <!--TODO: CANVIAR EL COLOR DEL BACKGROUND D'UN TAG PEL DEL BINDING-->
+                                                        <!--TODO: BackgroundColor="{Binding Color}"-->
+                                                        
+                                                        <Frame BackgroundColor="{StaticResource colorBlack}" CornerRadius="25" Padding="5">
+                                                            <Label Text="{Binding Name}"
+                                                                   Style="{StaticResource styleLabelWhite}"
+                                                                   VerticalOptions="Center"/>
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </Frame>
+                                <Button HorizontalOptions="Start" 
+                                    VerticalOptions="Center"
+                                    Text="Remove Tag"
+                                    Command="{Binding OnRemoveTagButtonCommand}"
+                                    Style="{StaticResource styleButtonDefault}"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <!--DATE TERMINATION-->
+                    <StackLayout Margin="5,0,5,5">
+                        <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
+                            <StackLayout  Orientation="Horizontal">
+                                <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                    <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
+                                </Frame>
+                                <DatePicker Date="{Binding TerminationDateTime}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <!--SUBMIT BUTTON-->
+                    <StackLayout Margin="5,0,5,5">
+                        <Button Text="Submit Changes" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

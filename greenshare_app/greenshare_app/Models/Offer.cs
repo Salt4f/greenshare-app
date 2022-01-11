@@ -8,8 +8,8 @@ namespace greenshare_app.Models
 {
     public class Offer : Post
     {
-        public Image Icon { get; set; }
-        public IEnumerable<Image> Photos { get; set; }
+        public byte[] Icon { get; set; }
+        public IList<byte[]> Photos { get; set; }
 
     }
 }

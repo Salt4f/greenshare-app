@@ -13,10 +13,10 @@ namespace greenshare_app.Views.MainViewPages.ProfileViewPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserInfoPage : ContentPage
     {
-        public UserInfoPage()
+        public UserInfoPage(int userId, bool own)
         {
             InitializeComponent();
-            BindingContext = new UserInfoPageViewModel(Navigation, this);
+            BindingContext = new UserInfoPageViewModel(Navigation, this, userId, own);
         }
     }
 }

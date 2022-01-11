@@ -1,4 +1,5 @@
-﻿using System;
+﻿using greenshare_app.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class addPage : ContentPage
+    public partial class ReportPage : ContentPage
     {
-        public addPage()
+        public ReportPage(Type type, int id)
         {
             InitializeComponent();
+            BindingContext = new ReportPageViewModel(this.Navigation, this, type, id);
         }
     }
 }

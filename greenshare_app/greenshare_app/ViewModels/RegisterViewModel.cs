@@ -18,7 +18,6 @@ namespace greenshare_app.ViewModels
             Password = string.Empty;
             RepeatPassword = string.Empty;
             birthDate = DateTime.Today;
-
             this.navigation = navigation;
             this.view = view;
         }
@@ -78,7 +77,7 @@ namespace greenshare_app.ViewModels
             }
         }
         private async Task OnRegisterButton()
-        {
+        {           
             if (Nickname.Length <= 5)
             {
                 await view.DisplayAlert("Nickname too short", "Please enter a longer nickname", "OK");                
@@ -120,14 +119,18 @@ namespace greenshare_app.ViewModels
 
             try
             {
+                IsBusy = true;
                 if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname, BirthDate, FullName, Dni))
                 {
-                    Application.Current.MainPage = new MainView();
+                    Application.Current.MainPage = new QuizView();
+                    IsBusy = false;
+                    return;
                 }
 
             }
             catch (Exception)
             {
+                IsBusy = false;
                 await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
             }
         
@@ -142,9 +145,6 @@ namespace greenshare_app.ViewModels
             await view.DisplayAlert("DNI verified", "Your DNI has been verified", "OK");
 
         }
-        private void OnGoogleClicked(object obj)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

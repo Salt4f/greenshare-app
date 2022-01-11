@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using greenshare_app.Exceptions;
 using greenshare_app.Models;
+using MvvmHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
@@ -28,17 +29,20 @@ namespace greenshare_app.Utils
             if (instance is null) instance = new PostRetriever();
             return instance;
         }
-
+        
         private readonly HttpClient httpClient;
 
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                string json = await response.Content.ReadAsStringAsync();
+                JObject body = JObject.Parse(json);
+                var array = body.Value<JArray>("infoMessage");
                 var cards = new List<PostCard>();
 
                 foreach (var item in array)
@@ -59,11 +63,42 @@ namespace greenshare_app.Utils
             return null;
         }
 
-        public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
+        public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
 
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers" + query);
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                        Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<PostCard>> SearchOffers(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -78,8 +113,37 @@ namespace greenshare_app.Utils
                         Id = info.Id,
                         Name = info.Name,
                         Author = info.Author,
-                        Tags = new MvvmHelpers.ObservableRangeCollection<Tag>(info.Tags),
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
                         Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    };
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+        public async Task<IEnumerable<PostCard>> SearchRequests(Location location, int distance, string searchWord)
+        {
+            string query = "?location=" + location.Latitude + ";" + location.Longitude;
+            query += "&q=" + searchWord + "&distance=" + distance;
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostCard>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostCardInfo>();
+                    var card = new PostCard()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Author = info.Author,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
                     };
                     cards.Add(card);
                 }
@@ -112,7 +176,9 @@ namespace greenshare_app.Utils
      
         public async Task<Offer> GetOffer(int id)
         {
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/offers/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers/" + id);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
@@ -122,6 +188,7 @@ namespace greenshare_app.Utils
                 {
                     Active = info.Active,
                     Id = info.Id,
+                    //Status = Enum.Parse(typeof(Status), info.Status),
                     OwnerId = info.OwnerId,
                     Name = info.Name,
                     Description = info.Description,
@@ -130,13 +197,13 @@ namespace greenshare_app.Utils
                     TerminateAt = info.TerminateAt,
                     EcoImpact = 0,
                     Tags = info.Tags,
-                    Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) }
+                    Icon = info.Icon,
+                    Photos = info.Photos
                 };
 
-                post.Icon.Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); });
-
+                /*
                 //Photos
-                /*var photos = new List<Image>();
+                var photos = new List<Image>();
                 foreach (byte[] photo in info.Photos)
                 {
                     Image definitivePhoto = new Image
@@ -145,8 +212,8 @@ namespace greenshare_app.Utils
                     };
                     photos.Add(definitivePhoto);
                 }
-                post.Photos = photos;*/
-
+                post.Photos = photos;
+                */
                 return post;
             }
             return null;
@@ -154,7 +221,9 @@ namespace greenshare_app.Utils
 
         public async Task<Request> GetRequest(int id)
         {
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/posts/requests/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests/" + id);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
@@ -177,6 +246,43 @@ namespace greenshare_app.Utils
             return null;
         }
 
+        public async Task<IEnumerable<PostStatus>> GetPostsByUserId(string type)
+        {
+            string query = "?type=" + type;
+            var session = await Auth.Instance().GetAuth();
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/posts" + query);
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var array = JArray.Parse(await response.Content.ReadAsStringAsync());
+                var cards = new List<PostStatus>();
+
+                foreach (var item in array)
+                {
+                    var info = item.ToObject<PostStatusInfo>();
+                    var card = new PostStatus()
+                    {
+                        Id = info.Id,
+                        Name = info.Name,
+                        Tags = new ObservableRangeCollection<Tag>(info.Tags),
+                        Description = info.Description,
+                        Active = info.Active,
+                        Status = info.Status,
+                    };
+                    if (type == "offers")
+                    {
+                        card.IsOffer = true;
+                        card.Icon = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.Icon); }) };
+                    }
+                    else card.IsOffer = false;
+                    cards.Add(card);
+                }
+                return cards;
+            }
+            return null;
+        }
+
         private class PostCardInfo
         {
             [JsonProperty(PropertyName = "id")]
@@ -194,6 +300,18 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "author")]
             public string Author { get; set; }
         }
+        private class PostStatusInfo : PostCardInfo 
+        {
+            [JsonProperty(PropertyName = "description")]
+            public string Description { get; set; }
+
+            [JsonProperty(PropertyName = "active")]
+            public bool Active { get; set; }
+
+            [JsonProperty(PropertyName = "status")]
+            public string Status { get; set; }
+
+        }
 
         private class PostInfo
         {
@@ -202,6 +320,9 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "active")]
             public bool Active { get; set; }
+
+            //[JsonProperty(PropertyName = "status")]
+            //public string Status { get; set; }
 
             [JsonProperty(PropertyName = "ownerId")]
             public int OwnerId { get; set; }
@@ -226,7 +347,7 @@ namespace greenshare_app.Utils
             public Location Location { get; set; }
 
             [JsonProperty(PropertyName = "tags")]
-            public IEnumerable<Tag> Tags { get; set; }
+            public IList<Tag> Tags { get; set; }
 
         }
 
@@ -235,8 +356,8 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "icon")]
             public byte[] Icon { get; set; }
 
-            //[JsonProperty(PropertyName = "photos")]
-            //public IEnumerable<byte[]> Photos { get; set; }
+            [JsonProperty(PropertyName = "photos")]
+            public IList<byte[]> Photos { get; set; }
         }
 
         private class RequestInfo : PostInfo { }

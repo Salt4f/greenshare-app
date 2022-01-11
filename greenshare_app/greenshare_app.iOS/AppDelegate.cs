@@ -22,8 +22,8 @@ namespace greenshare_app.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            /*CachedImageRenderer.Init();
-            var ignore = typeof(SvgCachedImage);*/
+            Xamarin.FormsMaps.Init();
+            Syncfusion.SfRating.XForms.iOS.SfRatingRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.NewPost"
+            xmlns:control="clr-namespace:greenshare_app.Controls"
+            xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+            xmlns:fontAwesome="clr-namespace:FontAwesome"
+            BackgroundColor="{StaticResource colorWhite}"
+            xmlns:model="clr-namespace:greenshare_app.Models"
+             Title="{Binding PostType}">
+
+    <ScrollView>
+        <StackLayout BackgroundColor="{StaticResource colorWhite}" Style="{StaticResource styleStackLayoutDefault}" Padding="12">
+            <StackLayout Padding="5,10,5,5" HorizontalOptions="Center" Orientation="Horizontal">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="10">
+                    <control:BorderlessPicker
+                        HorizontalOptions="Center"
+                        Margin="7"
+                        ItemsSource="{Binding PostTypes}"
+                        Style="{StaticResource styleEntryDefault}"
+                        x:Name = "PickerOption"
+                        Title="Select an option"
+                        SelectedItem="{Binding PostType}"                        
+                        TitleColor="{StaticResource colorBlack}"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource colorBlack}"
+                        />
+                    <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
+                </Frame>
+            </StackLayout>
+            <StackLayout  Padding="5,0,5,5">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal">
+                        <control:BorderlessEntry  
+                            Style="{StaticResource styleEntryDefault}" 
+                            Text="{Binding Name}" 
+                            Placeholder="Product name" 
+                            FontAttributes="None"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Padding="5,0,5,5">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="15" Margin="0,15,0,0">
+                    <StackLayout Padding="10"  Orientation="Horizontal" >
+                        <control:BorderlessEditor
+                            HeightRequest="60"
+                            Style="{StaticResource styleEntryDefault}"
+                            Placeholder="Description" 
+                            AutoSize="TextChanges"
+                            Text="{Binding Description}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="5,0,5,5">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
+                    <ScrollView Orientation="Horizontal" Padding="17">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="Image">
+                                    <Frame CornerRadius="10" Padding="20" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen8}" Margin="1">
+                                        <Image  Aspect="AspectFill"
+                                                    HeightRequest="100"
+                                                    WidthRequest="100"
+                                                    Source="{Binding Source}" VerticalOptions="Start"/>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
+                    <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
+                        <Image Source="{Binding Icon.Source}" 
+                           Aspect="AspectFill"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           VerticalOptions="Start"/>
+                    </Frame>
+                </Frame>
+                <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Icon" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="Center" CornerRadius="15" Padding="0">
+                    <ScrollView Orientation="Horizontal" Padding="15">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Tags}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="model:Tag">
+                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="15" Padding="4" Margin="0">
+                                        <Label Text="{Binding Name}"
+                                               TextColor="Black"
+                                               Style="{StaticResource styleLabelWhite}"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+                <StackLayout Margin="5,0,5,5" Orientation="Horizontal">
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" >
+                        <StackLayout Padding="10"  Orientation="Horizontal" >
+                            <control:BorderlessEntry      
+                                        Style="{StaticResource styleEntryDefault}" 
+                                        Text="{Binding NewTag}" 
+                                        Placeholder="New Tag"
+                                        HorizontalOptions="Fill" 
+                                        VerticalOptions="Fill"
+                                        WidthRequest="120"/>
+                        </StackLayout>
+                    </Frame>
+                    <Button
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Center"
+                            Text="Add Tag"
+                            Command="{Binding OnAddTagButtonCommand}"
+                            Style="{StaticResource styleButtonDefault}"
+                            />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Margin="5,0,5,5">
+                <Frame  Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
+                    <StackLayout  Orientation="Horizontal">
+                        <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                            <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
+                        </Frame>
+                        <DatePicker Date="{Binding TerminationDateTime}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            
+            <StackLayout Margin="5,0,5,5" >
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Ubicació" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Margin="5,0,5,5" >
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

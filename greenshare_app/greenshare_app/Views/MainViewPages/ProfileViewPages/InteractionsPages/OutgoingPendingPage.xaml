@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingPendingPage"
+             xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
+             xmlns:model="clr-namespace:greenshare_app.Models"
+             xmlns:fontAwesome="clr-namespace:FontAwesome" x:DataType="viewModels:OutgoingPendingViewModel"
+             Title="{Binding Title}">
+    <ListView BackgroundColor="{StaticResource colorWhite}"
+             HasUnevenRows="True"
+             SeparatorVisibility="None"
+             SelectionMode="Single"
+             SelectedItem="{Binding SelectedPostInteraction, Mode=TwoWay}"
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+             RefreshCommand="{Binding RefreshCommand}"
+             ItemsSource="{Binding PendingPostInteractions}"
+              >
+        <!--SelectionMode="Single"
+              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              RefreshControlColor="{StaticResource colorGreen2}"
+              ItemsSource="{Binding PostCardList}"-->
+
+        <!--<ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>-->
+
+        <!--<ListView.Header>
+            <StackLayout Padding="15">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource colorGreen1}"/>
+            </StackLayout>
+        </ListView.Header>-->
+        <!--OFFERS I REQUESTS PER TESTEJAR-->
+        <!--
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type model:Post}">
+                <model:Post Name="Bicicleta" Offer="True" Request="False" OwnerId="1"></model:Post>
+                <model:Post Name="Rentaplats" Offer="False" Request="True"></model:Post>
+                <model:Post Name="Ordinador" Offer="False" Request="True"></model:Post>
+            </x:Array>
+        </ListView.ItemsSource>
+        -->
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:PendingPostInteraction">
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="300" Margin="5" Padding="5" BorderColor="{StaticResource colorWhite}">
+                            <StackLayout Orientation="Vertical" Margin="5" Padding="10">
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
+                                    <Label Text="{Binding PostType}" Style="{StaticResource styleLabelBlack}" FontSize="20"/>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
+                                    <Label Text="{Binding PostName}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnTitleLabelCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
+                                    <Label Text="{Binding UserName}" Style="{StaticResource styleLabelWhite}" FontSize="15"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnUserNameLabelCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5" HeightRequest="75">
+                                    <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding InteractionText}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Frame>
+                                <StackLayout Style="{StaticResource styleStackLayoutDefault}" Orientation="Horizontal">
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
+                                        <Label Text="Esperant resposta..." Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
+                                    </Frame>
+                                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
+                                        <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OnCancelButtonCommand}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
