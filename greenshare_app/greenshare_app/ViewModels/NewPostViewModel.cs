@@ -235,8 +235,9 @@ namespace greenshare_app.ViewModels
         */
 
         public async Task<bool> OnAddLocationButton() {
-
-            return true;
+            var view = new Views.MainViewPages.PublicationMapPage();
+            await navigation.PushModalAsync(view);
+            var viewModel = (PublicationMapViewModel)view.BindingContext;
         }
 
         public async Task<bool> OnAddPhotoButton()

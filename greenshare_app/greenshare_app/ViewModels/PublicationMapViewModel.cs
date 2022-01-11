@@ -42,5 +42,10 @@ namespace greenshare_app.ViewModels
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
         }
+
+        internal Task GetSelectedLocation()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
