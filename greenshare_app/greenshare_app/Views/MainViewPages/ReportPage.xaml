@@ -6,6 +6,12 @@
              BackgroundColor="{StaticResource colorGreen9}">
     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="15" Padding="10" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
         <StackLayout Style="{StaticResource styleStackLayoutDefault}" Padding="10" Margin="0">
+
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+            
+            
             <control:BorderlessEditor
                 Style="{StaticResource styleEntryDefault}"
                 Text="{Binding Message}"

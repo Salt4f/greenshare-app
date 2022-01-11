@@ -69,7 +69,10 @@
             </Label>
         </Grid>
 
-            <ListView BackgroundColor="{StaticResource colorWhite}"
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+        <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
               SeparatorVisibility="None"
               SelectionMode="Single"

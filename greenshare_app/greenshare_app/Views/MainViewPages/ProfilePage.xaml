@@ -62,6 +62,12 @@
         </StackLayout>
 
 
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+
+
         <!--TABS-->
         <StackLayout Orientation="Vertical" Padding="10" Margin="10">
             

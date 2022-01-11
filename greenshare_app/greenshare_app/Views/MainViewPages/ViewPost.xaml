@@ -35,6 +35,9 @@
                             Command="{Binding OnOfferToRequestButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
             </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
             <!--CAMPS PRINCIPALS-->
             <!--ICON-->
             <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}" BackgroundColor="{StaticResource colorGreen5}" IsVisible="{Binding IsVisible}"/>
