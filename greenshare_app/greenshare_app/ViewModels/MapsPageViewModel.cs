@@ -10,6 +10,7 @@ using MvvmHelpers.Commands;
 using greenshare_app.Controls;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace greenshare_app.ViewModels
 {
@@ -17,6 +18,7 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
+        Geocoder geocoder = new Geocoder();
 
         public AsyncCommand<MapClickedEventArgs> OnMapClickedCommand => new AsyncCommand<MapClickedEventArgs>(OnMapClicked);
 
@@ -45,7 +47,7 @@ namespace greenshare_app.ViewModels
         private async void AddPins(CustomMap MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, 100, quantity:50);
+            var cards = await PostRetriever.Instance().GetOffers(loc, 1000, quantity:50);
             if (cards != null)
             {
                 foreach (var card in cards)
@@ -53,13 +55,17 @@ namespace greenshare_app.ViewModels
                     var offer = await PostRetriever.Instance().GetOffer(card.Id);
                     var pin = new CustomPin();
                     pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
+                    IEnumerable<string> addresses = await geocoder.GetAddressesForPositionAsync(pin.Position);
+                    pin.Address = addresses.FirstOrDefault();
                     pin.Label = offer.Name;
+                    pin.Name = offer.Name;
 
                     MyMap.CustomPins.Add(pin);
+                    MyMap.Pins.Add(pin);
                 }
             }
 
-            var cards2 = await PostRetriever.Instance().GetRequests(loc, 100, quantity:50);
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, 1000, quantity:50);
             if (cards2 != null)
             {
                 foreach (var card in cards2)
@@ -67,9 +73,14 @@ namespace greenshare_app.ViewModels
                     var offer = await PostRetriever.Instance().GetRequest(card.Id);
                     var pin = new CustomPin();
                     pin.Position = new Position(offer.Location.Latitude, offer.Location.Longitude);
+                    IEnumerable<string> addresses = await geocoder.GetAddressesForPositionAsync(pin.Position);
+                    pin.Address = addresses.FirstOrDefault();
+
                     pin.Label = offer.Name;
+                    pin.Name = offer.Name;
 
                     MyMap.CustomPins.Add(pin);
+                    MyMap.Pins.Add(pin);
                 }
             }
         }
