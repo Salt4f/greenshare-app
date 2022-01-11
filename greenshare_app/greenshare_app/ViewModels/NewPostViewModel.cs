@@ -89,8 +89,7 @@ namespace greenshare_app.ViewModels
             get => location;
             private set => SetProperty(ref location, value);
         }
-
-        public new Image Icon
+        public Image Icon
         {
             get => icon;
             set => SetProperty(ref icon, value);
