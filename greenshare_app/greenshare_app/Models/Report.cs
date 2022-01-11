@@ -55,6 +55,7 @@ namespace greenshare_app.Models
         private async Task OnSolve()
         {
             await ReportUtil.Instance().SolveReport(Id);
+            await ((ViewModels.AdminPageViewModel)View.BindingContext).Refresh();
         }
         private async Task OnReporterId()
         {

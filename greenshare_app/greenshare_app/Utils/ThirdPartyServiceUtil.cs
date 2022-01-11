@@ -27,22 +27,6 @@ namespace greenshare_app.Utils
             if (instance is null) instance = new ThirdPartyServiceUtil();
             return instance;
         }
-        private async void AddHeaders()
-        {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
-        }
 
         private readonly HttpClient httpClient;
         public async Task<List<QuizQuestion>> GetEcoQuiz()

@@ -55,7 +55,7 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        private async Task Refresh()
+        public async Task Refresh()
         {
             try
             {
