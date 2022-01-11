@@ -107,7 +107,7 @@ namespace greenshare_app.Utils
                         Type = info.Type,
                         ReporterId = info.ReporterId,
                         ItemId = info.ItemId,
-                        ItemName = info.Name,
+                        ItemName = info.ItemName,
                         Message = info.Message,
                         Solved = info.Solved
                     };
@@ -134,8 +134,8 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "message")]
             public string Message { get; set; }
 
-            [JsonProperty(PropertyName = "name")]
-            public string Name { get; set; }
+            [JsonProperty(PropertyName = "itemName")]
+            public string ItemName { get; set; }
 
             [JsonProperty(PropertyName = "itemId")]
             public int ItemId { get; set; }
