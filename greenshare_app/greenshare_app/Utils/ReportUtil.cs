@@ -63,14 +63,7 @@ namespace greenshare_app.Utils
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/" + reportId, httpContent);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
-                //falta ver que hacemos con el id y el createdAt que nos devuelven
-                return true;
-            }
-            return false;
-
+            return response.StatusCode == HttpStatusCode.OK;
         }
         //gets all unsolved reports
         public async Task<IEnumerable<Report>> GetAllReports(INavigation navigation, Page view)
