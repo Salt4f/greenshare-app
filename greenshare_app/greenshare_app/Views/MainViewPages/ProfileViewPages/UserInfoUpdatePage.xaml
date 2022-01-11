@@ -49,10 +49,9 @@
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" VerticalOptions="Start">
                                 <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.PencilAlt}" FontFamily="FAS" ></Label>
                             </Frame>
-                            <control:BorderlessEditor HeightRequest="200" Style="{StaticResource styleEntryRewardDescription}" Text="{Binding UserDescription}" VerticalOptions="Start" Margin="0,13,0,0"/>
+                            <control:BorderlessEditor HeightRequest="200" Style="{StaticResource styleEntryDescription}" Text="{Binding UserDescription}" VerticalOptions="Start" Margin="0,13,0,0"/>
                         </StackLayout>
                     </Frame>
-
 
                     <Button Text="Actualizar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnUpdateCommand}"/>
 
