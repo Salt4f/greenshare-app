@@ -24,6 +24,7 @@ namespace greenshare_app.ViewModels
         private Task OnMapClicked(MapClickedEventArgs eventData)
         {
             Location l = new Location(eventData.Position.Latitude, eventData.Position.Longitude);
+            
             throw new NotImplementedException();
         }
 

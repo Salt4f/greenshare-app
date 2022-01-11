@@ -234,8 +234,9 @@ namespace greenshare_app.ViewModels
           }
         */
 
-        public async Task<bool> OnAddLocationButton() { 
-            
+        public async Task<bool> OnAddLocationButton() {
+
+            return true;
         }
 
         public async Task<bool> OnAddPhotoButton()
