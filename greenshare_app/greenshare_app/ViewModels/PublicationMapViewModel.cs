@@ -20,6 +20,7 @@ namespace greenshare_app.ViewModels
         private static Position location;
         private static bool selectedLocation;
         private static Pin pin;
+        private static Geocoder geocoder;
 
 
 
@@ -32,10 +33,12 @@ namespace greenshare_app.ViewModels
             Position l = new Position(eventData.Position.Latitude, eventData.Position.Longitude);
             pin.Position = l;
             location = l;
+            IEnumerable<string> addresses = await geocoder.GetAddressesForPositionAsync(pin.Position);
+            pin.Label = addresses.FirstOrDefault();
         }
         public static Tuple<bool, Location> GetLocation()
         {
-            var res = new Tuple<bool, Location>(selectedLocation, new Location(location.Latitude,location.Longitude));
+            var res = new Tuple<bool, Location>(selectedLocation, new Location(location.Latitude, location.Longitude));
             selectedLocation = false;
             return res;
         }
@@ -44,10 +47,12 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             selectedLocation = false;
-            pin = new Pin() { 
+            pin = new Pin()
+            {
                 Label = "Location para la publicación"
             };
             location = new Position();
+            geocoder = new Geocoder();
             PositionMap(MyMap);
         }
 
@@ -68,10 +73,12 @@ namespace greenshare_app.ViewModels
                 MapSpan.FromCenterAndRadius(
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
-            pin.Position = new Position(loc.Latitude,loc.Longitude);
+            pin.Position = new Position(loc.Latitude, loc.Longitude);
             location = new Position(loc.Latitude, loc.Longitude);
+            IEnumerable<string> addresses = await geocoder.GetAddressesForPositionAsync(pin.Position);
+            pin.Label = addresses.FirstOrDefault();
             MyMap.Pins.Add(pin);
-            
+
         }
 
     }
