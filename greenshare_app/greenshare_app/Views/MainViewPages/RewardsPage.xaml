@@ -1,12 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="greenshare_app.Views.MainViewPages.RewardsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:RewardsPageViewModel"
+             x:Class="greenshare_app.Views.MainViewPages.RewardsPage"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource colorWhite}">
+    <StackLayout>
+        <Label Padding="20" Style="{StaticResource styleLabelGreen}" Text="{Binding AvailableGreenCoins}" FontSize="16" TextColor="{StaticResource colorGreen2}"/>
+        <ListView x:Name="MyListView"
+              HasUnevenRows="true"
+              SeparatorVisibility="None"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              RefreshControlColor="{StaticResource colorGreen2}"
+              ItemsSource="{Binding Rewards}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Reward">
+                    <ViewCell Height="400">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame BackgroundColor="#aed581" WidthRequest="600" HeightRequest="800">
+                                <StackLayout>
+                                    <Frame BorderColor="#a5d6a7" WidthRequest="40" HeightRequest="350">
+                                        <StackLayout Padding="0" Margin="0">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="60" />
+                                                    <RowDefinition Height="200" />
+                                                    <RowDefinition Height="60" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100" />
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="110" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--Nom empresa-->
+
+                                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="#bdbdbd" Grid.ColumnSpan="2" WidthRequest="30" HeightRequest="40" BackgroundColor="#eeeeee" HasShadow="True">
+                                                    <Label Text="{Binding SponsorName}" Padding="0" Margin="0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="14"></Label>
+                                                </Frame>
+
+                                                <!--GreenCoins necessaris per a comprar l'oferta-->
+
+                                                <Frame Grid.Row="0" Grid.Column="2" BorderColor="#bdbdbd" BackgroundColor="#eeeeee" HasShadow="True" WidthRequest="30" HeightRequest="40">
+                                                    <!--<Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding OnReportedFrameCommand}"/>
+                                                </Frame.GestureRecognizers>-->
+                                                    <Label Text="{Binding GreenCoinsText}" FontAttributes="Bold"></Label>
+                                                </Frame>
+
+                                                <!--Botó de comprar la recompensa-->
+
+                                                <Frame Grid.Row="1" Grid.Column="0" BorderColor="#ffee58" BackgroundColor="#fff9c4" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="80" HeightRequest="60" CornerRadius="100" HasShadow="True">
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding OnExchangeFrameCommand}"/>
+                                                    </Frame.GestureRecognizers>
+                                                    <Label Text="Canjear" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
+                                                </Frame>
+
+                                                <!--Descripció de l'oferta-->
+
+                                                <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" BorderColor="#a5d6a7" BackgroundColor="#dcedc8" WidthRequest="30" HeightRequest="40">
+                                                    <Label Text="{Binding Description}"></Label>
+                                                </Frame>
+
+                                                <!--Botó de modificar la recompensa-->
+                                                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Modificar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
+
+                                                <!--Botó d'eliminar la recompensa-->
+                                                <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="Eliminar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

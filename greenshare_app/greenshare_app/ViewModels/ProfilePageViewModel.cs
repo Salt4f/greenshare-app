@@ -76,8 +76,8 @@ namespace greenshare_app.ViewModels
             }
             IsBusy = false;
         }
-
-        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfoButton);
+        public AsyncCommand UserInfoCommand => new AsyncCommand(OnUserInfo);
+        public AsyncCommand OnRewardsButtonCommand => new AsyncCommand(OnRewards);
         public AsyncCommand UserPostsCommand => new AsyncCommand(OnUserPostsButton);
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
@@ -88,7 +88,7 @@ namespace greenshare_app.ViewModels
 
         private INavigation navigation;
         private Page view;
-        private async Task OnUserInfoButton()
+        private async Task OnUserInfo()
         {
             if (OwnPage)
             {
@@ -96,6 +96,10 @@ namespace greenshare_app.ViewModels
                 await navigation.PushModalAsync(new UserInfoPage(session.Item1, OwnPage));
             }
             else await navigation.PushModalAsync(new UserInfoPage(userId, OwnPage));
+        }
+        private async Task OnRewards()
+        {
+            await navigation.PushModalAsync(new RewardsPage(user));
         }
         private async Task OnUserPostsButton()
         {
