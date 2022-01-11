@@ -98,8 +98,6 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
-
         private int userId;
         private INavigation navigation;
         private Page view;
@@ -109,10 +107,5 @@ namespace greenshare_app.ViewModels
         private int totalEcoPoints;
         private int totalGreenCoins;
         private bool isReportable;
-
-        private async Task OnReport()
-        {
-            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
-        }
     }
 }

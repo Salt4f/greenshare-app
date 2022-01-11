@@ -169,6 +169,12 @@ namespace greenshare_app.Utils
             return new Tuple<int, string>(id, token);
         }
 
+        public async Task<bool> IsAdmin()
+        {
+            if (!await ValidateLogin()) throw new InvalidLoginException();
+            return id == Config.Config.Instance().AdminId;
+        }
+
         private class LoginInfo
         {
             [JsonProperty(PropertyName = "email")]

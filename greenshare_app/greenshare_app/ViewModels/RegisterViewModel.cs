@@ -77,7 +77,7 @@ namespace greenshare_app.ViewModels
             }
         }
         private async Task OnRegisterButton()
-        {
+        {           
             if (Nickname.Length <= 5)
             {
                 await view.DisplayAlert("Nickname too short", "Please enter a longer nickname", "OK");                
@@ -121,7 +121,8 @@ namespace greenshare_app.ViewModels
             {
                 if (await Auth.Instance().Register(Email, Crypto.GetHashString(Password), Nickname, BirthDate, FullName, Dni))
                 {
-                    Application.Current.MainPage = new MainView();
+                    Application.Current.MainPage = new QuizView();
+                    return;
                 }
 
             }

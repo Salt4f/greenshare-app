@@ -1,6 +1,4 @@
-﻿using greenshare_app.Models;
-using greenshare_app.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace greenshare_app.Views.MainViewPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RewardsPage : ContentPage
+    public partial class SponsorsFormPage : ContentPage
     {
-        public RewardsPage(User user)
+        public SponsorsFormPage()
         {
             InitializeComponent();
-            BindingContext = new RewardsPageViewModel(Navigation, this, user);
         }
     }
 }
