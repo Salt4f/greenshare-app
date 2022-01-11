@@ -99,7 +99,7 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnRewards()
         {
-            await navigation.PushModalAsync(new RewardsPage());
+            await navigation.PushModalAsync(new RewardsPage(user));
         }
         private async Task OnUserPostsButton()
         {
