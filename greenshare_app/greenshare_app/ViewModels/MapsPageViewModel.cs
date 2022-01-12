@@ -11,6 +11,8 @@ using greenshare_app.Controls;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using System.Linq;
+using greenshare_app.Views.MainViewPages;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -59,6 +61,19 @@ namespace greenshare_app.ViewModels
                     pin.Address = addresses.FirstOrDefault();
                     pin.Label = offer.Name;
                     pin.Name = offer.Name;
+                    pin.Url = offer.Id;
+                    pin.InfoWindowClicked += async (s, args) =>
+                    {
+                        string pinName = ((Pin)s).Label;
+                        Offer offer2 = await PostRetriever.Instance().GetOffer(pin.Url);
+                        if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
+                        else
+                        {
+                            var view = new ViewPost(offer2);
+                            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                            await navigation.PushModalAsync(view);
+                        }
+                    };
 
                     MyMap.CustomPins.Add(pin);
                     MyMap.Pins.Add(pin);
@@ -78,6 +93,19 @@ namespace greenshare_app.ViewModels
 
                     pin.Label = offer.Name;
                     pin.Name = offer.Name;
+                    pin.Url = offer.Id;
+                    pin.InfoWindowClicked += async (s, args) =>
+                     {
+                         string pinName = ((Pin)s).Label;
+                         Request offer2 = await PostRetriever.Instance().GetRequest(pin.Url);
+                         if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
+                         else
+                         {
+                             var view = new ViewPost(offer2);
+                             var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                             await navigation.PushModalAsync(view);
+                         }
+                     };
 
                     MyMap.CustomPins.Add(pin);
                     MyMap.Pins.Add(pin);
