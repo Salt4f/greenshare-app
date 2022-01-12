@@ -43,10 +43,12 @@ namespace greenshare_app.Models
             if (PostType == "request")
             {
                 await OfferRequestInteraction.Instance().CancelRequest(PostId, OwnPostId);
+                await ((ViewModels.OutgoingPendingViewModel)View.BindingContext).Refresh();
             }
             else
             {
                 await OfferRequestInteraction.Instance().CancelOffer(OwnPostId, PostId);
+                await ((ViewModels.OutgoingPendingViewModel)View.BindingContext).Refresh();
             }
         }
         private async Task OnUser()
@@ -74,24 +76,32 @@ namespace greenshare_app.Models
             {
                 if(await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId))
                 await View.DisplayAlert("Request accepted", "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
             else
             {
                 await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
         }
 
         private async Task OnReject()
-        {                           
+        {
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = true;
             if (PostType == "offer")
             {
                 if (await OfferRequestInteraction.Instance().RejectRequest(OwnPostId, PostId))
                 await View.DisplayAlert("Request rejected", "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
             else
             {
                 await OfferRequestInteraction.Instance().RejectOffer(PostId, OwnPostId);
+                await View.DisplayAlert("Offer rejected", "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
+
             }
-        }                       
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = false;
+        }
     }
 }
