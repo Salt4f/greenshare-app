@@ -63,6 +63,11 @@
                                 </StackLayout>
                             </Frame>
 
+
+                            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,15,0,0">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">

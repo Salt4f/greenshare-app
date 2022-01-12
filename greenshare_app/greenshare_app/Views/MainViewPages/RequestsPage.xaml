@@ -70,7 +70,8 @@
             </Label>
         </Grid>
 
-            <ListView BackgroundColor="{StaticResource colorWhite}"
+
+        <ListView BackgroundColor="{StaticResource colorWhite}"
               HasUnevenRows="True"
               SeparatorVisibility="None"
               SelectionMode="Single"

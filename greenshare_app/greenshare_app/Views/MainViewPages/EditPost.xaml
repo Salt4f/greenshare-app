@@ -10,6 +10,10 @@
 
     <ScrollView>
         <StackLayout BackgroundColor="{StaticResource colorGreen2}" Style="{StaticResource styleStackLayoutDefault}" Padding="15">
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
             <Frame BackgroundColor="{StaticResource colorWhite}" CornerRadius="10" Margin="5" BorderColor="{StaticResource colorBlack}">
                 <StackLayout Orientation="Vertical" Padding="2" BackgroundColor="Transparent">
                     <!--TITLE-->

@@ -9,7 +9,8 @@
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" 
              x:DataType="viewModels:RatePageViewModel"
              BackgroundColor="{StaticResource colorGreen9}">
-    
+
+
     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="15" Padding="10" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
         <StackLayout Style="{StaticResource styleStackLayoutDefault}" Padding="10" Margin="0">
             <rating:SfRating x:Name="rating" ItemCount="5" Precision="Standard" Margin="10" ItemSize="45" HorizontalOptions="Center" Value="{Binding RatingValue}">
@@ -27,11 +28,15 @@
                 TextColor="{StaticResource colorWhite}"
                 AutoSize="TextChanges"
                 FontSize="15"/>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
             <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" Margin="5">
                 <Button Text="{x:Static multiIdioma:Text.RateAndComplete}" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
                         Style="{StaticResource styleButtonDefault}" FontSize="15"
                         Command="{Binding OnCompleteButtonCommand}"/>
             </Frame>
+            
         </StackLayout>
     </Frame>
 </ContentPage>
