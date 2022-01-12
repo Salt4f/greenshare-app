@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
     x:DataType="viewmodels:QuizPagePostViewModel"
+    xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
     x:Class="greenshare_app.Views.QuizView"
     BackgroundColor="{StaticResource colorWhite}"
     IsBusy="{Binding IsBusy}">
@@ -84,7 +85,7 @@
                     Style="{StaticResource styleButtonDefault}"
                     IsVisible="{Binding IsNotLast}"
                     Grid.Column="2"
-                    Text="Next"
+                    Text="{x:Static multiIdioma:Text.Next}"
                     Command="{Binding OnNextButtonCommand}">
                     </Button>
 
@@ -93,7 +94,7 @@
                     Style="{StaticResource styleButtonDefault}"
                     IsVisible="{Binding IsLast}"
                     Grid.Column="2"
-                    Text="Finish"
+                    Text="{x:Static multiIdioma:Text.Finish}"
                     Command="{Binding OnFinishButtonCommand}">
                     </Button>
 

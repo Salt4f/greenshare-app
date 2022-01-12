@@ -14,7 +14,7 @@
             <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
             <!--BOTO REPORTAR USER-->            
             <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportable}">
-                <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold"
+                <Button Text="{x:Static multiIdioma:Text.Report}" FontFamily="Montserrat-SemiBold"
                             Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
             </Frame>
         </StackLayout>
@@ -72,7 +72,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAR"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="USER INFORMATION"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.UserInfo}"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding UserInfoCommand}"/>
@@ -84,7 +84,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Star}" FontFamily="FAR"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="REWARDS"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.Rewards}"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OnRewardsButtonCommand}"/>
@@ -97,7 +97,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.FileAlt}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="MY PUBLICATIONS" HorizontalOptions="Center"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.MyPublications}" HorizontalOptions="Center"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding UserPostsCommand}"/>
@@ -110,7 +110,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.ArrowUp}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="OUTGOING INTERACTIONS"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.OutgoingInteractions}"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding UserOutgoingInteractionsCommand}"/>
@@ -123,7 +123,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.ArrowDown}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="INCOMING INTERACTIONS"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.IncomingInteractions}"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding UserIncomingInteractionsCommand}"/>
@@ -136,7 +136,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.SignOutAlt}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="LOG OUT"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.LogOut}"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
@@ -147,7 +147,7 @@
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.UserAlien}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="LOG OUT"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="{x:Static multiIdioma:Text.LogOut}"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OnAdminFrameCommand}"/>

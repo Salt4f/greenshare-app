@@ -55,7 +55,7 @@
             <Label
                     VerticalOptions="Center"
                     Style="{StaticResource styleEntryDefault}" 
-                    Text="Distance"
+                    Text="{x:Static multiIdioma:Text.Distance}"
                     />
             <Slider Grid.Column="1"
                         Maximum="200"

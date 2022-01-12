@@ -137,7 +137,7 @@
             </StackLayout>
             
             <StackLayout Margin="5,0,5,5" >
-                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Ubicació" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddLocation}" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Margin="5,0,5,5" >

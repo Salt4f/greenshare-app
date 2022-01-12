@@ -4,6 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.EditPost"
              BackgroundColor="{StaticResource colorWhite}"
              xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:EditPostViewModel">
 
@@ -62,7 +63,7 @@
                         </Frame>
                         <Button HorizontalOptions="Center" 
                                 VerticalOptions="Center"
-                                Text="Borrar Foto"
+                                Text="{x:Static multiIdioma:Text.DeletePhoto}"
                                 Command="{Binding OnRemovePhotoButtonCommand}"
                                 Style="{StaticResource styleButtonDefault}"/>
                         <!--ICON-->
@@ -96,7 +97,7 @@
                             <Button
                                 HorizontalOptions="Start" 
                                 VerticalOptions="Center"
-                                Text="Add Tag"
+                                Text="{x:Static multiIdioma:Text.AddTag}"
                                 Command="{Binding OnAddTagButtonCommand}"
                                 Style="{StaticResource styleButtonDefault}"
                                 />
@@ -130,7 +131,7 @@
                             </Frame>
                                 <Button HorizontalOptions="Start" 
                                     VerticalOptions="Center"
-                                    Text="Remove Tag"
+                                    Text="{x:Static multiIdioma:Text.RemoveTag}"
                                     Command="{Binding OnRemoveTagButtonCommand}"
                                     Style="{StaticResource styleButtonDefault}"/>
                         </StackLayout>
@@ -150,7 +151,7 @@
 
                     <!--SUBMIT BUTTON-->
                     <StackLayout Margin="5,0,5,5">
-                        <Button Text="Submit Changes" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                        <Button Text="{x:Static multiIdioma:Text.SubmitChanges}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>

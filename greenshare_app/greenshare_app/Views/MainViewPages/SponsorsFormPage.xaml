@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.SponsorsFormPage"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
              x:DataType="viewmodels:SponsorsFormViewModel">
     <ScrollView>
@@ -20,7 +21,7 @@
                     <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0,45,0,0" WidthRequest="600">
                         <StackLayout>
                             <Frame BackgroundColor="Transparent" Padding="0" VerticalOptions="Center" HorizontalOptions="Center">
-                                <Label Text="Sponsors form" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Label Text="{x:Static multiIdioma:Text.SponsorsForm}" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Frame>
                         </StackLayout>
                     </Frame>
@@ -76,7 +77,7 @@
                     </Frame>
                     
                     <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <Button Text="Submit" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                    <Button Text="{x:Static multiIdioma:Text.Submit}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
 
                 </StackLayout>
             </Frame>

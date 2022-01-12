@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoUpdatePage"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
     
     <ScrollView>
@@ -20,7 +21,7 @@
                     <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0,45,0,0" WidthRequest="600">
                         <StackLayout>
                             <Frame BackgroundColor="Transparent" Padding="0" VerticalOptions="Center" HorizontalOptions="Center">
-                                <Label Text="Update User Information" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Label Text="{x:Static multiIdioma:Text.UpdateProfile}" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Frame>
                         </StackLayout>
                     </Frame>
@@ -53,7 +54,7 @@
                         </StackLayout>
                     </Frame>
 
-                    <Button Text="Actualizar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnUpdateCommand}"/>
+                    <Button Text="{x:Static multiIdioma:Text.Update}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnUpdateCommand}"/>
 
                 </StackLayout>
             </Frame>

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.ViewPost"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              BackgroundColor="{StaticResource colorGreen9}"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:PostViewModel">
@@ -11,7 +12,7 @@
                 <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
                 <!--BOTO DESACTIVAR PUBLICACIÓ-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsEditButtonVisible}">
-                    <Button Text="DEACTIVATE" FontFamily="Montserrat-SemiBold"
+                    <Button Text="{x:Static multiIdioma:Text.Deactive}" FontFamily="Montserrat-SemiBold"
                             Command="{Binding OnDeactivateButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
                 </Frame>
                 <!--BOTO EDITAR-->
@@ -21,17 +22,17 @@
                 </Frame>
                 <!--BOTO REPORTAR PUBLICACIÓ-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportButtonVisible}">
-                    <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
+                    <Button Text="{x:Static multiIdioma:Text.Report}" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
                             Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
                 <!--BOTO SOL·LICITAR OFERTA-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsRequestButtonVisible}">
-                    <Button Text="REQUEST" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
+                    <Button Text="{x:Static multiIdioma:Text.Request}" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
                             Command="{Binding OnRequestToOfferButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
                 <!--BOTO OFERIR A REQUEST-->
                 <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsOfferButtonVisible}">
-                    <Button Text="OFFER" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
+                    <Button Text="{x:Static multiIdioma:Text.Offer}" FontFamily="Montserrat-SemiBold" BackgroundColor="{StaticResource colorGreen1}"
                             Command="{Binding OnOfferToRequestButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
                 </Frame>
             </StackLayout>
@@ -43,7 +44,7 @@
                     <!--TITLE-->
                     <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="15">
                         <StackLayout Style="{StaticResource styleStackLayoutDefault}">
-                            <Label Style="{StaticResource styleLabelBlack}" Text="Title" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Style="{StaticResource styleLabelBlack}" Text="{x:Static multiIdioma:Text.Title}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen4}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10">
                                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}" FontSize="25" FontAttributes="bold" TextColor="{StaticResource colorWhite}"></Label>
@@ -54,7 +55,7 @@
                     <!--DESCRIPTION-->
                     <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
                         <StackLayout Padding="5" BackgroundColor="Transparent">
-                            <Label Style="{StaticResource styleLabelBlack}" Text="Description" FontSize="12" VerticalOptions="Center"/>
+                            <Label Style="{StaticResource styleLabelBlack}" Text="{x:Static multiIdioma:Text.Description}" FontSize="12" VerticalOptions="Center"/>
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="EndAndExpand" Padding="5" HeightRequest="100">
                                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
@@ -68,7 +69,7 @@
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
                                     <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
-                                        <Label Style="{StaticResource styleLabelWhite}" Text="Post Type" FontSize="14" VerticalOptions="Center" FontAttributes="Bold"/>
+                                        <Label Style="{StaticResource styleLabelWhite}" Text="{x:Static multiIdioma:Text.PostType}" FontSize="14" VerticalOptions="Center" FontAttributes="Bold"/>
                                     </Frame>
                                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}" FontSize="14" TextColor="{StaticResource colorBlack}"></Label>
                                 </StackLayout>
@@ -81,7 +82,7 @@
                             <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
                                     <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
-                                        <Label Style="{StaticResource styleLabelWhite}" Text="Termination Date" FontSize="12" VerticalOptions="Center" FontAttributes="Bold"/>
+                                        <Label Style="{StaticResource styleLabelWhite}" Text="{x:Static multiIdioma:Text.TerminationDate}" FontSize="12" VerticalOptions="Center" FontAttributes="Bold"/>
                                     </Frame>
                                     <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
                                 </StackLayout>
@@ -97,7 +98,7 @@
                     <StackLayout>
                         <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorBlack}">
                             <StackLayout Padding="5" BackgroundColor="Transparent">
-                                <Label Style="{StaticResource styleLabelWhite}" Text="TAGS" FontSize="16" VerticalOptions="Center" FontAttributes="bold"/>
+                                <Label Style="{StaticResource styleLabelWhite}" Text="{x:Static multiIdioma:Text.Tags}" FontSize="16" VerticalOptions="Center" FontAttributes="bold"/>
                             </StackLayout>
                         </Frame>
                         <ScrollView Orientation="Horizontal" Padding="10">

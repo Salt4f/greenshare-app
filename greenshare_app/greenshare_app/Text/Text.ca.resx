@@ -108,4 +108,118 @@
   <data name="EmailPasswordEmpty" xml:space="preserve">
     <value>Correu electrònic o contrasenya buits</value>
   </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>En curs...</value>
+  </data>
+  <data name="Valued" xml:space="preserve">
+    <value>Valorat</value>
+  </data>
+  <data name="WaitingResponse" xml:space="preserve">
+    <value>Esperant resposta de </value>
+  </data>
+  <data name="WaitingForResponse" xml:space="preserve">
+    <value>Esperant resposta...</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Valorar</value>
+  </data>
+  <data name="RateAndComplete" xml:space="preserve">
+    <value>Valorar i completar</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Acceptat</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pendent</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualitzar</value>
+  </data>
+  <data name="Solve" xml:space="preserve">
+    <value>Resol</value>
+  </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>Borrar foto</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Borrar tag</value>
+  </data>
+  <data name="SubmitChanges" xml:space="preserve">
+    <value>Enviar canvis</value>
+  </data>
+  <data name="AddLocation" xml:space="preserve">
+    <value>Afegeix la ubicació</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Reportar</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Recompenses</value>
+  </data>
+  <data name="MyPublications" xml:space="preserve">
+    <value>Les meves publicacions</value>
+  </data>
+  <data name="IncomingInteractions" xml:space="preserve">
+    <value>Interaccions entrants</value>
+  </data>
+  <data name="OutgoingInteractions" xml:space="preserve">
+    <value>Interaccions sortints</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Acceptar</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>Refusar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Benscanviar</value>
+  </data>
+  <data name="SponsorsForm" xml:space="preserve">
+    <value>Formulari per a patrocinadors</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Sol·licitar</value>
+  </data>
+  <data name="Offer" xml:space="preserve">
+    <value>Oferir</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Títol</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>Tipus de publicació</value>
+  </data>
+  <data name="TerminationDate" xml:space="preserve">
+    <value>Data de finalització</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Etiquetes</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Següent</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finalitzar</value>
+  </data>
 </root>

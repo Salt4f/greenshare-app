@@ -108,4 +108,118 @@
   <data name="EmailPasswordEmpty" xml:space="preserve">
     <value>Email or password empty</value>
   </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>In progress...</value>
+  </data>
+  <data name="Valued" xml:space="preserve">
+    <value>Valued</value>
+  </data>
+  <data name="WaitingResponse" xml:space="preserve">
+    <value>Waiting for response from </value>
+  </data>
+  <data name="WaitingForResponse" xml:space="preserve">
+    <value>Waiting for response...</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RateAndComplete" xml:space="preserve">
+    <value>Rate and complete</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Solve" xml:space="preserve">
+    <value>Solve</value>
+  </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>Delete photo</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Remove tag</value>
+  </data>
+  <data name="SubmitChanges" xml:space="preserve">
+    <value>Submit changes</value>
+  </data>
+  <data name="AddLocation" xml:space="preserve">
+    <value>Add location</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Rewards</value>
+  </data>
+  <data name="MyPublications" xml:space="preserve">
+    <value>My publications</value>
+  </data>
+  <data name="OutgoingInteractions" xml:space="preserve">
+    <value>Outgoing interactions</value>
+  </data>
+  <data name="IncomingInteractions" xml:space="preserve">
+    <value>Incoming interactions</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="SponsorsForm" xml:space="preserve">
+    <value>Sponsors form</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Deactive</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="Offer" xml:space="preserve">
+    <value>Offer</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>Post type</value>
+  </data>
+  <data name="TerminationDate" xml:space="preserve">
+    <value>Termination date</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
 </root>
