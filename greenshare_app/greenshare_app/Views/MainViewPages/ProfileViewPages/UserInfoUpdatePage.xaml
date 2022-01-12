@@ -6,8 +6,7 @@
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
              x:DataType="viewmodels:UserInfoUpdateViewModel">
-             >
-    
+
     <ScrollView>
         <StackLayout Spacing="0" Margin="0" Padding="0">
             <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="-10" WidthRequest="600" HeightRequest="120">
