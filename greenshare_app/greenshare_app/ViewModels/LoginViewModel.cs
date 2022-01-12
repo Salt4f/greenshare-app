@@ -4,6 +4,7 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Resources;
+using greenshare_app.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;

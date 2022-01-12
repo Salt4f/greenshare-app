@@ -71,7 +71,7 @@
                         </StackLayout>
                     </ScrollView>
                 </Frame>
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                     <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
                         <Image Source="{Binding Icon.Source}" 
                            Aspect="AspectFill"
@@ -80,7 +80,7 @@
                            VerticalOptions="Start"/>
                     </Frame>
                 </Frame>
-            </Frame>
+            </StackLayout>
             <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
                     <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddPhoto}" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddIcon}" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -137,7 +137,7 @@
             </StackLayout>
             
             <StackLayout Margin="5,0,5,5" >
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddLocation}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Ubicació" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Margin="5,0,5,5" >

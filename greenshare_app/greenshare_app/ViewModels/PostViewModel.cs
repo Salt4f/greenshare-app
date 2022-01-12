@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -38,7 +39,7 @@ namespace greenshare_app.ViewModels
         
         public PostViewModel(INavigation navigation, Page view, Post post)
         {
-            Title = "View Post";
+            Title = Text.Text.ViewPost;
             //Options = Array.Empty;
             this.post = post;
             this.navigation = navigation;
@@ -187,7 +188,7 @@ namespace greenshare_app.ViewModels
             if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
             {
                 IsBusy = false;
-                await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
+                await view.DisplayAlert(Text.Text.PostDeactivatedSuccesfully, Text.Text.NowPeopleCantSeeYourPost, "OK");
             }
             IsBusy = false;
         }        
@@ -220,7 +221,7 @@ namespace greenshare_app.ViewModels
                 if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
                 {
                     IsBusy = false;
-                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                    await view.DisplayAlert(Text.Text.OfferRequestedSuccessfully, Text.Text.PleaseCheckYourOutgoingInteractionsToSeeItsStatus, "OK");
                     DeactivateButtons();
                 }
             }

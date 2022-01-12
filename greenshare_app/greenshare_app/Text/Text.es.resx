@@ -222,4 +222,157 @@
   <data name="Finish" xml:space="preserve">
     <value>Acabar</value>
   </data>
+  <data name="NewPost" xml:space="preserve">
+    <value>Publicación nueva</value>
+  </data>
+  <data name="ErrorAddingTag" xml:space="preserve">
+    <value>Error añadiendo etiqueta</value>
+  </data>
+  <data name="TagsCannotBeDuplicated" xml:space="preserve">
+    <value>Los tags no pueden ser duplicados</value>
+  </data>
+  <data name="TagDeletedSuccessfully" xml:space="preserve">
+    <value>Tag eliminado correctamente</value>
+  </data>
+  <data name="PleaseSelectATagFirst" xml:space="preserve">
+    <value>Añade una etiqueta primero</value>
+  </data>
+  <data name="ErrorWhileEditingPost" xml:space="preserve">
+    <value>Error editando post</value>
+  </data>
+  <data name="PleaseEnterAName" xml:space="preserve">
+    <value>Añade un nombre</value>
+  </data>
+  <data name="PleaseEnterADescription" xml:space="preserve">
+    <value>Añadir una descripción</value>
+  </data>
+  <data name="PleaseEnterAnIcon" xml:space="preserve">
+    <value>Añade un icono</value>
+  </data>
+  <data name="PostEditedSuccessfully" xml:space="preserve">
+    <value>Publicación editada correctamente</value>
+  </data>
+  <data name="PleaseMakeSureLoggedIn" xml:space="preserve">
+    <value>Asegurate de estar conectado</value>
+  </data>
+  <data name="PhotoDeletedSuccessfully" xml:space="preserve">
+    <value>Foto eliminada correctamente</value>
+  </data>
+  <data name="PleaseSelectAPhotoFirst" xml:space="preserve">
+    <value>Selecciona una foto primero</value>
+  </data>
+  <data name="IncomingAcceptedInteractions" xml:space="preserve">
+    <value>Interacciones entrantes aceptadas</value>
+  </data>
+  <data name="NoAcceptedInteractionsleft" xml:space="preserve">
+    <value>No quedan interacciones aceptadas</value>
+  </data>
+  <data name="ErrorWhileRetrievingAcceptedInteractions" xml:space="preserve">
+    <value>Error al recuperar interacciones aceptadas</value>
+  </data>
+  <data name="IncomingPendingInteractions" xml:space="preserve">
+    <value>Interacciones pendientes entrantes</value>
+  </data>
+  <data name="NoPendingInteractionsLeft" xml:space="preserve">
+    <value>No quedan interacciones pendientes</value>
+  </data>
+  <data name="ErrorWhileRetrievingPendingInteractions" xml:space="preserve">
+    <value>Error al recuperar interacciones pendientes</value>
+  </data>
+  <data name="MyPosts" xml:space="preserve">
+    <value>Mis publicaciones</value>
+  </data>
+  <data name="NoPostsFound" xml:space="preserve">
+    <value>No se han encontrado publicaciones</value>
+  </data>
+  <data name="PleaseCreateAPostFirst" xml:space="preserve">
+    <value>Primero crea una publicación</value>
+  </data>
+  <data name="ErrorWhileRetrievingYourPosts" xml:space="preserve">
+    <value>Error al recuperar tus publicaciones</value>
+  </data>
+  <data name="PleaseMakeSureLocationIsEnabled" xml:space="preserve">
+    <value>Asegúrate de que la ubicación esté habilitada en tu dispositivo</value>
+  </data>
+  <data name="ErrorWhileRetrievingSelectedOffer" xml:space="preserve">
+    <value>Error al recuperar la oferta seleccionada</value>
+  </data>
+  <data name="ErrorWhileRetrievingSelectedRequest" xml:space="preserve">
+    <value>Error al recuperar la solicitud seleccionada</value>
+  </data>
+  <data name="OfferNotFound" xml:space="preserve">
+    <value>Oferta no encontrada</value>
+  </data>
+  <data name="RequestNotFound" xml:space="preserve">
+    <value>Solicitud no encontrada</value>
+  </data>
+  <data name="ErrorWhileCreatingPost" xml:space="preserve">
+    <value>Error al crear la publicación</value>
+  </data>
+  <data name="PostCreated" xml:space="preserve">
+    <value>Publicación creada</value>
+  </data>
+  <data name="NewPostName" xml:space="preserve">
+    <value>Nombre de la nueva publicación</value>
+  </data>
+  <data name="PleaseEnterATagFirst" xml:space="preserve">
+    <value>Introduce al menos una etiqueta primero</value>
+  </data>
+  <data name="NoOffersFound" xml:space="preserve">
+    <value>No se han encontrado ofertas</value>
+  </data>
+  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
+    <value>Cambia tu ubicación y actualiza</value>
+  </data>
+  <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
+    <value>Error al recuperar ofertas</value>
+  </data>
+  <data name="PleaseChangeTheIntroducedParameters" xml:space="preserve">
+    <value>Cambie los parámetros introducidos, asegúrese de que la ubicación esté habilitada y actualice</value>
+  </data>
+  <data name="OutgoingAcceptedInteractions" xml:space="preserve">
+    <value>Interaccions sortints acceptades</value>
+  </data>
+  <data name="OutgoingPendingInteractions" xml:space="preserve">
+    <value>Interacciones pendientes salientes</value>
+  </data>
+  <data name="ViewPost" xml:space="preserve">
+    <value>Ver publicacion</value>
+  </data>
+  <data name="PostDeactivatedSuccesfully" xml:space="preserve">
+    <value>Publicación desactivada con éxito</value>
+  </data>
+  <data name="NowPeopleCantSeeYourPost" xml:space="preserve">
+    <value>Ahora la gente no puede ver tu publicación</value>
+  </data>
+  <data name="OfferRequestedSuccessfully" xml:space="preserve">
+    <value>Oferta sol·licitada correctament</value>
+  </data>
+  <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
+    <value>Verifique sus interacciones salientes para ver su estado</value>
+  </data>
+  <data name="ErrorWhileRetrievingQuestions" xml:space="preserve">
+    <value>Error al recuperar preguntas</value>
+  </data>
+  <data name="ErrorWhileSendingRequestToBackend" xml:space="preserve">
+    <value>Error al enviar la solicitud al backend</value>
+  </data>
+  <data name="PleaseSelectAnOptionFirst" xml:space="preserve">
+    <value>Por favor selecciona una opción primero</value>
+  </data>
+  <data name="AllQuestionsMustBeAnswered" xml:space="preserve">
+    <value>Todas las preguntas deben ser respondidas</value>
+  </data>
+  <data name="ErrorWhileSendingResponses" xml:space="preserve">
+    <value>Error al enviar respuestas</value>
+  </data>
+  <data name="PleaseTryAgainLater" xml:space="preserve">
+    <value>Por favor, inténtelo de nuevo más tarde</value>
+  </data>
+  <data name="PostCompletedSuccessfully" xml:space="preserve">
+    <value>Publicación completada con éxito</value>
+  </data>
+  <data name="ErrorWhileCompletingThePost" xml:space="preserve">
+    <value>Error al completar la publicación</value>
+  </data>
 </root>

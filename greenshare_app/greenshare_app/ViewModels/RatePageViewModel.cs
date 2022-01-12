@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -45,11 +46,11 @@ namespace greenshare_app.ViewModels
                 IsBusy = true;
                 await OfferRequestInteraction.Instance().CompletePostFromOffer(acceptedPost.OfferId, acceptedPost.RequestId, RatingValue, Message);
                 IsBusy = false;
-                await view.DisplayAlert("Post completed successfully", "", "OK");
+                await view.DisplayAlert(Text.Text.PostCompletedSuccessfully, "", "OK");
             }
             catch (Exception)
             {
-                await view.DisplayAlert("Error while completing the post", "something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileCompletingThePost, Text.Text.SomethingWentWrong, "OK");
             }
             await navigation.PopModalAsync();
         }

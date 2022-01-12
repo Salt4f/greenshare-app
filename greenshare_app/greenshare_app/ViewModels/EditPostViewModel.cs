@@ -1,11 +1,11 @@
 ﻿using greenshare_app.Models;
 using greenshare_app.Utils;
+using greenshare_app.Text;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -16,7 +16,7 @@ namespace greenshare_app.ViewModels
     {
         public EditPostViewModel(INavigation navigation, Page view, Post post)
         {
-            Title = "New Post";
+            Title = Text.Text.NewPost;
             //Options = Array.Empty;         
             this.navigation = navigation;
             this.view = view;
@@ -156,7 +156,7 @@ namespace greenshare_app.ViewModels
             }
             else
             {
-                await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
+                await view.DisplayAlert(Text.Text.ErrorAddingTag, Text.Text.TagsCannotBeDuplicated, "OK");
             }
             NewTag = string.Empty;
         }
@@ -170,21 +170,21 @@ namespace greenshare_app.ViewModels
                 tagNames.Remove(name);
                 Tags.Remove(SelectedTag);
                 SelectedTag = null;
-                await view.DisplayAlert("Tag deleted successfully", "", "OK");
+                await view.DisplayAlert(Text.Text.TagDeletedSuccessfully, "", "OK");
             }
-            else await view.DisplayAlert("Please select a Tag first", "", "OK");
+            else await view.DisplayAlert(Text.Text.PleaseSelectATagFirst, "", "OK");
 
         }
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
             {
-                await view.DisplayAlert("Error while editing Post", "Please enter a name", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileEditingPost, Text.Text.PleaseEnterAName, "OK");
                 return;
             }
             if (Description.Length == 0)
             {
-                await view.DisplayAlert("Error while editing Post", "Please enter a description", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileEditingPost, Text.Text.PleaseEnterADescription, "OK");
                 return;
             }
             bool response;
@@ -193,7 +193,7 @@ namespace greenshare_app.ViewModels
             {
                 if (Icon == null)
                 {
-                    await view.DisplayAlert("Error while editing Post", "Please enter an icon", "OK");
+                    await view.DisplayAlert(Text.Text.ErrorWhileEditingPost, Text.Text.PleaseEnterAnIcon, "OK");
                     IsBusy = false;
                     return;
                 }
@@ -204,8 +204,8 @@ namespace greenshare_app.ViewModels
                 response = await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
             }
             IsBusy = false;
-            if (response) await view.DisplayAlert("Post Edited successfully", "", "OK");
-            else await view.DisplayAlert("Error while editing Post", "Please make sure you are logged in", "OK");
+            if (response) await view.DisplayAlert(Text.Text.PostEditedSuccessfully, "", "OK");
+            else await view.DisplayAlert(Text.Text.ErrorWhileEditingPost, Text.Text.PleaseMakeSureLoggedIn, "OK");
             await navigation.PopModalAsync();
         }
 
@@ -241,9 +241,9 @@ namespace greenshare_app.ViewModels
                 Photos.RemoveAt(index);
                 photoBytesArray.RemoveAt(index);
                 SelectedImage = null;
-                await view.DisplayAlert(" Photo deleted successfully", "", "OK");
+                await view.DisplayAlert(Text.Text.PhotoDeletedSuccessfully, "", "OK");
             }
-            else await view.DisplayAlert("Please select a photo first", "", "OK");
+            else await view.DisplayAlert(Text.Text.PleaseSelectAPhotoFirst, "", "OK");
 
         }
 

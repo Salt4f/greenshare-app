@@ -9,6 +9,7 @@ using Command = MvvmHelpers.Commands.Command;
 using greenshare_app.Views.MainViewPages.ProfileViewPages;
 using greenshare_app.Models;
 using greenshare_app.Views.MainViewPages;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -21,7 +22,7 @@ namespace greenshare_app.ViewModels
         private bool isReportable;
         public ProfilePageViewModel(INavigation navigation, Page view)
         {
-            Title = "Perfil";
+            Title = Text.Text.Profile;
             this.navigation = navigation;
             this.view = view;
             OwnPage = true;
@@ -32,7 +33,7 @@ namespace greenshare_app.ViewModels
         }
         public ProfilePageViewModel(INavigation navigation, Page view, int userId)
         {
-            Title = "Perfil";
+            Title = Text.Text.Profile;
             this.navigation = navigation;
             this.view = view;            
             this.userId = userId;
@@ -102,7 +103,7 @@ namespace greenshare_app.ViewModels
                 var type = e.GetType();
                 var error = e.Message;
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, "OK");
             }
             IsBusy = false;
         }

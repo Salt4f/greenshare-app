@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using greenshare_app.Text;
 //using Xamarin.Essentials;
 //using Command = MvvmHelpers.Commands.Command;
 //using System.IO;
@@ -56,12 +57,12 @@ namespace greenshare_app.ViewModels
                 var questions = await ThirdPartyServiceUtil.Instance().GetEcoQuiz();
                 ecoQuiz = new ObservableRangeCollection<QuizQuestion>();
                 ecoQuiz.AddRange(questions);
-                if (ecoQuiz.Count == 0) await view.DisplayAlert("error while retrieving questions", "error while sending request to backend", "OK");
+                if (ecoQuiz.Count == 0) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingQuestions,Text.Text.ErrorWhileSendingRequestToBackend, "OK");
                 InitQuestions();
             }
             catch (Exception)
             {
-                await view.DisplayAlert("error while retrieving questions", "something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingQuestions, Text.Text.SomethingWentWrong, "OK");
                 IsBusy = false;
             }
         }
@@ -208,7 +209,7 @@ namespace greenshare_app.ViewModels
                 }
                 SetQuestions();
             }
-            else await view.DisplayAlert("Please select an option first","All questions must be answered", "OK");
+            else await view.DisplayAlert(Text.Text.PleaseSelectAnOptionFirst,Text.Text.AllQuestionsMustBeAnswered, "OK");
             IsBusy = false;
         }
         /*
@@ -242,7 +243,7 @@ namespace greenshare_app.ViewModels
                 }
                 else
                 {
-                    await view.DisplayAlert("error while sending responses", "please try again later", "OK");
+                    await view.DisplayAlert(Text.Text.ErrorWhileSendingResponses, Text.Text.PleaseTryAgainLater, "OK");
                     IsFirst = true;
                     IsLast = false;
                     IsNotLast = true;
@@ -252,7 +253,7 @@ namespace greenshare_app.ViewModels
                     IsBusy = false;
                 }
             }
-            else await view.DisplayAlert("Please select an option first", "All questions must be answered", "OK");
+            else await view.DisplayAlert(Text.Text.PleaseSelectAnOptionFirst, Text.Text.AllQuestionsMustBeAnswered, "OK");
             IsBusy = false;
         }
     }

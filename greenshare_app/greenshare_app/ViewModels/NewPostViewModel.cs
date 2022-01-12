@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using greenshare_app.Text;
 using Command = MvvmHelpers.Commands.Command;
 using System.IO;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace greenshare_app.ViewModels
     {
         public NewPostViewModel(INavigation navigation, Page view)
         {
-            Title = "New Post";
+            Title = Text.Text.NewPost;
             //Options = Array.Empty;
 
             this.navigation = navigation;
@@ -133,7 +134,7 @@ namespace greenshare_app.ViewModels
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
             if (NewTag == "")
             {
-                await view.DisplayAlert("Error while adding Tag", "Please enter a name first", "OK");
+                await view.DisplayAlert(Text.Text.ErrorAddingTag, Text.Text.PleaseEnterAName, "OK");
             }
             else if (!tagNames.Contains(NewTag))
             {
@@ -142,7 +143,7 @@ namespace greenshare_app.ViewModels
             }           
             else
             {
-                await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
+                await view.DisplayAlert(Text.Text.ErrorAddingTag, Text.Text.TagsCannotBeDuplicated, "OK");
             }            
             NewTag = string.Empty;
         }
@@ -154,13 +155,13 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             if (Name.Length == 0)
             {
-                await view.DisplayAlert("Error while creating Post", "Please enter a name", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileCreatingPost, Text.Text.PleaseEnterAName, "OK");
                 IsBusy = false;
                 return;
             }
             if (Description.Length == 0)
             {
-                await view.DisplayAlert("Error while creating Post", "Please enter a description", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileCreatingPost, Text.Text.PleaseEnterADescription, "OK");
                 IsBusy = false;
                 return;
             }
@@ -168,13 +169,13 @@ namespace greenshare_app.ViewModels
             if (loc == null && Location == null)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device or select one", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileCreatingPost, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
                 return;
             }
             if (Location != null) loc = Location;
             if (Tags.Count == 0)
             {
-                await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileCreatingPost, Text.Text.PleaseEnterATagFirst, "OK");
                 IsBusy = false;
                 return;
             }
@@ -185,7 +186,7 @@ namespace greenshare_app.ViewModels
                 case nameof(Offer):
                     if (Icon == null)
                     {
-                        await view.DisplayAlert("Error while creating Post", "Please enter an icon", "OK");
+                        await view.DisplayAlert(Text.Text.ErrorWhileCreatingPost, Text.Text.PleaseEnterAnIcon, "OK");
                         IsBusy = false;
                         return;
                     }                  
@@ -204,10 +205,10 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
             if (response != -1)
             {
-                await view.DisplayAlert("Post Created", "New Post name: " + Name, "ok");
+                await view.DisplayAlert(Text.Text.PostCreated, Text.Text.NewPostName + ": " + Name, "ok");
                 await navigation.PushModalAsync(new Views.MainViewPages.ViewPost(post));
             }
-            else await view.DisplayAlert("Error while creating Post", "Invalid Session, please make sure you are logged in", "OK");
+            else await view.DisplayAlert(Text.Text.ErrorWhileCreatingPost, Text.Text.PleaseMakeSureLoggedIn, "OK");
             ResetProperties();
 
         }

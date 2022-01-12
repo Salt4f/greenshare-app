@@ -115,6 +115,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All questions must be answered.
+        /// </summary>
+        internal static string AllQuestionsMustBeAnswered {
+            get {
+                return ResourceManager.GetString("AllQuestionsMustBeAnswered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average valoration.
         /// </summary>
         internal static string AvgValoration {
@@ -205,6 +214,123 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while adding Tag.
+        /// </summary>
+        internal static string ErrorAddingTag {
+            get {
+                return ResourceManager.GetString("ErrorAddingTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while completing the post.
+        /// </summary>
+        internal static string ErrorWhileCompletingThePost {
+            get {
+                return ResourceManager.GetString("ErrorWhileCompletingThePost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while creating Post.
+        /// </summary>
+        internal static string ErrorWhileCreatingPost {
+            get {
+                return ResourceManager.GetString("ErrorWhileCreatingPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while editing Post.
+        /// </summary>
+        internal static string ErrorWhileEditingPost {
+            get {
+                return ResourceManager.GetString("ErrorWhileEditingPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving Accepted Interactions.
+        /// </summary>
+        internal static string ErrorWhileRetrievingAcceptedInteractions {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingAcceptedInteractions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving offers.
+        /// </summary>
+        internal static string ErrorWhileRetrievingOffers {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving Pending Interactions.
+        /// </summary>
+        internal static string ErrorWhileRetrievingPendingInteractions {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingPendingInteractions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving questions.
+        /// </summary>
+        internal static string ErrorWhileRetrievingQuestions {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving Selected Offer.
+        /// </summary>
+        internal static string ErrorWhileRetrievingSelectedOffer {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingSelectedOffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving Selected Request.
+        /// </summary>
+        internal static string ErrorWhileRetrievingSelectedRequest {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingSelectedRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving your posts.
+        /// </summary>
+        internal static string ErrorWhileRetrievingYourPosts {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingYourPosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while sending request to backend.
+        /// </summary>
+        internal static string ErrorWhileSendingRequestToBackend {
+            get {
+                return ResourceManager.GetString("ErrorWhileSendingRequestToBackend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while sending responses.
+        /// </summary>
+        internal static string ErrorWhileSendingResponses {
+            get {
+                return ResourceManager.GetString("ErrorWhileSendingResponses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exchange.
         /// </summary>
         internal static string Exchange {
@@ -241,11 +367,29 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incoming Accepted Interactions.
+        /// </summary>
+        internal static string IncomingAcceptedInteractions {
+            get {
+                return ResourceManager.GetString("IncomingAcceptedInteractions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incoming interactions.
         /// </summary>
         internal static string IncomingInteractions {
             get {
                 return ResourceManager.GetString("IncomingInteractions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incoming Pending Interactions.
+        /// </summary>
+        internal static string IncomingPendingInteractions {
+            get {
+                return ResourceManager.GetString("IncomingPendingInteractions", resourceCulture);
             }
         }
         
@@ -295,11 +439,38 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Posts.
+        /// </summary>
+        internal static string MyPosts {
+            get {
+                return ResourceManager.GetString("MyPosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My publications.
         /// </summary>
         internal static string MyPublications {
             get {
                 return ResourceManager.GetString("MyPublications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New post.
+        /// </summary>
+        internal static string NewPost {
+            get {
+                return ResourceManager.GetString("NewPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Post name.
+        /// </summary>
+        internal static string NewPostName {
+            get {
+                return ResourceManager.GetString("NewPostName", resourceCulture);
             }
         }
         
@@ -313,11 +484,74 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No accepted interactions left.
+        /// </summary>
+        internal static string NoAcceptedInteractionsleft {
+            get {
+                return ResourceManager.GetString("NoAcceptedInteractionsleft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No offers found.
+        /// </summary>
+        internal static string NoOffersFound {
+            get {
+                return ResourceManager.GetString("NoOffersFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Pending Interactions left.
+        /// </summary>
+        internal static string NoPendingInteractionsLeft {
+            get {
+                return ResourceManager.GetString("NoPendingInteractionsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Posts found.
+        /// </summary>
+        internal static string NoPostsFound {
+            get {
+                return ResourceManager.GetString("NoPostsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now people can&apos;t see your post.
+        /// </summary>
+        internal static string NowPeopleCantSeeYourPost {
+            get {
+                return ResourceManager.GetString("NowPeopleCantSeeYourPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offer.
         /// </summary>
         internal static string Offer {
             get {
                 return ResourceManager.GetString("Offer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer not found.
+        /// </summary>
+        internal static string OfferNotFound {
+            get {
+                return ResourceManager.GetString("OfferNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer Requested successfully.
+        /// </summary>
+        internal static string OfferRequestedSuccessfully {
+            get {
+                return ResourceManager.GetString("OfferRequestedSuccessfully", resourceCulture);
             }
         }
         
@@ -349,6 +583,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Outgoing Accepted Interactions.
+        /// </summary>
+        internal static string OutgoingAcceptedInteractions {
+            get {
+                return ResourceManager.GetString("OutgoingAcceptedInteractions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outgoing interactions.
         /// </summary>
         internal static string OutgoingInteractions {
@@ -358,11 +601,191 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Outgoing Pending Interactions.
+        /// </summary>
+        internal static string OutgoingPendingInteractions {
+            get {
+                return ResourceManager.GetString("OutgoingPendingInteractions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
         internal static string Pending {
             get {
                 return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photo deleted successfully.
+        /// </summary>
+        internal static string PhotoDeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("PhotoDeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please change the introduced parameters, make sure location is enabled and refresh.
+        /// </summary>
+        internal static string PleaseChangeTheIntroducedParameters {
+            get {
+                return ResourceManager.GetString("PleaseChangeTheIntroducedParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please change your location and refresh.
+        /// </summary>
+        internal static string PleaseChangeYourLocationAndRefresh {
+            get {
+                return ResourceManager.GetString("PleaseChangeYourLocationAndRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check your Outgoing Interactions to see its Status.
+        /// </summary>
+        internal static string PleaseCheckYourOutgoingInteractionsToSeeItsStatus {
+            get {
+                return ResourceManager.GetString("PleaseCheckYourOutgoingInteractionsToSeeItsStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please create a post first.
+        /// </summary>
+        internal static string PleaseCreateAPostFirst {
+            get {
+                return ResourceManager.GetString("PleaseCreateAPostFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a description.
+        /// </summary>
+        internal static string PleaseEnterADescription {
+            get {
+                return ResourceManager.GetString("PleaseEnterADescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a name.
+        /// </summary>
+        internal static string PleaseEnterAName {
+            get {
+                return ResourceManager.GetString("PleaseEnterAName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter an icon.
+        /// </summary>
+        internal static string PleaseEnterAnIcon {
+            get {
+                return ResourceManager.GetString("PleaseEnterAnIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter at least one tag first.
+        /// </summary>
+        internal static string PleaseEnterATagFirst {
+            get {
+                return ResourceManager.GetString("PleaseEnterATagFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please make sure location is enabled on your device.
+        /// </summary>
+        internal static string PleaseMakeSureLocationIsEnabled {
+            get {
+                return ResourceManager.GetString("PleaseMakeSureLocationIsEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please make sure you are logged in.
+        /// </summary>
+        internal static string PleaseMakeSureLoggedIn {
+            get {
+                return ResourceManager.GetString("PleaseMakeSureLoggedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an option first.
+        /// </summary>
+        internal static string PleaseSelectAnOptionFirst {
+            get {
+                return ResourceManager.GetString("PleaseSelectAnOptionFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a photo first.
+        /// </summary>
+        internal static string PleaseSelectAPhotoFirst {
+            get {
+                return ResourceManager.GetString("PleaseSelectAPhotoFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a tag first.
+        /// </summary>
+        internal static string PleaseSelectATagFirst {
+            get {
+                return ResourceManager.GetString("PleaseSelectATagFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please try again later.
+        /// </summary>
+        internal static string PleaseTryAgainLater {
+            get {
+                return ResourceManager.GetString("PleaseTryAgainLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Completed Successfully.
+        /// </summary>
+        internal static string PostCompletedSuccessfully {
+            get {
+                return ResourceManager.GetString("PostCompletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post created.
+        /// </summary>
+        internal static string PostCreated {
+            get {
+                return ResourceManager.GetString("PostCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post deactivated successfully.
+        /// </summary>
+        internal static string PostDeactivatedSuccesfully {
+            get {
+                return ResourceManager.GetString("PostDeactivatedSuccesfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post edited successfully.
+        /// </summary>
+        internal static string PostEditedSuccessfully {
+            get {
+                return ResourceManager.GetString("PostEditedSuccessfully", resourceCulture);
             }
         }
         
@@ -475,6 +898,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Request not found.
+        /// </summary>
+        internal static string RequestNotFound {
+            get {
+                return ResourceManager.GetString("RequestNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rewards.
         /// </summary>
         internal static string Rewards {
@@ -574,11 +1006,29 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag deleted successfully.
+        /// </summary>
+        internal static string TagDeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("TagDeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tags.
         /// </summary>
         internal static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags cannot be duplicated.
+        /// </summary>
+        internal static string TagsCannotBeDuplicated {
+            get {
+                return ResourceManager.GetString("TagsCannotBeDuplicated", resourceCulture);
             }
         }
         
@@ -651,6 +1101,15 @@ namespace greenshare_app.Text {
         internal static string VerifyDNI {
             get {
                 return ResourceManager.GetString("VerifyDNI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Post.
+        /// </summary>
+        internal static string ViewPost {
+            get {
+                return ResourceManager.GetString("ViewPost", resourceCulture);
             }
         }
         
