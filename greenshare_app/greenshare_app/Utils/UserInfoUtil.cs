@@ -78,27 +78,47 @@ namespace greenshare_app.Utils
             return null;
             
         }
-        //No queremos un endpoint de esto, se debe devolver con GetUserInfo
         
-        private class UserInfo
+        //edit info of logged user
+        public async Task<bool> EditUser(User user)
         {
-           
+            EditUserInfo editInfo = new EditUserInfo() { Description = user.Description, NickName = user.NickName };
+            //Tuple<int, string> session = await Auth.Instance().GetAuth();
+            string json = JsonConvert.SerializeObject(editInfo);
+            HttpContent httpContent = new StringContent(json);
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/user", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        //No queremos un endpoint de esto, se debe devolver con GetUserInfo
+
+        private class EditUserInfo
+        {
+
             [JsonProperty(PropertyName = "nickname")]
             public string NickName { get; set; }
 
+            [JsonProperty(PropertyName = "description")]
+            public string Description { get; set; }            
+        }
+        private class UserInfo : EditUserInfo
+        {
+                       
             [JsonProperty(PropertyName = "fullname")]
             public string FullName { get; set; }
 
             [JsonProperty(PropertyName = "birthDate")]
             public DateTime BirthDate { get; set; }
 
-
             [JsonProperty(PropertyName = "profilePicture")]
             public byte[] ProfilePicture { get; set; }
-
-            [JsonProperty(PropertyName = "description")]
-            public string Description { get; set; }
-
+            
             [JsonProperty(PropertyName = "banned")]
             public bool Banned { get; set; }
 
