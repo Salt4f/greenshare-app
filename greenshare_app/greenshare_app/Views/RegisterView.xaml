@@ -25,7 +25,9 @@
                 <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="260,625,200,200" CornerRadius="100" HasShadow="False"/>
             </AbsoluteLayout>
 
-            <StackLayout BackgroundColor="Transparent" Style="{StaticResource styleStackLayoutDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="0,0,0,0" Padding="0,0,0,0">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                <StackLayout BackgroundColor="Transparent" Style="{StaticResource styleStackLayoutDefault}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="0,0,0,0" Padding="0,0,0,0">
                 <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True" HorizontalOptions="FillAndExpand">
                     <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <StackLayout Margin="20,60,20,0">
@@ -94,18 +96,16 @@
                                 
                             </Frame>
 
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
-                                <StackLayout Orientation="Horizontal">
-                                    <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
-                                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
-                                    </Frame>
-                                    <DatePicker Date="{Binding BirthDate}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center"/>
-                                </StackLayout>
-                            </Frame>
+                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
+                                            <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Calendar}" FontFamily="FAS"></Label>
+                                        </Frame>
+                                        <DatePicker Date="{Binding BirthDate}" Style="{StaticResource styleDatePickerDefault}" HorizontalOptions="Center" WidthRequest="150"/>
+                                    </StackLayout>
+                                </Frame>
 
-                            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                            <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
+                                <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>

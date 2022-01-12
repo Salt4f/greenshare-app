@@ -250,7 +250,6 @@ namespace greenshare_app.ViewModels
                     responses = new List<int>();
                     SetQuestions();
                     IsBusy = false;
-                    //TODO PERE: cridar API
                 }
             }
             else await view.DisplayAlert("Please select an option first", "All questions must be answered", "OK");

@@ -7,7 +7,7 @@
             SelectedTabColor="{StaticResource colorWhite}"
             UnselectedTabColor="{StaticResource colorBlack}">
 
-    <local:IncomingPendingPage Title="PENDING" IconImageSource="clock.png"/>
-    <local:IncomingAcceptedPage Title="ACCEPTED" IconImageSource="check.png"/>
+    <local:IncomingPendingPage Title="PENDING" IconImageSource="clock.png" BackgroundColor="{StaticResource colorWhite}"/>
+    <local:IncomingAcceptedPage Title="ACCEPTED" IconImageSource="check.png" BackgroundColor="{StaticResource colorWhite}"/>
 
 </TabbedPage>

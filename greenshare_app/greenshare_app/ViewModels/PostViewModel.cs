@@ -176,15 +176,20 @@ namespace greenshare_app.ViewModels
         }
 
         private async Task OnEdit()
-        {            
-            await navigation.PushModalAsync(new EditPost(post));            
+        {
+            IsBusy = true;
+            await navigation.PushModalAsync(new EditPost(post));
+            IsBusy = false;
         }
         private async Task OnDeactivate()
         {
+            IsBusy = true;
             if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
             {
+                IsBusy = false;
                 await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
             }
+            IsBusy = false;
         }        
         private void DeactivateButtons()
         {
@@ -195,7 +200,9 @@ namespace greenshare_app.ViewModels
         private async Task OnReport()
         {
             DeactivateButtons();
-            await navigation.PushModalAsync(new ReportPage(typeof(Post), post.Id));            
+            IsBusy = true;
+            await navigation.PushModalAsync(new ReportPage(typeof(Post), post.Id));
+            IsBusy = false;
         }
         private async Task OnRequestToOffer()
         {
@@ -206,19 +213,23 @@ namespace greenshare_app.ViewModels
                 Color = Color.White,
             };
             tags.Add(tag);
+            IsBusy = true;
             var id = await PostSender.Instance().PostRequest("Req-to-Offer-" + post.Id, "request to offer", post.TerminateAt, await Geolocation.GetLocationAsync(), tags);
             if (id != -1)
             {
                 if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
                 {
+                    IsBusy = false;
                     await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
                     DeactivateButtons();
                 }
             }
+            IsBusy = false;
         }
         private async Task OnOfferToRequest()
         {
             await view.DisplayAlert("Button WIP!", "missing way to create offer from here", "OK");
+            // TODO: añadir una foto de la galería y usarla para crear una offer
             //var id = await PostSender.Instance().PostOffer("Offer-to-Req-" + post.Id, "offer to request", post.TerminateAt, await Geolocation.GetLocationAsync(), new List<Tag>());
             //if (id != -1) await OfferRequestInteraction.Instance().OfferARequest(id, post.Id);
         }

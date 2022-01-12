@@ -16,8 +16,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+
     <StackLayout>
-        <Grid Padding="20">
+        <Grid Padding="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="0.15*" />
@@ -26,26 +27,23 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
-                <control:BorderlessEntry   
+            <control:BorderlessEntry   
                     Style="{StaticResource styleEntryDefault}" 
                     Placeholder="Search"
-                    Text="{Binding SearchWord}" 
-                            
-                    />
-                <Button Grid.Column="1"
+                    Text="{Binding SearchWord}"/>
+            <Button Grid.Column="1"
                         Style="{StaticResource styleButtonDefault}"
                         Text="{x:Static fontAwesome:FontAwesomeIcons.Search}"  FontFamily="FAS"
                         Command="{Binding OnSearchButtonCommand}"/>
 
-                <Button Grid.Column="2"
+            <Button Grid.Column="2"
                         Style="{StaticResource styleButtonDefault}"
                         Text="{x:Static fontAwesome:FontAwesomeIcons.Filter}"  FontFamily="FAS" 
                         Command="{Binding OnFilterButtonCommand}"/>
                 
             </Grid>
 
-
-        <Grid Padding="20" HorizontalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
+        <Grid Padding="15" HorizontalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*" />
                 <ColumnDefinition Width="0.6*" />
@@ -75,80 +73,67 @@
         </Grid>
 
 
-        <ListView BackgroundColor="{StaticResource colorWhite}"
-              HasUnevenRows="True"
-              SeparatorVisibility="None"
-              SelectionMode="Single"
-              SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
-              CachingStrategy="RecycleElement"
-              IsPullToRefreshEnabled="True"
-              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
-              RefreshCommand="{Binding RefreshCommand}"
-              RefreshControlColor="{StaticResource colorGreen2}"
-              ItemsSource="{Binding PostCardList}">
+            <ListView BackgroundColor="{StaticResource colorWhite}"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedPostCard, Mode=TwoWay}"
+                  CachingStrategy="RecycleElement"
+                  IsPullToRefreshEnabled="True"
+                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  RefreshControlColor="{StaticResource colorGreen2}"
+                  ItemsSource="{Binding PostCardList}">
 
 
-        <!--ItemSelected="ListView_ItemSelected"
-              ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
+            <!--ItemSelected="ListView_ItemSelected"
+                  ItemTapped="ListView_ItemTapped" -> metodes per quan es seleccioni un element-->
 
-        <ListView.Behaviors>
-            <xct:EventToCommandBehavior
-                Command="{Binding SelectedCommand}"
-                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
-                EventName="ItemSelected" />
-        </ListView.Behaviors>
-        
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:PostCard">
-                <ViewCell>
-                    <Grid Padding="10">
-                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
-                            <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                    Command="{Binding SelectedCommand}"
+                    EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                    EventName="ItemSelected" />
+            </ListView.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:PostCard">
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="5" Padding="5" BorderColor="{StaticResource colorGreen2}">
                                 <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
-                                    <Frame BackgroundColor="{StaticResource colorGreen1}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                        <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
-                                    </Frame>
+                                    <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}" Margin="5"/>
                                     <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
-                                        <StackLayout Orientation="Vertical">
-                                            <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" Padding="2" HorizontalOptions="Center">
-                                                <Label Text="{Binding Name}" FontSize="22"
+                                        <Label Text="{Binding Name}" FontSize="22"
                                                        Style="{StaticResource styleLabelWhite}"
-                                                   VerticalOptions="Center"/>
-                                            </Frame>
-                                            <Label Text="{Binding Author}"
+                                                       VerticalOptions="Center"
+                                                       BackgroundColor="{StaticResource colorGreen3}"/>
+                                        <Label Text="{Binding Author}"
                                                    Style="{StaticResource styleLabelWhite}"
-                                               VerticalOptions="Center"/>
-                                        </StackLayout>
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                                            <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
-                                                <ListView.ItemTemplate>
-                                                        <DataTemplate x:DataType="model:Tag">
-                                                            <ViewCell>
-                                                                <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
-                                                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
-
-                                                                    <!--TODO: CANVIAR EL COLOR DEL BACKGROUND D'UN TAG PEL DEL BINDING-->
-                                                                    <!--TODO: BackgroundColor="{Binding Color}"-->
-                                                                    <Label Text="{Binding Name}"
+                                                   VerticalOptions="Center"/>
+                                        <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate x:DataType="model:Tag">
+                                                    <ViewCell>
+                                                        <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5" HorizontalOptions="CenterAndExpand">
+                                                            <!--TODO: CANVIAR EL COLOR DEL BACKGROUND D'UN TAG PEL DEL BINDING-->
+                                                            <!--TODO: BackgroundColor="{Binding Color}"-->
+                                                            <Label Text="{Binding Name}"
                                                                         Style="{StaticResource styleLabelWhite}"
                                                                         VerticalOptions="Center"/>
-                                                                    </Frame>
-                                                                </StackLayout>
-                                                            </ViewCell>
-                                                        </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>
-                                        </StackLayout>
+                                                        </Frame>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
-                        </Frame>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-
-    </ListView>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 
 </ContentPage>

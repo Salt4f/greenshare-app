@@ -28,22 +28,7 @@ namespace greenshare_app.Utils
         }
 
         private readonly HttpClient httpClient;
-        public async void AddHeaders()
-        {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
-
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
-        }
+        
         public async Task<bool> PostReport(string message, Type type, int itemId)
         {
             string url;
@@ -78,20 +63,14 @@ namespace greenshare_app.Utils
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/" + reportId, httpContent);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
-                //falta ver que hacemos con el id y el createdAt que nos devuelven
-                return true;
-            }
-            return false;
-
+            return response.StatusCode == HttpStatusCode.OK;
         }
         //gets all unsolved reports
         public async Task<IEnumerable<Report>> GetAllReports(INavigation navigation, Page view)
         {
-            AddHeaders();
-            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports");
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/admin/reports");
+            request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var array = JArray.Parse(await response.Content.ReadAsStringAsync());

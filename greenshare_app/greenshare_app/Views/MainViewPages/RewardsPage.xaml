@@ -6,7 +6,9 @@
              Title="{Binding Title}"
              BackgroundColor="{StaticResource colorWhite}">
     <StackLayout>
-        <Label Padding="20" Style="{StaticResource styleLabelGreen}" Text="{Binding AvailableGreenCoins}" FontSize="16" TextColor="{StaticResource colorGreen2}"/>
+        <Label Padding="20" Style="{StaticResource styleLabelGreen}" Text="{Binding AvailableGreenCoins}" HorizontalOptions="Start" FontSize="16" TextColor="{StaticResource colorGreen2}"/>
+        <!--Crear recompensa-->
+        <Button IsVisible="{Binding IsAdmin}" Text="Crear" Style="{StaticResource styleButtonDefault}" Command="{Binding OnCreateButtonCommand}" FontSize="12"></Button>
         <ListView x:Name="MyListView"
               HasUnevenRows="true"
               SeparatorVisibility="None"

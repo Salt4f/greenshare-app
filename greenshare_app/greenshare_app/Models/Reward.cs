@@ -1,9 +1,11 @@
 ﻿using greenshare_app.Utils;
+using greenshare_app.Views.MainViewPages;
 using MvvmHelpers.Commands;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -17,15 +19,15 @@ namespace greenshare_app.Models
         public Reward(INavigation navigation, Page view)
         {
             Navigation = navigation;
-            View = view;            
-            if (UserId == Config.Config.Instance().AdminId)
-                IsAdmin = true;
-            else IsAdmin = false;
+            View = view;
+            if (View.BindingContext.GetType() == typeof(ViewModels.RewardsPageViewModel)) IsAdmin = ((ViewModels.RewardsPageViewModel)View.BindingContext).IsAdmin;
+            else IsAdmin = true;
             OnDeactivateButtonCommand = new AsyncCommand(OnDeactivate);
             OnEditButtonCommand = new AsyncCommand(OnEdit);
             OnExchangeFrameCommand = new AsyncCommand(OnExchange);
         }
         public int Id { get; set; }
+        public string  Name { get; set; }
         public bool IsAdmin { get; set; }
         public int GreenCoinsAvailable { get; set; }
         public int UserId { get; set; }
@@ -55,14 +57,22 @@ namespace greenshare_app.Models
         {
             if (await RewardsUtil.Instance().DeactivateReward(Id))
             {
-                await View.DisplayAlert("Reward deleted successfully", "Please refresh to see the changes", "OK");
+                await View.DisplayAlert("Reward deleted successfully", "", "OK");
+                await ((ViewModels.RewardsPageViewModel)View.BindingContext).Refresh();
             }
             else await View.DisplayAlert("Could not delete reward", "Something went wrong", "OK");
 
         }
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await ((ViewModels.RewardsPageViewModel)View.BindingContext).Refresh();
+        }
         private async Task OnEdit()
         {
-            //navegación a vista de edit.
+            var view = new SponsorsFormPage(this);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await Navigation.PushModalAsync(view);
         }
 
 

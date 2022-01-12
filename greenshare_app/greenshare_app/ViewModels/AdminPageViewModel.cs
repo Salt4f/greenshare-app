@@ -55,12 +55,11 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        private async Task Refresh()
+        public async Task Refresh()
         {
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
                 var cards = await ReportUtil.Instance().GetAllReports(navigation, view);
                 ReportList.Clear();
                 ReportList.AddRange(cards);

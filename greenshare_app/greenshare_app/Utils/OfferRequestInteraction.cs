@@ -27,22 +27,7 @@ namespace greenshare_app.Utils
             if (instance is null) instance = new OfferRequestInteraction();
             return instance;
         }
-        public async void addHeaders()
-        {
-            Tuple<int, string> session;
-            try
-            {
-                session = await Auth.Instance().GetAuth();
 
-            }
-            catch (Exception)
-            {
-                throw new InvalidLoginException();
-            }
-            httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Add("id", session.Item1.ToString());
-            httpClient.DefaultRequestHeaders.Add("token", session.Item2);
-        }
         private readonly HttpClient httpClient;
 
         public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType, INavigation navigation, Page view)

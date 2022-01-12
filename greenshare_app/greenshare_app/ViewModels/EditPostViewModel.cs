@@ -188,11 +188,13 @@ namespace greenshare_app.ViewModels
                 return;
             }
             bool response;
+            IsBusy = true;
             if (post.GetType() == typeof(Offer))
             {
                 if (Icon == null)
                 {
                     await view.DisplayAlert("Error while editing Post", "Please enter an icon", "OK");
+                    IsBusy = false;
                     return;
                 }
                 response = await PostSender.Instance().EditOffer(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
@@ -201,8 +203,10 @@ namespace greenshare_app.ViewModels
             {
                 response = await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
             }
+            IsBusy = false;
             if (response) await view.DisplayAlert("Post Edited successfully", "", "OK");
             else await view.DisplayAlert("Error while editing Post", "Please make sure you are logged in", "OK");
+            await navigation.PopModalAsync();
         }
 
         public async Task<bool> OnAddPhotoButton()

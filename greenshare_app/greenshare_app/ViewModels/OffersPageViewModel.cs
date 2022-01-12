@@ -98,12 +98,12 @@ namespace greenshare_app.ViewModels
         }
 
 
-        public String SearchWord
+        public string SearchWord
         {
             get => searchWord;
             set => SetProperty(ref searchWord, value);
         }
-        public Boolean FilterVisible
+        public bool FilterVisible
         {
             get => filterVisible;
             set => SetProperty(ref filterVisible, value);
@@ -123,9 +123,11 @@ namespace greenshare_app.ViewModels
             if (card == null)
                 return;
 
+            IsBusy = true;
             Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
             if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
             else await navigation.PushModalAsync(new ViewPost(offer));
+            IsBusy = false;
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }
@@ -157,12 +159,6 @@ namespace greenshare_app.ViewModels
             else FilterVisible = false;
             return;
         }
-
-
-
-
-
-
 
     }
 }

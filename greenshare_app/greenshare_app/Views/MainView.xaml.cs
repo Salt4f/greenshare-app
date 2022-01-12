@@ -8,6 +8,7 @@ namespace greenshare_app.Views
         public MainView()
         {
             InitializeComponent();
+            TabBar.CurrentItem = DefaultTab;
             BindingContext = new MainViewModel();
         }
 

@@ -166,8 +166,8 @@
     <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\OutgoingInteractionsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainViewPages\ProfileViewPages\UserPublicationsPage.xaml">
-    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    <EmbeddedResource Update="Views\MainViewPages\PublicationMapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainViewPages\ReportPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
