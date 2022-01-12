@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using greenshare_app.Utils;
 using greenshare_app.Views.MainViewPages;
 using System.Text;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -21,15 +22,23 @@ namespace greenshare_app.ViewModels
         private User user;
         private ObservableRangeCollection<Reward> rewards;
         private string availableGreenCoins;
+        private bool isAdmin;
 
         private event EventHandler Starting = delegate { };
 
         //public AsyncCommand<object> SelectedCommand { get; }
         public AsyncCommand RefreshCommand { get; }
+        public AsyncCommand OnCreateButtonCommand => new AsyncCommand(OnCreate);
+
         public ObservableRangeCollection<Reward> Rewards
         {
             get => rewards;
             set => SetProperty(ref rewards, value);
+        }
+        public bool IsAdmin
+        {
+            get => isAdmin;
+            set => SetProperty(ref isAdmin, value);
         }
         public RewardsPageViewModel(INavigation navigation, Page view, User user)
         {
@@ -49,6 +58,7 @@ namespace greenshare_app.ViewModels
         private async void OnStart(object sender, EventArgs e)
         {
             IsBusy = true;
+            IsAdmin = await Auth.Instance().IsAdmin();
             AvailableGreenCoins = "Your GreenCoins: " + user.TotalGreenCoins;
 
             Rewards = new ObservableRangeCollection<Reward>();
@@ -66,18 +76,28 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert("No rewards found", "something went wrong while retrieving rewards", "OK");
             }
         }
-
-        private async Task UpdateGreenCoins()
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await Refresh();
+        }
+        private async Task OnCreate()
+        {
+            var view = new SponsorsFormPage();
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
+        }
+        private async void UpdateGreenCoins()
         {
             user = await UserInfoUtil.Instance().GetUserInfo();
             AvailableGreenCoins = "Your GreenCoins: " + user.TotalGreenCoins;
         }
-        private async Task Refresh()
+        public async Task Refresh()
         {
             try
             {
                 IsBusy = true;
-                await UpdateGreenCoins();
+                UpdateGreenCoins();
                 var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
