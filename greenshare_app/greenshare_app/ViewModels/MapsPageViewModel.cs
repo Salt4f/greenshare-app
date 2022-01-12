@@ -64,7 +64,6 @@ namespace greenshare_app.ViewModels
                     pin.Url = offer.Id;
                     pin.InfoWindowClicked += async (s, args) =>
                     {
-                        string pinName = ((Pin)s).Label;
                         Offer offer2 = await PostRetriever.Instance().GetOffer(pin.Url);
                         if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
                         else
@@ -96,7 +95,6 @@ namespace greenshare_app.ViewModels
                     pin.Url = offer.Id;
                     pin.InfoWindowClicked += async (s, args) =>
                      {
-                         string pinName = ((Pin)s).Label;
                          Request offer2 = await PostRetriever.Instance().GetRequest(pin.Url);
                          if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
                          else
