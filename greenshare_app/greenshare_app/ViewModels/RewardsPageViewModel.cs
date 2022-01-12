@@ -10,6 +10,7 @@ using greenshare_app.Utils;
 using greenshare_app.Views.MainViewPages;
 using System.Text;
 using System.Threading;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {

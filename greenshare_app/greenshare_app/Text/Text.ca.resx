@@ -375,4 +375,58 @@
   <data name="ErrorWhileCompletingThePost" xml:space="preserve">
     <value>S'ha produït un error en completar la publicació</value>
   </data>
+  <data name="NicknameTooShort" xml:space="preserve">
+    <value>Àlies massa curt</value>
+  </data>
+  <data name="PleaseEnterALongerNickname" xml:space="preserve">
+    <value>Introduïu un àlies més llarg</value>
+  </data>
+  <data name="NicknameTooLong" xml:space="preserve">
+    <value>Àlies massa llarg</value>
+  </data>
+  <data name="PleaseEnterAShorterNickname" xml:space="preserve">
+    <value>Introduïu un àlies més curt</value>
+  </data>
+  <data name="DNIVerified" xml:space="preserve">
+    <value>DNI verificat</value>
+  </data>
+  <data name="YourDNIHasBeenVerified" xml:space="preserve">
+    <value>S'ha verificat el teu DNI</value>
+  </data>
+  <data name="DNINotValid" xml:space="preserve">
+    <value>DNI no vàlid</value>
+  </data>
+  <data name="FullNameNotValid" xml:space="preserve">
+    <value>Nom complet no vàlid</value>
+  </data>
+  <data name="PasswordsAreNotTheSame" xml:space="preserve">
+    <value>Les contrasenyes no són les mateixes</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Correu electrònic no vàlid</value>
+  </data>
+  <data name="DNINotVerified" xml:space="preserve">
+    <value>DNI no verificat</value>
+  </data>
+  <data name="PleaseEnterAValidDNI" xml:space="preserve">
+    <value>Introduïu un DNI vàlid</value>
+  </data>
+  <data name="PleaseTakeAPhotoOfYourDNI" xml:space="preserve">
+    <value>Fes una foto del teu DNI</value>
+  </data>
+  <data name="PleaseCheckIfTheEmailIsCorrect" xml:space="preserve">
+    <value>Comproveu si el correu electrònic és correcte</value>
+  </data>
+  <data name="PleaseMakeSureBothPasswordsAreEqual" xml:space="preserve">
+    <value>Assegureu-vos que les dues contrasenyes siguin iguals</value>
+  </data>
+  <data name="PleaseEnterAValidFullName" xml:space="preserve">
+    <value>Introduïu un nom complet vàlid</value>
+  </data>
+  <data name="ReportPage" xml:space="preserve">
+    <value>Pàgina de reports</value>
+  </data>
+  <data name="PleaseEnterAReportMessageFirst" xml:space="preserve">
+    <value>Introduïu primer un missatge d'informe</value>
+  </data>
 </root>

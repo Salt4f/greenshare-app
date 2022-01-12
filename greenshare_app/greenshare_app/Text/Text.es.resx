@@ -375,4 +375,58 @@
   <data name="ErrorWhileCompletingThePost" xml:space="preserve">
     <value>Error al completar la publicación</value>
   </data>
+  <data name="NicknameTooShort" xml:space="preserve">
+    <value>Apodo demasiado corto</value>
+  </data>
+  <data name="PleaseEnterALongerNickname" xml:space="preserve">
+    <value>Introduce un apodo más largo</value>
+  </data>
+  <data name="NicknameTooLong" xml:space="preserve">
+    <value>Apodo demasiado largo</value>
+  </data>
+  <data name="PleaseEnterAShorterNickname" xml:space="preserve">
+    <value>Introduce un apodo más corto</value>
+  </data>
+  <data name="DNIVerified" xml:space="preserve">
+    <value>DNI verificado</value>
+  </data>
+  <data name="YourDNIHasBeenVerified" xml:space="preserve">
+    <value>Su DNI ha sido verificado</value>
+  </data>
+  <data name="DNINotValid" xml:space="preserve">
+    <value>DNI no válido</value>
+  </data>
+  <data name="FullNameNotValid" xml:space="preserve">
+    <value>Nombre completo no válido</value>
+  </data>
+  <data name="PasswordsAreNotTheSame" xml:space="preserve">
+    <value>Las contraseñas no son iguales</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Correo electrónico no válido</value>
+  </data>
+  <data name="DNINotVerified" xml:space="preserve">
+    <value>DNI no verificado</value>
+  </data>
+  <data name="PleaseEnterAValidDNI" xml:space="preserve">
+    <value>Por favor introduce un DNI válido</value>
+  </data>
+  <data name="PleaseTakeAPhotoOfYourDNI" xml:space="preserve">
+    <value>Por favor haz una foto de tu DNI</value>
+  </data>
+  <data name="PleaseCheckIfTheEmailIsCorrect" xml:space="preserve">
+    <value>Por favor, compruebe si el correo electrónico es correcto.</value>
+  </data>
+  <data name="PleaseMakeSureBothPasswordsAreEqual" xml:space="preserve">
+    <value>Por favor, asegúrese de que ambas contraseñas sean iguales.</value>
+  </data>
+  <data name="PleaseEnterAValidFullName" xml:space="preserve">
+    <value>Por favor ingrese un nombre completo válido</value>
+  </data>
+  <data name="ReportPage" xml:space="preserve">
+    <value>Página de reports</value>
+  </data>
+  <data name="PleaseEnterAReportMessageFirst" xml:space="preserve">
+    <value>Ingrese un mensaje de informe primero</value>
+  </data>
 </root>

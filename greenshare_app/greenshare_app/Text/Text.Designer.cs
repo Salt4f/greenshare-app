@@ -196,6 +196,42 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DNI not valid.
+        /// </summary>
+        internal static string DNINotValid {
+            get {
+                return ResourceManager.GetString("DNINotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DNI not verified.
+        /// </summary>
+        internal static string DNINotVerified {
+            get {
+                return ResourceManager.GetString("DNINotVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DNI verified.
+        /// </summary>
+        internal static string DNIVerified {
+            get {
+                return ResourceManager.GetString("DNIVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email not valid.
+        /// </summary>
+        internal static string EmailNotValid {
+            get {
+                return ResourceManager.GetString("EmailNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email or password empty.
         /// </summary>
         internal static string EmailPasswordEmpty {
@@ -367,6 +403,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full name not valid.
+        /// </summary>
+        internal static string FullNameNotValid {
+            get {
+                return ResourceManager.GetString("FullNameNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incoming Accepted Interactions.
         /// </summary>
         internal static string IncomingAcceptedInteractions {
@@ -480,6 +525,24 @@ namespace greenshare_app.Text {
         internal static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nickname too long.
+        /// </summary>
+        internal static string NicknameTooLong {
+            get {
+                return ResourceManager.GetString("NicknameTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nickname too short.
+        /// </summary>
+        internal static string NicknameTooShort {
+            get {
+                return ResourceManager.GetString("NicknameTooShort", resourceCulture);
             }
         }
         
@@ -610,6 +673,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passwords are not the same.
+        /// </summary>
+        internal static string PasswordsAreNotTheSame {
+            get {
+                return ResourceManager.GetString("PasswordsAreNotTheSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
         internal static string Pending {
@@ -646,6 +718,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please check if the email is correct.
+        /// </summary>
+        internal static string PleaseCheckIfTheEmailIsCorrect {
+            get {
+                return ResourceManager.GetString("PleaseCheckIfTheEmailIsCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please check your Outgoing Interactions to see its Status.
         /// </summary>
         internal static string PleaseCheckYourOutgoingInteractionsToSeeItsStatus {
@@ -673,6 +754,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a longer nickname.
+        /// </summary>
+        internal static string PleaseEnterALongerNickname {
+            get {
+                return ResourceManager.GetString("PleaseEnterALongerNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a name.
         /// </summary>
         internal static string PleaseEnterAName {
@@ -691,11 +781,56 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a report message first.
+        /// </summary>
+        internal static string PleaseEnterAReportMessageFirst {
+            get {
+                return ResourceManager.GetString("PleaseEnterAReportMessageFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a shorter nickname.
+        /// </summary>
+        internal static string PleaseEnterAShorterNickname {
+            get {
+                return ResourceManager.GetString("PleaseEnterAShorterNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter at least one tag first.
         /// </summary>
         internal static string PleaseEnterATagFirst {
             get {
                 return ResourceManager.GetString("PleaseEnterATagFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid DNI.
+        /// </summary>
+        internal static string PleaseEnterAValidDNI {
+            get {
+                return ResourceManager.GetString("PleaseEnterAValidDNI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid full name.
+        /// </summary>
+        internal static string PleaseEnterAValidFullName {
+            get {
+                return ResourceManager.GetString("PleaseEnterAValidFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please make sure both passwords are equal.
+        /// </summary>
+        internal static string PleaseMakeSureBothPasswordsAreEqual {
+            get {
+                return ResourceManager.GetString("PleaseMakeSureBothPasswordsAreEqual", resourceCulture);
             }
         }
         
@@ -741,6 +876,15 @@ namespace greenshare_app.Text {
         internal static string PleaseSelectATagFirst {
             get {
                 return ResourceManager.GetString("PleaseSelectATagFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please take a photo of your DNI.
+        /// </summary>
+        internal static string PleaseTakeAPhotoOfYourDNI {
+            get {
+                return ResourceManager.GetString("PleaseTakeAPhotoOfYourDNI", resourceCulture);
             }
         }
         
@@ -885,6 +1029,15 @@ namespace greenshare_app.Text {
         internal static string Report {
             get {
                 return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Page.
+        /// </summary>
+        internal static string ReportPage {
+            get {
+                return ResourceManager.GetString("ReportPage", resourceCulture);
             }
         }
         
@@ -1146,6 +1299,15 @@ namespace greenshare_app.Text {
         internal static string WrongInfo {
             get {
                 return ResourceManager.GetString("WrongInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your DNI has been verified.
+        /// </summary>
+        internal static string YourDNIHasBeenVerified {
+            get {
+                return ResourceManager.GetString("YourDNIHasBeenVerified", resourceCulture);
             }
         }
     }

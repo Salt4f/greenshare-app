@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -13,7 +14,7 @@ namespace greenshare_app.ViewModels
     {
         public RegisterViewModel(INavigation navigation, Page view)
         {
-            Title = "Sign In";
+            Title = Text.Text.SignIn;
             Email = string.Empty;
             Password = string.Empty;
             RepeatPassword = string.Empty;
@@ -80,40 +81,40 @@ namespace greenshare_app.ViewModels
         {           
             if (Nickname.Length <= 5)
             {
-                await view.DisplayAlert("Nickname too short", "Please enter a longer nickname", "OK");                
+                await view.DisplayAlert(Text.Text.NicknameTooShort, Text.Text.PleaseEnterALongerNickname, "OK");                
                 return;
             }
             if (Nickname.Length > 30)
             {
-                await view.DisplayAlert("Nickname too long", "Please enter a shorter nickname", "OK");
+                await view.DisplayAlert(Text.Text.NicknameTooLong, Text.Text.PleaseEnterAShorterNickname, "OK");
                 return;
             }
             if (!Validation.ValidateDni(Dni))
             {
-                await view.DisplayAlert("DNI not valid", "Please enter a valid DNI", "OK");
+                await view.DisplayAlert(Text.Text.DNINotValid, Text.Text.PleaseEnterAValidDNI, "OK");
                 return;
             }
             if (string.IsNullOrEmpty(FullName))
             {
-                await view.DisplayAlert("Full name not valid", "Please enter a valid full name", "OK");
+                await view.DisplayAlert(Text.Text.FullNameNotValid, Text.Text.PleaseEnterAValidFullName, "OK");
                 return;
             }
 
             if (!Validation.PasswordsAreEqual(Password, RepeatPassword))
             {
-                await view.DisplayAlert("Passwords are not the same", "Please make sure both passwords are equal", "OK");
+                await view.DisplayAlert(Text.Text.PasswordsAreNotTheSame, Text.Text.PleaseMakeSureBothPasswordsAreEqual, "OK");
                 RepeatPassword = string.Empty;
                 return;
             }
             if (!Validation.ValidateEmail(Email))
             {   
-                await view.DisplayAlert("Email not valid", "Please check if the email is correct", "OK");
+                await view.DisplayAlert(Text.Text.EmailNotValid, Text.Text.PleaseCheckIfTheEmailIsCorrect, "OK");
                 return;
             }
 
             if (!dniPhotoValid)
             {
-                await view.DisplayAlert("DNI not verified", "Please take a photo of your DNI", "OK");
+                await view.DisplayAlert(Text.Text.DNINotValid, Text.Text.PleaseTakeAPhotoOfYourDNI, "OK");
                 return;
             }
 
@@ -131,7 +132,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, "OK");
             }
         
         }
@@ -142,7 +143,7 @@ namespace greenshare_app.ViewModels
             if (photo is null) return;
 
             dniPhotoValid = true;
-            await view.DisplayAlert("DNI verified", "Your DNI has been verified", "OK");
+            await view.DisplayAlert(Text.Text.DNIVerified, Text.Text.YourDNIHasBeenVerified, "OK");
 
         }
        
