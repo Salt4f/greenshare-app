@@ -42,6 +42,7 @@
                         Command="{Binding OnFilterButtonCommand}"/>
                 
             </Grid>
+
         <Grid Padding="15" HorizontalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*" />

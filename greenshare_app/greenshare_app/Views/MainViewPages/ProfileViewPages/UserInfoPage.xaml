@@ -69,6 +69,12 @@
                     </Grid>
                 </StackLayout>
             </Frame>
+
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+
             <StackLayout Padding="0" Spacing="0">
                 <Frame HasShadow="False">
                     <StackLayout Padding="0" Margin="-20,0,0,0">

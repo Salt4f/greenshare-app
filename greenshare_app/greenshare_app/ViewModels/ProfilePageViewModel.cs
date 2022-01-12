@@ -67,6 +67,19 @@ namespace greenshare_app.ViewModels
             get => ownPage;
             private set => SetProperty(ref ownPage, value);
         }
+
+        public bool NotAdminNotOwnPage
+        {
+            get => !IsAdmin && !OwnPage;
+        }
+        public bool IsAdminOwnPage
+        {
+            get => IsAdmin && OwnPage;
+        }
+        public bool IsAdminNotOwnPage
+        {
+            get => IsAdmin && !OwnPage;
+        }
         public bool IsAdmin
         {
             get => isAdmin;
@@ -103,6 +116,9 @@ namespace greenshare_app.ViewModels
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
         public AsyncCommand UserOutgoingInteractionsCommand => new AsyncCommand(OnOutgoingInteractionsButton);
         public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReportButton);
+        public AsyncCommand OnBanButtonCommand => new AsyncCommand(OnBanButton);
+
+
         //TODO: RATE PAGE PER USER
         //public AsyncCommand OnRateButtonCommand => new AsyncCommand(OnRateButton);
 
@@ -163,6 +179,11 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
             IsBusy = false;
+        }
+
+        private async Task OnBanButton()
+        {
+            //TODO funcion de baneo
         }
 
     }
