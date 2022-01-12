@@ -99,8 +99,9 @@ namespace greenshare_app.ViewModels
                         Password = string.Empty;
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    var message = e.Message;
                     IsBusy = false;
                     await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, Text.Text.OK);
                 }
