@@ -7,6 +7,7 @@ using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -16,6 +17,8 @@ namespace greenshare_app.ViewModels
     {
         private event EventHandler Starting = delegate { };
 
+        private User user;
+        public AsyncCommand OnEditFrameCommand => new AsyncCommand(OnEdit);
         private bool ownPage;
         public UserInfoPageViewModel(INavigation navigation, Page view, int userId, bool ownPage)
         {
@@ -24,7 +27,6 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             OwnPage = ownPage;
-            IsReportable = !OwnPage;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -36,6 +38,11 @@ namespace greenshare_app.ViewModels
         {
             get => nickName;
             set => SetProperty(ref nickName, value);
+        }
+        public string FullName
+        {
+            get => fullName;
+            set => SetProperty(ref fullName, value);
         }
         public string Description 
         {
@@ -62,13 +69,7 @@ namespace greenshare_app.ViewModels
         {
             get => totalGreenCoins;
             set => SetProperty(ref totalGreenCoins, value);
-        }
-
-        public bool IsReportable
-        {
-            get => isReportable;
-            private set => SetProperty(ref isReportable, value);
-        }
+        }        
         public bool OwnPage
         {
             get => ownPage;
@@ -76,10 +77,12 @@ namespace greenshare_app.ViewModels
         }
         private async void OnStart(object sender, EventArgs args)
         {
+            IsBusy = true;
             try
             {
-                User user = await UserInfoUtil.Instance().GetUserInfo();
+                user = await UserInfoUtil.Instance().GetUserInfo();
                 NickName = user.NickName;
+                FullName = user.FullName;
                 Description = user.Description;
                 ProfilePicture = user.ProfilePicture;
                 AverageValoration = user.AverageValoration;
@@ -97,7 +100,17 @@ namespace greenshare_app.ViewModels
             }
             IsBusy = false;
         }
-
+        private void OnDisappear(object sender, EventArgs args)
+        {
+            OnStart(this, EventArgs.Empty);
+        }
+        private async Task OnEdit()
+        {
+            var view = new UserInfoUpdatePage(this.user);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
+        }
         private int userId;
         private INavigation navigation;
         private Page view;
@@ -107,5 +120,6 @@ namespace greenshare_app.ViewModels
         private int totalEcoPoints;
         private int totalGreenCoins;
         private bool isReportable;
+        private string fullName;
     }
 }

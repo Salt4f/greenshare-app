@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoUpdatePage"
-             xmlns:fontAwesome="clr-namespace:FontAwesome">
+             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:UserInfoUpdateViewModel">
     
     <ScrollView>
         <StackLayout Spacing="0" Margin="0" Padding="0">
@@ -38,22 +38,22 @@
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                 <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.User}" FontFamily="FAS" ></Label>
                             </Frame>
-                            <control:BorderlessEntry Style="{StaticResource styleEntryUserName}" Text="{Binding UserName}"/>
+                            <control:BorderlessEntry Style="{StaticResource styleEntryUserName}" Text="{Binding NickName}"/>
                         </StackLayout>
                     </Frame>
 
-                    <!--Descripción de la recompensa-->
+                    <!--Descripción del usuario-->
 
                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
                         <StackLayout Orientation="Horizontal">
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" VerticalOptions="Start">
                                 <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.PencilAlt}" FontFamily="FAS" ></Label>
                             </Frame>
-                            <control:BorderlessEditor HeightRequest="200" Style="{StaticResource styleEntryDescription}" Text="{Binding UserDescription}" VerticalOptions="Start" Margin="0,13,0,0"/>
+                            <control:BorderlessEditor HeightRequest="200" Style="{StaticResource styleEntryDescription}" Text="{Binding Description}" VerticalOptions="Start" Margin="0,13,0,0"/>
                         </StackLayout>
                     </Frame>
-
-                    <Button Text="Actualizar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnUpdateCommand}"/>
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Button Text="Submit" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
 
                 </StackLayout>
             </Frame>
