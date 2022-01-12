@@ -321,8 +321,6 @@
   <data name="NoOffersFound" xml:space="preserve">
     <value>No s'han trobat ofertes</value>
   </data>
-    <value>Canvia la teva ubicació i actualitza</value>
-  </data>
   <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
     <value>S'ha produït un error en recuperar les ofertes</value>
   </data>

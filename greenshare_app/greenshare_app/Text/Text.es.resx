@@ -321,9 +321,6 @@
   <data name="NoOffersFound" xml:space="preserve">
     <value>No se han encontrado ofertas</value>
   </data>
-  <data name="f" xml:space="preserve">
-    <value>Cambia tu ubicación y actualiza</value>
-  </data>
   <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
     <value>Error al recuperar ofertas</value>
   </data>

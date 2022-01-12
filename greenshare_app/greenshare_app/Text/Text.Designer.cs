@@ -430,15 +430,6 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please change your location and refresh.
-        /// </summary>
-        internal static string f {
-            get {
-                return ResourceManager.GetString("f", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Finish.
         /// </summary>
         internal static string Finish {

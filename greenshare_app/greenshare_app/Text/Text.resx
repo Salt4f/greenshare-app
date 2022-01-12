@@ -321,9 +321,6 @@
   <data name="NoOffersFound" xml:space="preserve">
     <value>No offers found</value>
   </data>
-  <data name="f" xml:space="preserve">
-    <value>Please change your location and refresh</value>
-  </data>
   <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
     <value>Error while retrieving offers</value>
   </data>
