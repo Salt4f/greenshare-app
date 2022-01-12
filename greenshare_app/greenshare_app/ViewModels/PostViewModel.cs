@@ -29,7 +29,6 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnRequestToOfferButtonCommand => new AsyncCommand(OnRequestToOffer);
         public AsyncCommand OnOfferToRequestButtonCommand => new AsyncCommand(OnOfferToRequest);
 
-
         private event EventHandler Starting = delegate { };
         private IList<Image> photos;
         private Image icon;

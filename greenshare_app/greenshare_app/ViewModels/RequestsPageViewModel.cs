@@ -10,6 +10,7 @@ using greenshare_app.Utils;
 using greenshare_app.Views.MainViewPages;
 using Xamarin.Essentials;
 using System.Text;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -47,7 +48,6 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.AddRange(cards);
@@ -67,7 +67,7 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
+                //await navigation.PopToRootAsync();
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.Clear();
@@ -120,17 +120,34 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnFilterButtonCommand => new AsyncCommand(OnFilter);
 
 
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await Refresh();
+        }
+
         async Task Selected(object args)
         {
             var card = args as PostCard;
             if (card == null)
                 return;
-            IsBusy = true;
-            Request request = await PostRetriever.Instance().GetRequest(SelectedPostCard.Id);
-
-            if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Request not found", "OK");
-            else await navigation.PushModalAsync(new ViewPost(request));
-            IsBusy = false;
+            try
+            {
+                IsBusy = true;
+                Request request = await PostRetriever.Instance().GetRequest(SelectedPostCard.Id);
+                if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Offer not found", "OK");
+                else
+                {
+                    var view = new ViewPost(request);
+                    var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                    view.Disappearing += OnDisappear;
+                    await navigation.PushModalAsync(view);
+                }
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                await view.DisplayAlert("Error while retrieving Selected Request", "Something went wrong", "OK");
+            }
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }
