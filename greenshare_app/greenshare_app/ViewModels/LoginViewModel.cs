@@ -4,6 +4,7 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;
 
@@ -113,7 +114,11 @@ namespace greenshare_app.ViewModels
 
         private async Task OnGoogleClicked()
         {
-            throw new NotImplementedException();
+            string uri = "https://www.google.com";
+            await Browser.OpenAsync(uri, new BrowserLaunchOptions
+            {
+
+            });
         }
     }
 }
