@@ -10,6 +10,8 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Command = MvvmHelpers.Commands.Command;
 using System.IO;
+using System.Threading;
+using greenshare_app.Views.MainViewPages;
 
 namespace greenshare_app.ViewModels
 {
@@ -22,9 +24,11 @@ namespace greenshare_app.ViewModels
 
             this.navigation = navigation;
             this.view = view;
+            NewTag = "";
+            tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();           
-            photos = new ObservableRangeCollection<Image>();
-            tags = new ObservableRangeCollection<Tag>();
+            Photos = new ObservableRangeCollection<Image>();
+            Tags = new ObservableRangeCollection<Tag>();
             minDate = DateTime.Now;
             terminationDateTime = DateTime.Now;
             PostTypes = new List<string> {
@@ -66,14 +70,23 @@ namespace greenshare_app.ViewModels
         }
 
         private byte[] iconBytes;
+        //Used to check repeated tags
+        private IList<string> tagNames;
         private DateTime minDate;
         private string newTag;
 
         private IList<string> postTypes;
+        private Location location;
+
         public IList<string> PostTypes
         {
             get => postTypes;
             private set => SetProperty(ref postTypes, value);
+        }
+        public Location Location
+        {
+            get => location;
+            private set => SetProperty(ref location, value);
         }
         public Image Icon
         {
@@ -109,6 +122,7 @@ namespace greenshare_app.ViewModels
 
         public AsyncCommand OnSubmitButtonCommand => new AsyncCommand(OnSubmit);
         public AsyncCommand OnAddTagButtonCommand => new AsyncCommand(OnAddTag);
+        public AsyncCommand OnAddLocationButtonCommand => new AsyncCommand(OnAddLocationButton);
 
         private async Task OnAddTag()
         {           
@@ -117,41 +131,100 @@ namespace greenshare_app.ViewModels
             byte[] colors = new byte[3];
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
-            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
-
+            if (NewTag == "")
+            {
+                await view.DisplayAlert("Error while adding Tag", "Please enter a name first", "OK");
+            }
+            else if (!tagNames.Contains(NewTag))
+            {
+                Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+                tagNames.Add(NewTag);
+            }           
+            else
+            {
+                await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
+            }            
+            NewTag = string.Empty;
         }
 
         public AsyncCommand OnAddPhotoButtonCommand => new AsyncCommand(OnAddPhotoButton);
         public AsyncCommand OnAddIconButtonCommand => new AsyncCommand(OnAddIconButton);
         private async Task OnSubmit()
         {
+            IsBusy = true;
             if (Name.Length == 0)
             {
-                await view.DisplayAlert("Name field not filled", "Please enter a name", "OK");
+                await view.DisplayAlert("Error while creating Post", "Please enter a name", "OK");
+                IsBusy = false;
                 return;
             }
             if (Description.Length == 0)
             {
-                await view.DisplayAlert("Description field not filled", "Please enter a description", "OK");
+                await view.DisplayAlert("Error while creating Post", "Please enter a description", "OK");
+                IsBusy = false;
                 return;
-            }           
+            }
+            var loc = await Geolocation.GetLocationAsync();
+            if (loc == null && Location == null)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("Error while creating Post", "Please make sure location is enabled on your device or select one", "OK");
+                return;
+            }
+            if (Location != null) loc = Location;
+            if (Tags.Count == 0)
+            {
+                await view.DisplayAlert("Error while creating Post", "Please make sure you entered at least one Tag", "OK");
+                IsBusy = false;
+                return;
+            }
+            int response;
+            Post post;
             switch (PostType)
             {
                 case nameof(Offer):
                     if (Icon == null)
                     {
-                        await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
+                        await view.DisplayAlert("Error while creating Post", "Please enter an icon", "OK");
+                        IsBusy = false;
                         return;
                     }                  
-                    await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
+                    response = await PostSender.Instance().PostOffer(Name, Description, TerminationDateTime, loc, Tags, photoBytesArray, iconBytes);
+                    post = await PostRetriever.Instance().GetOffer(response);
                     break;
                 case nameof(Request):
-                    await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+                    response = await PostSender.Instance().PostRequest(Name, Description, TerminationDateTime, loc, Tags);
+                    post = await PostRetriever.Instance().GetRequest(response);
                     break;
                 default:
+                    response = -1;
+                    post = null;
                     break;
             }
-            await view.DisplayAlert("Offer Created", "", "ok");
+            IsBusy = false;
+            if (response != -1)
+            {
+                await view.DisplayAlert("Post Created", "New Post name: " + Name, "ok");
+                await navigation.PushModalAsync(new Views.MainViewPages.ViewPost(post));
+            }
+            else await view.DisplayAlert("Error while creating Post", "Invalid Session, please make sure you are logged in", "OK");
+            ResetProperties();
+
+        }
+
+        private void ResetProperties()
+        {
+            Description = string.Empty;
+            Name = string.Empty;
+            photoBytesArray = new List<byte[]>();
+            Photos = new ObservableRangeCollection<Image>();
+            Tags = new ObservableRangeCollection<Tag>();
+            Icon = new Image();
+            TerminationDateTime = DateTime.Now;
+            MinDate = DateTime.Now;
+            NewTag = string.Empty;
+            tagNames = new List<string>();
+
         }
 
         public string PostType
@@ -173,10 +246,10 @@ namespace greenshare_app.ViewModels
                 SetProperty(ref postType, value); 
             }
         }
-        
-       
 
-        
+
+
+
         /*  
           public EventHandler Picker_OnSelectedIndex(object sender, EventArgs e)
           {
@@ -185,7 +258,21 @@ namespace greenshare_app.ViewModels
 
           }
         */
-      
+        private void OnDisappear(object sender, EventArgs args)
+        {
+            Tuple<bool, Location> location;
+            location = PublicationMapViewModel.GetLocation();
+            if (location.Item1) Location = location.Item2;
+        }  
+        public async Task OnAddLocationButton() 
+        {
+            var view = new PublicationMapPage();
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
+            
+        }
+
         public async Task<bool> OnAddPhotoButton()
         {
             var photo = await MediaPicker.PickPhotoAsync();

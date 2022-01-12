@@ -3,12 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.App"
              xmlns:control="clr-namespace:greenshare_app.Controls">
-             xmlns:views="clr-namespace:greenshare_app.Views"
-             xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels">
     <Application.Resources>
         <ResourceDictionary>
-
-            <ImageSource x:Key="Placeholder">https://dictionary.cambridge.org/es/images/full/tree_noun_001_18152.jpg?version=5.0.191</ImageSource>
 
             <!--COLORS-->
 
@@ -23,7 +19,8 @@
             <Color x:Key="colorGreen7">#D2E459</Color>
             <Color x:Key="colorGreen8">#ddffbc</Color>
             <Color x:Key="colorGreen9">#feffde</Color>
-            <Color x:Key="colorRed1">#e60000</Color>
+            <Color x:Key="colorRed1">#DD4A48</Color>
+            <Color x:Key="colorOrange">#e69138</Color>
 
             <Color x:Key="colorBlack">
                 <x:Arguments>
@@ -61,6 +58,42 @@
             <Style TargetType="control:BorderlessEntry" x:Key="styleEntryEmail" BasedOn="{StaticResource styleEntryDefault}">
                 <Setter Property="Keyboard" Value="Email"/>
                 <Setter Property="Placeholder" Value="Email"/>
+            </Style>
+
+            <!--UserName Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryUserName" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Email"/>
+                <Setter Property="Placeholder" Value="User Name"/>
+            </Style>
+
+            <!--Description Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryDescription" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Email"/>
+                <Setter Property="Placeholder" Value="Description"/>
+            </Style>
+
+            <!--EnterpriseName Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryEnterpriseName" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="Placeholder" Value="Enterprise Name"/>
+            </Style>
+
+            <!--RewardName Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryRewardName" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="Placeholder" Value="Reward Name"/>
+            </Style>
+
+            <!--GreenCoins Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryGreenCoins" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Numeric"/>
+                <Setter Property="Placeholder" Value="GreenCoins Needed"/>
+            </Style>
+
+            <!--RewardDescription Entry-->
+            <Style TargetType="control:BorderlessEntry" x:Key="styleEntryRewardDescription" BasedOn="{StaticResource styleEntryDefault}">
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="Placeholder" Value="Reward Description"/>
             </Style>
 
             <!--Password Entry-->

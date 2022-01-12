@@ -45,8 +45,9 @@ namespace greenshare_app.ViewModels
         //Binding Objects
         public Command ForgotPasswordCommand => new Command(OnForgotPassword);
         public AsyncCommand LoginButtonCommand => new AsyncCommand(OnLoginClicked);
-        public Command RegisterButtonCommand => new Command(OnRegisterClicked);
-        
+        public AsyncCommand RegisterButtonCommand => new AsyncCommand(OnRegisterClicked);
+        public AsyncCommand OnGoogleButtonCommand => new AsyncCommand(OnGoogleClicked);
+
         private string email;
         private string password;
         private bool rememberMe;
@@ -105,10 +106,15 @@ namespace greenshare_app.ViewModels
             }
             
         }
-        private async void OnRegisterClicked()
+        private async Task OnRegisterClicked()
         {
             await navigation.PushModalAsync(new RegisterView());
             //throw new NotImplementedException();
+        }
+
+        private async Task OnGoogleClicked()
+        {
+            throw new NotImplementedException();
         }
     }
 }

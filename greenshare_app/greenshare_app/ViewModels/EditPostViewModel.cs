@@ -21,8 +21,11 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             this.post = post;
+            this.TerminationDateTime = post.TerminateAt;
+            tagNames = new List<string>();
             photoBytesArray = new List<byte[]>();
             Name = post.Name;
+        
             Description = post.Description;
             TerminationDateTime = post.TerminateAt;
             tags = new ObservableRangeCollection<Tag>();
@@ -38,6 +41,7 @@ namespace greenshare_app.ViewModels
                 Photos = new ObservableRangeCollection<Image>();
                 foreach (byte[] photo in ((Offer)post).Photos)
                 {
+                    photoBytesArray.Add(photo);
                     Image definitivePhoto = new Image
                     {
                         Source = ImageSource.FromStream(() => { return new MemoryStream(photo); })
@@ -89,6 +93,7 @@ namespace greenshare_app.ViewModels
         private Image selectedImage;
         private string newTag;
         private Tag selectedTag;
+        private IList<string> tagNames;
 
         public Image Icon
         {
@@ -144,40 +149,64 @@ namespace greenshare_app.ViewModels
             byte[] colors = new byte[3];
             rnd.NextBytes(colors);
             Color tagColor = Color.FromHex(Convert.ToBase64String(colors));
-            Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+            if (!tagNames.Contains(NewTag))
+            {
+                Tags.Add(new Tag { Color = tagColor, Name = NewTag });
+                tagNames.Add(NewTag);
+            }
+            else
+            {
+                await view.DisplayAlert("Error while adding Tag", "Tags cannot be duplicated", "OK");
+            }
+            NewTag = string.Empty;
         }
 
         private async Task OnRemoveTag()
         {
             //Tag no existe
-            Tags.Remove(SelectedTag);
-            await view.DisplayAlert(" Tag deleted successfully", "", "OK");
+            if (SelectedTag != null)
+            {
+                string name = SelectedTag.Name;
+                tagNames.Remove(name);
+                Tags.Remove(SelectedTag);
+                SelectedTag = null;
+                await view.DisplayAlert("Tag deleted successfully", "", "OK");
+            }
+            else await view.DisplayAlert("Please select a Tag first", "", "OK");
+
         }
         private async Task OnSubmit()
         {
             if (Name.Length == 0)
             {
-                await view.DisplayAlert("Name field not filled", "Please enter a name", "OK");
+                await view.DisplayAlert("Error while editing Post", "Please enter a name", "OK");
                 return;
             }
             if (Description.Length == 0)
             {
-                await view.DisplayAlert("Description field not filled", "Please enter a description", "OK");
+                await view.DisplayAlert("Error while editing Post", "Please enter a description", "OK");
                 return;
             }
+            bool response;
+            IsBusy = true;
             if (post.GetType() == typeof(Offer))
             {
                 if (Icon == null)
                 {
-                    await view.DisplayAlert("Icon not found", "Please enter an icon", "OK");
+                    await view.DisplayAlert("Error while editing Post", "Please enter an icon", "OK");
+                    IsBusy = false;
                     return;
                 }
-                await PostSender.Instance().EditOffer(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
+                response = await PostSender.Instance().EditOffer(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags, photoBytesArray, iconBytes);
             }
             else
             {
-                await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
-            }          
+                response = await PostSender.Instance().EditRequest(post.Id, Name, Description, TerminationDateTime, await Geolocation.GetLastKnownLocationAsync(), Tags);
+            }
+            IsBusy = false;
+            if (response) await view.DisplayAlert("Post Edited successfully", "", "OK");
+            else await view.DisplayAlert("Error while editing Post", "Please make sure you are logged in", "OK");
+            await navigation.PopModalAsync();
         }
 
         public async Task<bool> OnAddPhotoButton()
@@ -206,10 +235,16 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnRemovePhotoButton()
         {
-            int index = Photos.IndexOf(SelectedImage);
-            Photos.RemoveAt(index);
-            photoBytesArray.RemoveAt(index);
-            await view.DisplayAlert(" Photo deleted successfully", "", "OK");
+            if (SelectedImage != null)
+            {
+                int index = Photos.IndexOf(SelectedImage);
+                Photos.RemoveAt(index);
+                photoBytesArray.RemoveAt(index);
+                SelectedImage = null;
+                await view.DisplayAlert(" Photo deleted successfully", "", "OK");
+            }
+            else await view.DisplayAlert("Please select a photo first", "", "OK");
+
         }
 
         public async Task<bool> OnAddIconButton()

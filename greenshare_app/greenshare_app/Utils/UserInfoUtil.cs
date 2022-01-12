@@ -29,33 +29,57 @@ namespace greenshare_app.Utils
             return instance;
         }
 
-        private readonly HttpClient httpClient;
+        
 
-        public async Task<User> GetUserInfo()
+        private readonly HttpClient httpClient;
+        public async Task<User> GetUserInfo(int? userId = null)
         {
-            Tuple<int, string> session = await Auth.Instance().GetAuth();            
-            var response = await httpClient.GetAsync("http://server.vgafib.org/api/user/" + session.Item1);
+            HttpRequestMessage request;
+            if (userId == null)
+            {
+                Tuple<int, string> session = await Auth.Instance().GetAuth();
+                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1);
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + userId);
+            }
+            if (userId == null) request = await Auth.AddHeaders(request);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
                 UserInfo info = JsonConvert.DeserializeObject<UserInfo>(json);
-                User user = new User()
+                User user;
+                if (userId == null)
                 {
-                    FullName = info.FullName,
-                    NickName = info.NickName,
-                    Description = info.Description,
-                    ProfilePicture = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.ProfilePicture); }) },
-                    Banned = info.Banned,
-                    TotalEcoPoints = 0,
-                    TotalGreenCoins = 0,
-                    AverageValoration = 0.0,
-                };
+                    user = new User()
+                    {
+                        FullName = info.FullName,
+                        NickName = info.NickName,
+                        Description = info.Description,
+                        ProfilePicture = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.ProfilePicture); }) },
+                        Banned = info.Banned,
+                        TotalEcoPoints = info.TotalEcoPoints,
+                        TotalGreenCoins = info.TotalGreenCoins,
+                        BirthDate = info.BirthDate,
+                        AverageValoration = info.AverageValoration
+                    };
+                }
+                else
+                {
+                    user = new User()
+                    {                        
+                        NickName = info.NickName                        
+                    };
+                }
                 return user;
             }            
             return null;
             
         }
-
+        //No queremos un endpoint de esto, se debe devolver con GetUserInfo
+        
         private class UserInfo
         {
            
@@ -64,6 +88,10 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "fullname")]
             public string FullName { get; set; }
+
+            [JsonProperty(PropertyName = "birthDate")]
+            public DateTime BirthDate { get; set; }
+
 
             [JsonProperty(PropertyName = "profilePicture")]
             public byte[] ProfilePicture { get; set; }

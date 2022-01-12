@@ -26,7 +26,7 @@ namespace greenshare_app.Utils
         int id;
         string token;
         bool rememberMe;
-        readonly HttpClient httpClient;
+        private readonly HttpClient httpClient;
 
         public async Task<bool> Login(string email, string password, bool rememberMe)
         {
@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/login", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/login", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -47,7 +47,42 @@ namespace greenshare_app.Utils
             }
             return false;
         }
-        
+
+        public async static Task<HttpContent> AddHeaders(HttpContent httpContent)
+        {
+
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            httpContent.Headers.Add("id", session.Item1.ToString());
+            httpContent.Headers.Add("token", session.Item2);
+            return httpContent;
+        }
+
+        public async static Task<HttpRequestMessage> AddHeaders(HttpRequestMessage httpContent)
+        {
+
+            Tuple<int, string> session;
+            try
+            {
+                session = await Auth.Instance().GetAuth();
+
+            }
+            catch (Exception)
+            {
+                throw new InvalidLoginException();
+            }
+            httpContent.Headers.Add("id", session.Item1.ToString());
+            httpContent.Headers.Add("token", session.Item2);
+            return httpContent;
+        }
 
         public async Task<bool> CheckLoggedIn()
         {
@@ -60,12 +95,12 @@ namespace greenshare_app.Utils
 
         private async Task<bool> ValidateLogin()
         {
-            var login = new ValidationInfo { Id = id, Token = token };
-            string json = JsonConvert.SerializeObject(login);
-            var httpContent = new StringContent(json);
+            
+            HttpContent httpContent = new StringContent("");
+            httpContent.Headers.Add("id", id.ToString());
+            httpContent.Headers.Add("token", token);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/validate", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/validate", httpContent);
             if (response.StatusCode == HttpStatusCode.OK) return true;
             return false;
         }
@@ -76,8 +111,7 @@ namespace greenshare_app.Utils
             string json = JsonConvert.SerializeObject(register);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-            var response = await httpClient.PostAsync("http://server.vgafib.org/api/auth/register", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/register", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -133,6 +167,12 @@ namespace greenshare_app.Utils
         {
             if (!await ValidateLogin()) throw new InvalidLoginException();
             return new Tuple<int, string>(id, token);
+        }
+
+        public async Task<bool> IsAdmin()
+        {
+            if (!await ValidateLogin()) throw new InvalidLoginException();
+            return id == Config.Config.Instance().AdminId;
         }
 
         private class LoginInfo

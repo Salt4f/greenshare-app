@@ -4,15 +4,15 @@
        xmlns:local="clr-namespace:greenshare_app.Views.MainViewPages"
        x:Class="greenshare_app.Views.MainView"
        BackgroundColor="#52734d">
-    <TabBar>
+    <TabBar x:Name="TabBar">
         <Tab Icon="hand_holding.png">
             <ShellContent ContentTemplate="{DataTemplate local:OffersPage}" />
         </Tab>
         <Tab Icon="handshake.png">
             <ShellContent ContentTemplate="{DataTemplate local:RequestsPage}" />
         </Tab>
-        <Tab Icon="plus.png">
-            <ShellContent ContentTemplate="{DataTemplate local:NewPublication}" />
+        <Tab Icon="plus.png" x:Name="DefaultTab">
+            <ShellContent ContentTemplate="{DataTemplate local:NewPost}" />
         </Tab>
         <Tab Icon="map.png">
             <ShellContent ContentTemplate="{DataTemplate local:MapsPage}" />

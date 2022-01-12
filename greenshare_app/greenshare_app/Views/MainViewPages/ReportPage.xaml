@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="greenshare_app.Views.MainViewPages.ReportPage"
+             xmlns:control="clr-namespace:greenshare_app.Controls"
+             BackgroundColor="{StaticResource colorGreen9}">
+    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen2}" CornerRadius="15" Padding="10" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+        <StackLayout Style="{StaticResource styleStackLayoutDefault}" Padding="10" Margin="0">
+            <control:BorderlessEditor
+                Style="{StaticResource styleEntryDefault}"
+                Text="{Binding Message}"
+                Placeholder="Reason"
+                HeightRequest="350"
+                BackgroundColor="{StaticResource colorGreen3}"
+                TextColor="{StaticResource colorWhite}"
+                Margin="15"
+                AutoSize="TextChanges"
+                FontSize="15"/>
+            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" Margin="5">
+                <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
+                            Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="15"/>
+            </Frame>
+        </StackLayout>
+    </Frame>
+</ContentPage>

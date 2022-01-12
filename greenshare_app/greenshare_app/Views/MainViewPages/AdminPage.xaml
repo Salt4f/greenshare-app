@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:AdminPageViewModel"
+             x:Class="greenshare_app.Views.MainViewPages.AdminPage">
+    <ListView x:Name="MyListView"
+              HasUnevenRows="true"
+              SeparatorVisibility="None"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              RefreshControlColor="{StaticResource colorGreen2}"
+              ItemsSource="{Binding ReportList}"
+              >
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Report">
+                <ViewCell Height="400">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="#aed581" WidthRequest="600" HeightRequest="800">
+                            <StackLayout>
+                                <Frame BorderColor="#a5d6a7" WidthRequest="40" HeightRequest="350">
+                                    <StackLayout Padding="0" Margin="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60" />
+                                                <RowDefinition Height="200" />
+                                                <RowDefinition Height="60" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="150" />
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <!--tipus d'allò reportat-->
+                                            
+                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="#bdbdbd" WidthRequest="30" HeightRequest="40" BackgroundColor="#eeeeee" HasShadow="True">
+                                                <Label Text="{Binding Type}" Padding="0" Margin="0" FontAttributes="Bold"></Label>
+                                            </Frame>
+                                           
+                                            <!--Nom d'allò reportat-->
+                                            
+                                            <Frame Grid.Row="0" Grid.Column="1" BorderColor="#bdbdbd" BackgroundColor="#eeeeee" HasShadow="True" WidthRequest="30" HeightRequest="40">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding OnItemNameFrameCommand}"/>
+                                                </Frame.GestureRecognizers>
+                                                <Label Text="{Binding ItemName}" FontAttributes="Bold"></Label>
+                                            </Frame>
+                                            
+                                            <!--Usuari que reporta-->
+                                            
+                                            <Frame Grid.Row="1" Grid.Column="0" BorderColor="#ffee58" BackgroundColor="#fff9c4" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="80" HeightRequest="80" CornerRadius="100" HasShadow="True">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding OnReporterIdFrameCommand}"/>
+                                                </Frame.GestureRecognizers>
+                                                <Label Text="{Binding ReporterId}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
+                                            </Frame>
+                                            
+                                            <!--Missatge de report-->
+
+                                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="#a5d6a7" BackgroundColor="#dcedc8" WidthRequest="30" HeightRequest="40">
+                                                <Label Text="{Binding Message}"></Label>
+                                            </Frame>
+                                            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Solve" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSolveButtonCommand}"></Button>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
