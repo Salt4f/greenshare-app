@@ -31,7 +31,7 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public RequestsPageViewModel(INavigation navigation, Page view)
         {
-            Title = "Peticions";            
+            Title = Text.Text.Requests;            
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
@@ -52,13 +52,13 @@ namespace greenshare_app.ViewModels
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.AddRange(cards);
-                if (PostCardList.Count == 0) await view.DisplayAlert("No offers found", "please change your location and refresh", "OK");
+                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving requests", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingRequests, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
             }
             IsBusy = false;
         }
@@ -73,14 +73,14 @@ namespace greenshare_app.ViewModels
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.Clear();
                 PostCardList.AddRange(cards);
-                if (PostCardList.Count == 0) await view.DisplayAlert("No requests found", "please change your location and refresh", "OK");
+                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
 
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving requests", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingRequests, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
             }
             IsBusy = false;
         }

@@ -19,7 +19,7 @@ namespace greenshare_app.Text {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Text {
@@ -372,6 +372,15 @@ namespace greenshare_app.Text {
         internal static string ErrorWhileRetrievingReports {
             get {
                 return ResourceManager.GetString("ErrorWhileRetrievingReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error While Retrieving Requests.
+        /// </summary>
+        internal static string ErrorWhileRetrievingRequests {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingRequests", resourceCulture);
             }
         }
         
@@ -1173,6 +1182,15 @@ namespace greenshare_app.Text {
         internal static string RequestNotFound {
             get {
                 return ResourceManager.GetString("RequestNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requests.
+        /// </summary>
+        internal static string Requests {
+            get {
+                return ResourceManager.GetString("Requests", resourceCulture);
             }
         }
         

@@ -489,4 +489,10 @@
   <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
     <value>Cambie su ubicación y actualice</value>
   </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Peticiones</value>
+  </data>
+  <data name="ErrorWhileRetrievingRequests" xml:space="preserve">
+    <value>Error al recuperar solicitudes</value>
+  </data>
 </root>
