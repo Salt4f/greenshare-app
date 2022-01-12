@@ -41,114 +41,91 @@
             <!--CAMPS PRINCIPALS-->
             <!--ICON-->
             <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}" BackgroundColor="{StaticResource colorGreen5}" IsVisible="{Binding IsVisible}"/>
-            <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10">
-                <StackLayout Orientation="Vertical" Padding="2" BackgroundColor="Transparent">
-                    <!--TITLE-->
-                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="15">
-                        <StackLayout Style="{StaticResource styleStackLayoutDefault}">
-                            <Label Style="{StaticResource styleLabelBlack}" Text="Title" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen4}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10">
-                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}" FontSize="25" FontAttributes="bold" TextColor="{StaticResource colorWhite}"></Label>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="4"  BackgroundColor="{StaticResource colorGreen2}">
+                <!--TITLE-->
+                <StackLayout BackgroundColor="{StaticResource colorGreen5}" Padding="10" Margin="5">
+                    <Label Style="{StaticResource styleLabelBlack}" Text="Title" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                        <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Name}" FontSize="25" HorizontalOptions="CenterAndExpand" Padding="10" FontAttributes="Bold" TextColor="{StaticResource colorWhite}"/>
                     </Frame>
-                    <!--DESCRIPTION-->
-                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
-                        <StackLayout Padding="5" BackgroundColor="Transparent">
-                            <Label Style="{StaticResource styleLabelBlack}" Text="Description" FontSize="12" VerticalOptions="Center"/>
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="EndAndExpand" Padding="5" HeightRequest="100">
-                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding Description}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
+                </StackLayout>
+                <!--DESCRIPTION-->
+                <StackLayout BackgroundColor="{StaticResource colorGreen5}" Padding="10" Margin="5">
+                    <Label Style="{StaticResource styleLabelBlack}" Text="Description" FontSize="12" VerticalOptions="Center"/>
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10" HeightRequest="100">
+                        <Label Padding="5" Style="{StaticResource styleLabelBlack}" Text="{Binding Description}" HorizontalOptions="Start" VerticalOptions="StartAndExpand" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
                     </Frame>
-                    <!--POST TYPE-->
-                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
-                        <StackLayout Padding="5" BackgroundColor="Transparent">
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
-                                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
-                                        <Label Style="{StaticResource styleLabelWhite}" Text="Post Type" FontSize="14" VerticalOptions="Center" FontAttributes="Bold"/>
-                                    </Frame>
-                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}" FontSize="14" TextColor="{StaticResource colorBlack}"></Label>
-                                </StackLayout>
+                </StackLayout>
+                <!--POST TYPE-->
+                <StackLayout BackgroundColor="{StaticResource colorGreen5}" Padding="10" Margin="5">
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10" VerticalOptions="Start" Padding="5">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="5">
+                            <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
+                                <Label Style="{StaticResource styleLabelWhite}" Text="Post Type" FontSize="14" VerticalOptions="Center" FontAttributes="Bold"/>
                             </Frame>
-                        </StackLayout>
-                    </Frame>
-                    <!--TERMINATION DATE-->
-                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10">
-                        <StackLayout Padding="5" BackgroundColor="Transparent">
-                            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
-                                    <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
-                                        <Label Style="{StaticResource styleLabelWhite}" Text="Termination Date" FontSize="12" VerticalOptions="Center" FontAttributes="Bold"/>
-                                    </Frame>
-                                    <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
-                                </StackLayout>
-                            </Frame>
+                            <Label Style="{StaticResource styleLabelBlack}" Text="{Binding PostType}" FontSize="14" TextColor="{StaticResource colorBlack}"></Label>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-            </Frame>
+                <!--TERMINATION DATE-->
+                <StackLayout BackgroundColor="{StaticResource colorGreen5}" Padding="10" Margin="5">
+                    <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}" BorderColor="{StaticResource colorBlack}" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Padding="5">
+                            <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="5" Padding="6" BackgroundColor="{StaticResource colorBlack}">
+                                <Label Style="{StaticResource styleLabelWhite}" Text="Termination Date" FontSize="12" VerticalOptions="Center" FontAttributes="Bold"/>
+                            </Frame>
+                            <Label Style="{StaticResource styleLabelBlack}" Text="{Binding TerminationDateTime}" FontSize="12" TextColor="{StaticResource colorBlack}"></Label>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
 
             <!--TAGS-->
-            <StackLayout>
-                <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorGreen5}">
-                    <StackLayout>
-                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorBlack}">
-                            <StackLayout Padding="5" BackgroundColor="Transparent">
-                                <Label Style="{StaticResource styleLabelWhite}" Text="TAGS" FontSize="16" VerticalOptions="Center" FontAttributes="bold"/>
-                            </StackLayout>
-                        </Frame>
-                        <ScrollView Orientation="Horizontal" Padding="10">
-                            <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Tags}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate x:DataType="model:Tag">
-                                        
-                                        <!--TODO: CANVIAR EL COLOR DEL BACKGROUND D'UN TAG PEL DEL BINDING-->
-                                        <!--TODO: BackgroundColor="{Binding Color}"-->
-                                        
-                                        <Frame BackgroundColor="Black" CornerRadius="25" Padding="5">
-                                            <Label Text="{Binding Name}"
-                                            Style="{StaticResource styleLabelWhite}"
-                                            VerticalOptions="Center"/>
-                                        </Frame>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </ScrollView>
+            <StackLayout Padding="10" BackgroundColor="{StaticResource colorGreen5}">
+                <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorBlack}">
+                    <StackLayout Padding="5" BackgroundColor="Transparent">
+                        <Label Style="{StaticResource styleLabelWhite}" Text="TAGS" FontSize="16" VerticalOptions="Center" FontAttributes="bold"/>
                     </StackLayout>
                 </Frame>
+                <ScrollView Orientation="Horizontal" Padding="10">
+                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Tags}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="model:Tag">
+                                <Frame BackgroundColor="{StaticResource colorWhite}" CornerRadius="25" Padding="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Style="{StaticResource styleLabelBlack}" FontSize="10" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="#"/>
+                                                <Span Text="{Binding Name}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
 
             <!--IMATGES, INVISIBLES SI NO ES UNA OFERTA-->
-            <StackLayout IsVisible="{Binding IsVisible}" Orientation="Vertical">
-                <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorGreen5}">
-                    <StackLayout>
-                        <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="10" BackgroundColor="{StaticResource colorBlack}">
-                            <StackLayout Padding="5" BackgroundColor="Transparent">
-                                <Label Style="{StaticResource styleLabelWhite}" Text="IMAGES" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
-                            </StackLayout>
-                        </Frame>
-                        <ScrollView Orientation="Horizontal" Padding="10">
-                            <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate x:DataType="Image">
-                                        <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}">
-                                            <Image  Aspect="AspectFill"
+            <StackLayout Padding="10" BackgroundColor="{StaticResource colorGreen5}" IsVisible="{Binding IsVisible}">
+                <Frame BorderColor="{StaticResource colorBlack}" CornerRadius="10" Padding="15" BackgroundColor="{StaticResource colorBlack}">
+                    <Label Style="{StaticResource styleLabelWhite}" Text="IMAGES" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
+                </Frame>
+                <ScrollView Orientation="Horizontal" Padding="10">
+                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Photos}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="Image">
+                                <Frame CornerRadius="10" Padding="25" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorWhite}">
+                                    <Image  Aspect="AspectFill"
                                                 HeightRequest="150"
                                                 WidthRequest="150"
                                                 Source="{Binding Source}" VerticalOptions="Start"/>
-                                        </Frame>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </ScrollView>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
-                </Frame>
+                </ScrollView>
             </StackLayout>
         </StackLayout>
     </ScrollView> 
