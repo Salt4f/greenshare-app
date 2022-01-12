@@ -72,17 +72,17 @@ namespace greenshare_app.ViewModels
         public bool NotAdminNotOwnPage
         {
             get => notAdminNotOwnPage;
-            private set => SetProperty(ref notAdminNotOwnPage, !IsAdmin && !OwnPage);
+            private set => SetProperty(ref notAdminNotOwnPage, value);
         }
         public bool IsAdminOwnPage
         {
             get => isAdminOwnPage;
-            private set => SetProperty(ref isAdminOwnPage, !IsAdmin && OwnPage);
+            private set => SetProperty(ref isAdminOwnPage, value);
         }
         public bool IsAdminNotOwnPage
         {
             get => isAdminNotOwnPage;
-            private set => SetProperty(ref isAdminNotOwnPage, IsAdmin && !OwnPage);
+            private set => SetProperty(ref isAdminNotOwnPage, value);
         }
         public bool IsAdmin
         {
@@ -96,6 +96,9 @@ namespace greenshare_app.ViewModels
             {
                 IsAdmin = await Auth.Instance().IsAdmin();
                 IsReportable = !OwnPage && !IsAdmin;
+                IsAdminNotOwnPage = IsAdmin && !OwnPage;
+                IsAdminOwnPage = IsAdmin && OwnPage;
+                NotAdminNotOwnPage = !IsAdmin && !OwnPage;
                 if (OwnPage)
                 {
                     user = await UserInfoUtil.Instance().GetUserInfo();
@@ -204,7 +207,22 @@ namespace greenshare_app.ViewModels
 
         private async Task OnBanButton()
         {
-            //TODO funcion de baneo
+            IsBusy = true;
+            try
+            {
+                if (await UserInfoUtil.Instance().BanUser(userId))
+                {
+                    await view.DisplayAlert("User banned successfully", "sinners shall be purified", "OK");
+                    IsBusy = false;
+                    await navigation.PopModalAsync();
+                }
+
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("Error while banning user", "something went wrong", "OK");
+            }
         }
 
     }
