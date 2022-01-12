@@ -206,15 +206,8 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnRequestToOffer()
         {
-            List<Tag> tags = new List<Tag>();
-            Tag tag = new Tag()
-            {
-                Name = "RequestToOffer",
-                Color = Color.White,
-            };
-            tags.Add(tag);
             IsBusy = true;
-            var id = await PostSender.Instance().PostRequest("Req-to-Offer-" + post.Id, "request to offer", post.TerminateAt, await Geolocation.GetLocationAsync(), tags);
+            int id = await PostSender.Instance().PostRequest(post.Name, "Reply to " + post.Name, post.TerminateAt, new Location(), post.Tags);
             if (id != -1)
             {
                 if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
@@ -228,10 +221,27 @@ namespace greenshare_app.ViewModels
         }
         private async Task OnOfferToRequest()
         {
-            await view.DisplayAlert("Button WIP!", "missing way to create offer from here", "OK");
-            // TODO: añadir una foto de la galería y usarla para crear una offer
-            //var id = await PostSender.Instance().PostOffer("Offer-to-Req-" + post.Id, "offer to request", post.TerminateAt, await Geolocation.GetLocationAsync(), new List<Tag>());
-            //if (id != -1) await OfferRequestInteraction.Instance().OfferARequest(id, post.Id);
+            IsBusy = true;
+
+            FileResult photo = null;
+            while (photo is null)
+            {
+                photo = await MediaPicker.PickPhotoAsync();
+            }
+            var photoStream = await photo.OpenReadAsync();
+            byte[] icon = new byte[photoStream.Length];
+            await photoStream.ReadAsync(icon, 0, (int)photoStream.Length);
+            int id = await PostSender.Instance().PostOffer(post.Name, "Reply to " + post.Name, post.TerminateAt, new Location(), post.Tags, new List<byte[]>(), icon);
+            if (id != -1)
+            {
+                if (await OfferRequestInteraction.Instance().OfferARequest(id, post.Id))
+                {
+                    IsBusy = false;
+                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                    DeactivateButtons();
+                }
+            }
+            IsBusy = false;
         }
 
         public string PostType
