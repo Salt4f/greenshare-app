@@ -9,6 +9,7 @@ using Command = MvvmHelpers.Commands.Command;
 using greenshare_app.Views.MainViewPages.ProfileViewPages;
 using greenshare_app.Models;
 using greenshare_app.Views.MainViewPages;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -70,15 +71,18 @@ namespace greenshare_app.ViewModels
 
         public bool NotAdminNotOwnPage
         {
-            get => !IsAdmin && !OwnPage;
+            get => notAdminNotOwnPage;
+            private set => SetProperty(ref notAdminNotOwnPage, !IsAdmin && !OwnPage);
         }
         public bool IsAdminOwnPage
         {
-            get => IsAdmin && OwnPage;
+            get => isAdminOwnPage;
+            private set => SetProperty(ref isAdminOwnPage, !IsAdmin && OwnPage);
         }
         public bool IsAdminNotOwnPage
         {
-            get => IsAdmin && !OwnPage;
+            get => isAdminNotOwnPage;
+            private set => SetProperty(ref isAdminNotOwnPage, IsAdmin && !OwnPage);
         }
         public bool IsAdmin
         {
@@ -87,13 +91,20 @@ namespace greenshare_app.ViewModels
         }
 
         private async void OnStart(object sender, EventArgs args)
-        {
-            IsReportable = !OwnPage;
+        {           
             try
             {
                 IsAdmin = await Auth.Instance().IsAdmin();
-                if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
-                else user = await UserInfoUtil.Instance().GetUserInfo(userId);
+                IsReportable = !OwnPage && !IsAdmin;
+                if (OwnPage)
+                {
+                    user = await UserInfoUtil.Instance().GetUserInfo();
+                    userId = ((Tuple<int, string>)await Auth.Instance().GetAuth()).Item1;
+                }
+                else
+                {
+                    user = await UserInfoUtil.Instance().GetUserInfo(userId);
+                }
                 NickName = user.NickName;
                 Rating = user.AverageValoration;
             }
@@ -115,7 +126,7 @@ namespace greenshare_app.ViewModels
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
         public AsyncCommand UserOutgoingInteractionsCommand => new AsyncCommand(OnOutgoingInteractionsButton);
-        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReportButton);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
         public AsyncCommand OnBanButtonCommand => new AsyncCommand(OnBanButton);
 
 
@@ -125,6 +136,9 @@ namespace greenshare_app.ViewModels
         private INavigation navigation;
         private Page view;
         private bool isAdmin;
+        private bool notAdminNotOwnPage;
+        private bool isAdminOwnPage;
+        private bool isAdminNotOwnPage;
 
         private async Task OnUserInfo()
         {
@@ -174,10 +188,17 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        private async Task OnReportButton()
+        private async void OnDisappear(object sender, EventArgs e)
         {
-            IsBusy = true;
-            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
+            await navigation.PopModalAsync();
+        }
+        private async Task OnReport()
+        {            
+            IsBusy = true;            
+            var view = new ReportPage(typeof(User), userId);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
             IsBusy = false;
         }
 

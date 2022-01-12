@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -88,7 +89,15 @@ namespace greenshare_app.ViewModels
             
             IsBusy = true;
             var session = await Auth.Instance().GetAuth();
-            if (session.Item1 != post.OwnerId)
+            if (session.Item1 == Config.Config.Instance().AdminId)
+            {
+                IsEditButtonVisible = false;
+                IsRequestButtonVisible = false;
+                IsOfferButtonVisible = false;
+                IsDeactivateButtonVisible = true;
+                IsEditButtonVisible = false;
+            }
+            else if (session.Item1 != post.OwnerId)
             {
                 IsEditButtonVisible = false;
                 if (PostType == "Offer")
@@ -131,6 +140,7 @@ namespace greenshare_app.ViewModels
         private bool isReportButtonVisible;
         private bool isOfferButtonVisible;
         private bool isRequestButtonVisible;
+        private bool isDeactivateButtonVisible;
 
         public Image Icon
         {
@@ -169,6 +179,11 @@ namespace greenshare_app.ViewModels
             get => isRequestButtonVisible;
             set => SetProperty(ref isRequestButtonVisible, value);
         }
+        public bool IsDeactivateButtonVisible
+        {
+            get => isDeactivateButtonVisible;
+            set => SetProperty(ref isDeactivateButtonVisible, value);
+        }
         public bool IsOfferButtonVisible
         {
             get => isOfferButtonVisible;
@@ -187,7 +202,8 @@ namespace greenshare_app.ViewModels
             if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
             {
                 IsBusy = false;
-                await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
+                await view.DisplayAlert("Post deleted successfully", "now people can't see your post", "OK");
+                await navigation.PopModalAsync();
             }
             IsBusy = false;
         }        
@@ -197,11 +213,18 @@ namespace greenshare_app.ViewModels
             IsRequestButtonVisible = false;
             IsOfferButtonVisible = false;
         }
+        private async void OnDisappear(object sender, EventArgs e)
+        {
+            await navigation.PopModalAsync();
+        }
         private async Task OnReport()
         {
             DeactivateButtons();
             IsBusy = true;
-            await navigation.PushModalAsync(new ReportPage(typeof(Post), post.Id));
+            var view = new ReportPage(typeof(Post),post.Id);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
             IsBusy = false;
         }
         private async Task OnRequestToOffer()
@@ -221,7 +244,7 @@ namespace greenshare_app.ViewModels
                 {
                     IsBusy = false;
                     await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
-                    DeactivateButtons();
+                    await navigation.PopModalAsync();
                 }
             }
             IsBusy = false;

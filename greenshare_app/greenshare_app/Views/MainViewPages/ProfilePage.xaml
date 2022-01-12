@@ -12,9 +12,13 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10" Margin="0">
             <!--TODO: HACER LA LOGICA DE LOS BOTONES-->
             <!--BOTO REPORTAR USER-->            
-            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsReportable}">
+            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding NotAdminNotOwnPage}">
                 <Button Text="REPORTAR" FontFamily="Montserrat-SemiBold"
                             Command="{Binding OnReportButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
+            </Frame>
+            <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" IsVisible="{Binding IsAdminNotOwnPage}">
+                <Button Text="BANEAR" FontFamily="Montserrat-SemiBold"
+                            Command="{Binding OnBanButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
             </Frame>
         </StackLayout>
 
@@ -147,12 +151,12 @@
                     <TapGestureRecognizer Command="{Binding UserLogOutCommand}"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame IsVisible="{Binding IsAdmin}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
+            <Frame IsVisible="{Binding IsAdminNotOwnPage}" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,10,0,0" Padding="5">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Padding="3">
                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.UserAlien}" FontFamily="FAS"/>
+                        <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Key}" FontFamily="FAS"/>
                     </Frame>
-                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="LOG OUT"/>
+                    <Label Style="{StaticResource styleLabelBlack}" FontSize="15" Text="ADMIN PAGE"/>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OnAdminFrameCommand}"/>
