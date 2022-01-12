@@ -36,7 +36,7 @@
                                             <!--tipus d'allò reportat-->
                                             
                                             <Frame Grid.Row="0" Grid.Column="0" BorderColor="#bdbdbd" WidthRequest="30" HeightRequest="40" BackgroundColor="#eeeeee" HasShadow="True">
-                                                <Label Text="{Binding Type}" Padding="0" Margin="0" FontAttributes="Bold"></Label>
+                                                <Label Text="{Binding Type}" Padding="0" Margin="0" FontAttributes="Bold" FontSize="14" TextColor="Black"></Label>
                                             </Frame>
                                            
                                             <!--Nom d'allò reportat-->
@@ -45,7 +45,7 @@
                                                 <Frame.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding OnItemNameFrameCommand}"/>
                                                 </Frame.GestureRecognizers>
-                                                <Label Text="{Binding ItemName}" FontAttributes="Bold"></Label>
+                                                <Label Text="{Binding ItemName}" FontAttributes="Bold" FontSize="14" TextColor="Black"></Label>
                                             </Frame>
                                             
                                             <!--Usuari que reporta-->
@@ -54,13 +54,13 @@
                                                 <Frame.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding OnReporterIdFrameCommand}"/>
                                                 </Frame.GestureRecognizers>
-                                                <Label Text="{Binding ReporterId}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
+                                                <Label Text="{Binding ReporterId}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="14" TextColor="Black"></Label>
                                             </Frame>
                                             
                                             <!--Missatge de report-->
 
                                             <Frame Grid.Row="1" Grid.Column="1" BorderColor="#a5d6a7" BackgroundColor="#dcedc8" WidthRequest="30" HeightRequest="40">
-                                                <Label Text="{Binding Message}"></Label>
+                                                <Label Text="{Binding Message}" FontAttributes="Bold" FontSize="14" TextColor="Black"></Label>
                                             </Frame>
                                             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Solve" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSolveButtonCommand}"></Button>
                                         </Grid>
