@@ -45,7 +45,7 @@ namespace greenshare_app.ViewModels
         }
 
         private string nickName;
-        private double rating = 3.5;
+        private double rating;
         public string NickName {
             get => nickName;
             set => SetProperty(ref nickName, value);
@@ -82,6 +82,7 @@ namespace greenshare_app.ViewModels
                 if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
                 else user = await UserInfoUtil.Instance().GetUserInfo(userId);
                 NickName = user.NickName;
+                Rating = user.AverageValoration;
             }
             catch (Exception e)
             {

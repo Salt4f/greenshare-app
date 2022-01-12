@@ -52,6 +52,8 @@ namespace greenshare_app.ViewModels
             }
             try
             {
+                user.NickName = NickName;
+                user.Description = Description;
                 if (await UserInfoUtil.Instance().EditUser(user))
                 {
                     await view.DisplayAlert("user edited successfully", "", "OK");

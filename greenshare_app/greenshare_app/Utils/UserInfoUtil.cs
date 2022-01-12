@@ -70,7 +70,8 @@ namespace greenshare_app.Utils
                 {
                     user = new User()
                     {                        
-                        NickName = info.NickName                        
+                        NickName = info.NickName,
+                        AverageValoration = info.AverageValoration
                     };
                 }
                 return user;
@@ -83,12 +84,12 @@ namespace greenshare_app.Utils
         public async Task<bool> EditUser(User user)
         {
             EditUserInfo editInfo = new EditUserInfo() { Description = user.Description, NickName = user.NickName };
-            //Tuple<int, string> session = await Auth.Instance().GetAuth();
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
             string json = JsonConvert.SerializeObject(editInfo);
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/user", httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/user/"+session.Item1, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -104,7 +105,7 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "nickname")]
             public string NickName { get; set; }
 
-            [JsonProperty(PropertyName = "description")]
+            [JsonProperty(PropertyName = "aboutMe")]
             public string Description { get; set; }            
         }
         private class UserInfo : EditUserInfo

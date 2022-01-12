@@ -27,7 +27,6 @@ namespace greenshare_app.ViewModels
             this.navigation = navigation;
             this.view = view;
             OwnPage = ownPage;
-            IsReportable = !OwnPage;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -70,13 +69,7 @@ namespace greenshare_app.ViewModels
         {
             get => totalGreenCoins;
             set => SetProperty(ref totalGreenCoins, value);
-        }
-
-        public bool IsReportable
-        {
-            get => isReportable;
-            private set => SetProperty(ref isReportable, value);
-        }
+        }        
         public bool OwnPage
         {
             get => ownPage;
@@ -107,8 +100,7 @@ namespace greenshare_app.ViewModels
             }
             IsBusy = false;
         }
-
-        private async void OnDisappear(object sender, EventArgs args)
+        private void OnDisappear(object sender, EventArgs args)
         {
             OnStart(this, EventArgs.Empty);
         }
