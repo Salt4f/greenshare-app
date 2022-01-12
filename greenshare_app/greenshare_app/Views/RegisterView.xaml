@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:control="clr-namespace:greenshare_app.Controls"
     xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+    xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     BackgroundColor="{StaticResource colorWhite}"
     >
@@ -31,7 +32,7 @@
                 <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True" HorizontalOptions="FillAndExpand">
                     <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <StackLayout Margin="20,60,20,0">
-                            <Label Style="{StaticResource styleLabelGreen}" Text="REGISTER" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
+                                <Label Style="{StaticResource styleLabelGreen}" Text="{x:Static multiIdioma:Text.Register}" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
                         </StackLayout>
 
                         <StackLayout Padding="0" Margin="15,0,15,15" HorizontalOptions="FillAndExpand">
@@ -105,7 +106,7 @@
                                     </StackLayout>
                                 </Frame>
 
-                                <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
+                                <Button Text="{x:Static multiIdioma:Text.SignUp}" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}" Margin="0,15,0,0"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>

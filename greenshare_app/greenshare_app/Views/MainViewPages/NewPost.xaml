@@ -5,6 +5,7 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
+            xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
             BackgroundColor="{StaticResource colorWhite}"
             xmlns:model="clr-namespace:greenshare_app.Models"
              Title="{Binding PostType}">
@@ -70,7 +71,7 @@
                         </StackLayout>
                     </ScrollView>
                 </Frame>
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                     <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
                         <Image Source="{Binding Icon.Source}" 
                            Aspect="AspectFill"
@@ -79,10 +80,10 @@
                            VerticalOptions="Start"/>
                     </Frame>
                 </Frame>
-                <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Icon" HorizontalOptions="Center" VerticalOptions="Center"/>
-                </StackLayout>
+            </StackLayout>
+            <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddPhoto}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddIcon}" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">
@@ -117,7 +118,7 @@
                     <Button
                             HorizontalOptions="Start" 
                             VerticalOptions="Center"
-                            Text="Add Tag"
+                            Text="{x:Static multiIdioma:Text.AddTag}"
                             Command="{Binding OnAddTagButtonCommand}"
                             Style="{StaticResource styleButtonDefault}"
                             />
@@ -141,7 +142,7 @@
 
             <StackLayout Margin="5,0,5,5" >
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                <Button Text="{x:Static multiIdioma:Text.Publish}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

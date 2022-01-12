@@ -1,18 +1,492 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="loginButtonText" xml:space="preserve">
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="loginButtonText" xml:space="preserve">
 		<value>Entra noi</value>
     </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Benvingut</value>
+  </data>
+  <data name="Fullname" xml:space="preserve">
+    <value>Nom complert</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripció</value>
+  </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>Enviar missatge</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Actualitzar perfil</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nom d'usuari</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Data de naixement</value>
+  </data>
+  <data name="AvgValoration" xml:space="preserve">
+    <value>Valoració mitjana</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Ofertes</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>Informació de l'usuari</value>
+  </data>
+  <data name="Publications" xml:space="preserve">
+    <value>Publicacions</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Desconnectar-se</value>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Afegir foto</value>
+  </data>
+  <data name="AddIcon" xml:space="preserve">
+    <value>Afegir icona</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Afegir tag</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recordar dades</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Has oblidat la contrasenya?</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Inicia sessió</value>
+  </data>
+  <data name="StillNot" xml:space="preserve">
+    <value>No estàs registrat?</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Registra't</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrar-se</value>
+  </data>
+  <data name="VerifyDNI" xml:space="preserve">
+    <value>Verificar DNI</value>
+  </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Error intern del servidor</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Alguna cosa ha anat malament</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WrongInfo" xml:space="preserve">
+    <value>Informació incorrecta</value>
+  </data>
+  <data name="EmailPasswordIncorrect" xml:space="preserve">
+    <value>Correu electrònic i/o contrasenya incorrecta</value>
+  </data>
+  <data name="EmailPasswordEmpty" xml:space="preserve">
+    <value>Correu electrònic o contrasenya buits</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>En curs...</value>
+  </data>
+  <data name="Valued" xml:space="preserve">
+    <value>Valorat</value>
+  </data>
+  <data name="WaitingResponse" xml:space="preserve">
+    <value>Esperant resposta de </value>
+  </data>
+  <data name="WaitingForResponse" xml:space="preserve">
+    <value>Esperant resposta...</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Valorar</value>
+  </data>
+  <data name="RateAndComplete" xml:space="preserve">
+    <value>Valorar i completar</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Acceptat</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pendent</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualitzar</value>
+  </data>
+  <data name="Solve" xml:space="preserve">
+    <value>Resol</value>
+  </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>Borrar foto</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Borrar tag</value>
+  </data>
+  <data name="SubmitChanges" xml:space="preserve">
+    <value>Enviar canvis</value>
+  </data>
+  <data name="AddLocation" xml:space="preserve">
+    <value>Afegeix la ubicació</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Reportar</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Recompenses</value>
+  </data>
+  <data name="MyPublications" xml:space="preserve">
+    <value>Les meves publicacions</value>
+  </data>
+  <data name="IncomingInteractions" xml:space="preserve">
+    <value>Interaccions entrants</value>
+  </data>
+  <data name="OutgoingInteractions" xml:space="preserve">
+    <value>Interaccions sortints</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Acceptar</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>Refusar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Benscanviar</value>
+  </data>
+  <data name="SponsorsForm" xml:space="preserve">
+    <value>Formulari per a patrocinadors</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Sol·licitar</value>
+  </data>
+  <data name="Offer" xml:space="preserve">
+    <value>Oferir</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Títol</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>Tipus de publicació</value>
+  </data>
+  <data name="TerminationDate" xml:space="preserve">
+    <value>Data de finalització</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Etiquetes</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Següent</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finalitzar</value>
+  </data>
+  <data name="NewPost" xml:space="preserve">
+    <value>Publicació nova</value>
+  </data>
+  <data name="ErrorAddingTag" xml:space="preserve">
+    <value>Error afegint etiqueta</value>
+  </data>
+  <data name="TagsCannotBeDuplicated" xml:space="preserve">
+    <value>Els tags no poden ser duplicats</value>
+  </data>
+  <data name="TagDeletedSuccessfully" xml:space="preserve">
+    <value>Tag eliminat correctament</value>
+  </data>
+  <data name="PleaseSelectATagFirst" xml:space="preserve">
+    <value>Afegeix una etiqueta primer</value>
+  </data>
+  <data name="ErrorWhileEditingPost" xml:space="preserve">
+    <value>Error editant post</value>
+  </data>
+  <data name="PleaseEnterAName" xml:space="preserve">
+    <value>Afegeix un nom</value>
+  </data>
+  <data name="PleaseEnterADescription" xml:space="preserve">
+    <value>Afegeix una descripció</value>
+  </data>
+  <data name="PleaseEnterAnIcon" xml:space="preserve">
+    <value>Afegeix un icone</value>
+  </data>
+  <data name="PostEditedSuccessfully" xml:space="preserve">
+    <value>Publicació editada correctament</value>
+  </data>
+  <data name="PleaseMakeSureLoggedIn" xml:space="preserve">
+    <value>Assegurat d'estar connectat</value>
+  </data>
+  <data name="PhotoDeletedSuccessfully" xml:space="preserve">
+    <value>Foto eliminada correctament</value>
+  </data>
+  <data name="PleaseSelectAPhotoFirst" xml:space="preserve">
+    <value>Selecciona una foto primer</value>
+  </data>
+  <data name="IncomingAcceptedInteractions" xml:space="preserve">
+    <value>Interaccions entrants acceptades</value>
+  </data>
+  <data name="NoAcceptedInteractionsleft" xml:space="preserve">
+    <value>No queden interaccions acceptades</value>
+  </data>
+  <data name="ErrorWhileRetrievingAcceptedInteractions" xml:space="preserve">
+    <value>S'ha produït un error en recuperar les interaccions acceptades</value>
+  </data>
+  <data name="IncomingPendingInteractions" xml:space="preserve">
+    <value>Interaccions pendents entrants</value>
+  </data>
+  <data name="NoPendingInteractionsLeft" xml:space="preserve">
+    <value>No queden interaccions pendents</value>
+  </data>
+  <data name="ErrorWhileRetrievingPendingInteractions" xml:space="preserve">
+    <value>S'ha produït un error en recuperar les interaccions pendents</value>
+  </data>
+  <data name="MyPosts" xml:space="preserve">
+    <value>Les meves publicacions</value>
+  </data>
+  <data name="NoPostsFound" xml:space="preserve">
+    <value>No s'han trobat publicacions</value>
+  </data>
+  <data name="PleaseCreateAPostFirst" xml:space="preserve">
+    <value>Primer crea una publicació</value>
+  </data>
+  <data name="ErrorWhileRetrievingYourPosts" xml:space="preserve">
+    <value>S'ha produït un error en recuperar les publicacions</value>
+  </data>
+  <data name="PleaseMakeSureLocationIsEnabled" xml:space="preserve">
+    <value>Assegureu-vos que la ubicació estigui activada al vostre dispositiu</value>
+  </data>
+  <data name="ErrorWhileRetrievingSelectedOffer" xml:space="preserve">
+    <value>S'ha produït un error en recuperar l'oferta seleccionada</value>
+  </data>
+  <data name="ErrorWhileRetrievingSelectedRequest" xml:space="preserve">
+    <value>S'ha produït un error en recuperar la sol·licitud seleccionada</value>
+  </data>
+  <data name="OfferNotFound" xml:space="preserve">
+    <value>No s'ha trobat l'oferta</value>
+  </data>
+  <data name="RequestNotFound" xml:space="preserve">
+    <value>Sol·licitud no trobada</value>
+  </data>
+  <data name="ErrorWhileCreatingPost" xml:space="preserve">
+    <value>S'ha produït un error en crear la publicació</value>
+  </data>
+  <data name="PostCreated" xml:space="preserve">
+    <value>Publicació creada</value>
+  </data>
+  <data name="NewPostName" xml:space="preserve">
+    <value>Nom de la nueva publicació</value>
+  </data>
+  <data name="PleaseEnterATagFirst" xml:space="preserve">
+    <value>Introduïu almenys una etiqueta primer</value>
+  </data>
+  <data name="NoOffersFound" xml:space="preserve">
+    <value>No s'han trobat ofertes</value>
+  </data>
+  <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
+    <value>S'ha produït un error en recuperar les ofertes</value>
+  </data>
+  <data name="PleaseChangeTheIntroducedParameters" xml:space="preserve">
+    <value>Canvieu els paràmetres introduïts, assegureu-vos que la ubicació estigui activada i actualitzeu</value>
+  </data>
+  <data name="OutgoingAcceptedInteractions" xml:space="preserve">
+    <value>Interacciones salientes aceptadas</value>
+  </data>
+  <data name="OutgoingPendingInteractions" xml:space="preserve">
+    <value>Interaccions pendents sortints</value>
+  </data>
+  <data name="ViewPost" xml:space="preserve">
+    <value>Veure publicació</value>
+  </data>
+  <data name="PostDeactivatedSuccesfully" xml:space="preserve">
+    <value>Publicació desactivada correctament</value>
+  </data>
+  <data name="NowPeopleCantSeeYourPost" xml:space="preserve">
+    <value>Ara la gent no pot veure la teva publicació</value>
+  </data>
+  <data name="OfferRequestedSuccessfully" xml:space="preserve">
+    <value>Oferta solicitada con éxito</value>
+  </data>
+  <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
+    <value>Comproveu les vostres interaccions sortints per veure'n l'estat</value>
+  </data>
+  <data name="ErrorWhileRetrievingQuestions" xml:space="preserve">
+    <value>S'ha produït un error en recuperar les preguntes</value>
+  </data>
+  <data name="ErrorWhileSendingRequestToBackend" xml:space="preserve">
+    <value>S'ha produït un error en enviar la sol·licitud al backend</value>
+  </data>
+  <data name="PleaseSelectAnOptionFirst" xml:space="preserve">
+    <value>Seleccioneu primer una opció</value>
+  </data>
+  <data name="AllQuestionsMustBeAnswered" xml:space="preserve">
+    <value>S'han de respondre totes les preguntes</value>
+  </data>
+  <data name="ErrorWhileSendingResponses" xml:space="preserve">
+    <value>S'ha produït un error en enviar les respostes</value>
+  </data>
+  <data name="PleaseTryAgainLater" xml:space="preserve">
+    <value>Siusplau, intenta-ho més tard</value>
+  </data>
+  <data name="PostCompletedSuccessfully" xml:space="preserve">
+    <value>Publicació completada amb èxit</value>
+  </data>
+  <data name="ErrorWhileCompletingThePost" xml:space="preserve">
+    <value>S'ha produït un error en completar la publicació</value>
+  </data>
+  <data name="NicknameTooShort" xml:space="preserve">
+    <value>Àlies massa curt</value>
+  </data>
+  <data name="PleaseEnterALongerNickname" xml:space="preserve">
+    <value>Introduïu un àlies més llarg</value>
+  </data>
+  <data name="NicknameTooLong" xml:space="preserve">
+    <value>Àlies massa llarg</value>
+  </data>
+  <data name="PleaseEnterAShorterNickname" xml:space="preserve">
+    <value>Introduïu un àlies més curt</value>
+  </data>
+  <data name="DNIVerified" xml:space="preserve">
+    <value>DNI verificat</value>
+  </data>
+  <data name="YourDNIHasBeenVerified" xml:space="preserve">
+    <value>S'ha verificat el teu DNI</value>
+  </data>
+  <data name="DNINotValid" xml:space="preserve">
+    <value>DNI no vàlid</value>
+  </data>
+  <data name="FullNameNotValid" xml:space="preserve">
+    <value>Nom complet no vàlid</value>
+  </data>
+  <data name="PasswordsAreNotTheSame" xml:space="preserve">
+    <value>Les contrasenyes no són les mateixes</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Correu electrònic no vàlid</value>
+  </data>
+  <data name="DNINotVerified" xml:space="preserve">
+    <value>DNI no verificat</value>
+  </data>
+  <data name="PleaseEnterAValidDNI" xml:space="preserve">
+    <value>Introduïu un DNI vàlid</value>
+  </data>
+  <data name="PleaseTakeAPhotoOfYourDNI" xml:space="preserve">
+    <value>Fes una foto del teu DNI</value>
+  </data>
+  <data name="PleaseCheckIfTheEmailIsCorrect" xml:space="preserve">
+    <value>Comproveu si el correu electrònic és correcte</value>
+  </data>
+  <data name="PleaseMakeSureBothPasswordsAreEqual" xml:space="preserve">
+    <value>Assegureu-vos que les dues contrasenyes siguin iguals</value>
+  </data>
+  <data name="PleaseEnterAValidFullName" xml:space="preserve">
+    <value>Introduïu un nom complet vàlid</value>
+  </data>
+  <data name="ReportPage" xml:space="preserve">
+    <value>Pàgina de reports</value>
+  </data>
+  <data name="PleaseEnterAReportMessageFirst" xml:space="preserve">
+    <value>Introduïu primer un missatge d'informe</value>
+  </data>
+  <data name="RewardsPage" xml:space="preserve">
+    <value>Pàgina de recompenses</value>
+  </data>
+  <data name="YourGreenCoins" xml:space="preserve">
+    <value>Els teus GreenCoins:</value>
+  </data>
+  <data name="NoRewardsFound" xml:space="preserve">
+    <value>No s'han trobat recompenses</value>
+  </data>
+  <data name="WeAreStillLookingForSponsors" xml:space="preserve">
+    <value>Seguim buscant patrocinadors!</value>
+  </data>
+  <data name="DescriptionFieldEmpty" xml:space="preserve">
+    <value>El camp de descripció està buit!</value>
+  </data>
+  <data name="NameFieldEmpty" xml:space="preserve">
+    <value>El camp del nom està buit!</value>
+  </data>
+  <data name="SponsorNameFieldEmpty" xml:space="preserve">
+    <value>El camp Nom del patrocinador està buit!</value>
+  </data>
+  <data name="GreenCoinsFieldNegativeOrEmpty" xml:space="preserve">
+    <value>El camp GreenCoins negatiu o buit!</value>
+  </data>
+  <data name="PleaseEnterAValueFirst" xml:space="preserve">
+    <value>Introduïu primer un valor</value>
+  </data>
+  <data name="RewardCreatedSuccessfully" xml:space="preserve">
+    <value>La recompensa s'ha creat correctament</value>
+  </data>
+  <data name="ErrorWhileCreatingReward" xml:space="preserve">
+    <value>S'ha produït un error en crear la recompensa</value>
+  </data>
+  <data name="RewardEditedSuccessfully" xml:space="preserve">
+    <value>La recompensa s'ha editat correctament</value>
+  </data>
+  <data name="ErrorWhileEditingReward" xml:space="preserve">
+    <value>S'ha produït un error en editar la recompensa</value>
+  </data>
+  <data name="NoRequestsFound" xml:space="preserve">
+    <value>No s'han trobat sol·licituds</value>
+  </data>
+  <data name="UserEditedSuccessfully" xml:space="preserve">
+    <value>L'usuari s'ha editat correctament</value>
+  </data>
+  <data name="ErrorWhileEditingUser" xml:space="preserve">
+    <value>S'ha produït un error en editar l'usuari</value>
+  </data>
+  <data name="AdminPage" xml:space="preserve">
+    <value>Pàgina d'administració</value>
+  </data>
+  <data name="NoReportsFound" xml:space="preserve">
+    <value>No se encontraron reports</value>
+  </data>
+  <data name="ItsAPeacefulDayInTheApp" xml:space="preserve">
+    <value>És un dia tranquil a l'aplicació</value>
+  </data>
+  <data name="ErrorWhileRetrievingReports" xml:space="preserve">
+    <value>Error en recuperar els reports</value>
+  </data>
+  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
+    <value>Canvia la teva ubicació i actualitza</value>
+  </data>
 </root>

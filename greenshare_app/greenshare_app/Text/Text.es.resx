@@ -1,18 +1,492 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="loginButtonText" xml:space="preserve">
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="loginButtonText" xml:space="preserve">
 		<value>Entra</value>
     </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
+  <data name="Fullname" xml:space="preserve">
+    <value>Nombre completo</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>Enviar mensaje</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Actualizar perfil</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Fecha de nacimiento</value>
+  </data>
+  <data name="AvgValoration" xml:space="preserve">
+    <value>Valoración media</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Ofertas</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>Información del usuario</value>
+  </data>
+  <data name="Publications" xml:space="preserve">
+    <value>Publicaciones</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Desconectarse</value>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Añadir foto</value>
+  </data>
+  <data name="AddIcon" xml:space="preserve">
+    <value>Añadir icono</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Añadir tag</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recuérdame</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Has olvidado la contraseña?</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Inicia sesión</value>
+  </data>
+  <data name="StillNot" xml:space="preserve">
+    <value>No estás registrado?</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Regístrate</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="VerifyDNI" xml:space="preserve">
+    <value>Verificar DNI</value>
+  </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Error interno del servidor</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Algo salió mal</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WrongInfo" xml:space="preserve">
+    <value>Información incorrecta</value>
+  </data>
+  <data name="EmailPasswordIncorrect" xml:space="preserve">
+    <value>Email y/o contraseña incorrecta</value>
+  </data>
+  <data name="EmailPasswordEmpty" xml:space="preserve">
+    <value>Correo electrónico o contraseña vacía</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>En curso...</value>
+  </data>
+  <data name="Valued" xml:space="preserve">
+    <value>Valorado</value>
+  </data>
+  <data name="WaitingResponse" xml:space="preserve">
+    <value>Esperando respuesta de </value>
+  </data>
+  <data name="WaitingForResponse" xml:space="preserve">
+    <value>Esperando respuesta...</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Valorar</value>
+  </data>
+  <data name="RateAndComplete" xml:space="preserve">
+    <value>Valorar y completar</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Aceptado</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pendiente</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="Solve" xml:space="preserve">
+    <value>Resolver</value>
+  </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>Borrar foto</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Borrar tag</value>
+  </data>
+  <data name="SubmitChanges" xml:space="preserve">
+    <value>Enviar cambios</value>
+  </data>
+  <data name="AddLocation" xml:space="preserve">
+    <value>Añadir la ubicación</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Reportar</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Recompensas</value>
+  </data>
+  <data name="MyPublications" xml:space="preserve">
+    <value>Mis publicaciones</value>
+  </data>
+  <data name="IncomingInteractions" xml:space="preserve">
+    <value>Interacciones entrantes</value>
+  </data>
+  <data name="OutgoingInteractions" xml:space="preserve">
+    <value>Interacciones salientes</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Canjear</value>
+  </data>
+  <data name="SponsorsForm" xml:space="preserve">
+    <value>Formulario para patrocinadores</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Solicitar</value>
+  </data>
+  <data name="Offer" xml:space="preserve">
+    <value>Ofrecer</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>Tipo de publicación</value>
+  </data>
+  <data name="TerminationDate" xml:space="preserve">
+    <value>Fecha de finalización</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Etiquetas</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Acabar</value>
+  </data>
+  <data name="NewPost" xml:space="preserve">
+    <value>Publicación nueva</value>
+  </data>
+  <data name="ErrorAddingTag" xml:space="preserve">
+    <value>Error añadiendo etiqueta</value>
+  </data>
+  <data name="TagsCannotBeDuplicated" xml:space="preserve">
+    <value>Los tags no pueden ser duplicados</value>
+  </data>
+  <data name="TagDeletedSuccessfully" xml:space="preserve">
+    <value>Tag eliminado correctamente</value>
+  </data>
+  <data name="PleaseSelectATagFirst" xml:space="preserve">
+    <value>Añade una etiqueta primero</value>
+  </data>
+  <data name="ErrorWhileEditingPost" xml:space="preserve">
+    <value>Error editando post</value>
+  </data>
+  <data name="PleaseEnterAName" xml:space="preserve">
+    <value>Añade un nombre</value>
+  </data>
+  <data name="PleaseEnterADescription" xml:space="preserve">
+    <value>Añadir una descripción</value>
+  </data>
+  <data name="PleaseEnterAnIcon" xml:space="preserve">
+    <value>Añade un icono</value>
+  </data>
+  <data name="PostEditedSuccessfully" xml:space="preserve">
+    <value>Publicación editada correctamente</value>
+  </data>
+  <data name="PleaseMakeSureLoggedIn" xml:space="preserve">
+    <value>Asegurate de estar conectado</value>
+  </data>
+  <data name="PhotoDeletedSuccessfully" xml:space="preserve">
+    <value>Foto eliminada correctamente</value>
+  </data>
+  <data name="PleaseSelectAPhotoFirst" xml:space="preserve">
+    <value>Selecciona una foto primero</value>
+  </data>
+  <data name="IncomingAcceptedInteractions" xml:space="preserve">
+    <value>Interacciones entrantes aceptadas</value>
+  </data>
+  <data name="NoAcceptedInteractionsleft" xml:space="preserve">
+    <value>No quedan interacciones aceptadas</value>
+  </data>
+  <data name="ErrorWhileRetrievingAcceptedInteractions" xml:space="preserve">
+    <value>Error al recuperar interacciones aceptadas</value>
+  </data>
+  <data name="IncomingPendingInteractions" xml:space="preserve">
+    <value>Interacciones pendientes entrantes</value>
+  </data>
+  <data name="NoPendingInteractionsLeft" xml:space="preserve">
+    <value>No quedan interacciones pendientes</value>
+  </data>
+  <data name="ErrorWhileRetrievingPendingInteractions" xml:space="preserve">
+    <value>Error al recuperar interacciones pendientes</value>
+  </data>
+  <data name="MyPosts" xml:space="preserve">
+    <value>Mis publicaciones</value>
+  </data>
+  <data name="NoPostsFound" xml:space="preserve">
+    <value>No se han encontrado publicaciones</value>
+  </data>
+  <data name="PleaseCreateAPostFirst" xml:space="preserve">
+    <value>Primero crea una publicación</value>
+  </data>
+  <data name="ErrorWhileRetrievingYourPosts" xml:space="preserve">
+    <value>Error al recuperar tus publicaciones</value>
+  </data>
+  <data name="PleaseMakeSureLocationIsEnabled" xml:space="preserve">
+    <value>Asegúrate de que la ubicación esté habilitada en tu dispositivo</value>
+  </data>
+  <data name="ErrorWhileRetrievingSelectedOffer" xml:space="preserve">
+    <value>Error al recuperar la oferta seleccionada</value>
+  </data>
+  <data name="ErrorWhileRetrievingSelectedRequest" xml:space="preserve">
+    <value>Error al recuperar la solicitud seleccionada</value>
+  </data>
+  <data name="OfferNotFound" xml:space="preserve">
+    <value>Oferta no encontrada</value>
+  </data>
+  <data name="RequestNotFound" xml:space="preserve">
+    <value>Solicitud no encontrada</value>
+  </data>
+  <data name="ErrorWhileCreatingPost" xml:space="preserve">
+    <value>Error al crear la publicación</value>
+  </data>
+  <data name="PostCreated" xml:space="preserve">
+    <value>Publicación creada</value>
+  </data>
+  <data name="NewPostName" xml:space="preserve">
+    <value>Nombre de la nueva publicación</value>
+  </data>
+  <data name="PleaseEnterATagFirst" xml:space="preserve">
+    <value>Introduce al menos una etiqueta primero</value>
+  </data>
+  <data name="NoOffersFound" xml:space="preserve">
+    <value>No se han encontrado ofertas</value>
+  </data>
+  <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
+    <value>Error al recuperar ofertas</value>
+  </data>
+  <data name="PleaseChangeTheIntroducedParameters" xml:space="preserve">
+    <value>Cambie los parámetros introducidos, asegúrese de que la ubicación esté habilitada y actualice</value>
+  </data>
+  <data name="OutgoingAcceptedInteractions" xml:space="preserve">
+    <value>Interaccions sortints acceptades</value>
+  </data>
+  <data name="OutgoingPendingInteractions" xml:space="preserve">
+    <value>Interacciones pendientes salientes</value>
+  </data>
+  <data name="ViewPost" xml:space="preserve">
+    <value>Ver publicacion</value>
+  </data>
+  <data name="PostDeactivatedSuccesfully" xml:space="preserve">
+    <value>Publicación desactivada con éxito</value>
+  </data>
+  <data name="NowPeopleCantSeeYourPost" xml:space="preserve">
+    <value>Ahora la gente no puede ver tu publicación</value>
+  </data>
+  <data name="OfferRequestedSuccessfully" xml:space="preserve">
+    <value>Oferta sol·licitada correctament</value>
+  </data>
+  <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
+    <value>Verifique sus interacciones salientes para ver su estado</value>
+  </data>
+  <data name="ErrorWhileRetrievingQuestions" xml:space="preserve">
+    <value>Error al recuperar preguntas</value>
+  </data>
+  <data name="ErrorWhileSendingRequestToBackend" xml:space="preserve">
+    <value>Error al enviar la solicitud al backend</value>
+  </data>
+  <data name="PleaseSelectAnOptionFirst" xml:space="preserve">
+    <value>Por favor selecciona una opción primero</value>
+  </data>
+  <data name="AllQuestionsMustBeAnswered" xml:space="preserve">
+    <value>Todas las preguntas deben ser respondidas</value>
+  </data>
+  <data name="ErrorWhileSendingResponses" xml:space="preserve">
+    <value>Error al enviar respuestas</value>
+  </data>
+  <data name="PleaseTryAgainLater" xml:space="preserve">
+    <value>Por favor, inténtelo de nuevo más tarde</value>
+  </data>
+  <data name="PostCompletedSuccessfully" xml:space="preserve">
+    <value>Publicación completada con éxito</value>
+  </data>
+  <data name="ErrorWhileCompletingThePost" xml:space="preserve">
+    <value>Error al completar la publicación</value>
+  </data>
+  <data name="NicknameTooShort" xml:space="preserve">
+    <value>Apodo demasiado corto</value>
+  </data>
+  <data name="PleaseEnterALongerNickname" xml:space="preserve">
+    <value>Introduce un apodo más largo</value>
+  </data>
+  <data name="NicknameTooLong" xml:space="preserve">
+    <value>Apodo demasiado largo</value>
+  </data>
+  <data name="PleaseEnterAShorterNickname" xml:space="preserve">
+    <value>Introduce un apodo más corto</value>
+  </data>
+  <data name="DNIVerified" xml:space="preserve">
+    <value>DNI verificado</value>
+  </data>
+  <data name="YourDNIHasBeenVerified" xml:space="preserve">
+    <value>Su DNI ha sido verificado</value>
+  </data>
+  <data name="DNINotValid" xml:space="preserve">
+    <value>DNI no válido</value>
+  </data>
+  <data name="FullNameNotValid" xml:space="preserve">
+    <value>Nombre completo no válido</value>
+  </data>
+  <data name="PasswordsAreNotTheSame" xml:space="preserve">
+    <value>Las contraseñas no son iguales</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Correo electrónico no válido</value>
+  </data>
+  <data name="DNINotVerified" xml:space="preserve">
+    <value>DNI no verificado</value>
+  </data>
+  <data name="PleaseEnterAValidDNI" xml:space="preserve">
+    <value>Por favor introduce un DNI válido</value>
+  </data>
+  <data name="PleaseTakeAPhotoOfYourDNI" xml:space="preserve">
+    <value>Por favor haz una foto de tu DNI</value>
+  </data>
+  <data name="PleaseCheckIfTheEmailIsCorrect" xml:space="preserve">
+    <value>Por favor, compruebe si el correo electrónico es correcto</value>
+  </data>
+  <data name="PleaseMakeSureBothPasswordsAreEqual" xml:space="preserve">
+    <value>Por favor, asegúrese de que ambas contraseñas sean iguales</value>
+  </data>
+  <data name="PleaseEnterAValidFullName" xml:space="preserve">
+    <value>Por favor ingrese un nombre completo válido</value>
+  </data>
+  <data name="ReportPage" xml:space="preserve">
+    <value>Página de reports</value>
+  </data>
+  <data name="PleaseEnterAReportMessageFirst" xml:space="preserve">
+    <value>Ingrese un mensaje de informe primero</value>
+  </data>
+  <data name="RewardsPage" xml:space="preserve">
+    <value>Página de recompensas</value>
+  </data>
+  <data name="YourGreenCoins" xml:space="preserve">
+    <value>Tus GreenCoins:</value>
+  </data>
+  <data name="NoRewardsFound" xml:space="preserve">
+    <value>No se encontraron recompensas</value>
+  </data>
+  <data name="WeAreStillLookingForSponsors" xml:space="preserve">
+    <value>¡Seguimos buscando patrocinadores!</value>
+  </data>
+  <data name="DescriptionFieldEmpty" xml:space="preserve">
+    <value>¡Campo de descripción vacío!</value>
+  </data>
+  <data name="NameFieldEmpty" xml:space="preserve">
+    <value>¡Campo de nombre vacío!</value>
+  </data>
+  <data name="SponsorNameFieldEmpty" xml:space="preserve">
+    <value>¡El campo del nombre del patrocinador está vacío!</value>
+  </data>
+  <data name="GreenCoinsFieldNegativeOrEmpty" xml:space="preserve">
+    <value>¡Campo GreenCoins negativo o vacío!</value>
+  </data>
+  <data name="PleaseEnterAValueFirst" xml:space="preserve">
+    <value>Por favor ingrese un valor primero</value>
+  </data>
+  <data name="RewardCreatedSuccessfully" xml:space="preserve">
+    <value>Recompensa creada con éxito</value>
+  </data>
+  <data name="ErrorWhileCreatingReward" xml:space="preserve">
+    <value>Error al crear la recompensa</value>
+  </data>
+  <data name="RewardEditedSuccessfully" xml:space="preserve">
+    <value>Recompensa editada con éxito</value>
+  </data>
+  <data name="ErrorWhileEditingReward" xml:space="preserve">
+    <value>Error al editar la recompensa</value>
+  </data>
+  <data name="NoRequestsFound" xml:space="preserve">
+    <value>No se encontraron solicitudes</value>
+  </data>
+  <data name="UserEditedSuccessfully" xml:space="preserve">
+    <value>Usuario editado con éxito</value>
+  </data>
+  <data name="ErrorWhileEditingUser" xml:space="preserve">
+    <value>Error al editar usuario</value>
+  </data>
+  <data name="AdminPage" xml:space="preserve">
+    <value>Página de administrador</value>
+  </data>
+  <data name="NoReportsFound" xml:space="preserve">
+    <value>No s'han trobat reports</value>
+  </data>
+  <data name="ItsAPeacefulDayInTheApp" xml:space="preserve">
+    <value>Es un día pacífico en la aplicación</value>
+  </data>
+  <data name="ErrorWhileRetrievingReports" xml:space="preserve">
+    <value>Error al recuperar reports</value>
+  </data>
+  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
+    <value>Cambie su ubicación y actualice</value>
+  </data>
 </root>

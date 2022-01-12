@@ -11,6 +11,7 @@ using greenshare_app.Views.MainViewPages;
 using Xamarin.Essentials;
 using System.Text;
 using System.Threading;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -134,7 +135,7 @@ namespace greenshare_app.ViewModels
             {
                 IsBusy = true;
                 Request request = await PostRetriever.Instance().GetRequest(SelectedPostCard.Id);
-                if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Offer not found", "OK");
+                if (request == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedRequest, Text.Text.OfferNotFound, "OK");
                 else
                 {
                     var view = new ViewPost(request);
@@ -146,7 +147,7 @@ namespace greenshare_app.ViewModels
             }
             catch (Exception)
             {
-                await view.DisplayAlert("Error while retrieving Selected Request", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedRequest, Text.Text.SomethingWentWrong, "OK");
             }
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
@@ -168,7 +169,7 @@ namespace greenshare_app.ViewModels
             }
             PostCardList.Clear();
             PostCardList.AddRange(cards);
-            if (PostCardList.Count == 0) await view.DisplayAlert("No requests found", "please change the introduced parameters, make sure location is enabled and refresh", "OK");
+            if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoRequestsFound,Text.Text.PleaseChangeTheIntroducedParameters, "OK");
             IsBusy = false;
             return;
         }

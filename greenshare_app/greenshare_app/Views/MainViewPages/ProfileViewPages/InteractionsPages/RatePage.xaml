@@ -4,6 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.RatePage"
              xmlns:control="clr-namespace:greenshare_app.Controls"
              xmlns:model="clr-namespace:greenshare_app.Models"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" 
              x:DataType="viewModels:RatePageViewModel"
@@ -19,7 +20,7 @@
             </rating:SfRating>
             <control:BorderlessEditor
                 Style="{StaticResource styleEntryDefault}"
-                Placeholder="Valorar"
+                Placeholder="{x:Static multiIdioma:Text.Rate}"
                 Text="{Binding Message}"
                 HeightRequest="350"
                 Margin="15"
@@ -31,7 +32,7 @@
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
 
             <Frame Style="{StaticResource styleFrameDefault}" CornerRadius="20" Margin="5">
-                <Button Text="Rate and Complete" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
+                <Button Text="{x:Static multiIdioma:Text.RateAndComplete}" FontFamily="Montserrat-SemiBold" TextColor="{StaticResource colorWhite}" BackgroundColor="{StaticResource colorBlack}"
                         Style="{StaticResource styleButtonDefault}" FontSize="15"
                         Command="{Binding OnCompleteButtonCommand}"/>
             </Frame>

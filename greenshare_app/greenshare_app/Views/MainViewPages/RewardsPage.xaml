@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:RewardsPageViewModel"
              x:Class="greenshare_app.Views.MainViewPages.RewardsPage"
              Title="{Binding Title}"
@@ -90,7 +91,7 @@
                                                     <Frame.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding OnExchangeFrameCommand}"/>
                                                     </Frame.GestureRecognizers>
-                                                    <Label Text="Canjear" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" TextColor="Black"></Label>
+                                                    <Label Text="{x:Static multiIdioma:Text.Exchange}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" TextColor="Black"></Label>
                                                 </Frame>
 
                                                 <!--Descripció de l'oferta-->
@@ -100,10 +101,10 @@
                                                 </Frame>
 
                                                 <!--Botó de modificar la recompensa-->
-                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="Modificar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
+                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Text="{x:Static multiIdioma:Text.Modify}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnEditButtonCommand}" FontSize="12"></Button>
 
                                                 <!--Botó d'eliminar la recompensa-->
-                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="Eliminar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
+                                                <Button IsVisible="{Binding IsAdmin}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="{x:Static multiIdioma:Text.Delete}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnDeactivateButtonCommand}" FontSize="12"></Button>
 
                                             </Grid>
                                         </StackLayout>

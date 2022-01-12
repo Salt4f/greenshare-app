@@ -4,6 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingAcceptedPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome" x:DataType="viewModels:OutgoingAcceptedViewModel"
              Title="{Binding Title}">
     <ListView BackgroundColor="{StaticResource colorWhite}"
@@ -51,7 +52,7 @@
                                     <Label Style="{StaticResource styleLabelWhite}" FontSize="12">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="Esperant resposta de "/>
+                                                <Span Text="{x:Static multiIdioma:Text.WaitingResponse}"/>
                                                 <Span Text="{Binding UserName}"/>
                                             </FormattedString>
                                         </Label.FormattedText>

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:mapa="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="greenshare_app.Views.MainViewPages.PublicationMapPage">
@@ -19,14 +20,14 @@
             <Button
                     Style="{StaticResource styleButtonDefault}"
                     Grid.Column="0"
-                    Text="Aceptar"
+                    Text="{x:Static multiIdioma:Text.Accept}"
                     Command="{Binding OnAcceptedButtonCommand}">
             </Button>
 
             <Button 
                     Style="{StaticResource styleButtonDefault}"
                     Grid.Column="2"
-                    Text="Rechazar"
+                    Text="{x:Static multiIdioma:Text.Refuse}"
                     Command="{Binding OnCancelButtonCommand}">
             </Button>
 
