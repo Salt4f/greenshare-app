@@ -10,6 +10,7 @@ using greenshare_app.Utils;
 using greenshare_app.Text;
 using greenshare_app.Views.MainViewPages;
 using System.Text;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -68,7 +69,6 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
                 PostCardList.Clear();
@@ -118,17 +118,34 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
         public AsyncCommand OnFilterButtonCommand => new AsyncCommand(OnFilter);
 
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await Refresh();
+        }
+        
         async Task Selected(object args)
         {
             var card = args as PostCard;
             if (card == null)
                 return;
-
-            IsBusy = true;
-            Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
-            if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
-            else await navigation.PushModalAsync(new ViewPost(offer));
-            IsBusy = false;
+            try
+            {
+                IsBusy = true;
+                Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
+                if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
+                else
+                {
+                    var view = new ViewPost(offer);
+                    var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                    view.Disappearing += OnDisappear;
+                    await navigation.PushModalAsync(view);
+                }
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.SomethingWentWrong, "OK");
+            }
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }

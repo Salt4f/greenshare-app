@@ -97,7 +97,22 @@ namespace greenshare_app.Utils
             return false;
 
         }
-        //No queremos un endpoint de esto, se debe devolver con GetUserInfo
+
+        public async Task<bool> BanUser(int userId)
+        {
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + userId + "/ban", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
 
         private class EditUserInfo
         {

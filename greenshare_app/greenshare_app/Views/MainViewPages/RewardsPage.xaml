@@ -7,9 +7,40 @@
              Title="{Binding Title}"
              BackgroundColor="{StaticResource colorWhite}">
     <StackLayout>
-        <Label Padding="20" Style="{StaticResource styleLabelGreen}" Text="{Binding AvailableGreenCoins}" HorizontalOptions="Start" FontSize="16" TextColor="{StaticResource colorGreen2}"/>
+        <Grid Padding="20" HorizontalOptions="CenterAndExpand" IsVisible = "True" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+
+
+            <Label 
+                Grid.Column="0"
+                Style="{StaticResource styleLabelGreen}" 
+                Text="{Binding AvailableGreenCoins}" 
+                FontSize="16" 
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                TextColor="{StaticResource colorGreen2}"/>
+
+            <Button 
+                Style="{StaticResource styleButtonDefault}"
+                Grid.Column="2"
+                IsVisible="{Binding IsAdmin}" 
+                Text="+ Reward" 
+                Command="{Binding OnCreateButtonCommand}" 
+                FontSize="12">
+                
+            </Button>
+
+
+        </Grid>
+
         <!--Crear recompensa-->
-        <Button IsVisible="{Binding IsAdmin}" Text="{x:Static multiIdioma:Text.Create}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnCreateButtonCommand}" FontSize="12"></Button>
         <ListView x:Name="MyListView"
               HasUnevenRows="true"
               SeparatorVisibility="None"

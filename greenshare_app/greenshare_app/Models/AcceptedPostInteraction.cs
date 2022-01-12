@@ -3,6 +3,7 @@ using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -18,9 +19,16 @@ namespace greenshare_app.Models
         public Page View { get; set; }
         public INavigation Navigation { get; set; }
         public AsyncCommand OnRateButtonCommand => new AsyncCommand(OnRate);
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await ((ViewModels.IncomingAcceptedViewModel)View.BindingContext).Refresh();
+        }
         private async Task OnRate()
         {
-            await Navigation.PushModalAsync(new RatePage(this));
+            var view = new RatePage(this);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await Navigation.PushModalAsync(view);
         }
 
         public AcceptedPostInteraction(INavigation navigation, Page view)
