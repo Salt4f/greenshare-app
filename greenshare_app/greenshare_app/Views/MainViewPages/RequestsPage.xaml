@@ -111,13 +111,16 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate x:DataType="model:Tag">
                                                 <ViewCell>
-                                                    <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
-                                                        <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
-                                                            <Label Text="{Binding Name}"
-                                                                        Style="{StaticResource styleLabelWhite}"
-                                                                        VerticalOptions="Center"/>
-                                                        </Frame>
-                                                    </StackLayout>
+                                                    <Frame BackgroundColor="{StaticResource colorWhite}" CornerRadius="25" Padding="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <Label Style="{StaticResource styleLabelBlack}" FontSize="10" VerticalOptions="Center">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="#"/>
+                                                                    <Span Text="{Binding Name}"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                    </Frame>
                                                 </ViewCell>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>

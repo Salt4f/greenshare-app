@@ -67,8 +67,8 @@
             <Label 
                 VerticalOptions="Center" 
                 Grid.Column="2" 
+                TextColor="{StaticResource colorBlack}"
                 Text="{Binding DistanceValue}">
-                
             </Label>
         </Grid>
 
@@ -115,12 +115,15 @@
                                             <ListView.ItemTemplate>
                                                 <DataTemplate x:DataType="model:Tag">
                                                     <ViewCell>
-                                                        <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5" HorizontalOptions="CenterAndExpand">
-                                                            <!--TODO: CANVIAR EL COLOR DEL BACKGROUND D'UN TAG PEL DEL BINDING-->
-                                                            <!--TODO: BackgroundColor="{Binding Color}"-->
-                                                            <Label Text="{Binding Name}"
-                                                                        Style="{StaticResource styleLabelWhite}"
-                                                                        VerticalOptions="Center"/>
+                                                        <Frame BackgroundColor="{StaticResource colorWhite}" CornerRadius="25" Padding="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                                            <Label Style="{StaticResource styleLabelBlack}" FontSize="10" VerticalOptions="Center">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="#"/>
+                                                                        <Span Text="{Binding Name}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
                                                         </Frame>
                                                     </ViewCell>
                                                 </DataTemplate>
