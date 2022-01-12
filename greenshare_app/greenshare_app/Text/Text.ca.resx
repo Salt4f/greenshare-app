@@ -321,7 +321,6 @@
   <data name="NoOffersFound" xml:space="preserve">
     <value>No s'han trobat ofertes</value>
   </data>
-  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
     <value>Canvia la teva ubicació i actualitza</value>
   </data>
   <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
@@ -428,5 +427,68 @@
   </data>
   <data name="PleaseEnterAReportMessageFirst" xml:space="preserve">
     <value>Introduïu primer un missatge d'informe</value>
+  </data>
+  <data name="RewardsPage" xml:space="preserve">
+    <value>Pàgina de recompenses</value>
+  </data>
+  <data name="YourGreenCoins" xml:space="preserve">
+    <value>Els teus GreenCoins:</value>
+  </data>
+  <data name="NoRewardsFound" xml:space="preserve">
+    <value>No s'han trobat recompenses</value>
+  </data>
+  <data name="WeAreStillLookingForSponsors" xml:space="preserve">
+    <value>Seguim buscant patrocinadors!</value>
+  </data>
+  <data name="DescriptionFieldEmpty" xml:space="preserve">
+    <value>El camp de descripció està buit!</value>
+  </data>
+  <data name="NameFieldEmpty" xml:space="preserve">
+    <value>El camp del nom està buit!</value>
+  </data>
+  <data name="SponsorNameFieldEmpty" xml:space="preserve">
+    <value>El camp Nom del patrocinador està buit!</value>
+  </data>
+  <data name="GreenCoinsFieldNegativeOrEmpty" xml:space="preserve">
+    <value>El camp GreenCoins negatiu o buit!</value>
+  </data>
+  <data name="PleaseEnterAValueFirst" xml:space="preserve">
+    <value>Introduïu primer un valor</value>
+  </data>
+  <data name="RewardCreatedSuccessfully" xml:space="preserve">
+    <value>La recompensa s'ha creat correctament</value>
+  </data>
+  <data name="ErrorWhileCreatingReward" xml:space="preserve">
+    <value>S'ha produït un error en crear la recompensa</value>
+  </data>
+  <data name="RewardEditedSuccessfully" xml:space="preserve">
+    <value>La recompensa s'ha editat correctament</value>
+  </data>
+  <data name="ErrorWhileEditingReward" xml:space="preserve">
+    <value>S'ha produït un error en editar la recompensa</value>
+  </data>
+  <data name="NoRequestsFound" xml:space="preserve">
+    <value>No s'han trobat sol·licituds</value>
+  </data>
+  <data name="UserEditedSuccessfully" xml:space="preserve">
+    <value>L'usuari s'ha editat correctament</value>
+  </data>
+  <data name="ErrorWhileEditingUser" xml:space="preserve">
+    <value>S'ha produït un error en editar l'usuari</value>
+  </data>
+  <data name="AdminPage" xml:space="preserve">
+    <value>Pàgina d'administració</value>
+  </data>
+  <data name="NoReportsFound" xml:space="preserve">
+    <value>No se encontraron reports</value>
+  </data>
+  <data name="ItsAPeacefulDayInTheApp" xml:space="preserve">
+    <value>És un dia tranquil a l'aplicació</value>
+  </data>
+  <data name="ErrorWhileRetrievingReports" xml:space="preserve">
+    <value>Error en recuperar els reports</value>
+  </data>
+  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
+    <value>Canvia la teva ubicació i actualitza</value>
   </data>
 </root>

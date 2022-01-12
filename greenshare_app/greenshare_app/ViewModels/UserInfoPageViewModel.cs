@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -22,7 +23,7 @@ namespace greenshare_app.ViewModels
         private bool ownPage;
         public UserInfoPageViewModel(INavigation navigation, Page view, int userId, bool ownPage)
         {
-            Title = "Perfil";
+            Title =Text.Text.Profile;
             this.userId = userId;
             this.navigation = navigation;
             this.view = view;
@@ -96,7 +97,7 @@ namespace greenshare_app.ViewModels
                 var type = e.GetType();
                 var error = e.Message;
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, "OK");
             }
             IsBusy = false;
         }

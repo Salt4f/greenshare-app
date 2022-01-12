@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -24,7 +25,7 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public AdminPageViewModel(INavigation navigation, Page view)
         {
-            Title = "Admin Page";
+            Title = Text.Text.AdminPage;
 
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
@@ -44,13 +45,13 @@ namespace greenshare_app.ViewModels
                 var cards = await ReportUtil.Instance().GetAllReports(navigation, view);
                 ReportList.Clear();
                 ReportList.AddRange(cards);
-                if (ReportList.Count == 0) await view.DisplayAlert("No reports found", "it's a peaceful day in the app", "OK");
+                if (ReportList.Count == 0) await view.DisplayAlert(Text.Text.NoReportsFound, Text.Text.ItsAPeacefulDayInTheApp , "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving reports", "", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingReports, "", "OK");
             }
             IsBusy = false;
         }
@@ -63,13 +64,13 @@ namespace greenshare_app.ViewModels
                 var cards = await ReportUtil.Instance().GetAllReports(navigation, view);
                 ReportList.Clear();
                 ReportList.AddRange(cards);
-                if (ReportList.Count == 0) await view.DisplayAlert("No reports found", "it's a peaceful day in the app", "OK");
+                if (ReportList.Count == 0) await view.DisplayAlert(Text.Text.NoReportsFound, Text.Text.ItsAPeacefulDayInTheApp, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving reports", "", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingReports, "", "OK");
             }
         }
 

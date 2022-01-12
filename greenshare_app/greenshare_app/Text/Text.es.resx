@@ -321,7 +321,7 @@
   <data name="NoOffersFound" xml:space="preserve">
     <value>No se han encontrado ofertas</value>
   </data>
-  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
+  <data name="f" xml:space="preserve">
     <value>Cambia tu ubicación y actualiza</value>
   </data>
   <data name="ErrorWhileRetrievingOffers" xml:space="preserve">
@@ -415,10 +415,10 @@
     <value>Por favor haz una foto de tu DNI</value>
   </data>
   <data name="PleaseCheckIfTheEmailIsCorrect" xml:space="preserve">
-    <value>Por favor, compruebe si el correo electrónico es correcto.</value>
+    <value>Por favor, compruebe si el correo electrónico es correcto</value>
   </data>
   <data name="PleaseMakeSureBothPasswordsAreEqual" xml:space="preserve">
-    <value>Por favor, asegúrese de que ambas contraseñas sean iguales.</value>
+    <value>Por favor, asegúrese de que ambas contraseñas sean iguales</value>
   </data>
   <data name="PleaseEnterAValidFullName" xml:space="preserve">
     <value>Por favor ingrese un nombre completo válido</value>
@@ -428,5 +428,68 @@
   </data>
   <data name="PleaseEnterAReportMessageFirst" xml:space="preserve">
     <value>Ingrese un mensaje de informe primero</value>
+  </data>
+  <data name="RewardsPage" xml:space="preserve">
+    <value>Página de recompensas</value>
+  </data>
+  <data name="YourGreenCoins" xml:space="preserve">
+    <value>Tus GreenCoins:</value>
+  </data>
+  <data name="NoRewardsFound" xml:space="preserve">
+    <value>No se encontraron recompensas</value>
+  </data>
+  <data name="WeAreStillLookingForSponsors" xml:space="preserve">
+    <value>¡Seguimos buscando patrocinadores!</value>
+  </data>
+  <data name="DescriptionFieldEmpty" xml:space="preserve">
+    <value>¡Campo de descripción vacío!</value>
+  </data>
+  <data name="NameFieldEmpty" xml:space="preserve">
+    <value>¡Campo de nombre vacío!</value>
+  </data>
+  <data name="SponsorNameFieldEmpty" xml:space="preserve">
+    <value>¡El campo del nombre del patrocinador está vacío!</value>
+  </data>
+  <data name="GreenCoinsFieldNegativeOrEmpty" xml:space="preserve">
+    <value>¡Campo GreenCoins negativo o vacío!</value>
+  </data>
+  <data name="PleaseEnterAValueFirst" xml:space="preserve">
+    <value>Por favor ingrese un valor primero</value>
+  </data>
+  <data name="RewardCreatedSuccessfully" xml:space="preserve">
+    <value>Recompensa creada con éxito</value>
+  </data>
+  <data name="ErrorWhileCreatingReward" xml:space="preserve">
+    <value>Error al crear la recompensa</value>
+  </data>
+  <data name="RewardEditedSuccessfully" xml:space="preserve">
+    <value>Recompensa editada con éxito</value>
+  </data>
+  <data name="ErrorWhileEditingReward" xml:space="preserve">
+    <value>Error al editar la recompensa</value>
+  </data>
+  <data name="NoRequestsFound" xml:space="preserve">
+    <value>No se encontraron solicitudes</value>
+  </data>
+  <data name="UserEditedSuccessfully" xml:space="preserve">
+    <value>Usuario editado con éxito</value>
+  </data>
+  <data name="ErrorWhileEditingUser" xml:space="preserve">
+    <value>Error al editar usuario</value>
+  </data>
+  <data name="AdminPage" xml:space="preserve">
+    <value>Página de administrador</value>
+  </data>
+  <data name="NoReportsFound" xml:space="preserve">
+    <value>No s'han trobat reports</value>
+  </data>
+  <data name="ItsAPeacefulDayInTheApp" xml:space="preserve">
+    <value>Es un día pacífico en la aplicación</value>
+  </data>
+  <data name="ErrorWhileRetrievingReports" xml:space="preserve">
+    <value>Error al recuperar reports</value>
+  </data>
+  <data name="PleaseChangeYourLocationAndRefresh" xml:space="preserve">
+    <value>Cambie su ubicación y actualice</value>
   </data>
 </root>

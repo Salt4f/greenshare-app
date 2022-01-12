@@ -115,6 +115,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin Page.
+        /// </summary>
+        internal static string AdminPage {
+            get {
+                return ResourceManager.GetString("AdminPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All questions must be answered.
         /// </summary>
         internal static string AllQuestionsMustBeAnswered {
@@ -183,6 +192,15 @@ namespace greenshare_app.Text {
         internal static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description field empty!.
+        /// </summary>
+        internal static string DescriptionFieldEmpty {
+            get {
+                return ResourceManager.GetString("DescriptionFieldEmpty", resourceCulture);
             }
         }
         
@@ -277,11 +295,38 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while creating reward.
+        /// </summary>
+        internal static string ErrorWhileCreatingReward {
+            get {
+                return ResourceManager.GetString("ErrorWhileCreatingReward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while editing Post.
         /// </summary>
         internal static string ErrorWhileEditingPost {
             get {
                 return ResourceManager.GetString("ErrorWhileEditingPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while editing reward.
+        /// </summary>
+        internal static string ErrorWhileEditingReward {
+            get {
+                return ResourceManager.GetString("ErrorWhileEditingReward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while editing user.
+        /// </summary>
+        internal static string ErrorWhileEditingUser {
+            get {
+                return ResourceManager.GetString("ErrorWhileEditingUser", resourceCulture);
             }
         }
         
@@ -318,6 +363,15 @@ namespace greenshare_app.Text {
         internal static string ErrorWhileRetrievingQuestions {
             get {
                 return ResourceManager.GetString("ErrorWhileRetrievingQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error While Retrieving Reports.
+        /// </summary>
+        internal static string ErrorWhileRetrievingReports {
+            get {
+                return ResourceManager.GetString("ErrorWhileRetrievingReports", resourceCulture);
             }
         }
         
@@ -376,6 +430,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please change your location and refresh.
+        /// </summary>
+        internal static string f {
+            get {
+                return ResourceManager.GetString("f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finish.
         /// </summary>
         internal static string Finish {
@@ -408,6 +471,15 @@ namespace greenshare_app.Text {
         internal static string FullNameNotValid {
             get {
                 return ResourceManager.GetString("FullNameNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GreenCoins field negative or empty!.
+        /// </summary>
+        internal static string GreenCoinsFieldNegativeOrEmpty {
+            get {
+                return ResourceManager.GetString("GreenCoinsFieldNegativeOrEmpty", resourceCulture);
             }
         }
         
@@ -457,6 +529,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s A Peaceful Day In The App.
+        /// </summary>
+        internal static string ItsAPeacefulDayInTheApp {
+            get {
+                return ResourceManager.GetString("ItsAPeacefulDayInTheApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         internal static string loginButtonText {
@@ -498,6 +579,15 @@ namespace greenshare_app.Text {
         internal static string MyPublications {
             get {
                 return ResourceManager.GetString("MyPublications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name field empty!.
+        /// </summary>
+        internal static string NameFieldEmpty {
+            get {
+                return ResourceManager.GetString("NameFieldEmpty", resourceCulture);
             }
         }
         
@@ -579,6 +669,33 @@ namespace greenshare_app.Text {
         internal static string NoPostsFound {
             get {
                 return ResourceManager.GetString("NoPostsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Reports Found.
+        /// </summary>
+        internal static string NoReportsFound {
+            get {
+                return ResourceManager.GetString("NoReportsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No requests found.
+        /// </summary>
+        internal static string NoRequestsFound {
+            get {
+                return ResourceManager.GetString("NoRequestsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No rewards found.
+        /// </summary>
+        internal static string NoRewardsFound {
+            get {
+                return ResourceManager.GetString("NoRewardsFound", resourceCulture);
             }
         }
         
@@ -826,6 +943,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a value first.
+        /// </summary>
+        internal static string PleaseEnterAValueFirst {
+            get {
+                return ResourceManager.GetString("PleaseEnterAValueFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please make sure both passwords are equal.
         /// </summary>
         internal static string PleaseMakeSureBothPasswordsAreEqual {
@@ -1060,11 +1186,38 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reward created successfully.
+        /// </summary>
+        internal static string RewardCreatedSuccessfully {
+            get {
+                return ResourceManager.GetString("RewardCreatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reward edited successfully.
+        /// </summary>
+        internal static string RewardEditedSuccessfully {
+            get {
+                return ResourceManager.GetString("RewardEditedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rewards.
         /// </summary>
         internal static string Rewards {
             get {
                 return ResourceManager.GetString("Rewards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rewards page.
+        /// </summary>
+        internal static string RewardsPage {
+            get {
+                return ResourceManager.GetString("RewardsPage", resourceCulture);
             }
         }
         
@@ -1119,6 +1272,15 @@ namespace greenshare_app.Text {
         internal static string SomethingWentWrong {
             get {
                 return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SponsorName field empty!.
+        /// </summary>
+        internal static string SponsorNameFieldEmpty {
+            get {
+                return ResourceManager.GetString("SponsorNameFieldEmpty", resourceCulture);
             }
         }
         
@@ -1222,6 +1384,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User edited successfully.
+        /// </summary>
+        internal static string UserEditedSuccessfully {
+            get {
+                return ResourceManager.GetString("UserEditedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User information.
         /// </summary>
         internal static string UserInfo {
@@ -1285,6 +1456,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are still looking for sponsors!.
+        /// </summary>
+        internal static string WeAreStillLookingForSponsors {
+            get {
+                return ResourceManager.GetString("WeAreStillLookingForSponsors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         internal static string Welcome {
@@ -1308,6 +1488,15 @@ namespace greenshare_app.Text {
         internal static string YourDNIHasBeenVerified {
             get {
                 return ResourceManager.GetString("YourDNIHasBeenVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Greencoins:.
+        /// </summary>
+        internal static string YourGreenCoins {
+            get {
+                return ResourceManager.GetString("YourGreenCoins", resourceCulture);
             }
         }
     }

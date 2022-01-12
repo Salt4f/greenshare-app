@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -46,7 +47,7 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             if (NickName.Length <= 5 || NickName.Length > 30)
             {
-                await view.DisplayAlert("NickName field not valid", "please make sure you entered a nickname with more than 5 and less than 30 characters", "OK");
+                await view.DisplayAlert(Text.Text.NicknameTooLong + "/" + Text.Text.NicknameTooShort, Text.Text.PleaseEnterALongerNickname + "/" + Text.Text.PleaseEnterAShorterNickname, "OK");
                 IsBusy = false;
                 return;
             }
@@ -56,14 +57,14 @@ namespace greenshare_app.ViewModels
                 user.Description = Description;
                 if (await UserInfoUtil.Instance().EditUser(user))
                 {
-                    await view.DisplayAlert("user edited successfully", "", "OK");
+                    await view.DisplayAlert(Text.Text.UserEditedSuccessfully, "", "OK");
                     IsBusy=false;
                     await navigation.PopModalAsync();
                 }
             }
             catch (Exception)
             {
-                await view.DisplayAlert("error while editing user", "something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileEditingUser, Text.Text.SomethingWentWrong, "OK");
                 IsBusy = false;
             }
         }
