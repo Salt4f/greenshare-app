@@ -20,7 +20,8 @@ namespace greenshare_app.Models
         {
             Navigation = navigation;
             View = view;
-            IsAdmin = ((ViewModels.RewardsPageViewModel)View.BindingContext).IsAdmin;
+            if (View.BindingContext.GetType() == typeof(ViewModels.RewardsPageViewModel)) IsAdmin = ((ViewModels.RewardsPageViewModel)View.BindingContext).IsAdmin;
+            else IsAdmin = true;
             OnDeactivateButtonCommand = new AsyncCommand(OnDeactivate);
             OnEditButtonCommand = new AsyncCommand(OnEdit);
             OnExchangeFrameCommand = new AsyncCommand(OnExchange);
