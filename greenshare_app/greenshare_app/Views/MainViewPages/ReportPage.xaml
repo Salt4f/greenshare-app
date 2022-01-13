@@ -16,7 +16,7 @@
             <control:BorderlessEditor
                 Style="{StaticResource styleEntryDefault}"
                 Text="{Binding Message}"
-                Placeholder="Reason"
+                Placeholder="{x:Static multiIdioma:Text.Reason}"
                 HeightRequest="350"
                 BackgroundColor="{StaticResource colorGreen3}"
                 TextColor="{StaticResource colorWhite}"
