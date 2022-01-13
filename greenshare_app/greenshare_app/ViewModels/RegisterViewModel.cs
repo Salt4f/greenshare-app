@@ -113,7 +113,7 @@ namespace greenshare_app.ViewModels
             }
             if (GetAge() <= 18)
             {
-                //await view.DisplayAlert(Text.Text.MustBeOver18, Text.Text.PleaseYouShouldBeOver18, "OK");
+                await view.DisplayAlert(Text.Text.MustBeOver18, Text.Text.PleaseYouShouldBeOver18, "OK");
                 return;
             }
             if (!dniPhotoValid)

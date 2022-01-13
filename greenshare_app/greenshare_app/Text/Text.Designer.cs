@@ -646,6 +646,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must be over 18.
+        /// </summary>
+        internal static string MustBeOver18 {
+            get {
+                return ResourceManager.GetString("MustBeOver18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Posts.
         /// </summary>
         internal static string MyPosts {
@@ -1146,6 +1155,15 @@ namespace greenshare_app.Text {
         internal static string PleaseTryAgainLater {
             get {
                 return ResourceManager.GetString("PleaseTryAgainLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please you should be over 18.
+        /// </summary>
+        internal static string PleaseYouShouldBeOver18 {
+            get {
+                return ResourceManager.GetString("PleaseYouShouldBeOver18", resourceCulture);
             }
         }
         

@@ -343,7 +343,7 @@
     <value>Ara la gent no pot veure la teva publicació</value>
   </data>
   <data name="OfferRequestedSuccessfully" xml:space="preserve">
-    <value>Oferta solicitada con éxito</value>
+    <value>Oferta sol·licitada correctament</value>
   </data>
   <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
     <value>Comproveu les vostres interaccions sortints per veure'n l'estat</value>
@@ -587,5 +587,11 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Contrasenya</value>
+  </data>
+  <data name="MustBeOver18" xml:space="preserve">
+    <value>Ha de tenir més de 18 anys</value>
+  </data>
+  <data name="PleaseYouShouldBeOver18" xml:space="preserve">
+    <value>Si us plau, hauríeu de tenir més de 18 anys</value>
   </data>
 </root>

@@ -343,7 +343,7 @@
     <value>Ahora la gente no puede ver tu publicación</value>
   </data>
   <data name="OfferRequestedSuccessfully" xml:space="preserve">
-    <value>Oferta sol·licitada correctament</value>
+    <value>Oferta solicitada con éxito</value>
   </data>
   <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
     <value>Verifique sus interacciones salientes para ver su estado</value>
@@ -587,5 +587,11 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Contraseña</value>
+  </data>
+  <data name="MustBeOver18" xml:space="preserve">
+    <value>Debe ser mayor de 18</value>
+  </data>
+  <data name="PleaseYouShouldBeOver18" xml:space="preserve">
+    <value>por favor debe ser mayor de 18</value>
   </data>
 </root>
