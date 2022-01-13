@@ -118,5 +118,12 @@ namespace greenshare_app.ViewModels
                 }
             }
         }
+
+        //public AsyncCommand OnRefreshMapCommand => new AsyncCommand(RefreshMap);
+
+        //private async Task RefreshMap
+        //{
+        //    addPins
+        //}
     }
 }
