@@ -30,7 +30,7 @@
                 </Grid.RowDefinitions>
             <control:BorderlessEntry   
                     Style="{StaticResource styleEntryDefault}" 
-                    Placeholder="Search"
+                    Placeholder="{x:Static multiIdioma:Text.Search}"
                     Text="{Binding SearchWord}"/>
             <Button Grid.Column="1"
                         Style="{StaticResource styleButtonDefault}"

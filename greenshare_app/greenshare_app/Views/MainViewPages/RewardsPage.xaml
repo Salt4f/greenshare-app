@@ -31,7 +31,7 @@
                 Style="{StaticResource styleButtonDefault}"
                 Grid.Column="2"
                 IsVisible="{Binding IsAdmin}" 
-                Text="+ Reward" 
+                Text="{x:Static multiIdioma:Text.PlusReward}" 
                 Command="{Binding OnCreateButtonCommand}" 
                 FontSize="12">
                 

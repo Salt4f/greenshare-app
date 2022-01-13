@@ -430,7 +430,7 @@
     <value>Pàgina de recompenses</value>
   </data>
   <data name="YourGreenCoins" xml:space="preserve">
-    <value>Els teus GreenCoins:</value>
+    <value>Els teus GreenCoins: </value>
   </data>
   <data name="NoRewardsFound" xml:space="preserve">
     <value>No s'han trobat recompenses</value>
@@ -494,5 +494,29 @@
   </data>
   <data name="ErrorWhileRetrievingRequests" xml:space="preserve">
     <value>Error en recuperar les sol·licituds</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Imatges</value>
+  </data>
+  <data name="PlusReward" xml:space="preserve">
+    <value>+ Recompensa</value>
+  </data>
+  <data name="SelectAnOption" xml:space="preserve">
+    <value>Seleccioneu una opció</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Nom del producte</value>
+  </data>
+  <data name="NewTag" xml:space="preserve">
+    <value>Nova etiqueta</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Sobrenom</value>
+  </data>
+  <data name="RepeatPassword" xml:space="preserve">
+    <value>Repeteix la contrassenya</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Motiu</value>
   </data>
 </root>

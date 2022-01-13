@@ -20,7 +20,7 @@
                         ItemsSource="{Binding PostTypes}"
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
-                        Title="Select an option"
+                        Title="{x:Static multiIdioma:Text.SelectAnOption}"
                         SelectedItem="{Binding PostType}"                        
                         TitleColor="{StaticResource colorBlack}"
                         FontAttributes="Bold"
@@ -35,7 +35,7 @@
                         <control:BorderlessEntry  
                             Style="{StaticResource styleEntryDefault}" 
                             Text="{Binding Name}" 
-                            Placeholder="Product name" 
+                            Placeholder="" 
                             FontAttributes="None"/>
                     </StackLayout>
                 </Frame>

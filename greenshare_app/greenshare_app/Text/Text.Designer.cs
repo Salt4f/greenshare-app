@@ -484,6 +484,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        internal static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incoming Accepted Interactions.
         /// </summary>
         internal static string IncomingAcceptedInteractions {
@@ -610,11 +619,29 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New tag.
+        /// </summary>
+        internal static string NewTag {
+            get {
+                return ResourceManager.GetString("NewTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         internal static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nickname.
+        /// </summary>
+        internal static string Nickname {
+            get {
+                return ResourceManager.GetString("Nickname", resourceCulture);
             }
         }
         
@@ -1024,6 +1051,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to + Reward.
+        /// </summary>
+        internal static string PlusReward {
+            get {
+                return ResourceManager.GetString("PlusReward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post Completed Successfully.
         /// </summary>
         internal static string PostCompletedSuccessfully {
@@ -1065,6 +1101,15 @@ namespace greenshare_app.Text {
         internal static string PostType {
             get {
                 return ResourceManager.GetString("PostType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product name.
+        /// </summary>
+        internal static string ProductName {
+            get {
+                return ResourceManager.GetString("ProductName", resourceCulture);
             }
         }
         
@@ -1114,6 +1159,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        internal static string Reason {
+            get {
+                return ResourceManager.GetString("Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refuse.
         /// </summary>
         internal static string Refuse {
@@ -1146,6 +1200,15 @@ namespace greenshare_app.Text {
         internal static string RemoveTag {
             get {
                 return ResourceManager.GetString("RemoveTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat password.
+        /// </summary>
+        internal static string RepeatPassword {
+            get {
+                return ResourceManager.GetString("RepeatPassword", resourceCulture);
             }
         }
         
@@ -1236,6 +1299,15 @@ namespace greenshare_app.Text {
         internal static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an option.
+        /// </summary>
+        internal static string SelectAnOption {
+            get {
+                return ResourceManager.GetString("SelectAnOption", resourceCulture);
             }
         }
         
@@ -1501,7 +1573,7 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Greencoins:.
+        ///   Looks up a localized string similar to Your Greencoins: .
         /// </summary>
         internal static string YourGreenCoins {
             get {
