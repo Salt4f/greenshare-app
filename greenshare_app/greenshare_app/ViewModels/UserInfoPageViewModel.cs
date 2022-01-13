@@ -56,7 +56,7 @@ namespace greenshare_app.ViewModels
             get => averageValoration;
             set => SetProperty(ref averageValoration, value);
         }
-        public DateTime BirthDate
+        public string BirthDate
         {
             get => birthDate;
             set => SetProperty(ref birthDate, value);
@@ -87,7 +87,7 @@ namespace greenshare_app.ViewModels
                 Description = user.Description;
                 ProfilePicture = user.ProfilePicture;
                 AverageValoration = user.AverageValoration;
-                BirthDate = user.BirthDate;
+                BirthDate = user.BirthDate.ToShortDateString();
                 TotalEcoPoints = user.TotalEcoPoints;
                 TotalGreenCoins = user.TotalGreenCoins;
 
@@ -117,7 +117,7 @@ namespace greenshare_app.ViewModels
         private Page view;
         private string description;
         private double averageValoration;
-        private DateTime birthDate;
+        private string birthDate;
         private int totalEcoPoints;
         private int totalGreenCoins;
         private bool isReportable;

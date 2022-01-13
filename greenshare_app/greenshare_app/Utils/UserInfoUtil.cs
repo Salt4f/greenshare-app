@@ -62,7 +62,7 @@ namespace greenshare_app.Utils
                         Banned = info.Banned,
                         TotalEcoPoints = info.TotalEcoPoints,
                         TotalGreenCoins = info.TotalGreenCoins,
-                        BirthDate = info.BirthDate,
+                        BirthDate = new DateTime(info.BirthDate.Year, info.BirthDate.Month, info.BirthDate.Day),
                         AverageValoration = info.AverageValoration
                     };
                 }
@@ -144,7 +144,7 @@ namespace greenshare_app.Utils
             [JsonProperty(PropertyName = "totalGreenCoins")]
             public int TotalGreenCoins { get; set; }
 
-            [JsonProperty(PropertyName = "averageValoration")]          
+            [JsonProperty(PropertyName = "valoration")]          
             public double AverageValoration { get; set; }
 
 

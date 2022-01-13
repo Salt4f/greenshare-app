@@ -34,7 +34,7 @@ namespace greenshare_app.ViewModels
         private IList<Image> photos;
         private Image icon;
         private IEnumerable<Tag> tags;
-        private DateTime terminationDateTime;
+        private string terminationDateTime;
         private bool isVisible;
         
         public PostViewModel(INavigation navigation, Page view, Post post)
@@ -44,7 +44,7 @@ namespace greenshare_app.ViewModels
             this.post = post;
             this.navigation = navigation;
             this.view = view;
-            this.TerminationDateTime = post.TerminateAt;
+            TerminationDateTime = post.TerminateAt.ToShortDateString();
             Name = post.Name;
             var type = post.GetType();
             
@@ -152,7 +152,7 @@ namespace greenshare_app.ViewModels
             get => photos;
             set => SetProperty(ref photos, value);
         }
-        public DateTime TerminationDateTime
+        public string TerminationDateTime
         {
             get => terminationDateTime;
             set => SetProperty(ref terminationDateTime, value);
