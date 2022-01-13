@@ -52,7 +52,7 @@ namespace greenshare_app.ViewModels
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetRequests(loc);
                 PostCardList.AddRange(cards);
-                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
+                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoRequestsFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
                 IsBusy = false;
             }
             catch (Exception)
