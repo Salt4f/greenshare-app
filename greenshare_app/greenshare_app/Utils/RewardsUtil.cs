@@ -28,20 +28,18 @@ namespace greenshare_app.Utils
         }
 
         private readonly HttpClient httpClient;
-        public async Task<int> ExchangeEcoPoints()
+        public async Task<bool> ExchangeEcoPoints()
         {           
             Tuple<int, string> session = await Auth.Instance().GetAuth();
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "redeem?action=green-coins", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/exchange", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                string json = await response.Content.ReadAsStringAsync();
-                GreenCoinsInfo info = JsonConvert.DeserializeObject<GreenCoinsInfo>(json);
-                return info.CurrentGreenCoins;
+                return true;
             }
-            return -1;
+            return false;
         }
         public async Task<List<Reward>> GetAllRewards(INavigation navigation, Page view, int greenCoinsAvailable)
         {
@@ -137,7 +135,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "redeem?action=rewards", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/redeem?action=rewards", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;

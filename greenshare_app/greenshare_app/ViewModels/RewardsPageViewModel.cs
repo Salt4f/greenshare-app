@@ -30,6 +30,7 @@ namespace greenshare_app.ViewModels
         //public AsyncCommand<object> SelectedCommand { get; }
         public AsyncCommand RefreshCommand { get; }
         public AsyncCommand OnCreateButtonCommand => new AsyncCommand(OnCreate);
+        public AsyncCommand OnExchangeButtonCommand => new AsyncCommand(OnExchange);
 
         public ObservableRangeCollection<Reward> Rewards
         {
@@ -93,9 +94,9 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             try
             {
-                if ((user.CurrentGreenCoins = await RewardsUtil.Instance().ExchangeEcoPoints()) != -1)
+                if (await RewardsUtil.Instance().ExchangeEcoPoints())
                 {
-                    await view.DisplayAlert("GreenCoins exchanged successfully", "check your available greenCoins on the top left", "OK");
+                    await view.DisplayAlert("GreenCoins exchanged successfully", "all users' ecoPoints have been exchanged for greenCoins", "OK");
                 }
                 else
                 {
