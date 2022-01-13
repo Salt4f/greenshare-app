@@ -263,7 +263,7 @@ namespace greenshare_app.ViewModels
                 {
                     IsBusy = false;
                     await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
-                    DeactivateButtons();
+                    await navigation.PopModalAsync();
                 }
             }
             IsBusy = false;

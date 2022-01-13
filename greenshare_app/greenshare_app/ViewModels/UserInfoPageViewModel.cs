@@ -61,12 +61,12 @@ namespace greenshare_app.ViewModels
             get => birthDate;
             set => SetProperty(ref birthDate, value);
         }
-        public int TotalEcoPoints
+        public string TotalEcoPoints
         {
             get => totalEcoPoints;
             set => SetProperty(ref totalEcoPoints, value);
         }
-        public int TotalGreenCoins
+        public string TotalGreenCoins
         {
             get => totalGreenCoins;
             set => SetProperty(ref totalGreenCoins, value);
@@ -86,10 +86,10 @@ namespace greenshare_app.ViewModels
                 FullName = user.FullName;
                 Description = user.Description;
                 ProfilePicture = user.ProfilePicture;
-                AverageValoration = user.AverageValoration;
+                AverageValoration = user.AverageValoration;               
                 BirthDate = user.BirthDate.ToShortDateString();
-                TotalEcoPoints = user.TotalEcoPoints;
-                TotalGreenCoins = user.TotalGreenCoins;
+                TotalEcoPoints = user.TotalEcoPoints + "(Current: "+user.CurrentEcoPoints+")";
+                TotalGreenCoins = user.TotalGreenCoins + "(Current: " + user.CurrentGreenCoins + ")";
 
             }
             catch (Exception e)
@@ -118,8 +118,8 @@ namespace greenshare_app.ViewModels
         private string description;
         private double averageValoration;
         private string birthDate;
-        private int totalEcoPoints;
-        private int totalGreenCoins;
+        private string totalEcoPoints;
+        private string totalGreenCoins;
         private bool isReportable;
         private string fullName;
     }
