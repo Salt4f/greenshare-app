@@ -528,4 +528,49 @@
   <data name="ChangeAllUsersEcoPoints" xml:space="preserve">
     <value>Todos los ecoPoints de los usuarios han sido canjeados por greenCoins</value>
   </data>
+  <data name="RewardExchangedSuccessfully" xml:space="preserve">
+    <value>Recompensa intercambiada con éxito</value>
+  </data>
+  <data name="SuccessfullyExchangeThePromotion" xml:space="preserve">
+    <value>canjeó con éxito la promoción de </value>
+  </data>
+  <data name="ErrorWhileExchangingTheReward" xml:space="preserve">
+    <value>Error al intercambiar la recompensa</value>
+  </data>
+  <data name="YouDontHaveEnoughGreenCoins" xml:space="preserve">
+    <value>¡No tienes suficientes GreenCoins!</value>
+  </data>
+  <data name="RewardDeletedSuccessfully" xml:space="preserve">
+    <value>Recompensa eliminada con éxito</value>
+  </data>
+  <data name="CouldNotDeleteReward" xml:space="preserve">
+    <value>No se pudo eliminar la recompensa</value>
+  </data>
+  <data name="RequestAccepted" xml:space="preserve">
+    <value>Petición aceptada</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>Petición denegada</value>
+  </data>
+  <data name="IsOfferingYou" xml:space="preserve">
+    <value> te ofrece </value>
+  </data>
+  <data name="OfferRejected" xml:space="preserve">
+    <value>Oferta denegada</value>
+  </data>
+  <data name="IsRequestingYour" xml:space="preserve">
+    <value> te pide </value>
+  </data>
+  <data name="ToAnswerYourRequestOn" xml:space="preserve">
+    <value> para responder a tu solicitud por </value>
+  </data>
+  <data name="ToAnswerYourOfferOn" xml:space="preserve">
+    <value> para responder a tu oferta por </value>
+  </data>
+  <data name="WaitingFor" xml:space="preserve">
+    <value>Esperando a </value>
+  </data>
+  <data name="OfferAccepted" xml:space="preserve">
+    <value>Oferta aceptada</value>
+  </data>
 </root>

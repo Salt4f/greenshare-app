@@ -547,18 +547,30 @@
     <value>Could not delete reward</value>
   </data>
   <data name="RequestAccepted" xml:space="preserve">
-    <value></value>
+    <value>Request accepted</value>
   </data>
   <data name="RequestRejected" xml:space="preserve">
-    <value></value>
+    <value>Request rejected</value>
   </data>
   <data name="OfferRejected" xml:space="preserve">
-    <value></value>
+    <value>Offer rejected</value>
   </data>
   <data name="IsOfferingYou" xml:space="preserve">
     <value> is offering you a </value>
   </data>
   <data name="IsRequestingYour" xml:space="preserve">
     <value> is requesting your </value>
+  </data>
+  <data name="ToAnswerYourRequestOn" xml:space="preserve">
+    <value> to answer your request on </value>
+  </data>
+  <data name="ToAnswerYourOfferOn" xml:space="preserve">
+    <value> to answer your offer on </value>
+  </data>
+  <data name="WaitingFor" xml:space="preserve">
+    <value>Waiting for </value>
+  </data>
+  <data name="OfferAccepted" xml:space="preserve">
+    <value>Offer accepted</value>
   </data>
 </root>

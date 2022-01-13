@@ -84,6 +84,7 @@ namespace greenshare_app.Models
             else
             {
                 await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
+                await View.DisplayAlert(Text.Text.OfferAccepted, "", "OK");
                 await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
             ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = false;

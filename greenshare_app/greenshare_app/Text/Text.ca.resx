@@ -528,4 +528,49 @@
   <data name="ChangeAllUsersEcoPoints" xml:space="preserve">
     <value>Els ecoPoints de tots els usuaris s'han intercanviat per greenCoins</value>
   </data>
+  <data name="RewardExchangedSuccessfully" xml:space="preserve">
+    <value>La recompensa s'ha intercanviat correctament</value>
+  </data>
+  <data name="SuccessfullyExchangeThePromotion" xml:space="preserve">
+    <value>intercanviat amb èxit la promoció de </value>
+  </data>
+  <data name="ErrorWhileExchangingTheReward" xml:space="preserve">
+    <value>Error al intercanviar la recompensa</value>
+  </data>
+  <data name="YouDontHaveEnoughGreenCoins" xml:space="preserve">
+    <value>no tens prou GreenCoins!</value>
+  </data>
+  <data name="RewardDeletedSuccessfully" xml:space="preserve">
+    <value>La recompensa s'ha suprimit correctament</value>
+  </data>
+  <data name="CouldNotDeleteReward" xml:space="preserve">
+    <value>No s'ha pogut suprimir la recompensa</value>
+  </data>
+  <data name="RequestAccepted" xml:space="preserve">
+    <value>Sol·licitud acceptada</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>Sol·licitud rebutjada</value>
+  </data>
+  <data name="IsOfferingYou" xml:space="preserve">
+    <value> t'està oferint </value>
+  </data>
+  <data name="OfferRejected" xml:space="preserve">
+    <value>Oferta rebutjada</value>
+  </data>
+  <data name="IsRequestingYour" xml:space="preserve">
+    <value> t'esta demanant </value>
+  </data>
+  <data name="ToAnswerYourRequestOn" xml:space="preserve">
+    <value> per respondre a la seva sol·licitud per </value>
+  </data>
+  <data name="ToAnswerYourOfferOn" xml:space="preserve">
+    <value> per respondre a la teva oferta per </value>
+  </data>
+  <data name="WaitingFor" xml:space="preserve">
+    <value>Esperant a </value>
+  </data>
+  <data name="OfferAccepted" xml:space="preserve">
+    <value>Oferta acceptada</value>
+  </data>
 </root>

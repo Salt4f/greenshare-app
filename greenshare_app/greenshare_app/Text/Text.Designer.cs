@@ -808,6 +808,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offer accepted.
+        /// </summary>
+        internal static string OfferAccepted {
+            get {
+                return ResourceManager.GetString("OfferAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offer not found.
         /// </summary>
         internal static string OfferNotFound {
@@ -817,7 +826,7 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Offer rejected.
         /// </summary>
         internal static string OfferRejected {
             get {
@@ -1312,7 +1321,7 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Request accepted.
         /// </summary>
         internal static string RequestAccepted {
             get {
@@ -1330,7 +1339,7 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Request rejected.
         /// </summary>
         internal static string RequestRejected {
             get {
@@ -1564,6 +1573,24 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  to answer your offer on .
+        /// </summary>
+        internal static string ToAnswerYourOfferOn {
+            get {
+                return ResourceManager.GetString("ToAnswerYourOfferOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  to answer your request on .
+        /// </summary>
+        internal static string ToAnswerYourRequestOn {
+            get {
+                return ResourceManager.GetString("ToAnswerYourRequestOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
         internal static string Update {
@@ -1632,6 +1659,15 @@ namespace greenshare_app.Text {
         internal static string ViewPost {
             get {
                 return ResourceManager.GetString("ViewPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for .
+        /// </summary>
+        internal static string WaitingFor {
+            get {
+                return ResourceManager.GetString("WaitingFor", resourceCulture);
             }
         }
         
