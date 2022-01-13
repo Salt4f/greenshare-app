@@ -58,13 +58,13 @@ namespace greenshare_app.Utils
                             {
                                 pending.PostType = "request";
                                 pending.PostName = postsArray.PostName;
-                                pending.InteractionText = pending.UserName + " is offering you a " + pending.PostName;
+                                pending.InteractionText = pending.UserName + Text.Text.IsOfferingYou + pending.PostName;
                             }
                             else
                             {
                                 pending.PostType = "offer";
                                 pending.PostName = info.OwnPostName;
-                                pending.InteractionText = pending.UserName + " is requesting your " + pending.PostName;
+                                pending.InteractionText = pending.UserName + Text.Text.IsRequestingYour + pending.PostName;
 
                             }
                             pendingPosts.Add(pending);
@@ -85,12 +85,12 @@ namespace greenshare_app.Utils
                         if (info.PostType == "offer")
                         {
                             pending.PostType = "request";
-                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your request on " + pending.PostName;
+                            pending.InteractionText = Text.Text.WaitingFor + pending.UserName + Text.Text.ToAnswerYourRequestOn + pending.PostName;
                         }
                         else
                         {
                             pending.PostType = "offer";
-                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your offer on " + pending.PostName;
+                            pending.InteractionText = Text.Text.WaitingFor + pending.UserName + Text.Text.ToAnswerYourOfferOn + pending.PostName;
                         }
                         pendingPosts.Add(pending);
                     }

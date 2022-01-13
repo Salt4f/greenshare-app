@@ -262,7 +262,7 @@ namespace greenshare_app.ViewModels
                 if (await OfferRequestInteraction.Instance().OfferARequest(id, post.Id))
                 {
                     IsBusy = false;
-                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                    await view.DisplayAlert(Text.Text.OfferRequestedSuccessfully, Text.Text.PleaseCheckYourOutgoingInteractionsToSeeItsStatus, "OK");
                     await navigation.PopModalAsync();
                 }
             }

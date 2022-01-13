@@ -430,7 +430,7 @@
     <value>Rewards page</value>
   </data>
   <data name="YourGreenCoins" xml:space="preserve">
-    <value>Your Greencoins:</value>
+    <value>Your Greencoins: </value>
   </data>
   <data name="NoRewardsFound" xml:space="preserve">
     <value>No rewards found</value>
@@ -494,5 +494,83 @@
   </data>
   <data name="ErrorWhileRetrievingRequests" xml:space="preserve">
     <value>Error While Retrieving Requests</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="PlusReward" xml:space="preserve">
+    <value>+ Reward</value>
+  </data>
+  <data name="SelectAnOption" xml:space="preserve">
+    <value>Select an option</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product name</value>
+  </data>
+  <data name="NewTag" xml:space="preserve">
+    <value>New tag</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="RepeatPassword" xml:space="preserve">
+    <value>Repeat password</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="GreenCoinsExchangedSuccessfully" xml:space="preserve">
+    <value>GreenCoins exchanged successfully</value>
+  </data>
+  <data name="ErrorWhileExchangingYourEcoPointsToGreenCoins" xml:space="preserve">
+    <value>Error while exchanging your ecoPoints to GreenCoins</value>
+  </data>
+  <data name="ChangeAllUsersEcoPoints" xml:space="preserve">
+    <value>All users' ecoPoints have been exchanged for greenCoins</value>
+  </data>
+  <data name="RewardExchangedSuccessfully" xml:space="preserve">
+    <value>Reward exchanged successfully</value>
+  </data>
+  <data name="SuccessfullyExchangeThePromotion" xml:space="preserve">
+    <value>successfully exchanged the promotion from </value>
+  </data>
+  <data name="ErrorWhileExchangingTheReward" xml:space="preserve">
+    <value>Error while exchanging the reward</value>
+  </data>
+  <data name="YouDontHaveEnoughGreenCoins" xml:space="preserve">
+    <value>you don't have enough GreenCoins!</value>
+  </data>
+  <data name="RewardDeletedSuccessfully" xml:space="preserve">
+    <value>Reward deleted successfully</value>
+  </data>
+  <data name="CouldNotDeleteReward" xml:space="preserve">
+    <value>Could not delete reward</value>
+  </data>
+  <data name="RequestAccepted" xml:space="preserve">
+    <value>Request accepted</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>Request rejected</value>
+  </data>
+  <data name="OfferRejected" xml:space="preserve">
+    <value>Offer rejected</value>
+  </data>
+  <data name="IsOfferingYou" xml:space="preserve">
+    <value> is offering you a </value>
+  </data>
+  <data name="IsRequestingYour" xml:space="preserve">
+    <value> is requesting your </value>
+  </data>
+  <data name="ToAnswerYourRequestOn" xml:space="preserve">
+    <value> to answer your request on </value>
+  </data>
+  <data name="ToAnswerYourOfferOn" xml:space="preserve">
+    <value> to answer your offer on </value>
+  </data>
+  <data name="WaitingFor" xml:space="preserve">
+    <value>Waiting for </value>
+  </data>
+  <data name="OfferAccepted" xml:space="preserve">
+    <value>Offer accepted</value>
   </data>
 </root>
