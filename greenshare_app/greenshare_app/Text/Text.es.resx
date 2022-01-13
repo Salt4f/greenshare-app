@@ -588,4 +588,10 @@
   <data name="Password" xml:space="preserve">
     <value>Contraseña</value>
   </data>
+  <data name="MustBeOver18" xml:space="preserve">
+    <value>Debe ser mayor de 18</value>
+  </data>
+  <data name="PleaseYouShouldBeOver18" xml:space="preserve">
+    <value>por favor debe ser mayor de 18</value>
+  </data>
 </root>

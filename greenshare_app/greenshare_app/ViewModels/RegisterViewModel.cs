@@ -111,7 +111,11 @@ namespace greenshare_app.ViewModels
                 await view.DisplayAlert(Text.Text.EmailNotValid, Text.Text.PleaseCheckIfTheEmailIsCorrect, "OK");
                 return;
             }
-
+            if (GetAge() <= 18)
+            {
+                await view.DisplayAlert(Text.Text.MustBeOver18, Text.Text.PleaseYouShouldBeOver18, "OK");
+                return;
+            }
             if (!dniPhotoValid)
             {
                 await view.DisplayAlert(Text.Text.DNINotValid, Text.Text.PleaseTakeAPhotoOfYourDNI, "OK");
@@ -145,6 +149,17 @@ namespace greenshare_app.ViewModels
             dniPhotoValid = true;
             await view.DisplayAlert(Text.Text.DNIVerified, Text.Text.YourDNIHasBeenVerified, "OK");
 
+        }
+
+        private int GetAge()
+        {
+            var age = DateTime.Today.Year - birthDate.Year;
+            var m = DateTime.Today.Month - birthDate.Month;
+            if (m < 0 || (m == 0 && DateTime.Today.Day < birthDate.Day))
+            {
+                age--;
+            }
+            return age;
         }
        
     }

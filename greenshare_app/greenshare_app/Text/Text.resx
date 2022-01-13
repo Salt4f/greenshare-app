@@ -588,4 +588,10 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="MustBeOver18" xml:space="preserve">
+    <value>Must be over 18</value>
+  </data>
+  <data name="PleaseYouShouldBeOver18" xml:space="preserve">
+    <value>Please you should be over 18</value>
+  </data>
 </root>
