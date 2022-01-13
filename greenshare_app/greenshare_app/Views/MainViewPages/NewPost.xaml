@@ -25,6 +25,7 @@
                         TitleColor="{StaticResource colorBlack}"
                         FontAttributes="Bold"
                         TextColor="{StaticResource colorBlack}"
+                        HorizontalTextAlignment="Center"
                         />
                     <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
                 </Frame>

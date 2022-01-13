@@ -16,7 +16,7 @@
                             Command="{Binding OnDeactivateButtonCommand}" Style="{StaticResource styleButtonDefault}" BackgroundColor="{StaticResource colorRed1}" FontSize="15"/>
                 </Frame>
                 <!--BOTO EDITAR-->
-                <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="20" IsVisible="{Binding IsEditButtonVisible}">
+                <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="20" IsVisible="{Binding IsEditButtonVisible}" HorizontalOptions="CenterAndExpand">
                     <Button Text="{x:Static fontAwesome:FontAwesomeIcons.PenAlt}" FontFamily="FAS"
                             Command="{Binding OnEditButtonCommand}" Style="{StaticResource styleButtonDefault}" FontSize="20"/>
                 </Frame>

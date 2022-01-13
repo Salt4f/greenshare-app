@@ -3,11 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:maps="clr-namespace:greenshare_app.Controls"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              x:Class="greenshare_app.Views.MainViewPages.MapsPage">
 
-    <maps:CustomMap x:Name="MyMap" IsShowingUser="True">
-
-
-    </maps:CustomMap>
-    
+    <StackLayout>
+        <Label
+              VerticalOptions="Center"
+              Style="{StaticResource styleEntryDefault}"
+              Text="{x:Static multiIdioma:Text.Distance}"/>
+        <Slider Grid.Column="1"
+                Maximum="200"
+                Minimum="1"
+                MaximumTrackColor="{StaticResource colorGreen2}" 
+                MinimumTrackColor="{StaticResource colorGreen2}"
+                ThumbColor="{StaticResource colorGreen5}"
+                Value="{Binding DistanceValue}"/>
+        <Label 
+                VerticalOptions="Center" 
+                Grid.Column="2" 
+                TextColor="{StaticResource colorBlack}"
+                Text="{Binding DistanceValue}">
+        </Label>
+        <maps:CustomMap x:Name="MyMap" IsShowingUser="True"/>
+    </StackLayout>
 </ContentPage>
