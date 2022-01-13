@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
+              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:RewardsPageViewModel"
              x:Class="greenshare_app.Views.MainViewPages.RewardsPage"
              Title="{Binding Title}"
@@ -29,12 +30,20 @@
 
             <Button 
                 Style="{StaticResource styleButtonDefault}"
+                Grid.Column="1"
+                IsVisible="{Binding IsAdmin}"
+                FontFamily="FAS"
+                Text="{x:Static fontAwesome:FontAwesomeIcons.MoneyBill}" 
+                Command="{Binding OnExchangeButtonCommand}" 
+                FontSize="12">
+            </Button>
+            <Button 
+                Style="{StaticResource styleButtonDefault}"
                 Grid.Column="2"
                 IsVisible="{Binding IsAdmin}" 
                 Text="{x:Static multiIdioma:Text.PlusReward}" 
                 Command="{Binding OnCreateButtonCommand}" 
                 FontSize="12">
-                
             </Button>
 
 

@@ -40,6 +40,7 @@ namespace greenshare_app.Models
 
         private async Task OnCancel()
         {
+            ((ViewModels.OutgoingPendingViewModel)View.BindingContext).IsBusy = true;
             if (PostType == "request")
             {
                 await OfferRequestInteraction.Instance().CancelRequest(PostId, OwnPostId);
@@ -50,6 +51,7 @@ namespace greenshare_app.Models
                 await OfferRequestInteraction.Instance().CancelOffer(OwnPostId, PostId);
                 await ((ViewModels.OutgoingPendingViewModel)View.BindingContext).Refresh();
             }
+            ((ViewModels.OutgoingPendingViewModel)View.BindingContext).IsBusy = false;
         }
         private async Task OnUser()
         {            
@@ -72,6 +74,7 @@ namespace greenshare_app.Models
         }
         private async Task OnAccept()
         {
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = true;
             if (PostType == "offer")
             {
                 if(await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId))
@@ -83,6 +86,7 @@ namespace greenshare_app.Models
                 await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
                 await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = false;
         }
 
         private async Task OnReject()

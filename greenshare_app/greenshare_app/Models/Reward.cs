@@ -39,36 +39,46 @@ namespace greenshare_app.Models
         public INavigation Navigation { get; set; }
         private async Task OnExchange()
         {
+            ((ViewModels.RewardsPageViewModel) View.BindingContext).IsBusy = true;
             if (GreenCoinsAvailable >= GreenCoins)
             {
                 if (await RewardsUtil.Instance().ExchangeReward(Id))
                 {
+                    await ((ViewModels.RewardsPageViewModel)View.BindingContext).Refresh();
                     await View.DisplayAlert("Reward exchanged successfully", "successfully exchanged the promotion from "+SponsorName, "OK");
+                    ((ViewModels.RewardsPageViewModel)View.BindingContext).IsBusy = false;
+                    return;
                 }
-                await View.DisplayAlert("Error while exchanging the reward", "something went wrong", "OK");
+                await View.DisplayAlert("Error while exchanging the reward", "something went wrong", "OK");                
             }
             else
             {
                 await View.DisplayAlert("Error while exchanging the reward", "you don't have enough GreenCoins!", "OK");
             }
+            ((ViewModels.RewardsPageViewModel)View.BindingContext).IsBusy = false;
+            return;
 
         }
         private async Task OnDeactivate()
         {
+            ((ViewModels.RewardsPageViewModel)View.BindingContext).IsBusy = true;
             if (await RewardsUtil.Instance().DeactivateReward(Id))
             {
                 await View.DisplayAlert("Reward deleted successfully", "", "OK");
                 await ((ViewModels.RewardsPageViewModel)View.BindingContext).Refresh();
             }
             else await View.DisplayAlert("Could not delete reward", "Something went wrong", "OK");
+            ((ViewModels.RewardsPageViewModel)View.BindingContext).IsBusy = false;
 
         }
         private async void OnDisappear(object sender, EventArgs args)
         {
             await ((ViewModels.RewardsPageViewModel)View.BindingContext).Refresh();
+            ((ViewModels.RewardsPageViewModel)View.BindingContext).IsBusy = false;
         }
         private async Task OnEdit()
         {
+            ((ViewModels.RewardsPageViewModel)View.BindingContext).IsBusy = true;
             var view = new SponsorsFormPage(this);
             var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
             view.Disappearing += OnDisappear;
