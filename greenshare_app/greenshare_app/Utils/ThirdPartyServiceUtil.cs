@@ -32,7 +32,7 @@ namespace greenshare_app.Utils
         public async Task<List<QuizQuestion>> GetEcoQuiz()
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/eco-score");
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1 + "/eco-score");
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
 
@@ -59,7 +59,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/eco-score", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1 + "/eco-score", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;

@@ -44,7 +44,7 @@ namespace greenshare_app.Utils
         public async Task<List<Reward>> GetAllRewards(INavigation navigation, Page view, int greenCoinsAvailable)
         {
             Tuple<int,string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/rewards");
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/rewards");
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -75,7 +75,7 @@ namespace greenshare_app.Utils
         public async Task<Reward> GetReward(int rewardId, INavigation navigation, Page view)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/rewards/" + rewardId);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/rewards/" + rewardId);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -106,7 +106,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/rewards/" + reward.Id, httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerApiUrl + "/rewards/" + reward.Id, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -120,7 +120,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/rewards", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/rewards", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 return true;
@@ -135,7 +135,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/redeem?action=rewards", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1 + "redeem?action=rewards", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -148,7 +148,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/rewards/" + rewardId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/rewards/" + rewardId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;

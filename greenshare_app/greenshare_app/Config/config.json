@@ -1,4 +1,5 @@
 ﻿{
-  "baseServerUrl": "http://server.vgafib.org/api",
+  "baseServerApiUrl": "http://server.vgafib.org/api",
+  "baseServerGoogleUrl": "https://vgafib.org:13443/google",
   "adminId": 888
 }
