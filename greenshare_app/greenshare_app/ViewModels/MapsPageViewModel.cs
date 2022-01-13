@@ -21,6 +21,7 @@ namespace greenshare_app.ViewModels
         private INavigation navigation;
         private Page view;
         private int distanceValue;
+        private CustomMap MyMap;
         Geocoder geocoder = new Geocoder();
 
         public int DistanceValue
@@ -37,16 +38,17 @@ namespace greenshare_app.ViewModels
             throw new NotImplementedException();
         }
 
-        public MapsPageViewModel(INavigation navigation, Page view, CustomMap MyMap)
+        public MapsPageViewModel(INavigation navigation, Page view, CustomMap myMap)
         {
             this.navigation = navigation;
             this.view = view;
-            this.distanceValue = 100;
+            distanceValue = 100;
+            MyMap = myMap;
             MyMap.CustomPins = new List<CustomPin>();
-            PositionMap(MyMap);
-            AddPins(MyMap);
+            PositionMap();
+            AddPins();
         }
-        private async void PositionMap(CustomMap MyMap)
+        private async void PositionMap()
         {
             var loc = await Geolocation.GetLocationAsync();
             MyMap.MoveToRegion(
@@ -54,10 +56,10 @@ namespace greenshare_app.ViewModels
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
         }
-        private async void AddPins(CustomMap MyMap)
+        private async void AddPins()
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, distanceValue, quantity:50);
+            var cards = await PostRetriever.Instance().GetOffers(loc, DistanceValue, quantity: 50);
             if (cards != null)
             {
                 foreach (var card in cards)
@@ -87,7 +89,7 @@ namespace greenshare_app.ViewModels
                 }
             }
 
-            var cards2 = await PostRetriever.Instance().GetRequests(loc, distanceValue, quantity:50);
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, DistanceValue, quantity: 50);
             if (cards2 != null)
             {
                 foreach (var card in cards2)
@@ -119,11 +121,15 @@ namespace greenshare_app.ViewModels
             }
         }
 
-        //public AsyncCommand OnRefreshMapCommand => new AsyncCommand(RefreshMap);
+        public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
 
-        //private async Task RefreshMap
-        //{
-        //    addPins
-        //}
+        private async Task OnSearch()
+        {
+            IsBusy = true;
+            MyMap.CustomPins.Clear();
+            MyMap.Pins.Clear();
+            AddPins();
+            IsBusy = false;
+        }
     }
 }
