@@ -478,7 +478,7 @@
     <value>Página de administrador</value>
   </data>
   <data name="NoReportsFound" xml:space="preserve">
-    <value>No s'han trobat reports</value>
+    <value>No se encontraron reports</value>
   </data>
   <data name="ItsAPeacefulDayInTheApp" xml:space="preserve">
     <value>Es un día pacífico en la aplicación</value>
