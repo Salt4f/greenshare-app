@@ -20,7 +20,14 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
+        private int distanceValue;
         Geocoder geocoder = new Geocoder();
+
+        public int DistanceValue
+        {
+            get => distanceValue;
+            set => SetProperty(ref distanceValue, value);
+        }
 
         public AsyncCommand<MapClickedEventArgs> OnMapClickedCommand => new AsyncCommand<MapClickedEventArgs>(OnMapClicked);
 
@@ -34,6 +41,7 @@ namespace greenshare_app.ViewModels
         {
             this.navigation = navigation;
             this.view = view;
+            this.distanceValue = 100;
             MyMap.CustomPins = new List<CustomPin>();
             PositionMap(MyMap);
             AddPins(MyMap);
@@ -49,7 +57,7 @@ namespace greenshare_app.ViewModels
         private async void AddPins(CustomMap MyMap)
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, 1000, quantity:50);
+            var cards = await PostRetriever.Instance().GetOffers(loc, distanceValue, quantity:50);
             if (cards != null)
             {
                 foreach (var card in cards)
@@ -79,7 +87,7 @@ namespace greenshare_app.ViewModels
                 }
             }
 
-            var cards2 = await PostRetriever.Instance().GetRequests(loc, 1000, quantity:50);
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, distanceValue, quantity:50);
             if (cards2 != null)
             {
                 foreach (var card in cards2)

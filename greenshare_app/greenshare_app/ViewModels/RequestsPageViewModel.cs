@@ -36,6 +36,7 @@ namespace greenshare_app.ViewModels
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
             this.navigation = navigation;
+            this.distanceValue = 100;
             this.view = view;
             selectedPostCard = new PostCard();
             postCardList = new ObservableRangeCollection<PostCard>();
@@ -180,12 +181,5 @@ namespace greenshare_app.ViewModels
             else FilterVisible = false;
             return;
         }
-
-
-
-
-
-
-
     }
 }
