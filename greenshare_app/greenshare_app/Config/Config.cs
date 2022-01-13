@@ -15,7 +15,8 @@ namespace greenshare_app.Config
         {
             var file = ReadConfigFile();
             var config = JsonConvert.DeserializeObject<MainConfig>(file);
-            BaseServerUrl = config.BaseServerUrl;
+            BaseServerApiUrl = config.BaseServerApiUrl;
+            BaseServerGoogleUrl = config.BaseServerGoogleUrl;
             AdminId = config.AdminId;
         }
 
@@ -37,13 +38,17 @@ namespace greenshare_app.Config
             return text;
         }
 
-        public string BaseServerUrl { get; private set; }
+        public string BaseServerApiUrl { get; private set; }
+        public string BaseServerGoogleUrl { get; private set; }
         public int AdminId { get; private set; }
 
         private class MainConfig
         {
-            [JsonProperty(PropertyName = "baseServerUrl")]
-            public string BaseServerUrl { get; set; }
+            [JsonProperty(PropertyName = "baseServerApiUrl")]
+            public string BaseServerApiUrl { get; set; }
+
+            [JsonProperty(PropertyName = "baseServerGoogleUrl")]
+            public string BaseServerGoogleUrl { get; set; }
 
             [JsonProperty(PropertyName = "adminId")]
             public int AdminId { get; set; }

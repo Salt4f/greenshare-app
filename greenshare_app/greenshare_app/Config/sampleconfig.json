@@ -1,4 +1,5 @@
 ﻿{
-  "baseServerUrl": "http://54.89.126.119/api",
+  "baseServerApiUrl": "http://54.89.126.119/api",
+  "baseServerGoogleUrl": "http://54.89.126.119/google",
   "adminId": 888
 }

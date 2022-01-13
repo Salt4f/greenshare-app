@@ -33,8 +33,8 @@ namespace greenshare_app.Utils
         public async Task<bool> DeactivatePost(int postId, string postType)
         {
             string url;
-            if (postType == "Offer") url = Config.Config.Instance().BaseServerUrl + "/posts/offers/" + postId + "/deactivate";
-            else if (postType == "Request") url = Config.Config.Instance().BaseServerUrl + "/posts/requests/" + postId + "/deactivate";
+            if (postType == "Offer") url = Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + postId + "/deactivate";
+            else if (postType == "Request") url = Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + postId + "/deactivate";
             else return false;
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
@@ -54,7 +54,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/requests", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -73,7 +73,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/offers", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -100,7 +100,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId.ToString(), httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + offerId.ToString(), httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {               
                 return true;
@@ -125,7 +125,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId.ToString(), httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + requestId.ToString(), httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
