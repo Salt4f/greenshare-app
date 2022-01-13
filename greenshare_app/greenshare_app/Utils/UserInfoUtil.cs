@@ -61,6 +61,8 @@ namespace greenshare_app.Utils
                         ProfilePicture = new Image() { Source = ImageSource.FromStream(() => { return new MemoryStream(info.ProfilePicture); }) },
                         Banned = info.Banned,
                         TotalEcoPoints = info.TotalEcoPoints,
+                        CurrentEcoPoints = info.CurrentEcoPoints,
+                        CurrentGreenCoins = info.CurrentGreenCoins,
                         TotalGreenCoins = info.TotalGreenCoins,
                         BirthDate = new DateTime(info.BirthDate.Year, info.BirthDate.Month, info.BirthDate.Day),
                         AverageValoration = info.AverageValoration
@@ -143,6 +145,12 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "totalGreenCoins")]
             public int TotalGreenCoins { get; set; }
+
+            [JsonProperty(PropertyName = "currentEcoPoints")]
+            public int CurrentEcoPoints { get; set; }
+
+            [JsonProperty(PropertyName = "currentGreenCoins")]
+            public int CurrentGreenCoins { get; set; }
 
             [JsonProperty(PropertyName = "valoration")]          
             public double AverageValoration { get; set; }

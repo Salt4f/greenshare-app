@@ -48,7 +48,7 @@ namespace greenshare_app.ViewModels
             this.user = user;
             this.view = view;
             RefreshCommand = new AsyncCommand(Refresh);
-            Starting += OnStart;           
+            Starting += OnStart;
             Starting(this, EventArgs.Empty);
         }
         public string AvailableGreenCoins
@@ -60,12 +60,12 @@ namespace greenshare_app.ViewModels
         {
             IsBusy = true;
             IsAdmin = await Auth.Instance().IsAdmin();
-            AvailableGreenCoins = Text.Text.YourGreenCoins + user.TotalGreenCoins;
+            AvailableGreenCoins = Text.Text.YourGreenCoins + user.CurrentGreenCoins;
 
             Rewards = new ObservableRangeCollection<Reward>();
             try
             {
-                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
+                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.CurrentGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
                 if (Rewards.Count == 0) await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.WeAreStillLookingForSponsors, "OK");
@@ -88,18 +88,43 @@ namespace greenshare_app.ViewModels
             view.Disappearing += OnDisappear;
             await navigation.PushModalAsync(view);
         }
-        private async void UpdateGreenCoins()
+        private async Task OnExchange()
+        {
+            IsBusy = true;
+            try
+            {
+                if ((user.CurrentGreenCoins = await RewardsUtil.Instance().ExchangeEcoPoints()) != -1)
+                {
+                    await view.DisplayAlert("GreenCoins exchanged successfully", "check your available greenCoins on the top left", "OK");
+                }
+                else
+                {
+                    await view.DisplayAlert("Error while exchanging your ecoPoints to GreenCoins", Text.Text.SomethingWentWrong, "OK");
+                }
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert("Error while exchanging your ecoPoints to GreenCoins", Text.Text.SomethingWentWrong, "OK");
+            }
+
+            IsBusy = false;
+            return;
+        }
+
+        private async Task UpdateGreenCoins()
         {
             user = await UserInfoUtil.Instance().GetUserInfo();
-            AvailableGreenCoins = Text.Text.YourGreenCoins + user.TotalGreenCoins;
+            AvailableGreenCoins = Text.Text.YourGreenCoins + user.CurrentGreenCoins;
+            return;
         }
         public async Task Refresh()
         {
             try
             {
                 IsBusy = true;
-                UpdateGreenCoins();
-                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
+                await UpdateGreenCoins();
+                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.CurrentGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
                 if (Rewards.Count == 0) await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.WeAreStillLookingForSponsors, "OK");

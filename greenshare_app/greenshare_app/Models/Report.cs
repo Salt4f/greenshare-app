@@ -53,8 +53,7 @@ namespace greenshare_app.Models
             }
             else
             {
-                await Navigation.PushModalAsync(new ProfilePage(ReporterId));
-                var view = new ProfilePage(ReporterId);
+                var view = new ProfilePage(ItemId);
                 view.Disappearing += OnDisappear;
                 await Navigation.PushModalAsync(view);
                 return;
