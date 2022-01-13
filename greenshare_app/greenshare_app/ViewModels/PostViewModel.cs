@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -28,22 +30,21 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnRequestToOfferButtonCommand => new AsyncCommand(OnRequestToOffer);
         public AsyncCommand OnOfferToRequestButtonCommand => new AsyncCommand(OnOfferToRequest);
 
-
         private event EventHandler Starting = delegate { };
         private IList<Image> photos;
         private Image icon;
         private IEnumerable<Tag> tags;
-        private DateTime terminationDateTime;
+        private string terminationDateTime;
         private bool isVisible;
         
         public PostViewModel(INavigation navigation, Page view, Post post)
         {
-            Title = "View Post";
+            Title = Text.Text.ViewPost;
             //Options = Array.Empty;
             this.post = post;
             this.navigation = navigation;
             this.view = view;
-            this.TerminationDateTime = post.TerminateAt;
+            TerminationDateTime = post.TerminateAt.ToShortDateString();
             Name = post.Name;
             var type = post.GetType();
             
@@ -88,7 +89,15 @@ namespace greenshare_app.ViewModels
             
             IsBusy = true;
             var session = await Auth.Instance().GetAuth();
-            if (session.Item1 != post.OwnerId)
+            if (session.Item1 == Config.Config.Instance().AdminId)
+            {
+                IsEditButtonVisible = false;
+                IsRequestButtonVisible = false;
+                IsOfferButtonVisible = false;
+                IsDeactivateButtonVisible = true;
+                IsEditButtonVisible = false;
+            }
+            else if (session.Item1 != post.OwnerId)
             {
                 IsEditButtonVisible = false;
                 if (PostType == "Offer")
@@ -131,6 +140,7 @@ namespace greenshare_app.ViewModels
         private bool isReportButtonVisible;
         private bool isOfferButtonVisible;
         private bool isRequestButtonVisible;
+        private bool isDeactivateButtonVisible;
 
         public Image Icon
         {
@@ -142,7 +152,7 @@ namespace greenshare_app.ViewModels
             get => photos;
             set => SetProperty(ref photos, value);
         }
-        public DateTime TerminationDateTime
+        public string TerminationDateTime
         {
             get => terminationDateTime;
             set => SetProperty(ref terminationDateTime, value);
@@ -169,6 +179,11 @@ namespace greenshare_app.ViewModels
             get => isRequestButtonVisible;
             set => SetProperty(ref isRequestButtonVisible, value);
         }
+        public bool IsDeactivateButtonVisible
+        {
+            get => isDeactivateButtonVisible;
+            set => SetProperty(ref isDeactivateButtonVisible, value);
+        }
         public bool IsOfferButtonVisible
         {
             get => isOfferButtonVisible;
@@ -178,7 +193,10 @@ namespace greenshare_app.ViewModels
         private async Task OnEdit()
         {
             IsBusy = true;
-            await navigation.PushModalAsync(new EditPost(post));
+            var view = new EditPost(post);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view); 
             IsBusy = false;
         }
         private async Task OnDeactivate()
@@ -187,7 +205,10 @@ namespace greenshare_app.ViewModels
             if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
             {
                 IsBusy = false;
-                await view.DisplayAlert("Post deactivated successfully", "now people can't see your post", "OK");
+
+                await view.DisplayAlert(Text.Text.PostDeactivatedSuccesfully, Text.Text.NowPeopleCantSeeYourPost, "OK");
+                await navigation.PopModalAsync();
+
             }
             IsBusy = false;
         }        
@@ -197,41 +218,58 @@ namespace greenshare_app.ViewModels
             IsRequestButtonVisible = false;
             IsOfferButtonVisible = false;
         }
+        private async void OnDisappear(object sender, EventArgs e)
+        {
+            await navigation.PopModalAsync();
+        }
         private async Task OnReport()
         {
             DeactivateButtons();
             IsBusy = true;
-            await navigation.PushModalAsync(new ReportPage(typeof(Post), post.Id));
+            var view = new ReportPage(typeof(Post),post.Id);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
             IsBusy = false;
         }
         private async Task OnRequestToOffer()
         {
-            List<Tag> tags = new List<Tag>();
-            Tag tag = new Tag()
-            {
-                Name = "RequestToOffer",
-                Color = Color.White,
-            };
-            tags.Add(tag);
             IsBusy = true;
-            var id = await PostSender.Instance().PostRequest("Req-to-Offer-" + post.Id, "request to offer", post.TerminateAt, await Geolocation.GetLocationAsync(), tags);
+            int id = await PostSender.Instance().PostRequest(post.Name, "Reply to " + post.Name, post.TerminateAt, new Location(), post.Tags);
             if (id != -1)
             {
                 if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
                 {
                     IsBusy = false;
-                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
-                    DeactivateButtons();
+                    await view.DisplayAlert(Text.Text.OfferRequestedSuccessfully, Text.Text.PleaseCheckYourOutgoingInteractionsToSeeItsStatus, "OK");
+                    await navigation.PopModalAsync();
                 }
             }
             IsBusy = false;
         }
         private async Task OnOfferToRequest()
         {
-            await view.DisplayAlert("Button WIP!", "missing way to create offer from here", "OK");
-            // TODO: añadir una foto de la galería y usarla para crear una offer
-            //var id = await PostSender.Instance().PostOffer("Offer-to-Req-" + post.Id, "offer to request", post.TerminateAt, await Geolocation.GetLocationAsync(), new List<Tag>());
-            //if (id != -1) await OfferRequestInteraction.Instance().OfferARequest(id, post.Id);
+            IsBusy = true;
+
+            FileResult photo = null;
+            while (photo is null)
+            {
+                photo = await MediaPicker.PickPhotoAsync();
+            }
+            var photoStream = await photo.OpenReadAsync();
+            byte[] icon = new byte[photoStream.Length];
+            await photoStream.ReadAsync(icon, 0, (int)photoStream.Length);
+            int id = await PostSender.Instance().PostOffer(post.Name, "Reply to " + post.Name, post.TerminateAt, new Location(), post.Tags, new List<byte[]>(), icon);
+            if (id != -1)
+            {
+                if (await OfferRequestInteraction.Instance().OfferARequest(id, post.Id))
+                {
+                    IsBusy = false;
+                    await view.DisplayAlert(Text.Text.OfferRequestedSuccessfully, Text.Text.PleaseCheckYourOutgoingInteractionsToSeeItsStatus, "OK");
+                    await navigation.PopModalAsync();
+                }
+            }
+            IsBusy = false;
         }
 
         public string PostType

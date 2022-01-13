@@ -5,7 +5,7 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using greenshare_app.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -25,7 +25,7 @@ namespace greenshare_app.ViewModels
 
         public IncomingPendingViewModel(INavigation navigation, Page view)
         {
-            Title = "Incoming Pending Interactions";
+            Title = Text.Text.IncomingPendingInteractions;
             this.navigation = navigation;
             this.view = view;
             PendingPostInteractions = new ObservableRangeCollection<PendingPostInteraction>();
@@ -56,7 +56,7 @@ namespace greenshare_app.ViewModels
                 PendingPostInteractions.AddRange(pendingInteractions);
                 if (PendingPostInteractions.Count == 0)
                 {
-                    await view.DisplayAlert("No Pending Interactions left", "", "OK");
+                    await view.DisplayAlert(Text.Text.NoPendingInteractionsLeft, "", "OK");
                     //PendingPostInteractions.Add(pendingTest);                   
                 }
                 IsBusy = false;
@@ -64,11 +64,11 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving Pending Interactions", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingPendingInteractions, Text.Text.SomethingWentWrong, "OK");
             }
         }
 
-        private async Task Refresh()
+        public async Task Refresh()
         {
             try
             {
@@ -79,13 +79,13 @@ namespace greenshare_app.ViewModels
                 IsBusy = false;
                 if (PendingPostInteractions.Count == 0)
                 {
-                    await view.DisplayAlert("No Pending Interactions left", "", "OK");
+                    await view.DisplayAlert(Text.Text.NoPendingInteractionsLeft, "", "OK");
                 }
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving Pending Interactions", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingPendingInteractions, Text.Text.SomethingWentWrong, "OK");
             }
         }
 

@@ -6,6 +6,7 @@ using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using greenshare_app.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -25,7 +26,7 @@ namespace greenshare_app.ViewModels
 
         public OutgoingAcceptedViewModel(INavigation navigation, Page view)
         {
-            Title = "Outgoing Accepted Interactions";
+            Title = Text.Text.OutgoingAcceptedInteractions;
             this.navigation = navigation;
             this.view = view;
             AcceptedPostInteractions = new ObservableRangeCollection<AcceptedPostInteraction>();
@@ -56,7 +57,7 @@ namespace greenshare_app.ViewModels
                 AcceptedPostInteractions.AddRange(acceptedInteractions);
                 if (AcceptedPostInteractions.Count == 0)
                 {
-                    await view.DisplayAlert("No Accepted Interactions left", "", "OK");
+                    await view.DisplayAlert(Text.Text.NoAcceptedInteractionsleft, "", "OK");
                     //PendingPostInteractions.Add(pendingTest);                   
                 }
                 IsBusy = false;
@@ -64,7 +65,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving Accepted Interactions", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingAcceptedInteractions, Text.Text.SomethingWentWrong, "OK");
             }
         }
 
@@ -80,13 +81,13 @@ namespace greenshare_app.ViewModels
                 IsBusy = false;
                 if (AcceptedPostInteractions.Count == 0)
                 {
-                    await view.DisplayAlert("No Accepted Interactions left", "", "OK");
+                    await view.DisplayAlert(Text.Text.NoAcceptedInteractionsleft, "", "OK");
                 }
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving Accepted Interactions", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingAcceptedInteractions, Text.Text.SomethingWentWrong, "OK");
             }
         }
     }

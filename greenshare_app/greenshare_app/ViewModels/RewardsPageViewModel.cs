@@ -9,6 +9,8 @@ using Xamarin.Forms;
 using greenshare_app.Utils;
 using greenshare_app.Views.MainViewPages;
 using System.Text;
+using System.Threading;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -21,24 +23,33 @@ namespace greenshare_app.ViewModels
         private User user;
         private ObservableRangeCollection<Reward> rewards;
         private string availableGreenCoins;
+        private bool isAdmin;
 
         private event EventHandler Starting = delegate { };
 
         //public AsyncCommand<object> SelectedCommand { get; }
         public AsyncCommand RefreshCommand { get; }
+        public AsyncCommand OnCreateButtonCommand => new AsyncCommand(OnCreate);
+        public AsyncCommand OnExchangeButtonCommand => new AsyncCommand(OnExchange);
+
         public ObservableRangeCollection<Reward> Rewards
         {
             get => rewards;
             set => SetProperty(ref rewards, value);
         }
+        public bool IsAdmin
+        {
+            get => isAdmin;
+            set => SetProperty(ref isAdmin, value);
+        }
         public RewardsPageViewModel(INavigation navigation, Page view, User user)
         {
-            Title = "Rewards Page";
+            Title = Text.Text.RewardsPage;
             this.navigation = navigation;
             this.user = user;
             this.view = view;
             RefreshCommand = new AsyncCommand(Refresh);
-            Starting += OnStart;           
+            Starting += OnStart;
             Starting(this, EventArgs.Empty);
         }
         public string AvailableGreenCoins
@@ -49,45 +60,81 @@ namespace greenshare_app.ViewModels
         private async void OnStart(object sender, EventArgs e)
         {
             IsBusy = true;
-            AvailableGreenCoins = "Your GreenCoins: " + user.TotalGreenCoins;
+            IsAdmin = await Auth.Instance().IsAdmin();
+            AvailableGreenCoins = Text.Text.YourGreenCoins + user.CurrentGreenCoins;
 
             Rewards = new ObservableRangeCollection<Reward>();
             try
             {
-                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
+                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.CurrentGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
-                if (Rewards.Count == 0) await view.DisplayAlert("No rewards found", "we are still looking for sponsors!", "OK");
+                if (Rewards.Count == 0) await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.WeAreStillLookingForSponsors, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("No rewards found", "something went wrong while retrieving rewards", "OK");
+                await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.SomethingWentWrong, "OK");
             }
+        }
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await Refresh();
+        }
+        private async Task OnCreate()
+        {
+            var view = new SponsorsFormPage();
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
+        }
+        private async Task OnExchange()
+        {
+            IsBusy = true;
+            try
+            {
+                if (await RewardsUtil.Instance().ExchangeEcoPoints())
+                {
+                    await view.DisplayAlert(Text.Text.GreenCoinsExchangedSuccessfully, Text.Text.ChangeAllUsersEcoPoints, "OK");
+                }
+                else
+                {
+                    await view.DisplayAlert(Text.Text.ErrorWhileExchangingYourEcoPointsToGreenCoins, Text.Text.SomethingWentWrong, "OK");
+                }
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert(Text.Text.ErrorWhileExchangingYourEcoPointsToGreenCoins, Text.Text.SomethingWentWrong, "OK");
+            }
+
+            IsBusy = false;
+            return;
         }
 
         private async Task UpdateGreenCoins()
         {
             user = await UserInfoUtil.Instance().GetUserInfo();
-            AvailableGreenCoins = "Your GreenCoins: " + user.TotalGreenCoins;
+            AvailableGreenCoins = Text.Text.YourGreenCoins + user.CurrentGreenCoins;
+            return;
         }
-        private async Task Refresh()
+        public async Task Refresh()
         {
             try
             {
                 IsBusy = true;
                 await UpdateGreenCoins();
-                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
+                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.CurrentGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
-                if (Rewards.Count == 0) await view.DisplayAlert("No rewards found", "we are still looking for sponsors!", "OK");
+                if (Rewards.Count == 0) await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.WeAreStillLookingForSponsors, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("No rewards found", "something went wrong while retrieving rewards", "OK");
+                await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.SomethingWentWrong, "OK");
             }
         }
     }

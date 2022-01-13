@@ -9,6 +9,8 @@ using Command = MvvmHelpers.Commands.Command;
 using greenshare_app.Views.MainViewPages.ProfileViewPages;
 using greenshare_app.Models;
 using greenshare_app.Views.MainViewPages;
+using greenshare_app.Text;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -21,7 +23,7 @@ namespace greenshare_app.ViewModels
         private bool isReportable;
         public ProfilePageViewModel(INavigation navigation, Page view)
         {
-            Title = "Perfil";
+            Title = Text.Text.Profile;
             this.navigation = navigation;
             this.view = view;
             OwnPage = true;
@@ -32,7 +34,7 @@ namespace greenshare_app.ViewModels
         }
         public ProfilePageViewModel(INavigation navigation, Page view, int userId)
         {
-            Title = "Perfil";
+            Title = Text.Text.Profile;
             this.navigation = navigation;
             this.view = view;            
             this.userId = userId;
@@ -45,7 +47,7 @@ namespace greenshare_app.ViewModels
         }
 
         private string nickName;
-        private double rating = 3.5;
+        private double rating;
         public string NickName {
             get => nickName;
             set => SetProperty(ref nickName, value);
@@ -67,6 +69,22 @@ namespace greenshare_app.ViewModels
             get => ownPage;
             private set => SetProperty(ref ownPage, value);
         }
+
+        public bool NotAdminNotOwnPage
+        {
+            get => notAdminNotOwnPage;
+            private set => SetProperty(ref notAdminNotOwnPage, value);
+        }
+        public bool IsAdminOwnPage
+        {
+            get => isAdminOwnPage;
+            private set => SetProperty(ref isAdminOwnPage, value);
+        }
+        public bool IsAdminNotOwnPage
+        {
+            get => isAdminNotOwnPage;
+            private set => SetProperty(ref isAdminNotOwnPage, value);
+        }
         public bool IsAdmin
         {
             get => isAdmin;
@@ -74,21 +92,32 @@ namespace greenshare_app.ViewModels
         }
 
         private async void OnStart(object sender, EventArgs args)
-        {
-            IsReportable = !OwnPage;
+        {           
             try
             {
                 IsAdmin = await Auth.Instance().IsAdmin();
-                if (OwnPage) user = await UserInfoUtil.Instance().GetUserInfo();
-                else user = await UserInfoUtil.Instance().GetUserInfo(userId);
+                IsReportable = !OwnPage && !IsAdmin;
+                IsAdminNotOwnPage = IsAdmin && !OwnPage;
+                IsAdminOwnPage = IsAdmin && OwnPage;
+                NotAdminNotOwnPage = !IsAdmin && !OwnPage;
+                if (OwnPage)
+                {
+                    user = await UserInfoUtil.Instance().GetUserInfo();
+                    userId = ((Tuple<int, string>)await Auth.Instance().GetAuth()).Item1;
+                }
+                else
+                {
+                    user = await UserInfoUtil.Instance().GetUserInfo(userId);
+                }
                 NickName = user.NickName;
+                Rating = user.AverageValoration;
             }
             catch (Exception e)
             {
                 var type = e.GetType();
                 var error = e.Message;
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, "OK");
             }
             IsBusy = false;
         }
@@ -101,13 +130,19 @@ namespace greenshare_app.ViewModels
         public AsyncCommand UserLogOutCommand => new AsyncCommand(OnLogOutButton);
         public AsyncCommand UserIncomingInteractionsCommand => new AsyncCommand(OnIncomingInteractionsButton);
         public AsyncCommand UserOutgoingInteractionsCommand => new AsyncCommand(OnOutgoingInteractionsButton);
-        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReportButton);
+        public AsyncCommand OnReportButtonCommand => new AsyncCommand(OnReport);
+        public AsyncCommand OnBanButtonCommand => new AsyncCommand(OnBanButton);
+
+
         //TODO: RATE PAGE PER USER
         //public AsyncCommand OnRateButtonCommand => new AsyncCommand(OnRateButton);
 
         private INavigation navigation;
         private Page view;
         private bool isAdmin;
+        private bool notAdminNotOwnPage;
+        private bool isAdminOwnPage;
+        private bool isAdminNotOwnPage;
 
         private async Task OnUserInfo()
         {
@@ -157,11 +192,38 @@ namespace greenshare_app.ViewModels
             IsBusy = false;
         }
 
-        private async Task OnReportButton()
+        private async void OnDisappear(object sender, EventArgs e)
+        {
+            await navigation.PopModalAsync();
+        }
+        private async Task OnReport()
+        {            
+            IsBusy = true;            
+            var view = new ReportPage(typeof(User), userId);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
+            IsBusy = false;
+        }
+
+        private async Task OnBanButton()
         {
             IsBusy = true;
-            await navigation.PushModalAsync(new ReportPage(typeof(User), userId));
-            IsBusy = false;
+            try
+            {
+                if (await UserInfoUtil.Instance().BanUser(userId))
+                {
+                    await view.DisplayAlert(Text.Text.UserBannedSuccessfully, Text.Text.SinnersShallBePurified, "OK");
+                    IsBusy = false;
+                    await navigation.PopModalAsync();
+                }
+
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert(Text.Text.ErrorWhileBanningUser, Text.Text.SomethingWentWrong, "OK");
+            }
         }
 
     }

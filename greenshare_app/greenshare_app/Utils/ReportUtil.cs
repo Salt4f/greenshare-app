@@ -34,11 +34,11 @@ namespace greenshare_app.Utils
             string url;
             if (type == typeof(Post))
             {
-                url = Config.Config.Instance().BaseServerUrl + "/posts/" + itemId + "/report";
+                url = Config.Config.Instance().BaseServerApiUrl + "/posts/" + itemId + "/report";
             }
             else
             {
-                url = Config.Config.Instance().BaseServerUrl + "/user/" + itemId + "/report";
+                url = Config.Config.Instance().BaseServerApiUrl + "/user/" + itemId + "/report";
             }
             NewReportInfo info = new NewReportInfo() { Message = message };
             string json = JsonConvert.SerializeObject(info);
@@ -62,13 +62,13 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/reports/" + reportId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/admin/reports/" + reportId, httpContent);
             return response.StatusCode == HttpStatusCode.OK;
         }
         //gets all unsolved reports
         public async Task<IEnumerable<Report>> GetAllReports(INavigation navigation, Page view)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/admin/reports");
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/admin/reports");
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)

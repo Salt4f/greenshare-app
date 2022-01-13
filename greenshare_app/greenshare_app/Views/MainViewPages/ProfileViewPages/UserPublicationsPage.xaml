@@ -4,6 +4,7 @@
              xmlns:model="clr-namespace:greenshare_app.Models" 
              xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              x:DataType="viewmodels:MyPostsViewModel"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserPublicationsPage">
 
@@ -38,57 +39,45 @@
                 EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                 EventName="ItemSelected" />
         </ListView.Behaviors>
-        
+
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:PostStatus">
                 <ViewCell>
                     <Grid Padding="10">
-                        <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
-                            <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="0" Padding="5">
-                                <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
-                                    <Frame BackgroundColor="{StaticResource colorGreen1}" IsVisible="{Binding IsOffer}" CornerRadius="10" Padding="7" Margin="2" VerticalOptions="CenterAndExpand">
-                                        <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}"></Image>
-                                    </Frame>
-                                    <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
-                                        <StackLayout Orientation="Vertical">
-                                            <Frame BackgroundColor="{StaticResource colorGreen3}" CornerRadius="10" Padding="2" HorizontalOptions="Center">
-                                                <Label Text="{Binding Name}" FontSize="22"
+                        <Frame BackgroundColor="{StaticResource colorGreen5}" CornerRadius="10" HeightRequest="250" Margin="5" Padding="5" BorderColor="{StaticResource colorGreen2}">
+                            <StackLayout Orientation="Horizontal" Margin="0" Padding="0">
+                                <Image HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding Icon.Source}" IsVisible="{Binding IsOffer}" Margin="5"/>
+                                <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Name}" FontSize="22"
                                                        Style="{StaticResource styleLabelWhite}"
-                                                   VerticalOptions="Center"/>
-                                            </Frame>
-                                            <Label Text="{Binding Status}"
+                                                       VerticalOptions="Center"
+                                                       BackgroundColor="{StaticResource colorGreen3}"/>
+                                    <Label Text="{Binding Status}"
                                                    Style="{StaticResource styleLabelWhite}"
                                                VerticalOptions="Center"
                                                    TextColor="#bdbdbd"/>
-                                            <Label Text="{Binding Author}"
+                                    <Label Text="{Binding Author}"
                                                    Style="{StaticResource styleLabelWhite}"
                                                VerticalOptions="Center"/>
-                                        </StackLayout>
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                                            <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
-                                                <ListView.ItemTemplate>
-                                                    <DataTemplate x:DataType="model:Tag">
-                                                        <ViewCell>
-                                                            <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="Center" VerticalOptions="Center">
-                                                                <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5">
-                                                                    <Label Text="{Binding Name}"
+                                    <ListView ItemsSource="{Binding Tags}" HorizontalOptions="Center">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="model:Tag">
+                                                <ViewCell>
+                                                    <Frame BackgroundColor="{Binding Color}" CornerRadius="25" Padding="5" HorizontalOptions="CenterAndExpand">
+                                                        <Label Text="{Binding Name}"
                                                                         Style="{StaticResource styleLabelWhite}"
                                                                         VerticalOptions="Center"/>
-                                                                </Frame>
-                                                            </StackLayout>
-                                                        </ViewCell>
-                                                    </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>
-                                        </StackLayout>
-                                    </StackLayout>
+                                                    </Frame>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
                                 </StackLayout>
-                            </Frame>
+                            </StackLayout>
                         </Frame>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-
     </ListView>
 </ContentPage>

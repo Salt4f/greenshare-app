@@ -33,7 +33,7 @@ namespace greenshare_app.Utils
         public async Task<List<PendingPostInteraction>> GetPendingPosts(string interactionType, INavigation navigation, Page view)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1+"/pending-posts?type="+interactionType);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1+"/pending-posts?type="+interactionType);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -58,13 +58,13 @@ namespace greenshare_app.Utils
                             {
                                 pending.PostType = "request";
                                 pending.PostName = postsArray.PostName;
-                                pending.InteractionText = pending.UserName + " is offering you a " + pending.PostName;
+                                pending.InteractionText = pending.UserName + Text.Text.IsOfferingYou + pending.PostName;
                             }
                             else
                             {
                                 pending.PostType = "offer";
                                 pending.PostName = info.OwnPostName;
-                                pending.InteractionText = pending.UserName + " is requesting your " + pending.PostName;
+                                pending.InteractionText = pending.UserName + Text.Text.IsRequestingYour + pending.PostName;
 
                             }
                             pendingPosts.Add(pending);
@@ -85,12 +85,12 @@ namespace greenshare_app.Utils
                         if (info.PostType == "offer")
                         {
                             pending.PostType = "request";
-                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your request on " + pending.PostName;
+                            pending.InteractionText = Text.Text.WaitingFor + pending.UserName + Text.Text.ToAnswerYourRequestOn + pending.PostName;
                         }
                         else
                         {
                             pending.PostType = "offer";
-                            pending.InteractionText = "Waiting for " + pending.UserName + " to answer your offer on " + pending.PostName;
+                            pending.InteractionText = Text.Text.WaitingFor + pending.UserName + Text.Text.ToAnswerYourOfferOn + pending.PostName;
                         }
                         pendingPosts.Add(pending);
                     }
@@ -103,7 +103,7 @@ namespace greenshare_app.Utils
         public async Task<List<AcceptedPostInteraction>> GetAcceptedPosts(string interactionType, INavigation navigation, Page view)
         {
             Tuple<int, string> session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/accepted-posts?type=" + interactionType);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1 + "/accepted-posts?type=" + interactionType);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -133,7 +133,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId+"/request/"+requestId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + offerId+"/request/"+requestId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {                
                 return true;
@@ -147,7 +147,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -162,7 +162,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId + "/accept", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + offerId + "/request/" + requestId + "/accept", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -175,7 +175,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + requestId + "/offer/" + offerId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -189,7 +189,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId, httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + offerId + "/request/" + requestId, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -203,7 +203,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/offers/" + offerId + "/request/" + requestId + "/reject", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + offerId + "/request/" + requestId + "/reject", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -216,7 +216,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId + "/reject", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + requestId + "/offer/" + offerId + "/reject", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -229,7 +229,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/posts/requests/" + requestId + "/offer/" + offerId + "/accept", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + requestId + "/offer/" + offerId + "/accept", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -244,7 +244,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl +"/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl +"/posts/offers/" + offerId + "/request/" + requestId + "/completed", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;

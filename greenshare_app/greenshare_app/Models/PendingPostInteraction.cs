@@ -40,14 +40,18 @@ namespace greenshare_app.Models
 
         private async Task OnCancel()
         {
+            ((ViewModels.OutgoingPendingViewModel)View.BindingContext).IsBusy = true;
             if (PostType == "request")
             {
                 await OfferRequestInteraction.Instance().CancelRequest(PostId, OwnPostId);
+                await ((ViewModels.OutgoingPendingViewModel)View.BindingContext).Refresh();
             }
             else
             {
                 await OfferRequestInteraction.Instance().CancelOffer(OwnPostId, PostId);
+                await ((ViewModels.OutgoingPendingViewModel)View.BindingContext).Refresh();
             }
+            ((ViewModels.OutgoingPendingViewModel)View.BindingContext).IsBusy = false;
         }
         private async Task OnUser()
         {            
@@ -70,28 +74,39 @@ namespace greenshare_app.Models
         }
         private async Task OnAccept()
         {
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = true;
             if (PostType == "offer")
             {
                 if(await OfferRequestInteraction.Instance().AcceptRequest(OwnPostId, PostId))
-                await View.DisplayAlert("Request accepted", "", "OK");
+                await View.DisplayAlert(Text.Text.RequestAccepted, "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
             else
             {
                 await OfferRequestInteraction.Instance().AcceptOffer(PostId, OwnPostId);
+                await View.DisplayAlert(Text.Text.OfferAccepted, "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = false;
         }
 
         private async Task OnReject()
-        {                           
+        {
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = true;
             if (PostType == "offer")
             {
                 if (await OfferRequestInteraction.Instance().RejectRequest(OwnPostId, PostId))
-                await View.DisplayAlert("Request rejected", "", "OK");
+                await View.DisplayAlert(Text.Text.RequestRejected, "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
             }
             else
             {
                 await OfferRequestInteraction.Instance().RejectOffer(PostId, OwnPostId);
+                await View.DisplayAlert(Text.Text.OfferRejected, "", "OK");
+                await ((ViewModels.IncomingPendingViewModel)View.BindingContext).Refresh();
+
             }
-        }                       
+            ((ViewModels.IncomingPendingViewModel)View.BindingContext).IsBusy = false;
+        }
     }
 }

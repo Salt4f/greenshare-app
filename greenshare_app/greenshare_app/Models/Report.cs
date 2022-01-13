@@ -4,6 +4,7 @@ using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -33,22 +34,28 @@ namespace greenshare_app.Models
         public AsyncCommand OnSolveButtonCommand { get; set; }
 
         private async Task OnItemName()
-        {
+        {           
             if (Type == "offer")
             {
                 Offer offer = await PostRetriever.Instance().GetOffer(ItemId);
-                await Navigation.PushModalAsync(new ViewPost(offer));
+                var view = new ViewPost(offer);
+                view.Disappearing += OnDisappear;
+                await Navigation.PushModalAsync(view);
                 return;
             }
             else if (Type == "request")
             {
                 Request request = await PostRetriever.Instance().GetRequest(ItemId);
-                await Navigation.PushModalAsync(new ViewPost(request));
+                var view = new ViewPost(request);
+                view.Disappearing += OnDisappear;
+                await Navigation.PushModalAsync(view);
                 return;
             }
             else
             {
-                await Navigation.PushModalAsync(new ProfilePage(ReporterId));
+                var view = new ProfilePage(ItemId);
+                view.Disappearing += OnDisappear;
+                await Navigation.PushModalAsync(view);
                 return;
             }
         }
@@ -59,8 +66,15 @@ namespace greenshare_app.Models
         }
         private async Task OnReporterId()
         {
-            await Navigation.PushModalAsync(new ProfilePage(ReporterId));
+            var view = new ProfilePage(ReporterId);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await Navigation.PushModalAsync(view);
         }
 
+        private async void OnDisappear(object sender, EventArgs e)
+        {
+            await ((ViewModels.AdminPageViewModel)View.BindingContext).Refresh();
+        }
     }
 }

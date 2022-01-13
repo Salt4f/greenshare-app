@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using greenshare_app.Utils;
+using greenshare_app.Text;
 using greenshare_app.Views.MainViewPages;
 using System.Text;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -28,7 +30,7 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public OffersPageViewModel(INavigation navigation, Page view)
         {
-            Title = "Ofertes";
+            Title = Text.Text.Offers;
             
             IsBusy = true;
             RefreshCommand = new AsyncCommand(Refresh);
@@ -51,13 +53,13 @@ namespace greenshare_app.ViewModels
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetOffers(loc);
                 PostCardList.AddRange(cards);
-                if (PostCardList.Count == 0) await view.DisplayAlert("No offers found", "please change your location and refresh", "OK");
+                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving offers", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingOffers, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
             }
             IsBusy = false;
         }
@@ -67,18 +69,17 @@ namespace greenshare_app.ViewModels
             try
             {
                 IsBusy = true;
-                await navigation.PopToRootAsync();
                 var loc = await Geolocation.GetLocationAsync();
                 var cards = await PostRetriever.Instance().GetOffers(loc/*, int.MaxValue*/);
                 PostCardList.Clear();
                 PostCardList.AddRange(cards);
-                if (PostCardList.Count == 0) await view.DisplayAlert("No offers found", "please change your location and refresh", "OK");
+                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving offers", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingOffers, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
             }
         }
 
@@ -117,17 +118,34 @@ namespace greenshare_app.ViewModels
         public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
         public AsyncCommand OnFilterButtonCommand => new AsyncCommand(OnFilter);
 
+        private async void OnDisappear(object sender, EventArgs args)
+        {
+            await Refresh();
+        }
+        
         async Task Selected(object args)
         {
             var card = args as PostCard;
             if (card == null)
                 return;
-
-            IsBusy = true;
-            Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
-            if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
-            else await navigation.PushModalAsync(new ViewPost(offer));
-            IsBusy = false;
+            try
+            {
+                IsBusy = true;
+                Offer offer = await PostRetriever.Instance().GetOffer(SelectedPostCard.Id);
+                if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
+                else
+                {
+                    var view = new ViewPost(offer);
+                    var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                    view.Disappearing += OnDisappear;
+                    await navigation.PushModalAsync(view);
+                }
+                IsBusy = false;
+            }
+            catch (Exception)
+            {
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.SomethingWentWrong, "OK");
+            }
             //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
 
         }
@@ -148,7 +166,7 @@ namespace greenshare_app.ViewModels
             }
             PostCardList.Clear();
             PostCardList.AddRange(cards);
-            if (PostCardList.Count == 0) await view.DisplayAlert("No offers found", "please change the introduced parameters, make sure location is enabled and refresh", "OK");
+            if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeTheIntroducedParameters, "OK");
             IsBusy = false;
             return;
         }

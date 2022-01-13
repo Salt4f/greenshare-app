@@ -7,8 +7,10 @@ using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -16,15 +18,16 @@ namespace greenshare_app.ViewModels
     {
         private event EventHandler Starting = delegate { };
 
+        private User user;
+        public AsyncCommand OnEditFrameCommand => new AsyncCommand(OnEdit);
         private bool ownPage;
         public UserInfoPageViewModel(INavigation navigation, Page view, int userId, bool ownPage)
         {
-            Title = "Perfil";
+            Title =Text.Text.Profile;
             this.userId = userId;
             this.navigation = navigation;
             this.view = view;
             OwnPage = ownPage;
-            IsReportable = !OwnPage;
             nickName = string.Empty;
             IsBusy = true;
             Starting += OnStart;
@@ -37,6 +40,11 @@ namespace greenshare_app.ViewModels
             get => nickName;
             set => SetProperty(ref nickName, value);
         }
+        public string FullName
+        {
+            get => fullName;
+            set => SetProperty(ref fullName, value);
+        }
         public string Description 
         {
             get => description;
@@ -48,27 +56,21 @@ namespace greenshare_app.ViewModels
             get => averageValoration;
             set => SetProperty(ref averageValoration, value);
         }
-        public DateTime BirthDate
+        public string BirthDate
         {
             get => birthDate;
             set => SetProperty(ref birthDate, value);
         }
-        public int TotalEcoPoints
+        public string TotalEcoPoints
         {
             get => totalEcoPoints;
             set => SetProperty(ref totalEcoPoints, value);
         }
-        public int TotalGreenCoins
+        public string TotalGreenCoins
         {
             get => totalGreenCoins;
             set => SetProperty(ref totalGreenCoins, value);
-        }
-
-        public bool IsReportable
-        {
-            get => isReportable;
-            private set => SetProperty(ref isReportable, value);
-        }
+        }        
         public bool OwnPage
         {
             get => ownPage;
@@ -76,16 +78,18 @@ namespace greenshare_app.ViewModels
         }
         private async void OnStart(object sender, EventArgs args)
         {
+            IsBusy = true;
             try
             {
-                User user = await UserInfoUtil.Instance().GetUserInfo();
+                user = await UserInfoUtil.Instance().GetUserInfo();
                 NickName = user.NickName;
+                FullName = user.FullName;
                 Description = user.Description;
                 ProfilePicture = user.ProfilePicture;
-                AverageValoration = user.AverageValoration;
-                BirthDate = user.BirthDate;
-                TotalEcoPoints = user.TotalEcoPoints;
-                TotalGreenCoins = user.TotalGreenCoins;
+                AverageValoration = user.AverageValoration;               
+                BirthDate = user.BirthDate.ToShortDateString();
+                TotalEcoPoints = user.TotalEcoPoints + "(Current: "+user.CurrentEcoPoints+")";
+                TotalGreenCoins = user.TotalGreenCoins + "(Current: " + user.CurrentGreenCoins + ")";
 
             }
             catch (Exception e)
@@ -93,19 +97,30 @@ namespace greenshare_app.ViewModels
                 var type = e.GetType();
                 var error = e.Message;
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, "OK");
             }
             IsBusy = false;
         }
-
+        private void OnDisappear(object sender, EventArgs args)
+        {
+            OnStart(this, EventArgs.Empty);
+        }
+        private async Task OnEdit()
+        {
+            var view = new UserInfoUpdatePage(this.user);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view);
+        }
         private int userId;
         private INavigation navigation;
         private Page view;
         private string description;
         private double averageValoration;
-        private DateTime birthDate;
-        private int totalEcoPoints;
-        private int totalGreenCoins;
+        private string birthDate;
+        private string totalEcoPoints;
+        private string totalGreenCoins;
         private bool isReportable;
+        private string fullName;
     }
 }

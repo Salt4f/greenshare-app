@@ -4,7 +4,7 @@
        xmlns:local="clr-namespace:greenshare_app.Views.MainViewPages"
        x:Class="greenshare_app.Views.MainView"
        BackgroundColor="#52734d">
-    <TabBar x:Name="TabBar">
+    <TabBar x:Name="TabBar" >
         <Tab Icon="hand_holding.png">
             <ShellContent ContentTemplate="{DataTemplate local:OffersPage}" />
         </Tab>

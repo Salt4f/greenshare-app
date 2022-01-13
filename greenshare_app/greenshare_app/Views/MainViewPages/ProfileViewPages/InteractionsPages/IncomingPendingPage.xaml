@@ -4,6 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.IncomingPendingPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:DataType="viewModels:IncomingPendingViewModel"
@@ -52,13 +53,9 @@
             <DataTemplate x:DataType="model:PendingPostInteraction">
                 <ViewCell>
                     <Grid Padding="10">
-                        <!--INCOMING OFFER-->
-                        <!--REALMENT EL QUE S'ESTÀ MOSTRANT AQUI ÉS UNA REQUEST, JA QUE L'AUTOR DE UNA SOLCITUD A UNA OFERTA SERÀ EL DE LA REQUEST-->
                         <Frame BackgroundColor="{StaticResource colorGreen2}" CornerRadius="10" HeightRequest="300" Margin="5" Padding="5" BorderColor="{StaticResource colorWhite}">
                             <StackLayout Orientation="Vertical" Margin="5" Padding="10">
-                                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
-                                    <Label Text="{Binding PostType}" Style="{StaticResource styleLabelBlack}" FontSize="20"/>
-                                </Frame>
+                                <Label Text="{Binding PostType}" Style="{StaticResource styleLabelBlack}" FontSize="20" Margin="5" BackgroundColor="{StaticResource colorGreen3}"/>
                                 <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen3}" CornerRadius="5" Padding="5">
                                     <Label Text="{Binding PostName}" Style="{StaticResource styleLabelWhite}" FontSize="18"/>
                                     <Frame.GestureRecognizers>

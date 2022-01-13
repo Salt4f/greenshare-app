@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:greenshare_app.Controls"
              x:Class="greenshare_app.Views.MainViewPages.SponsorsFormPage"
-             xmlns:fontAwesome="clr-namespace:FontAwesome">
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
+             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
+             x:DataType="viewmodels:SponsorsFormViewModel">
     <ScrollView>
         <StackLayout Spacing="0" Margin="0" Padding="0">
             <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="-10" WidthRequest="600" HeightRequest="120">
@@ -19,7 +21,7 @@
                     <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0,45,0,0" WidthRequest="600">
                         <StackLayout>
                             <Frame BackgroundColor="Transparent" Padding="0" VerticalOptions="Center" HorizontalOptions="Center">
-                                <Label Text="Sponsors form" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Label Text="{x:Static multiIdioma:Text.SponsorsForm}" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Frame>
                         </StackLayout>
                     </Frame>
@@ -31,7 +33,7 @@
                     </Frame>
                     
                     <!--Nombre empresa-->
-                    
+
                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
                         <StackLayout Orientation="Horizontal">
                             <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
@@ -40,8 +42,8 @@
                             <control:BorderlessEntry Style="{StaticResource styleEntryEnterpriseName}" Text="{Binding SponsorName}"/>
                         </StackLayout>
                     </Frame>
-
-                    <!--Nombre recompensa-->
+                    
+                    <!--Nombre Reward-->
 
                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
                         <StackLayout Orientation="Horizontal">
@@ -51,7 +53,7 @@
                             <control:BorderlessEntry Style="{StaticResource styleEntryRewardName}" Text="{Binding Name}"/>
                         </StackLayout>
                     </Frame>
-
+                   
                     <!--Número de GreenCoins-->
 
                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="Transparent" BorderColor="{StaticResource colorGreen3}" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -74,8 +76,8 @@
                         </StackLayout>
                     </Frame>
                     
-
-                    <Button Text="Publicar" Style="{StaticResource styleButtonDefault}" Command="{Binding OnPublishCommand}"/>
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Button Text="{x:Static multiIdioma:Text.Submit}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
 
                 </StackLayout>
             </Frame>

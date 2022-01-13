@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:greenshare_app.Controls"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
-             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoPage">
+             x:DataType="viewModels:UserInfoPageViewModel"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
+             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserInfoPage"
+             BackgroundColor="{StaticResource colorWhite}">
     <ScrollView>
         <StackLayout Spacing="0" Margin="0" Padding="0">
             <Frame BackgroundColor="#aed581" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"  Padding="0" Margin="-10" WidthRequest="600" HeightRequest="220">
@@ -32,7 +35,7 @@
                                     <ImageButton Grid.Row="0" Grid.Column="0" Source="{Binding ProfilePicture.Source}" Aspect="AspectFill" WidthRequest="80" Margin="0"/>
                                 </Frame>
                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" Margin="3,0,0,30" Font="22" FontFamily="Montserrat-Medium" TextColor="black" VerticalOptions="Center" HorizontalOptions="Start" />
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding UserName}" Margin="5,20,0,0" Font="12" FontFamily="Montserrat-Medium" TextColor="#212121" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding NickName}" Margin="5,20,0,0" Font="12" FontFamily="Montserrat-Medium" TextColor="#212121" VerticalOptions="Center" HorizontalOptions="Start" />
                                 <Frame HasShadow="True" Grid.Row="1" Grid.Column="1" BorderColor="Transparent" Margin="5,-15,0,0" Padding="0" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="250" HeightRequest="70">
                                     <Frame.Background>
                                         <LinearGradientBrush StartPoint="1,0"
@@ -57,17 +60,24 @@
                             <RowDefinition Height="65" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="400" />
+                            <ColumnDefinition Width="430" />
                         </Grid.ColumnDefinitions>
-                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#ffcc80" HorizontalOptions="Center" HasShadow="False" WidthRequest="400" HeightRequest="30">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Frame IsVisible="{Binding OwnPage}" Grid.Row="0" Grid.Column="0" BackgroundColor="#ffcc80" HorizontalOptions="StartAndExpand" HasShadow="False" WidthRequest="430" HeightRequest="30">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding UpdateProfileInfoCommand}"/>
+                                <TapGestureRecognizer Command="{Binding OnEditFrameCommand}"/>
                             </Frame.GestureRecognizers>
-                            <Label Text="UPDATE PROFILE" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
+                            <Label Text="{x:Static multiIdioma:Text.UpdateProfile}" Margin="5,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" Font="14" FontFamily="Montserrat-Medium" TextColor="White" />
                         </Frame>
                     </Grid>
                 </StackLayout>
             </Frame>
+
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+
             <StackLayout Padding="0" Spacing="0">
                 <Frame HasShadow="False">
                     <StackLayout Padding="0" Margin="-20,0,0,0">
@@ -82,35 +92,35 @@
                                 <ColumnDefinition Width="161" />
                                 <ColumnDefinition Width="300" />
                             </Grid.ColumnDefinitions>
-                            <Frame BackgroundColor="#eceff1" HasShadow="True" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" WidthRequest="352">
-                                <Label Text="User Name: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            <Frame BackgroundColor="#eceff1" HasShadow="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" WidthRequest="380">
+                                <Grid>
+                                    <Label Text="{x:Static multiIdioma:Text.Username}" Grid.Column ="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                    <Label Text="{Binding NickName}" Grid.Column ="2" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                </Grid>
                             </Frame>
-                            <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352">
-                                <Label Text="{Binding NickName}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            <Frame BackgroundColor="#eceff1" HasShadow="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" WidthRequest="380">
+                                <Grid>
+                                    <Label Text="{x:Static multiIdioma:Text.BirthDate}" Grid.Column ="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                    <Label Text="{Binding BirthDate}" Grid.Column ="2" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                </Grid>
                             </Frame>
-                            <Frame Grid.Row="1" Grid.Column="0" HasShadow="False" HorizontalOptions="StartAndExpand" WidthRequest="352" IsVisible="{Binding OwnPost}">
-                                <Label Text="Birth Date: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" WidthRequest="380" IsVisible="{Binding OwnPage}">
+                                <Grid>
+                                    <Label Text="Total EcoPoints: " Grid.Column ="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                    <Label Text="{Binding TotalEcoPoints}" Grid.Column ="2" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                </Grid>
                             </Frame>
-                            <Frame BackgroundColor="White" Margin="-6,0,0,0" HasShadow="True" Grid.Row="1" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352" IsVisible="{Binding OwnPost}">
-                                <Label Text="{Binding BirthDate}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" WidthRequest="380" IsVisible="{Binding OwnPage}">
+                                <Grid>
+                                    <Label Text="Total GreenCoins: " Grid.Column ="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                    <Label Text="{Binding TotalGreenCoins}" Grid.Column ="2" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                </Grid>
                             </Frame>
-                            <Frame BackgroundColor="#eceff1" Grid.Row="2" Grid.Column="0" HasShadow="True" HorizontalOptions="StartAndExpand" WidthRequest="352" IsVisible="{Binding OwnPost}">
-                                <Label Text="Eco Points: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
-                            </Frame>
-                            <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="2" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352" IsVisible="{Binding OwnPost}">
-                                <Label Text="{Binding TotalEcoPoints}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
-                            </Frame>
-                            <Frame Grid.Row="3" Grid.Column="0" HasShadow="False" HorizontalOptions="StartAndExpand" WidthRequest="352" IsVisible="{Binding OwnPost}">
-                                <Label Text="Green Points: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
-                            </Frame>
-                            <Frame BackgroundColor="White" Margin="-6,0,0,0" HasShadow="True" Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352" IsVisible="{Binding OwnPost}">
-                                <Label Text="{Binding TotalGreenCoins}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
-                            </Frame>
-                            <Frame BackgroundColor="#eceff1" Grid.Row="4" Grid.Column="0" HorizontalOptions="StartAndExpand" WidthRequest="352">
-                                <Label Text="Average Valoration: " Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
-                            </Frame>
-                            <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" WidthRequest="352" >
-                                <Label Text="{Binding AverageValoration}" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                            <Frame BackgroundColor="#eceff1" Margin="-6,0,0,0" HasShadow="True" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" WidthRequest="380" IsVisible="{Binding OwnPage}">
+                                <Grid>
+                                    <Label Text="{x:Static multiIdioma:Text.AvgValoration}" Grid.Column ="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Font="18" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                    <Label Text="{Binding AverageValoration}" Grid.Column ="2" Margin="-10,0,0,0" Font="16" FontFamily="Montserrat-Medium" VerticalOptions="Center" TextColor="black" />
+                                </Grid>
                             </Frame>
                         </Grid>
                     </StackLayout>
