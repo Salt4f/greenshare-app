@@ -7,7 +7,7 @@
             xmlns:fontAwesome="clr-namespace:FontAwesome"
             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
             BackgroundColor="{StaticResource colorWhite}"
-            xmlns:model="clr-namespace:greenshare_app.Models"
+            xmlns:model="clr-namespace:greenshare_app.Models" x:DataType="viewModel:NewPostViewModel"
              Title="{Binding PostType}">
 
     <ScrollView>
@@ -82,8 +82,8 @@
                 </Frame>
             </StackLayout>
             <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddPhoto}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddIcon}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button IsVisible="{Binding IsVisible}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddPhoto}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button IsVisible="{Binding IsVisible}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddIcon}" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">

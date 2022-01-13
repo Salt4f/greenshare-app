@@ -36,8 +36,8 @@ namespace greenshare_app.ViewModels
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand<object>(Selected);
             this.navigation = navigation;
-            this.distanceValue = 100;
             this.view = view;
+            DistanceValue = 100;
             selectedPostCard = new PostCard();
             postCardList = new ObservableRangeCollection<PostCard>();
 
@@ -51,7 +51,7 @@ namespace greenshare_app.ViewModels
             {
                 IsBusy = true;
                 var loc = await Geolocation.GetLocationAsync();
-                var cards = await PostRetriever.Instance().GetRequests(loc);
+                var cards = await PostRetriever.Instance().GetRequests(loc, DistanceValue);
                 PostCardList.AddRange(cards);
                 if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoRequestsFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
                 IsBusy = false;
@@ -71,10 +71,10 @@ namespace greenshare_app.ViewModels
                 IsBusy = true;
                 //await navigation.PopToRootAsync();
                 var loc = await Geolocation.GetLocationAsync();
-                var cards = await PostRetriever.Instance().GetRequests(loc);
+                var cards = await PostRetriever.Instance().GetRequests(loc, DistanceValue);
                 PostCardList.Clear();
                 PostCardList.AddRange(cards);
-                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoOffersFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
+                if (PostCardList.Count == 0) await view.DisplayAlert(Text.Text.NoRequestsFound, Text.Text.PleaseChangeYourLocationAndRefresh, "OK");
 
                 IsBusy = false;
             }
