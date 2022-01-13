@@ -38,11 +38,11 @@ namespace greenshare_app.Utils
             if (userId == null)
             {
                 Tuple<int, string> session = await Auth.Instance().GetAuth();
-                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1);
+                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1);
             }
             else
             {
-                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + userId);
+                request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/user/" + userId);
             }
             if (userId == null) request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
@@ -89,7 +89,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerUrl + "/user/"+session.Item1, httpContent);
+            var response = await httpClient.PutAsync(Config.Config.Instance().BaseServerApiUrl + "/user/"+session.Item1, httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -104,7 +104,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + userId + "/ban", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/user/" + userId + "/ban", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;

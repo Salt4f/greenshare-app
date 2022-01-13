@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetRequests(Location location, int distance = 50, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/posts/requests" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -66,7 +66,7 @@ namespace greenshare_app.Utils
         public async Task<IEnumerable<PostCard>> GetOffers(Location location, int distance = 200, IEnumerable<Tag> tags = null, int? owner = null, int quantity = 20)
         {
             string query = GetQuery(location, distance, tags, owner, quantity);
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/posts/offers" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -96,7 +96,7 @@ namespace greenshare_app.Utils
         {
             string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&q=" + searchWord + "&distance=" + distance;
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/posts/offers" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
 
@@ -126,7 +126,7 @@ namespace greenshare_app.Utils
         {
             string query = "?location=" + location.Latitude + ";" + location.Longitude;
             query += "&q=" + searchWord + "&distance=" + distance;
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/posts/requests" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
 
@@ -176,7 +176,7 @@ namespace greenshare_app.Utils
      
         public async Task<Offer> GetOffer(int id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/offers/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/posts/offers/" + id);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -221,7 +221,7 @@ namespace greenshare_app.Utils
 
         public async Task<Request> GetRequest(int id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/posts/requests/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/posts/requests/" + id);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
@@ -250,7 +250,7 @@ namespace greenshare_app.Utils
         {
             string query = "?type=" + type;
             var session = await Auth.Instance().GetAuth();
-            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/posts" + query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Config.Config.Instance().BaseServerApiUrl + "/user/" + session.Item1 + "/posts" + query);
             request = await Auth.AddHeaders(request);
             var response = await httpClient.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)

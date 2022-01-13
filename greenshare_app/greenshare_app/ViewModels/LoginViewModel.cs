@@ -114,7 +114,8 @@ namespace greenshare_app.ViewModels
 
         private async Task OnGoogleClicked()
         {
-            string uri = "https://www.google.com";
+            string token = Auth.Instance().GetGoogleLoginToken();
+            string uri = Config.Config.Instance().BaseServerGoogleUrl + "/login?token=" + token;
             await Browser.OpenAsync(uri, new BrowserLaunchOptions
             {
 

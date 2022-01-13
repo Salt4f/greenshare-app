@@ -35,7 +35,7 @@ namespace greenshare_app.Utils
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/login", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/auth/login", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -100,7 +100,7 @@ namespace greenshare_app.Utils
             httpContent.Headers.Add("id", id.ToString());
             httpContent.Headers.Add("token", token);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/validate", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/auth/validate", httpContent);
             if (response.StatusCode == HttpStatusCode.OK) return true;
             return false;
         }
@@ -111,7 +111,7 @@ namespace greenshare_app.Utils
             string json = JsonConvert.SerializeObject(register);
             var httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/auth/register", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/auth/register", httpContent);
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var tokenJson = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -161,6 +161,29 @@ namespace greenshare_app.Utils
                 Application.Current.Properties["userId"] = null;
                 Application.Current.Properties["userToken"] = null;
             }
+        }
+
+        public string GetGoogleLoginToken()
+        {
+            var rand = new Random();
+            string token = Crypto.GetHashString((rand.Next() * rand.Next()).ToString());
+            return token;
+        }
+
+        public async Task<Tuple<bool, bool>> CheckGoogleLogin(string _token)
+        {
+            var response = await httpClient.GetAsync(Config.Config.Instance().BaseServerGoogleUrl + "/login-status?token=" + _token);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var info = JsonConvert.DeserializeObject<GoogleInfo>(json);
+                id = info.Id;
+                token = info.Token;
+                rememberMe = true;
+                await SaveAuth();
+                return Tuple.Create(true, info.NewUser);
+            }
+            return Tuple.Create(false, false);
         }
 
         public async Task<Tuple<int, string>> GetAuth()
@@ -213,6 +236,12 @@ namespace greenshare_app.Utils
 
             [JsonProperty(PropertyName = "token")]
             public string Token { get; set; }
+        }
+
+        private class GoogleInfo : ValidationInfo
+        {
+            [JsonProperty(PropertyName = "newUser")]
+            public bool NewUser { get; set; }
         }
 
     }
