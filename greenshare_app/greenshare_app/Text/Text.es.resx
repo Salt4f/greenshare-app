@@ -519,4 +519,13 @@
   <data name="Reason" xml:space="preserve">
     <value>Motivo</value>
   </data>
+  <data name="GreenCoinsExchangedSuccessfully" xml:space="preserve">
+    <value>GreenCoins intercambiados con éxito</value>
+  </data>
+  <data name="ErrorWhileExchangingYourEcoPointsToGreenCoins" xml:space="preserve">
+    <value>Error al cambiar tus ecoPoints a GreenCoins</value>
+  </data>
+  <data name="ChangeAllUsersEcoPoints" xml:space="preserve">
+    <value>Todos los ecoPoints de los usuarios han sido canjeados por greenCoins</value>
+  </data>
 </root>

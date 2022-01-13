@@ -35,7 +35,7 @@
                         <control:BorderlessEntry  
                             Style="{StaticResource styleEntryDefault}" 
                             Text="{Binding Name}" 
-                            Placeholder="" 
+                            Placeholder="{x:Static multiIdioma:Text.ProductName}" 
                             FontAttributes="None"/>
                     </StackLayout>
                 </Frame>
@@ -47,7 +47,7 @@
                         <control:BorderlessEditor
                             HeightRequest="60"
                             Style="{StaticResource styleEntryDefault}"
-                            Placeholder="Description" 
+                            Placeholder="{x:Static multiIdioma:Text.Description}" 
                             AutoSize="TextChanges"
                             Text="{Binding Description}"/>
                     </StackLayout>
@@ -109,7 +109,7 @@
                             <control:BorderlessEntry      
                                         Style="{StaticResource styleEntryDefault}" 
                                         Text="{Binding NewTag}" 
-                                        Placeholder="New Tag"
+                                        Placeholder="{x:Static multiIdioma:Text.NewTag}"
                                         HorizontalOptions="Fill" 
                                         VerticalOptions="Fill"
                                         WidthRequest="120"/>

@@ -151,6 +151,24 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All users&apos; ecoPoints have been exchanged for greenCoins.
+        /// </summary>
+        internal static string ChangeAllUsersEcoPoints {
+            get {
+                return ResourceManager.GetString("ChangeAllUsersEcoPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not delete reward.
+        /// </summary>
+        internal static string CouldNotDeleteReward {
+            get {
+                return ResourceManager.GetString("CouldNotDeleteReward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string Create {
@@ -331,6 +349,24 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while exchanging the reward.
+        /// </summary>
+        internal static string ErrorWhileExchangingTheReward {
+            get {
+                return ResourceManager.GetString("ErrorWhileExchangingTheReward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while exchanging your ecoPoints to GreenCoins.
+        /// </summary>
+        internal static string ErrorWhileExchangingYourEcoPointsToGreenCoins {
+            get {
+                return ResourceManager.GetString("ErrorWhileExchangingYourEcoPointsToGreenCoins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while retrieving Accepted Interactions.
         /// </summary>
         internal static string ErrorWhileRetrievingAcceptedInteractions {
@@ -475,6 +511,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GreenCoins exchanged successfully.
+        /// </summary>
+        internal static string GreenCoinsExchangedSuccessfully {
+            get {
+                return ResourceManager.GetString("GreenCoinsExchangedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GreenCoins field negative or empty!.
         /// </summary>
         internal static string GreenCoinsFieldNegativeOrEmpty {
@@ -534,6 +579,24 @@ namespace greenshare_app.Text {
         internal static string InternalServerError {
             get {
                 return ResourceManager.GetString("InternalServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  is offering you a .
+        /// </summary>
+        internal static string IsOfferingYou {
+            get {
+                return ResourceManager.GetString("IsOfferingYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  is requesting your .
+        /// </summary>
+        internal static string IsRequestingYour {
+            get {
+                return ResourceManager.GetString("IsRequestingYour", resourceCulture);
             }
         }
         
@@ -750,6 +813,15 @@ namespace greenshare_app.Text {
         internal static string OfferNotFound {
             get {
                 return ResourceManager.GetString("OfferNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string OfferRejected {
+            get {
+                return ResourceManager.GetString("OfferRejected", resourceCulture);
             }
         }
         
@@ -1240,11 +1312,29 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string RequestAccepted {
+            get {
+                return ResourceManager.GetString("RequestAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request not found.
         /// </summary>
         internal static string RequestNotFound {
             get {
                 return ResourceManager.GetString("RequestNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string RequestRejected {
+            get {
+                return ResourceManager.GetString("RequestRejected", resourceCulture);
             }
         }
         
@@ -1267,11 +1357,29 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reward deleted successfully.
+        /// </summary>
+        internal static string RewardDeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("RewardDeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reward edited successfully.
         /// </summary>
         internal static string RewardEditedSuccessfully {
             get {
                 return ResourceManager.GetString("RewardEditedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reward exchanged successfully.
+        /// </summary>
+        internal static string RewardExchangedSuccessfully {
+            get {
+                return ResourceManager.GetString("RewardExchangedSuccessfully", resourceCulture);
             }
         }
         
@@ -1398,6 +1506,15 @@ namespace greenshare_app.Text {
         internal static string SubmitChanges {
             get {
                 return ResourceManager.GetString("SubmitChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to successfully exchanged the promotion from .
+        /// </summary>
+        internal static string SuccessfullyExchangeThePromotion {
+            get {
+                return ResourceManager.GetString("SuccessfullyExchangeThePromotion", resourceCulture);
             }
         }
         
@@ -1560,6 +1677,15 @@ namespace greenshare_app.Text {
         internal static string WrongInfo {
             get {
                 return ResourceManager.GetString("WrongInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you don&apos;t have enough GreenCoins!.
+        /// </summary>
+        internal static string YouDontHaveEnoughGreenCoins {
+            get {
+                return ResourceManager.GetString("YouDontHaveEnoughGreenCoins", resourceCulture);
             }
         }
         

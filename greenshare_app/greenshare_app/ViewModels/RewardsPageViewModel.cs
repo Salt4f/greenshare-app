@@ -96,17 +96,17 @@ namespace greenshare_app.ViewModels
             {
                 if (await RewardsUtil.Instance().ExchangeEcoPoints())
                 {
-                    await view.DisplayAlert("GreenCoins exchanged successfully", "all users' ecoPoints have been exchanged for greenCoins", "OK");
+                    await view.DisplayAlert(Text.Text.GreenCoinsExchangedSuccessfully, Text.Text.ChangeAllUsersEcoPoints, "OK");
                 }
                 else
                 {
-                    await view.DisplayAlert("Error while exchanging your ecoPoints to GreenCoins", Text.Text.SomethingWentWrong, "OK");
+                    await view.DisplayAlert(Text.Text.ErrorWhileExchangingYourEcoPointsToGreenCoins, Text.Text.SomethingWentWrong, "OK");
                 }
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while exchanging your ecoPoints to GreenCoins", Text.Text.SomethingWentWrong, "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileExchangingYourEcoPointsToGreenCoins, Text.Text.SomethingWentWrong, "OK");
             }
 
             IsBusy = false;
