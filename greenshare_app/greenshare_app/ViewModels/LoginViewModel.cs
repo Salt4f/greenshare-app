@@ -116,10 +116,21 @@ namespace greenshare_app.ViewModels
         {
             string token = Auth.Instance().GetGoogleLoginToken();
             string uri = Config.Config.Instance().BaseServerGoogleUrl + "/login?token=" + token;
-            await Browser.OpenAsync(uri, new BrowserLaunchOptions
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            var res = Tuple.Create(false, false);
+            while (!res.Item1)
             {
-
-            });
+                res = await Auth.Instance().CheckGoogleLogin(token);
+            }
+            if (res.Item2)
+            {
+                Application.Current.MainPage = new QuizView();
+                return;
+            }
+            else
+            {
+                Application.Current.MainPage = new MainView();
+            }
         }
     }
 }
