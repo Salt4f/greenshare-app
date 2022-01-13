@@ -514,7 +514,7 @@
     <value>Sobrenom</value>
   </data>
   <data name="RepeatPassword" xml:space="preserve">
-    <value>Repeteix la contrassenya</value>
+    <value>Repeteix la contrasenya</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Motiu</value>
@@ -572,5 +572,20 @@
   </data>
   <data name="OfferAccepted" xml:space="preserve">
     <value>Oferta acceptada</value>
+  </data>
+  <data name="UserBannedSuccessfully" xml:space="preserve">
+    <value>Usuari bloquejat correctament</value>
+  </data>
+  <data name="ErrorWhileBanningUser" xml:space="preserve">
+    <value>Error en prohibir l'usuari</value>
+  </data>
+  <data name="SinnersShallBePurified" xml:space="preserve">
+    <value>els pecadors seran purificats</value>
+  </data>
+  <data name="Questionnaire" xml:space="preserve">
+    <value>Qüestionari</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contrasenya</value>
   </data>
 </root>

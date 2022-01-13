@@ -213,7 +213,7 @@ namespace greenshare_app.ViewModels
             {
                 if (await UserInfoUtil.Instance().BanUser(userId))
                 {
-                    await view.DisplayAlert("User banned successfully", "sinners shall be purified", "OK");
+                    await view.DisplayAlert(Text.Text.UserBannedSuccessfully, Text.Text.SinnersShallBePurified, "OK");
                     IsBusy = false;
                     await navigation.PopModalAsync();
                 }
@@ -222,7 +222,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while banning user", "something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileBanningUser, Text.Text.SomethingWentWrong, "OK");
             }
         }
 

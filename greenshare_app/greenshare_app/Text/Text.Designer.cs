@@ -19,7 +19,7 @@ namespace greenshare_app.Text {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Text {
@@ -291,6 +291,15 @@ namespace greenshare_app.Text {
         internal static string ErrorAddingTag {
             get {
                 return ResourceManager.GetString("ErrorAddingTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while banning user.
+        /// </summary>
+        internal static string ErrorWhileBanningUser {
+            get {
+                return ResourceManager.GetString("ErrorWhileBanningUser", resourceCulture);
             }
         }
         
@@ -898,6 +907,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwords are not the same.
         /// </summary>
         internal static string PasswordsAreNotTheSame {
@@ -1222,6 +1240,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Questionnaire.
+        /// </summary>
+        internal static string Questionnaire {
+            get {
+                return ResourceManager.GetString("Questionnaire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate.
         /// </summary>
         internal static string Rate {
@@ -1456,6 +1483,15 @@ namespace greenshare_app.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sinners shall be purified.
+        /// </summary>
+        internal static string SinnersShallBePurified {
+            get {
+                return ResourceManager.GetString("SinnersShallBePurified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solve.
         /// </summary>
         internal static string Solve {
@@ -1605,6 +1641,15 @@ namespace greenshare_app.Text {
         internal static string UpdateProfile {
             get {
                 return ResourceManager.GetString("UpdateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User banned successfully.
+        /// </summary>
+        internal static string UserBannedSuccessfully {
+            get {
+                return ResourceManager.GetString("UserBannedSuccessfully", resourceCulture);
             }
         }
         

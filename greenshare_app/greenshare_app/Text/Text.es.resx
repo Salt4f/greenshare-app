@@ -573,4 +573,19 @@
   <data name="OfferAccepted" xml:space="preserve">
     <value>Oferta aceptada</value>
   </data>
+  <data name="UserBannedSuccessfully" xml:space="preserve">
+    <value>Usuario bloqueado correctamente</value>
+  </data>
+  <data name="ErrorWhileBanningUser" xml:space="preserve">
+    <value>Error al banear al usuario</value>
+  </data>
+  <data name="SinnersShallBePurified" xml:space="preserve">
+    <value>Los pecadores serán purificados</value>
+  </data>
+  <data name="Questionnaire" xml:space="preserve">
+    <value>Cuestionario</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
 </root>

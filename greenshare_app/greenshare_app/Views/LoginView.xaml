@@ -49,7 +49,7 @@
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Password}"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Password}" Placeholder="{x:Static multiIdioma:Text.Password}"/>
                                 </StackLayout>
                             </Frame>
 
