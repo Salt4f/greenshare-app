@@ -56,17 +56,16 @@
                 Text="{x:Static multiIdioma:Text.Distance}"
                 />
             <Slider Grid.Column="1"
-                 Maximum="200"
+                 Maximum="400"
                 Minimum="1"
                 MaximumTrackColor="{StaticResource colorGreen2}" 
                 MinimumTrackColor="{StaticResource colorGreen2}"
                 ThumbColor="{StaticResource colorGreen5}"
                 Value="{Binding DistanceValue}"/>
             <Label 
-            VerticalOptions="Center" 
-            Grid.Column="2" 
-            Text="{Binding DistanceValue}">
-
+                VerticalOptions="Center"
+                Style="{StaticResource styleLabelBlack}"
+                Text="{Binding DistanceValue}">
             </Label>
         </Grid>
 
