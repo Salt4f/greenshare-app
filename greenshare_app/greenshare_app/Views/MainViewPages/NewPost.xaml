@@ -25,8 +25,8 @@
                         TitleColor="{StaticResource colorBlack}"
                         FontAttributes="Bold"
                         TextColor="{StaticResource colorBlack}"
+                        HorizontalTextAlignment="Center"
                         />
-                    <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
                 </Frame>
             </StackLayout>
             <StackLayout  Padding="5,0,5,5">

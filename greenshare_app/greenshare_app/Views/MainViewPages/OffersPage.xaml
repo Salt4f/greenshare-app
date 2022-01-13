@@ -19,62 +19,43 @@
 
 
     <StackLayout>
-        <Grid Padding="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.7*" />
-                    <ColumnDefinition Width="0.15*" />
-                    <ColumnDefinition Width="0.15*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
+        <StackLayout Padding="5" Margin="5" Orientation="Horizontal">
             <control:BorderlessEntry   
                     Style="{StaticResource styleEntryDefault}" 
                     Placeholder="{x:Static multiIdioma:Text.Search}"
                     Text="{Binding SearchWord}"/>
-            <Button Grid.Column="1"
-                        Style="{StaticResource styleButtonDefault}"
-                        Text="{x:Static fontAwesome:FontAwesomeIcons.Search}"  FontFamily="FAS"
-                        Command="{Binding OnSearchButtonCommand}"/>
+            <Button HorizontalOptions="Fill"
+                    Style="{StaticResource styleButtonDefault}"
+                    Text="{x:Static fontAwesome:FontAwesomeIcons.Search}"  FontFamily="FAS"
+                    Command="{Binding OnSearchButtonCommand}"/>
 
-            <Button Grid.Column="2"
-                        Style="{StaticResource styleButtonDefault}"
-                        Text="{x:Static fontAwesome:FontAwesomeIcons.Filter}"  FontFamily="FAS" 
-                        Command="{Binding OnFilterButtonCommand}"/>
-                
-            </Grid>
+            <Button HorizontalOptions="Fill"
+                    Style="{StaticResource styleButtonDefault}"
+                    Text="{x:Static fontAwesome:FontAwesomeIcons.Filter}"  FontFamily="FAS" 
+                    Command="{Binding OnFilterButtonCommand}"/>
+        </StackLayout>
 
-        <Grid Padding="15" HorizontalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*" />
-                <ColumnDefinition Width="0.6*" />
-                <ColumnDefinition Width="0.1*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
+        <StackLayout Padding="5" Margin="5" HorizontalOptions="FillAndExpand" IsVisible="{Binding FilterVisible}">
             <Label
                     VerticalOptions="Center"
                     Style="{StaticResource styleEntryDefault}" 
                     Text="{x:Static multiIdioma:Text.Distance}"
                     />
-            <Slider Grid.Column="1"
-                        Maximum="200"
+            <Slider 
+                        Maximum="400"
                         Minimum="1"
                         MaximumTrackColor="{StaticResource colorGreen2}" 
                         MinimumTrackColor="{StaticResource colorGreen2}"
                         ThumbColor="{StaticResource colorGreen5}"
                         Value="{Binding DistanceValue}"/>
             <Label 
-                VerticalOptions="Center" 
-                Grid.Column="2" 
-                TextColor="{StaticResource colorBlack}"
+                VerticalOptions="Center"
+                Style="{StaticResource styleLabelBlack}"
                 Text="{Binding DistanceValue}">
             </Label>
-        </Grid>
+        </StackLayout>
 
-
-            <ListView BackgroundColor="{StaticResource colorWhite}"
+        <ListView BackgroundColor="{StaticResource colorWhite}"
                   HasUnevenRows="True"
                   SeparatorVisibility="None"
                   SelectionMode="Single"

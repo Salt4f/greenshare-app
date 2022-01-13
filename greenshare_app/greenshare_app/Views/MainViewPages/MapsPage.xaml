@@ -3,11 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:maps="clr-namespace:greenshare_app.Controls"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
+             xmlns:fontAwesome="clr-namespace:FontAwesome" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:MapsPageViewModel"
              x:Class="greenshare_app.Views.MainViewPages.MapsPage">
 
-    <maps:CustomMap x:Name="MyMap" IsShowingUser="True">
+    <StackLayout Orientation="Vertical" Margin="2" Padding="4">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <FlexLayout>
+            <Label Padding="5"
+               VerticalOptions="Center"
+               Style="{StaticResource styleLabelBlack}"
+               Text="{x:Static multiIdioma:Text.Distance}"
+               FlexLayout.Grow="2"/>
+            <Button HorizontalOptions="Fill"
+                    Style="{StaticResource styleButtonDefault}"
+                    Text="{x:Static fontAwesome:FontAwesomeIcons.Search}"  
+                    FontFamily="FAS"
+                    Command="{Binding OnSearchButtonCommand}"/>
+        </FlexLayout>
+        <FlexLayout>
+            <Slider Maximum="400"
+                    FlexLayout.Grow="2"
+                    Minimum="1"
+                    MaximumTrackColor="{StaticResource colorGreen2}" 
+                    MinimumTrackColor="{StaticResource colorGreen2}"
+                    ThumbColor="{StaticResource colorGreen5}"
+                    Value="{Binding DistanceValue}"/>
 
+            <Label VerticalOptions="Center"
+               Style="{StaticResource styleLabelBlack}"
+               Text="{Binding DistanceValue}">
+            </Label>
+        </FlexLayout>
 
-    </maps:CustomMap>
-    
+        <maps:CustomMap x:Name="MyMap" IsShowingUser="True"/>
+    </StackLayout>
 </ContentPage>
