@@ -193,7 +193,10 @@ namespace greenshare_app.ViewModels
         private async Task OnEdit()
         {
             IsBusy = true;
-            await navigation.PushModalAsync(new EditPost(post));
+            var view = new EditPost(post);
+            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            view.Disappearing += OnDisappear;
+            await navigation.PushModalAsync(view); 
             IsBusy = false;
         }
         private async Task OnDeactivate()

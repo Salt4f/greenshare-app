@@ -34,7 +34,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent("");
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/exchange", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerApiUrl + "/admin/exchange", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
