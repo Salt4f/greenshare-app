@@ -10,11 +10,8 @@
     IsBusy="{Binding IsBusy}">
     <ContentView>
 
-        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-        
-        
         <Grid>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
             <AbsoluteLayout>
                 <Frame BackgroundColor="{StaticResource colorGreen3}"  AbsoluteLayout.LayoutBounds="-60,-15,150,150" CornerRadius="100" HasShadow="False"/>
             </AbsoluteLayout>
