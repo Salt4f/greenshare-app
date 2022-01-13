@@ -60,10 +60,10 @@
                             <RowDefinition Height="65" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="350" />
+                            <ColumnDefinition Width="400" />
                         </Grid.ColumnDefinitions>
                         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                        <Frame IsVisible="{Binding OwnPage}" Grid.Row="0" Grid.Column="0" BackgroundColor="#ffcc80" HorizontalOptions="Center" HasShadow="False" WidthRequest="400" HeightRequest="30">
+                        <Frame IsVisible="{Binding OwnPage}" Grid.Row="0" Grid.Column="0" BackgroundColor="#ffcc80" HorizontalOptions="StartAndExpand" HasShadow="False" WidthRequest="400" HeightRequest="30">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnEditFrameCommand}"/>
                             </Frame.GestureRecognizers>
