@@ -4,6 +4,7 @@
              xmlns:model="clr-namespace:greenshare_app.Models" 
              xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              x:DataType="viewmodels:MyPostsViewModel"
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.UserPublicationsPage">
 

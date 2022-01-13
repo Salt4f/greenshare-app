@@ -194,7 +194,7 @@ namespace greenshare_app.Utils
                     Description = info.Description,
                     Location = info.Location,
                     CreatedAt = info.CreatedAt,
-                    TerminateAt = info.TerminateAt,
+                    TerminateAt = new DateTime(info.TerminateAt.Year, info.TerminateAt.Month, info.TerminateAt.Day),
                     EcoImpact = 0,
                     Tags = info.Tags,
                     Icon = info.Icon,
@@ -237,7 +237,7 @@ namespace greenshare_app.Utils
                     Description = info.Description,
                     Location = info.Location,
                     CreatedAt = info.CreatedAt,
-                    TerminateAt = info.TerminateAt,
+                    TerminateAt = new DateTime(info.TerminateAt.Year, info.TerminateAt.Month, info.TerminateAt.Day),
                     EcoImpact = 0,
                     Tags = info.Tags,
                 };

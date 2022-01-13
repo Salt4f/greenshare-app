@@ -10,6 +10,7 @@ using greenshare_app.Utils;
 using greenshare_app.Views.MainViewPages;
 using System.Text;
 using System.Threading;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -29,6 +30,7 @@ namespace greenshare_app.ViewModels
         //public AsyncCommand<object> SelectedCommand { get; }
         public AsyncCommand RefreshCommand { get; }
         public AsyncCommand OnCreateButtonCommand => new AsyncCommand(OnCreate);
+        public AsyncCommand OnExchangeButtonCommand => new AsyncCommand(OnExchange);
 
         public ObservableRangeCollection<Reward> Rewards
         {
@@ -42,12 +44,12 @@ namespace greenshare_app.ViewModels
         }
         public RewardsPageViewModel(INavigation navigation, Page view, User user)
         {
-            Title = "Rewards Page";
+            Title = Text.Text.RewardsPage;
             this.navigation = navigation;
             this.user = user;
             this.view = view;
             RefreshCommand = new AsyncCommand(Refresh);
-            Starting += OnStart;           
+            Starting += OnStart;
             Starting(this, EventArgs.Empty);
         }
         public string AvailableGreenCoins
@@ -59,21 +61,21 @@ namespace greenshare_app.ViewModels
         {
             IsBusy = true;
             IsAdmin = await Auth.Instance().IsAdmin();
-            AvailableGreenCoins = "Your GreenCoins: " + user.TotalGreenCoins;
+            AvailableGreenCoins = Text.Text.YourGreenCoins + user.CurrentGreenCoins;
 
             Rewards = new ObservableRangeCollection<Reward>();
             try
             {
-                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
+                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.CurrentGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
-                if (Rewards.Count == 0) await view.DisplayAlert("No rewards found", "we are still looking for sponsors!", "OK");
+                if (Rewards.Count == 0) await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.WeAreStillLookingForSponsors, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("No rewards found", "something went wrong while retrieving rewards", "OK");
+                await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.SomethingWentWrong, "OK");
             }
         }
         private async void OnDisappear(object sender, EventArgs args)
@@ -87,27 +89,52 @@ namespace greenshare_app.ViewModels
             view.Disappearing += OnDisappear;
             await navigation.PushModalAsync(view);
         }
-        private async void UpdateGreenCoins()
+        private async Task OnExchange()
+        {
+            IsBusy = true;
+            try
+            {
+                if (await RewardsUtil.Instance().ExchangeEcoPoints())
+                {
+                    await view.DisplayAlert(Text.Text.GreenCoinsExchangedSuccessfully, Text.Text.ChangeAllUsersEcoPoints, "OK");
+                }
+                else
+                {
+                    await view.DisplayAlert(Text.Text.ErrorWhileExchangingYourEcoPointsToGreenCoins, Text.Text.SomethingWentWrong, "OK");
+                }
+            }
+            catch (Exception)
+            {
+                IsBusy = false;
+                await view.DisplayAlert(Text.Text.ErrorWhileExchangingYourEcoPointsToGreenCoins, Text.Text.SomethingWentWrong, "OK");
+            }
+
+            IsBusy = false;
+            return;
+        }
+
+        private async Task UpdateGreenCoins()
         {
             user = await UserInfoUtil.Instance().GetUserInfo();
-            AvailableGreenCoins = "Your GreenCoins: " + user.TotalGreenCoins;
+            AvailableGreenCoins = Text.Text.YourGreenCoins + user.CurrentGreenCoins;
+            return;
         }
         public async Task Refresh()
         {
             try
             {
                 IsBusy = true;
-                UpdateGreenCoins();
-                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.TotalGreenCoins);
+                await UpdateGreenCoins();
+                var cards = await RewardsUtil.Instance().GetAllRewards(navigation, view, user.CurrentGreenCoins);
                 Rewards.Clear();
                 Rewards.AddRange(cards);
-                if (Rewards.Count == 0) await view.DisplayAlert("No rewards found", "we are still looking for sponsors!", "OK");
+                if (Rewards.Count == 0) await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.WeAreStillLookingForSponsors, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("No rewards found", "something went wrong while retrieving rewards", "OK");
+                await view.DisplayAlert(Text.Text.NoRewardsFound, Text.Text.SomethingWentWrong, "OK");
             }
         }
     }

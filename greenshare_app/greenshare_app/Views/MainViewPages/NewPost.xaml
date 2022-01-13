@@ -5,6 +5,7 @@
             xmlns:control="clr-namespace:greenshare_app.Controls"
             xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
             xmlns:fontAwesome="clr-namespace:FontAwesome"
+            xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
             BackgroundColor="{StaticResource colorWhite}"
             xmlns:model="clr-namespace:greenshare_app.Models"
              Title="{Binding PostType}">
@@ -19,13 +20,13 @@
                         ItemsSource="{Binding PostTypes}"
                         Style="{StaticResource styleEntryDefault}"
                         x:Name = "PickerOption"
-                        Title="Select an option"
+                        Title="{x:Static multiIdioma:Text.SelectAnOption}"
                         SelectedItem="{Binding PostType}"                        
                         TitleColor="{StaticResource colorBlack}"
                         FontAttributes="Bold"
                         TextColor="{StaticResource colorBlack}"
+                        HorizontalTextAlignment="Center"
                         />
-                    <!--SelectedIndexChanged="{Binding IndexChangedCommand}"-->
                 </Frame>
             </StackLayout>
             <StackLayout  Padding="5,0,5,5">
@@ -34,7 +35,7 @@
                         <control:BorderlessEntry  
                             Style="{StaticResource styleEntryDefault}" 
                             Text="{Binding Name}" 
-                            Placeholder="Product name" 
+                            Placeholder="{x:Static multiIdioma:Text.ProductName}" 
                             FontAttributes="None"/>
                     </StackLayout>
                 </Frame>
@@ -46,7 +47,7 @@
                         <control:BorderlessEditor
                             HeightRequest="60"
                             Style="{StaticResource styleEntryDefault}"
-                            Placeholder="Description" 
+                            Placeholder="{x:Static multiIdioma:Text.Description}" 
                             AutoSize="TextChanges"
                             Text="{Binding Description}"/>
                     </StackLayout>
@@ -70,7 +71,7 @@
                         </StackLayout>
                     </ScrollView>
                 </Frame>
-            <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
+                <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}" CornerRadius="15" Margin="0,15,0,0">
                     <Frame CornerRadius="15" Padding="0" Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen9}" BorderColor="{StaticResource colorGreen3}">
                         <Image Source="{Binding Icon.Source}" 
                            Aspect="AspectFill"
@@ -79,10 +80,10 @@
                            VerticalOptions="Start"/>
                     </Frame>
                 </Frame>
-                <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Foto" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Icon" HorizontalOptions="Center" VerticalOptions="Center"/>
-                </StackLayout>
+            </StackLayout>
+            <StackLayout Padding="0,5,0,0" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddPhotoButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddPhoto}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddIconButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddIcon}" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="3">
@@ -108,7 +109,7 @@
                             <control:BorderlessEntry      
                                         Style="{StaticResource styleEntryDefault}" 
                                         Text="{Binding NewTag}" 
-                                        Placeholder="New Tag"
+                                        Placeholder="{x:Static multiIdioma:Text.NewTag}"
                                         HorizontalOptions="Fill" 
                                         VerticalOptions="Fill"
                                         WidthRequest="120"/>
@@ -117,7 +118,7 @@
                     <Button
                             HorizontalOptions="Start" 
                             VerticalOptions="Center"
-                            Text="Add Tag"
+                            Text="{x:Static multiIdioma:Text.AddTag}"
                             Command="{Binding OnAddTagButtonCommand}"
                             Style="{StaticResource styleButtonDefault}"
                             />
@@ -136,12 +137,12 @@
             </StackLayout>
             
             <StackLayout Margin="5,0,5,5" >
-                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="Afegir Ubicació" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Style="{StaticResource styleButtonDefault}" Command="{Binding OnAddLocationButtonCommand}" BackgroundColor="{StaticResource colorGreen3}" Text="{x:Static multiIdioma:Text.AddLocation}" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Margin="5,0,5,5" >
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Button Text="Publish" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                <Button Text="{x:Static multiIdioma:Text.Publish}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

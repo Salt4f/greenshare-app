@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using greenshare_app.Utils;
-using System.Text;
+using greenshare_app.Text;
 using greenshare_app.Views.MainViewPages;
 
 namespace greenshare_app.ViewModels
@@ -22,7 +22,7 @@ namespace greenshare_app.ViewModels
         private event EventHandler Starting = delegate { };
         public MyPostsViewModel(INavigation navigation, Page view)
         {
-            Title = "My Posts";
+            Title = Text.Text.MyPosts;
             this.navigation = navigation;
             this.view = view;
             MyPosts = new ObservableRangeCollection<PostStatus>();
@@ -45,13 +45,13 @@ namespace greenshare_app.ViewModels
                 if (offers != null) MyPosts.AddRange(offers);
                 var requests = await PostRetriever.Instance().GetPostsByUserId("requests");
                 if (requests != null) MyPosts.AddRange(requests);
-                if (MyPosts.Count == 0) await view.DisplayAlert("No Posts Found", "Please create a post first", "OK");
+                if (MyPosts.Count == 0) await view.DisplayAlert(Text.Text.NoPostsFound, Text.Text.PleaseCreateAPostFirst, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving your posts", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingYourPosts, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
             }
             IsBusy = false;
         }
@@ -66,13 +66,13 @@ namespace greenshare_app.ViewModels
                 if (offers != null) MyPosts.AddRange(offers);
                 var requests = await PostRetriever.Instance().GetPostsByUserId("requests");
                 if (requests != null) MyPosts.AddRange(requests);
-                if (MyPosts.Count == 0) await view.DisplayAlert("No Posts Found", "Please create a post first", "OK");
+                if (MyPosts.Count == 0) await view.DisplayAlert(Text.Text.NoPostsFound, Text.Text.PleaseCreateAPostFirst, "OK");
                 IsBusy = false;
             }
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Error while retrieving your posts", "Please make sure location is enabled on your device", "OK");
+                await view.DisplayAlert(Text.Text.ErrorWhileRetrievingYourPosts, Text.Text.PleaseMakeSureLocationIsEnabled, "OK");
             }
         }
 
@@ -90,14 +90,14 @@ namespace greenshare_app.ViewModels
             if (SelectedPost.IsOffer)
             {
                 Offer offer = await PostRetriever.Instance().GetOffer(SelectedPost.Id);
-                if (offer == null) await view.DisplayAlert("Error while retrieving Selected Offer", "Offer not found", "OK");
+                if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
                 else await navigation.PushModalAsync(new ViewPost(offer));
                 IsBusy = false;
             }
             else
             {
                 Request request = await PostRetriever.Instance().GetRequest(SelectedPost.Id);
-                if (request == null) await view.DisplayAlert("Error while retrieving Selected Request", "Request not found", "OK");
+                if (request == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedRequest, Text.Text.RequestNotFound, "OK");
                 else await navigation.PushModalAsync(new ViewPost(request));
                 IsBusy = false;
             }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -70,25 +71,25 @@ namespace greenshare_app.ViewModels
             IsBusy = true;
             if (Description == null)
             {
-                await view.DisplayAlert("Description field empty!", "please enter a value first", "OK");
+                await view.DisplayAlert(Text.Text.DescriptionFieldEmpty, Text.Text.PleaseEnterAValueFirst, "OK");
                 IsBusy = false;
                 return;
             }
             if (Name == null)
             {
-                await view.DisplayAlert("Name field empty!", "please enter a value first", "OK");
+                await view.DisplayAlert(Text.Text.NameFieldEmpty, Text.Text.PleaseEnterAValueFirst, "OK");
                 IsBusy = false;
                 return;
             }
             if (SponsorName == null)
             {
-                await view.DisplayAlert("SponsorName field empty!", "please enter a value first", "OK");
+                await view.DisplayAlert(Text.Text.SponsorNameFieldEmpty, Text.Text.PleaseEnterAValueFirst, "OK");
                 IsBusy = false;
                 return;
             }
             if (GreenCoins == null || GreenCoins < 0)
             {
-                await view.DisplayAlert("GreenCoins field negative or empty!", "please enter a value first", "OK");
+                await view.DisplayAlert(Text.Text.GreenCoinsFieldNegativeOrEmpty, Text.Text.PleaseEnterAValueFirst, "OK");
                 IsBusy = false;
                 return;
             }
@@ -105,12 +106,12 @@ namespace greenshare_app.ViewModels
                     };
                     if (await RewardsUtil.Instance().CreateReward(reward))
                     {
-                        await view.DisplayAlert("Reward created successfully", "", "OK");
+                        await view.DisplayAlert(Text.Text.RewardCreatedSuccessfully, "", "OK");
                         IsBusy=false;
                         await navigation.PopModalAsync();
                         return;
                     }
-                    await view.DisplayAlert("Error while creating reward","something went wrong", "OK");
+                    await view.DisplayAlert(Text.Text.ErrorWhileCreatingReward,Text.Text.SomethingWentWrong, "OK");
                     IsBusy = false;
                 }
                 else
@@ -121,10 +122,10 @@ namespace greenshare_app.ViewModels
                     reward.GreenCoins = (int)GreenCoins;
                     if (await RewardsUtil.Instance().EditReward(reward))
                     {
-                        await view.DisplayAlert("Reward edited successfully", "", "OK");
+                        await view.DisplayAlert(Text.Text.RewardEditedSuccessfully, "", "OK");
                         IsBusy = false;
                         await navigation.PopModalAsync();
-                        await view.DisplayAlert("Error while editing reward", "something went wrong", "OK");
+                        await view.DisplayAlert(Text.Text.ErrorWhileEditingReward, Text.Text.SomethingWentWrong, "OK");
                         return;
                     }                    
                     IsBusy = false;
@@ -132,7 +133,7 @@ namespace greenshare_app.ViewModels
             }
             catch (Exception ex)
             {
-                await view.DisplayAlert("Error while editing or creating reward", "something went wrong", "OK");
+                await view.DisplayAlert("Error while editing or creating reward", Text.Text.SomethingWentWrong, "OK");
                 IsBusy = false;
             }
         }

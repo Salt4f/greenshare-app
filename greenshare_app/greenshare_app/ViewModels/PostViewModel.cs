@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using greenshare_app.Text;
 
 namespace greenshare_app.ViewModels
 {
@@ -33,17 +34,17 @@ namespace greenshare_app.ViewModels
         private IList<Image> photos;
         private Image icon;
         private IEnumerable<Tag> tags;
-        private DateTime terminationDateTime;
+        private string terminationDateTime;
         private bool isVisible;
         
         public PostViewModel(INavigation navigation, Page view, Post post)
         {
-            Title = "View Post";
+            Title = Text.Text.ViewPost;
             //Options = Array.Empty;
             this.post = post;
             this.navigation = navigation;
             this.view = view;
-            this.TerminationDateTime = post.TerminateAt;
+            TerminationDateTime = post.TerminateAt.ToShortDateString();
             Name = post.Name;
             var type = post.GetType();
             
@@ -151,7 +152,7 @@ namespace greenshare_app.ViewModels
             get => photos;
             set => SetProperty(ref photos, value);
         }
-        public DateTime TerminationDateTime
+        public string TerminationDateTime
         {
             get => terminationDateTime;
             set => SetProperty(ref terminationDateTime, value);
@@ -201,8 +202,10 @@ namespace greenshare_app.ViewModels
             if (await PostSender.Instance().DeactivatePost(post.Id, PostType))
             {
                 IsBusy = false;
-                await view.DisplayAlert("Post deleted successfully", "now people can't see your post", "OK");
+
+                await view.DisplayAlert(Text.Text.PostDeactivatedSuccesfully, Text.Text.NowPeopleCantSeeYourPost, "OK");
                 await navigation.PopModalAsync();
+
             }
             IsBusy = false;
         }        
@@ -235,7 +238,7 @@ namespace greenshare_app.ViewModels
                 if (await OfferRequestInteraction.Instance().RequestAnOffer(post.Id, id))
                 {
                     IsBusy = false;
-                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
+                    await view.DisplayAlert(Text.Text.OfferRequestedSuccessfully, Text.Text.PleaseCheckYourOutgoingInteractionsToSeeItsStatus, "OK");
                     await navigation.PopModalAsync();
                 }
             }
@@ -259,8 +262,8 @@ namespace greenshare_app.ViewModels
                 if (await OfferRequestInteraction.Instance().OfferARequest(id, post.Id))
                 {
                     IsBusy = false;
-                    await view.DisplayAlert("Offer Requested successfully", "please check your Outgoing Interactions to see its Status", "OK");
-                    DeactivateButtons();
+                    await view.DisplayAlert(Text.Text.OfferRequestedSuccessfully, Text.Text.PleaseCheckYourOutgoingInteractionsToSeeItsStatus, "OK");
+                    await navigation.PopModalAsync();
                 }
             }
             IsBusy = false;

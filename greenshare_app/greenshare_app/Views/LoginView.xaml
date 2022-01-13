@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:control="clr-namespace:greenshare_app.Controls"
     xmlns:viewModel="clr-namespace:greenshare_app.ViewModels"
+    xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     BackgroundColor="{StaticResource colorWhite}"
     >
@@ -28,7 +29,7 @@
                 <Frame Style="{StaticResource styleFrameDefault}" HasShadow="True">
                     <StackLayout BackgroundColor="Transparent">
                         <StackLayout Margin="20,60,20,0">
-                            <Label Style="{StaticResource styleLabelGreen}" Text="WELCOME" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
+                            <Label Style="{StaticResource styleLabelGreen}" Text="{x:Static multiIdioma:Text.Welcome}" FontSize="25" TextColor="{StaticResource colorGreen2}"/>
                             <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Smile}" Style="{StaticResource styleLabelIcon}" FontFamily="FAR"></Label>
                         </StackLayout>
 
@@ -48,14 +49,14 @@
                                     <Frame Style="{StaticResource styleFrameEntry}" CornerRadius="30">
                                         <Label Style="{StaticResource styleLabelIcon}" Text="{x:Static fontAwesome:FontAwesomeIcons.Lock}" FontFamily="FAS"></Label>
                                     </Frame>
-                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Password}"/>
+                                    <control:BorderlessEntry Style="{StaticResource styleEntryPassword}" Text="{Binding Password}" Placeholder="{x:Static multiIdioma:Text.Password}"/>
                                 </StackLayout>
                             </Frame>
 
                             <StackLayout  Orientation="Horizontal" Padding="10">
                                 <CheckBox IsChecked="{Binding RememberMe}" Color="{StaticResource colorGreen3}" />
-                                <Label Text="Remember me" Style="{StaticResource styleLabelGreen}" />
-                                <Label Text="Forgot Password?" Style="{StaticResource styleLabelGreen}" FontSize="11" VerticalTextAlignment="Center">
+                                <Label Text="{x:Static multiIdioma:Text.RememberMe}" Style="{StaticResource styleLabelGreen}" />
+                                <Label Text="{x:Static multiIdioma:Text.ForgotPassword}" Style="{StaticResource styleLabelGreen}" FontSize="11" VerticalTextAlignment="Center">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                                     </Label.GestureRecognizers>
@@ -64,12 +65,12 @@
 
                             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
 
-                            <Button Text="SIGN IN" Style="{StaticResource styleButtonDefault}" Command="{Binding LoginButtonCommand}"/>
+                            <Button Text="{x:Static multiIdioma:Text.SignIn}" Style="{StaticResource styleButtonDefault}" Command="{Binding LoginButtonCommand}"/>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10">
-                                <Label Text="Still Not Registered?" Style="{StaticResource styleLabelGreen}"/>
+                                <Label Text="{x:Static multiIdioma:Text.StillNot}" Style="{StaticResource styleLabelGreen}"/>
                             </StackLayout>
                             <StackLayout Style="{StaticResource styleStackLayoutDefault}">
-                                <Button Text="SIGN UP" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}"/>
+                                <Button Text="{x:Static multiIdioma:Text.SignUp}" Style="{StaticResource styleButtonDefault}" Command="{Binding RegisterButtonCommand}"/>
                             </StackLayout>
                             
 
@@ -77,7 +78,7 @@
                                 <Grid>
                                     <BoxView BackgroundColor="{StaticResource colorBlack}" HeightRequest="1" WidthRequest="150"  HorizontalOptions="Center" VerticalOptions="Center"/>
                                     <Frame Style="{StaticResource styleFrameDefault}" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BackgroundColor="White" BorderColor="{StaticResource colorBlack}">
-                                        <Label Text="OR" Style="{StaticResource styleLabelGreen}" />
+                                        <Label Text="{x:Static multiIdioma:Text.Or}" Style="{StaticResource styleLabelGreen}" />
                                     </Frame>
                                 </Grid>
                             </StackLayout>

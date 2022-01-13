@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="greenshare_app.Views.MainViewPages.RequestsPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:control="clr-namespace:greenshare_app.Controls"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewModels:RequestsPageViewModel"
@@ -25,7 +26,7 @@
             </Grid.RowDefinitions>
             <control:BorderlessEntry   
                 Style="{StaticResource styleEntryDefault}" 
-                Placeholder="Search"
+                Placeholder="{x:Static multiIdioma:Text.Search}"
                 Text="{Binding SearchWord}" 
                             
                 />
@@ -52,20 +53,19 @@
             <Label
                 VerticalOptions="Center"
                 Style="{StaticResource styleEntryDefault}" 
-                Text="Distance"
+                Text="{x:Static multiIdioma:Text.Distance}"
                 />
             <Slider Grid.Column="1"
-                 Maximum="200"
+                 Maximum="400"
                 Minimum="1"
                 MaximumTrackColor="{StaticResource colorGreen2}" 
                 MinimumTrackColor="{StaticResource colorGreen2}"
                 ThumbColor="{StaticResource colorGreen5}"
                 Value="{Binding DistanceValue}"/>
             <Label 
-            VerticalOptions="Center" 
-            Grid.Column="2" 
-            Text="{Binding DistanceValue}">
-
+                VerticalOptions="Center"
+                Style="{StaticResource styleLabelBlack}"
+                Text="{Binding DistanceValue}">
             </Label>
         </Grid>
 

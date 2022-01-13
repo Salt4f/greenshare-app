@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using greenshare_app.Text;
 using Xamarin.Forms;
 
 namespace greenshare_app.ViewModels
@@ -24,7 +25,7 @@ namespace greenshare_app.ViewModels
 
         public ReportPageViewModel(INavigation navigation, Page view, Type type, int id)
         {
-            Title = "Report page";
+            Title = Text.Text.ReportPage;
             this.navigation = navigation;
             this.view = view;
             Id = id;
@@ -56,7 +57,7 @@ namespace greenshare_app.ViewModels
             }
             else
             {
-                await view.DisplayAlert("Please enter a report message first", "", "OK");
+                await view.DisplayAlert(Text.Text.PleaseEnterAReportMessageFirst, "", "OK");
             }
         }
 

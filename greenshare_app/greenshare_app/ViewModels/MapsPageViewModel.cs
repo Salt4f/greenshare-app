@@ -11,6 +11,8 @@ using greenshare_app.Controls;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using System.Linq;
+using greenshare_app.Views.MainViewPages;
+using System.Threading;
 
 namespace greenshare_app.ViewModels
 {
@@ -18,7 +20,15 @@ namespace greenshare_app.ViewModels
     {
         private INavigation navigation;
         private Page view;
+        private int distanceValue;
+        private CustomMap MyMap;
         Geocoder geocoder = new Geocoder();
+
+        public int DistanceValue
+        {
+            get => distanceValue;
+            set => SetProperty(ref distanceValue, value);
+        }
 
         public AsyncCommand<MapClickedEventArgs> OnMapClickedCommand => new AsyncCommand<MapClickedEventArgs>(OnMapClicked);
 
@@ -28,15 +38,17 @@ namespace greenshare_app.ViewModels
             throw new NotImplementedException();
         }
 
-        public MapsPageViewModel(INavigation navigation, Page view, CustomMap MyMap)
+        public MapsPageViewModel(INavigation navigation, Page view, CustomMap myMap)
         {
             this.navigation = navigation;
             this.view = view;
+            distanceValue = 100;
+            MyMap = myMap;
             MyMap.CustomPins = new List<CustomPin>();
-            PositionMap(MyMap);
-            AddPins(MyMap);
+            PositionMap();
+            AddPins();
         }
-        private async void PositionMap(CustomMap MyMap)
+        private async void PositionMap()
         {
             var loc = await Geolocation.GetLocationAsync();
             MyMap.MoveToRegion(
@@ -44,10 +56,10 @@ namespace greenshare_app.ViewModels
                     new Position(loc.Latitude, loc.Longitude), Distance.FromKilometers(10)
                     ));
         }
-        private async void AddPins(CustomMap MyMap)
+        private async void AddPins()
         {
             var loc = await Geolocation.GetLocationAsync();
-            var cards = await PostRetriever.Instance().GetOffers(loc, 1000, quantity:50);
+            var cards = await PostRetriever.Instance().GetOffers(loc, DistanceValue, quantity: 50);
             if (cards != null)
             {
                 foreach (var card in cards)
@@ -59,13 +71,25 @@ namespace greenshare_app.ViewModels
                     pin.Address = addresses.FirstOrDefault();
                     pin.Label = offer.Name;
                     pin.Name = offer.Name;
+                    pin.Url = offer.Id;
+                    pin.InfoWindowClicked += async (s, args) =>
+                    {
+                        Offer offer2 = await PostRetriever.Instance().GetOffer(pin.Url);
+                        if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
+                        else
+                        {
+                            var view = new ViewPost(offer2);
+                            var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                            await navigation.PushModalAsync(view);
+                        }
+                    };
 
                     MyMap.CustomPins.Add(pin);
                     MyMap.Pins.Add(pin);
                 }
             }
 
-            var cards2 = await PostRetriever.Instance().GetRequests(loc, 1000, quantity:50);
+            var cards2 = await PostRetriever.Instance().GetRequests(loc, DistanceValue, quantity: 50);
             if (cards2 != null)
             {
                 foreach (var card in cards2)
@@ -78,11 +102,34 @@ namespace greenshare_app.ViewModels
 
                     pin.Label = offer.Name;
                     pin.Name = offer.Name;
+                    pin.Url = offer.Id;
+                    pin.InfoWindowClicked += async (s, args) =>
+                     {
+                         Request offer2 = await PostRetriever.Instance().GetRequest(pin.Url);
+                         if (offer == null) await view.DisplayAlert(Text.Text.ErrorWhileRetrievingSelectedOffer, Text.Text.OfferNotFound, "OK");
+                         else
+                         {
+                             var view = new ViewPost(offer2);
+                             var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+                             await navigation.PushModalAsync(view);
+                         }
+                     };
 
                     MyMap.CustomPins.Add(pin);
                     MyMap.Pins.Add(pin);
                 }
             }
+        }
+
+        public AsyncCommand OnSearchButtonCommand => new AsyncCommand(OnSearch);
+
+        private async Task OnSearch()
+        {
+            IsBusy = true;
+            MyMap.CustomPins.Clear();
+            MyMap.Pins.Clear();
+            AddPins();
+            IsBusy = false;
         }
     }
 }

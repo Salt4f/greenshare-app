@@ -4,6 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.EditPost"
              BackgroundColor="{StaticResource colorWhite}"
              xmlns:control="clr-namespace:greenshare_app.Controls"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:model="clr-namespace:greenshare_app.Models" xmlns:viewmodels="clr-namespace:greenshare_app.ViewModels" x:DataType="viewmodels:EditPostViewModel">
 
@@ -18,7 +19,7 @@
                         <control:BorderlessEntry  
                                 Style="{StaticResource styleEntryDefault}" 
                                 Text="{Binding Name}" 
-                                Placeholder="Product name" 
+                                Placeholder="{x:Static multiIdioma:Text.ProductName}" 
                                 FontAttributes="None"
                                     FontSize="20"/>
                     </StackLayout>
@@ -30,7 +31,7 @@
                         <control:BorderlessEditor
                                 HeightRequest="60"
                                 Style="{StaticResource styleEntryDefault}"
-                                Placeholder="Description" 
+                                Placeholder="{x:Static multiIdioma:Text.Description}" 
                                 AutoSize="TextChanges"
                                 Text="{Binding Description}"/>
                     </StackLayout>
@@ -59,7 +60,7 @@
                     </Frame>
                     <Button HorizontalOptions="Center" 
                                 VerticalOptions="Center"
-                                Text="Borrar Foto"
+                                Text="{x:Static multiIdioma:Text.DeletePhoto}"
                                 Command="{Binding OnRemovePhotoButtonCommand}"
                                 Style="{StaticResource styleButtonDefault}"/>
                     <!--ICON-->
@@ -83,7 +84,7 @@
                             <control:BorderlessEntry      
                                             Style="{StaticResource styleEntryDefault}" 
                                             Text="{Binding NewTag}" 
-                                            Placeholder="New Tag"
+                                            Placeholder="{x:Static multiIdioma:Text.NewTag}"
                                             HorizontalOptions="Fill" 
                                             VerticalOptions="Fill"
                                             WidthRequest="120"/>
@@ -92,7 +93,7 @@
                     <Button
                                 HorizontalOptions="Center" 
                                 VerticalOptions="Center"
-                                Text="Add Tag"
+                                Text="{x:Static multiIdioma:Text.AddTag}"
                                 Command="{Binding OnAddTagButtonCommand}"
                                 Style="{StaticResource styleButtonDefault}"
                                 />
@@ -121,7 +122,7 @@
                     </Frame>
                     <Button HorizontalOptions="Center" 
                                     VerticalOptions="Center"
-                                    Text="Remove Tag"
+                                    Text="{x:Static multiIdioma:Text.RemoveTag}"
                                     Command="{Binding OnRemoveTagButtonCommand}"
                                     Style="{StaticResource styleButtonDefault}"/>
                 </StackLayout>
@@ -133,7 +134,7 @@
                 </Frame>
 
                 <!--SUBMIT BUTTON-->
-                <Button Margin="5,0,5,5" Text="Submit Changes" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
+                <Button Margin="5,0,5,5" Text="{x:Static multiIdioma:Text.SubmitChanges}" Style="{StaticResource styleButtonDefault}" Command="{Binding OnSubmitButtonCommand}"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

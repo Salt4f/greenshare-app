@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
             x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.OutgoingInteractionsPage"
             xmlns:local="clr-namespace:greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages"
             BarBackgroundColor="{StaticResource colorGreen1}">
 
-    <local:OutgoingPendingPage Title="PENDING" IconImageSource="clock.png" BackgroundColor="{StaticResource colorWhite}"/>
-    <local:OutgoingAcceptedPage Title="ACCEPTED" IconImageSource="check.png" BackgroundColor="{StaticResource colorWhite}"/>
+    <local:OutgoingPendingPage Title="{x:Static multiIdioma:Text.Pending}" IconImageSource="clock.png" BackgroundColor="{StaticResource colorWhite}"/>
+    <local:OutgoingAcceptedPage Title="{x:Static multiIdioma:Text.Accepted}" IconImageSource="check.png" BackgroundColor="{StaticResource colorWhite}"/>
 
 </TabbedPage>

@@ -3,6 +3,8 @@ using greenshare_app.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
+using System.Resources;
+using greenshare_app.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -34,7 +36,7 @@ namespace greenshare_app.ViewModels
             catch (Exception)
             {
                 IsBusy = false;
-                await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, Text.Text.OK);
             }
             IsBusy = false;
         }
@@ -78,7 +80,7 @@ namespace greenshare_app.ViewModels
         {
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
-                await view.DisplayAlert("Wrong Info", "Email or password empty", "OK");
+                await view.DisplayAlert(Text.Text.WrongInfo, Text.Text.EmailPasswordEmpty, Text.Text.OK);
             }
             else
             {
@@ -93,15 +95,16 @@ namespace greenshare_app.ViewModels
                     else
                     {
                         IsBusy = false;
-                        await view.DisplayAlert("Wrong Info", "Email and/or password incorrect", "OK");
+                        await view.DisplayAlert(Text.Text.WrongInfo, Text.Text.EmailPasswordIncorrect, Text.Text.OK);
                         Email = string.Empty;
                         Password = string.Empty;
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    var message = e.Message;
                     IsBusy = false;
-                    await view.DisplayAlert("Internal Server Error", "Something went wrong", "OK");
+                    await view.DisplayAlert(Text.Text.InternalServerError, Text.Text.SomethingWentWrong, Text.Text.OK);
                 }
             }
             

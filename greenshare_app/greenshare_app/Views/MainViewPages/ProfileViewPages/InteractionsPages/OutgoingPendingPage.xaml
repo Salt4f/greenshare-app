@@ -4,6 +4,7 @@
              x:Class="greenshare_app.Views.MainViewPages.ProfileViewPages.InteractionsPages.OutgoingPendingPage"
              xmlns:viewModels="clr-namespace:greenshare_app.ViewModels"
              xmlns:model="clr-namespace:greenshare_app.Models"
+             xmlns:multiIdioma="clr-namespace:greenshare_app.Text"
              xmlns:fontAwesome="clr-namespace:FontAwesome" x:DataType="viewModels:OutgoingPendingViewModel"
              Title="{Binding Title}">
     <ListView BackgroundColor="{StaticResource colorWhite}"
@@ -81,7 +82,7 @@
                                 </Frame>
                                 <StackLayout Style="{StaticResource styleStackLayoutDefault}" Orientation="Horizontal">
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorGreen5}" Padding="20" Margin="10" CornerRadius="35">
-                                        <Label Text="Esperant resposta..." Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
+                                        <Label Text="{x:Static multiIdioma:Text.WaitingForResponse}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS" FontSize="15"/>
                                     </Frame>
                                     <Frame Style="{StaticResource styleFrameDefault}" BackgroundColor="{StaticResource colorRed1}" Padding="20" Margin="10" CornerRadius="35">
                                         <Label Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" Style="{StaticResource styleLabelIcon}" FontFamily="FAS"/>
