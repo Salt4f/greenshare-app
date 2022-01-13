@@ -343,7 +343,7 @@
     <value>Ara la gent no pot veure la teva publicació</value>
   </data>
   <data name="OfferRequestedSuccessfully" xml:space="preserve">
-    <value>Oferta solicitada con éxito</value>
+    <value>Oferta sol·licitada correctament</value>
   </data>
   <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
     <value>Comproveu les vostres interaccions sortints per veure'n l'estat</value>

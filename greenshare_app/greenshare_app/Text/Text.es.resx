@@ -343,7 +343,7 @@
     <value>Ahora la gente no puede ver tu publicación</value>
   </data>
   <data name="OfferRequestedSuccessfully" xml:space="preserve">
-    <value>Oferta sol·licitada correctament</value>
+    <value>Oferta solicitada con éxito</value>
   </data>
   <data name="PleaseCheckYourOutgoingInteractionsToSeeItsStatus" xml:space="preserve">
     <value>Verifique sus interacciones salientes para ver su estado</value>
