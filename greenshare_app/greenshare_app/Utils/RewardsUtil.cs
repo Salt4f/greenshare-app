@@ -28,7 +28,19 @@ namespace greenshare_app.Utils
         }
 
         private readonly HttpClient httpClient;
-
+        public async Task<bool> ExchangeEcoPoints()
+        {           
+            Tuple<int, string> session = await Auth.Instance().GetAuth();
+            HttpContent httpContent = new StringContent("");
+            httpContent = await Auth.AddHeaders(httpContent);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/admin/exchange", httpContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
         public async Task<List<Reward>> GetAllRewards(INavigation navigation, Page view, int greenCoinsAvailable)
         {
             Tuple<int,string> session = await Auth.Instance().GetAuth();
@@ -123,7 +135,7 @@ namespace greenshare_app.Utils
             HttpContent httpContent = new StringContent(json);
             httpContent = await Auth.AddHeaders(httpContent);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "redeem?action=rewards", httpContent);
+            var response = await httpClient.PostAsync(Config.Config.Instance().BaseServerUrl + "/user/" + session.Item1 + "/redeem?action=rewards", httpContent);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return true;
@@ -148,6 +160,15 @@ namespace greenshare_app.Utils
         {
             [JsonProperty(PropertyName = "rewardId")]
             public int Id { get; set; }
+        }
+
+        private class GreenCoinsInfo
+        {
+            [JsonProperty(PropertyName = "greenCoins")]
+            public int GreenCoins { get; set; }
+
+            [JsonProperty(PropertyName = "currentGreenCoins")]
+            public int CurrentGreenCoins { get; set; }
         }
 
         private class RewardInfo
